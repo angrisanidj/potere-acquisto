@@ -31,6 +31,9 @@ jobs:
     # fermo, controllo della nuova edizione): 4440 s (74 minuti), più l'installazione.
     # 85 minuti lasciano margine.
     timeout-minutes: 85
+    env:
+      # output degli script nel log subito, non tutto a fine passo
+      PYTHONUNBUFFERED: "1"
     steps:
       - uses: actions/checkout@v7
 
@@ -78,7 +81,8 @@ jobs:
           FOI=$(python -c "import json; print(json.load(open('data/foi.json'))['last_month'])" 2>/dev/null || echo n/d)
           RETR=$(python -c "import json; print(json.load(open('data/retribuzioni.json'))['last_month'])" 2>/dev/null || echo n/d)
           RACLI=$(python -c "import json; print(json.load(open('data/racli.json'))['year'])" 2>/dev/null || echo n/d)
-          git commit -m "Aggiorna dati (FOI: ${FOI}, retribuzioni: ${RETR}, RACLI: ${RACLI})"
+          SES=$(python -c "import json; print(json.load(open('data/ses.json'))['year'])" 2>/dev/null || echo n/d)
+          git commit -m "Aggiorna dati (FOI: ${FOI}, retribuzioni: ${RETR}, RACLI: ${RACLI}, SES: ${SES})"
           git push
 
       # Con continue-on-error un passo fallito risulta comunque "success":

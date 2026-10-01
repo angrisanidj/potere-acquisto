@@ -12,277 +12,327 @@
 <style>
 #fg-potere-acquisto-2026 {
   box-sizing: border-box;
-  max-width: 760px;
+  max-width: 1100px;
   margin: 28px auto !important;
-  padding: 20px 16px;
+  padding: 0;
   background: #ffffff;
   color: #1A1A2E;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.45;
-  border: 1px solid #D0D8E8;
-  border-radius: 10px;
+  font-variant-numeric: tabular-nums;
   text-align: left;
 }
 #fg-potere-acquisto-2026 *,
 #fg-potere-acquisto-2026 *::before,
 #fg-potere-acquisto-2026 *::after { box-sizing: inherit; }
 #fg-potere-acquisto-2026 [hidden] { display: none !important; }
+#fg-potere-acquisto-2026 .fg-topbar { height: 8px; background: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-in { padding: 18px 16px 22px; display: flex; flex-direction: column; gap: 30px; }
 
 /* Testata */
-#fg-potere-acquisto-2026 .fg-kicker {
-  margin: 0 0 6px; color: #0070C0; font-size: 12px; font-weight: 700;
-  letter-spacing: .08em; text-transform: uppercase;
+#fg-potere-acquisto-2026 .fg-kick {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; margin: 0 0 12px;
+  font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #1A1A2E;
 }
+#fg-potere-acquisto-2026 .fg-kick span + span { color: #666680; }
 #fg-potere-acquisto-2026 .fg-title {
-  margin: 0 0 8px; padding: 0; color: #003F87; font-size: 22px; line-height: 1.2;
-  font-weight: 800; font-family: inherit; border: 0;
+  margin: 0 0 12px; padding: 0; border: 0; font-family: inherit; color: #1A1A2E;
+  font-size: 30px; font-weight: 800; line-height: 1.04; letter-spacing: -.025em; max-width: 900px;
 }
-#fg-potere-acquisto-2026 .fg-sub { margin: 0 0 18px; color: #666680; font-size: 15px; }
+#fg-potere-acquisto-2026 .fg-sub { margin: 0; color: #666680; font-size: 16px; max-width: 680px; }
 
-/* Modulo */
-#fg-potere-acquisto-2026 .fg-form { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 0 0 14px; }
-#fg-potere-acquisto-2026 .fg-field { margin: 0; padding: 0; border: 0; min-width: 0; }
-#fg-potere-acquisto-2026 .fg-label {
-  display: block; margin: 0 0 5px; padding: 0; color: #1A1A2E; font-size: 14px; font-weight: 600;
+/* Elementi comuni */
+#fg-potere-acquisto-2026 .fg-cap {
+  margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #666680;
 }
-#fg-potere-acquisto-2026 .fg-label small { font-weight: 400; color: #666680; font-size: 13px; }
-#fg-potere-acquisto-2026 .fg-row { display: flex; gap: 8px; }
-#fg-potere-acquisto-2026 .fg-row select:first-child { flex: 1.4; }
-#fg-potere-acquisto-2026 .fg-row select:last-child { flex: 1; }
+#fg-potere-acquisto-2026 .fg-rule { border-top: 2px solid #1A1A2E; padding-top: 12px; }
+#fg-potere-acquisto-2026 .fg-label { display: block; margin: 0 0 2px; padding: 0; color: #666680; font-size: 13px; font-weight: 400; }
+#fg-potere-acquisto-2026 .fg-label small { font-size: 13px; color: #666680; }
+#fg-potere-acquisto-2026 .fg-hint { margin: 6px 0 0; color: #666680; font-size: 13px; }
+#fg-potere-acquisto-2026 .fg-error { margin: 6px 0 0; color: #B3261E; font-size: 13px; font-weight: 700; }
 #fg-potere-acquisto-2026 select,
 #fg-potere-acquisto-2026 input[type="text"] {
-  display: block; width: 100%; min-width: 0; height: 44px; margin: 0; padding: 0 10px;
-  font: inherit; font-size: 16px; color: #1A1A2E; background: #ffffff;
-  border: 1px solid #D0D8E8; border-radius: 6px; box-shadow: none; outline: none;
+  display: block; width: 100%; min-width: 0; height: 44px; margin: 0; padding: 0 4px;
+  font: inherit; font-size: 18px; font-weight: 500; color: #1A1A2E; background: transparent;
+  border: 0; border-bottom: 2px solid #1A1A2E; border-radius: 0; box-shadow: none; outline: none;
 }
 #fg-potere-acquisto-2026 select:focus,
-#fg-potere-acquisto-2026 input[type="text"]:focus { border-color: #0070C0; box-shadow: 0 0 0 3px #E8F4FD; }
-#fg-potere-acquisto-2026 input[aria-invalid="true"] { border-color: #B3261E; }
+#fg-potere-acquisto-2026 input[type="text"]:focus { border-bottom-color: #003F87; box-shadow: 0 2px 0 #003F87; }
+#fg-potere-acquisto-2026 input[aria-invalid="true"] { border-bottom-color: #B3261E; }
+#fg-potere-acquisto-2026 .fg-row { display: flex; gap: 12px; }
+#fg-potere-acquisto-2026 .fg-row select:first-child { flex: 1.4; }
+#fg-potere-acquisto-2026 .fg-row select:last-child { flex: 1; }
 #fg-potere-acquisto-2026 .fg-money { position: relative; }
-#fg-potere-acquisto-2026 .fg-money input { padding-right: 52px; }
+#fg-potere-acquisto-2026 .fg-money input { padding-right: 48px; }
 #fg-potere-acquisto-2026 .fg-unit {
-  position: absolute; right: 10px; top: 0; height: 44px; line-height: 44px;
-  color: #666680; font-size: 14px; pointer-events: none;
+  position: absolute; right: 4px; top: 0; height: 44px; line-height: 44px; color: #1A1A2E; font-size: 16px; pointer-events: none;
 }
-#fg-potere-acquisto-2026 .fg-hint { margin: 5px 0 0; color: #666680; font-size: 13px; }
-#fg-potere-acquisto-2026 .fg-error { margin: 5px 0 0; color: #B3261E; font-size: 13px; font-weight: 600; }
+#fg-potere-acquisto-2026 .fg-field { margin: 0; padding: 0; border: 0; min-width: 0; }
+#fg-potere-acquisto-2026 .fg-alert { margin: 8px 0 0; padding: 12px; border: 2px solid #1A1A2E; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-alert strong { display: block; margin: 0 0 2px; }
+#fg-potere-acquisto-2026 .fg-soft { margin: 8px 0 0; padding: 12px; background: #E8F4FD; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-soft strong { display: block; margin: 0 0 2px; }
 
-/* Opzione contratto */
-#fg-potere-acquisto-2026 .fg-contract {
-  margin: 0 0 20px; padding: 12px 14px; border: 1px solid #D0D8E8; border-radius: 8px;
-}
+/* Passi 01 02 03 */
+#fg-potere-acquisto-2026 .fg-steps { display: grid; grid-template-columns: 1fr; gap: 26px; align-items: start; }
+#fg-potere-acquisto-2026 .fg-step { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+#fg-potere-acquisto-2026 .fg-step-h { display: flex; gap: 10px; align-items: baseline; font-size: 13px; }
+#fg-potere-acquisto-2026 .fg-step-h b { font-weight: 800; }
+#fg-potere-acquisto-2026 .fg-step-h span { font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
 #fg-potere-acquisto-2026 .fg-check {
-  display: flex; align-items: center; gap: 10px; margin: 0; padding: 0;
-  font-size: 15px; font-weight: 600; color: #1A1A2E; cursor: pointer;
+  display: flex; align-items: center; gap: 10px; min-height: 44px; margin: 0; padding: 0;
+  font-size: 15px; font-weight: 700; color: #1A1A2E; cursor: pointer;
 }
-#fg-potere-acquisto-2026 .fg-check input {
-  flex: none; width: 20px; height: 20px; margin: 0; padding: 0; accent-color: #003F87; cursor: pointer;
-}
+#fg-potere-acquisto-2026 .fg-check input { flex: none; width: 22px; height: 22px; margin: 0; padding: 0; accent-color: #003F87; cursor: pointer; }
 #fg-potere-acquisto-2026 .fg-check.fg-off { color: #666680; cursor: default; }
-#fg-potere-acquisto-2026 .fg-check.fg-off input { cursor: default; }
-#fg-potere-acquisto-2026 .fg-cmp { margin: 12px 0 0; }
 #fg-potere-acquisto-2026 .fg-cmp-box { position: relative; }
-#fg-potere-acquisto-2026 .fg-cmp-box input { padding-right: 34px; }
+#fg-potere-acquisto-2026 .fg-cmp-box input { padding-right: 30px; font-size: 16px; }
 #fg-potere-acquisto-2026 .fg-cmp-caret {
-  position: absolute; right: 12px; top: 0; height: 44px; line-height: 44px;
-  color: #666680; font-size: 12px; pointer-events: none;
+  position: absolute; right: 4px; top: 0; height: 44px; line-height: 44px; color: #1A1A2E; font-size: 12px; pointer-events: none;
 }
 #fg-potere-acquisto-2026 .fg-cmp-list {
-  position: absolute; left: 0; right: 0; top: 48px; z-index: 30; max-height: 290px; overflow-y: auto;
-  margin: 0; padding: 4px 0; list-style: none; background: #ffffff;
-  border: 1px solid #D0D8E8; border-radius: 6px; box-shadow: 0 8px 20px rgba(26, 26, 46, .14);
+  position: absolute; left: 0; right: 0; top: 46px; z-index: 30; max-height: 300px; overflow-y: auto;
+  margin: 0; padding: 0; list-style: none; background: #ffffff; border: 2px solid #1A1A2E;
+  box-shadow: 0 10px 24px rgba(26, 26, 46, .16);
 }
 #fg-potere-acquisto-2026 .fg-cmp-list li {
-  margin: 0; padding: 7px 10px; list-style: none; font-size: 14px; line-height: 1.3;
-  color: #1A1A2E; cursor: pointer; background: none;
+  margin: 0; padding: 9px 10px; list-style: none; font-size: 14px; line-height: 1.3; color: #1A1A2E;
+  cursor: pointer; background: none; border-bottom: 1px solid #D0D8E8;
 }
 #fg-potere-acquisto-2026 .fg-cmp-list li::before { content: none; }
 #fg-potere-acquisto-2026 .fg-cmp-list li.fg-ctx { color: #666680; }
 #fg-potere-acquisto-2026 .fg-cmp-list li.fg-act { background: #E8F4FD; }
-#fg-potere-acquisto-2026 .fg-cmp-list li[aria-selected="true"] { font-weight: 700; color: #003F87; }
+#fg-potere-acquisto-2026 .fg-cmp-list li[aria-selected="true"] { font-weight: 800; color: #003F87; }
+#fg-potere-acquisto-2026 .fg-cmp-list li[aria-selected="true"]::after { content: ' ✓'; }
 #fg-potere-acquisto-2026 .fg-cmp-list li.fg-empty { color: #666680; cursor: default; }
-#fg-potere-acquisto-2026 .fg-cmp-list .fg-from { color: #666680; font-size: 12px; font-weight: 400; }
+#fg-potere-acquisto-2026 .fg-cmp-list li.fg-grp {
+  padding-top: 12px; color: #666680; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; cursor: default;
+}
+#fg-potere-acquisto-2026 .fg-cmp-list .fg-from { color: #666680; font-size: 11px; font-weight: 700; }
 
-/* Risultati */
-#fg-potere-acquisto-2026 .fg-big {
-  margin: 0 0 14px; padding: 16px; background: #E8F4FD; border-radius: 8px;
-  border-left: 5px solid #003F87;
+/* Risultato */
+#fg-potere-acquisto-2026 .fg-res { display: flex; flex-direction: column; gap: 24px; }
+#fg-potere-acquisto-2026 .fg-res-grid { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; }
+#fg-potere-acquisto-2026 .fg-res-main { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+#fg-potere-acquisto-2026 .fg-word {
+  display: flex; align-items: center; gap: 8px; margin: 4px 0 0;
+  font-size: 14px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
 }
+#fg-potere-acquisto-2026 .fg-word i {
+  display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px;
+  font-style: normal; font-size: 11px; color: #ffffff; background: #1A1A2E;
+}
+#fg-potere-acquisto-2026 .fg-word.fg-loss i { background: #003F87; }
+#fg-potere-acquisto-2026 .fg-word.fg-gain i { background: #0070C0; }
 #fg-potere-acquisto-2026 .fg-big-num {
-  display: block; color: #003F87; font-size: 44px; font-weight: 800; line-height: 1.05;
-  font-variant-numeric: tabular-nums; letter-spacing: -.01em;
+  display: block; font-size: 76px; font-weight: 700; line-height: .92; letter-spacing: -.045em; white-space: nowrap;
 }
-#fg-potere-acquisto-2026 .fg-big-txt { display: block; margin: 6px 0 0; font-size: 15px; }
-#fg-potere-acquisto-2026 .fg-big-subs { display: block; margin: 0; }
-#fg-potere-acquisto-2026 .fg-big-sub { display: block; margin: 6px 0 0; color: #666680; font-size: 14px; }
-#fg-potere-acquisto-2026 .fg-cards { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 0 0 18px; }
-#fg-potere-acquisto-2026 .fg-card { padding: 12px 14px; border: 1px solid #D0D8E8; border-radius: 8px; min-width: 0; }
-#fg-potere-acquisto-2026 .fg-card-k { display: block; color: #666680; font-size: 13px; }
-#fg-potere-acquisto-2026 .fg-card-v {
-  display: block; margin: 2px 0; color: #003F87; font-size: 26px; font-weight: 800;
-  font-variant-numeric: tabular-nums;
+#fg-potere-acquisto-2026 .fg-loss { color: #003F87; }
+#fg-potere-acquisto-2026 .fg-gain { color: #0070C0; }
+#fg-potere-acquisto-2026 .fg-even { color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-res-label { margin: 2px 0 0; font-size: 17px; font-weight: 600; }
+#fg-potere-acquisto-2026 .fg-res-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+#fg-potere-acquisto-2026 .fg-sentence p { margin: 0 0 8px; font-size: 16px; line-height: 1.5; }
+#fg-potere-acquisto-2026 .fg-sentence p + p { color: #666680; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-rows { margin: 0; padding: 0; border-top: 1px solid #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-rows div {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0; border-bottom: 1px solid #D0D8E8;
 }
-#fg-potere-acquisto-2026 .fg-card-v.fg-vs { font-size: 21px; }
-#fg-potere-acquisto-2026 .fg-card-u { font-size: 15px; font-weight: 600; letter-spacing: 0; }
-#fg-potere-acquisto-2026 .fg-card-t { display: block; font-size: 14px; }
-#fg-potere-acquisto-2026 .fg-card-note { display: block; margin: 8px 0 0; color: #666680; font-size: 12px; line-height: 1.4; }
-#fg-potere-acquisto-2026 .fg-neg { color: #B3261E; }
-#fg-potere-acquisto-2026 .fg-pos { color: #1B7F3B; }
-#fg-potere-acquisto-2026 .fg-prompt {
-  margin: 0 0 18px; padding: 12px 14px; border: 1px dashed #D0D8E8; border-radius: 8px;
-  color: #666680; font-size: 14px;
+#fg-potere-acquisto-2026 .fg-rows dt { margin: 0; color: #666680; }
+#fg-potere-acquisto-2026 .fg-rows dd { margin: 0; font-weight: 700; white-space: nowrap; }
+#fg-potere-acquisto-2026 .fg-boxes { display: grid; grid-template-columns: 1fr; gap: 16px; }
+#fg-potere-acquisto-2026 .fg-box {
+  display: grid; grid-template-columns: 1fr; gap: 4px 16px; align-items: baseline;
+  padding: 14px 0; border-top: 1px solid #1A1A2E; border-bottom: 1px solid #1A1A2E; min-width: 0;
 }
+#fg-potere-acquisto-2026 .fg-box-h { grid-column: 1 / -1; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+#fg-potere-acquisto-2026 .fg-box-h span { color: #666680; }
+#fg-potere-acquisto-2026 .fg-box-v { font-size: 34px; font-weight: 700; letter-spacing: -.02em; line-height: 1.1; white-space: nowrap; }
+#fg-potere-acquisto-2026 .fg-box-t { font-size: 14px; color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-box-n { grid-column: 1 / -1; margin: 4px 0 0; font-size: 12.5px; color: #666680; }
+#fg-potere-acquisto-2026 .fg-prompt { margin: 0; font-size: 18px; color: #666680; }
 
 /* Grafico */
-#fg-potere-acquisto-2026 .fg-chart-title { margin: 0 0 2px; font-size: 15px; font-weight: 700; color: #1A1A2E; }
-#fg-potere-acquisto-2026 .fg-chart-sub { margin: 0 0 8px; font-size: 13px; color: #666680; }
-#fg-potere-acquisto-2026 .fg-chart { position: relative; width: 100%; margin: 0 0 12px; }
+#fg-potere-acquisto-2026 .fg-chart-title { margin: 0 0 2px; font-size: 22px; font-weight: 800; letter-spacing: -.01em; color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-chart-sub { margin: 0 0 10px; font-size: 13px; color: #666680; }
+#fg-potere-acquisto-2026 .fg-chart { position: relative; width: 100%; margin: 0 0 14px; }
 #fg-potere-acquisto-2026 .fg-chart svg { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
 #fg-potere-acquisto-2026 .fg-tip {
   position: absolute; top: 0; width: max-content; max-width: 250px; padding: 6px 8px;
-  background: #1A1A2E; color: #ffffff; font-size: 12px; line-height: 1.35; border-radius: 5px;
-  pointer-events: none; transform: translateX(-50%);
+  background: #1A1A2E; color: #ffffff; font-size: 12px; line-height: 1.35; pointer-events: none; transform: translateX(-50%);
 }
 #fg-potere-acquisto-2026 .fg-tip span { display: block; }
 #fg-potere-acquisto-2026 .fg-tip span + span { margin-top: 3px; }
-#fg-potere-acquisto-2026 .fg-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 18px; }
+#fg-potere-acquisto-2026 .fg-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0; }
 #fg-potere-acquisto-2026 .fg-btn {
-  display: inline-block; height: 40px; margin: 0; padding: 0 14px; font: inherit; font-size: 14px;
-  font-weight: 600; line-height: 38px; color: #003F87; background: #ffffff;
-  border: 1px solid #003F87; border-radius: 6px; cursor: pointer;
+  display: inline-block; height: 44px; margin: 0; padding: 0 20px; font: inherit; font-size: 15px; font-weight: 700;
+  line-height: 40px; color: #1A1A2E; background: #ffffff; border: 2px solid #1A1A2E; border-radius: 0; cursor: pointer;
 }
 #fg-potere-acquisto-2026 .fg-btn:hover,
-#fg-potere-acquisto-2026 .fg-btn:focus { background: #E8F4FD; outline: none; }
-#fg-potere-acquisto-2026 .fg-btn[disabled] { color: #666680; border-color: #D0D8E8; cursor: default; }
+#fg-potere-acquisto-2026 .fg-btn:focus { background: #1A1A2E; color: #ffffff; outline: none; }
+#fg-potere-acquisto-2026 .fg-btn[disabled] { color: #666680; border-color: #D0D8E8; background: #ffffff; cursor: default; }
 
 /* Confronto della RAL */
-#fg-potere-acquisto-2026 .fg-ral {
-  margin: 26px 0 22px; padding: 18px 14px; border: 1px solid #D0D8E8; border-top: 4px solid #00A6D6;
-  border-radius: 8px; background: #ffffff;
-}
+#fg-potere-acquisto-2026 .fg-ral { margin: 0; padding: 20px 16px; background: #E8F4FD; }
 #fg-potere-acquisto-2026 .fg-ral-title {
-  margin: 0 0 6px; padding: 0; color: #003F87; font-size: 20px; line-height: 1.25; font-weight: 800;
-  font-family: inherit; border: 0;
+  margin: 4px 0 6px; padding: 0; border: 0; font-family: inherit; color: #1A1A2E;
+  font-size: 24px; line-height: 1.15; font-weight: 800; letter-spacing: -.015em;
 }
-#fg-potere-acquisto-2026 .fg-ral .fg-sub { margin: 0 0 16px; font-size: 14px; }
-#fg-potere-acquisto-2026 .fg-ral-pa {
-  margin: 0 0 14px; padding: 12px 14px; border-radius: 8px; background: #E8F4FD; font-size: 14px;
-}
-#fg-potere-acquisto-2026 .fg-ral-out { margin: 4px 0 0; }
-#fg-potere-acquisto-2026 .fg-ral-big { margin: 0 0 4px; font-size: 15px; color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-ral .fg-sub { margin: 0 0 18px; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-form { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 0 0 16px; }
+#fg-potere-acquisto-2026 .fg-ral-out { margin: 4px 0 0; padding-top: 14px; border-top: 2px solid #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-ral-big { margin: 4px 0 4px; font-size: 15px; color: #1A1A2E; }
 #fg-potere-acquisto-2026 .fg-ral-big strong {
-  display: block; color: #003F87; font-size: 34px; line-height: 1.1; font-weight: 800; font-variant-numeric: tabular-nums;
+  display: block; color: #1A1A2E; font-size: 48px; line-height: 1; font-weight: 700; letter-spacing: -.03em;
 }
-#fg-potere-acquisto-2026 .fg-ral-rel { margin: 6px 0 2px; font-size: 15px; }
-#fg-potere-acquisto-2026 .fg-ral-rel strong { font-weight: 800; }
-#fg-potere-acquisto-2026 .fg-ral-sec { margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid #D0D8E8; }
-#fg-potere-acquisto-2026 .fg-ral-h { margin: 0 0 4px; font-size: 15px; font-weight: 700; color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-ral-rel { margin: 8px 0 2px; font-size: 15px; }
+#fg-potere-acquisto-2026 .fg-ral-rel strong { font-weight: 800; color: #003F87; }
+#fg-potere-acquisto-2026 .fg-ral-sec { margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-ral-h { margin: 0 0 4px; font-size: 15px; font-weight: 800; color: #1A1A2E; }
 #fg-potere-acquisto-2026 .fg-bar { width: 100%; margin: 6px 0 4px; }
 #fg-potere-acquisto-2026 .fg-bar svg { display: block; width: 100%; height: auto; overflow: visible; }
-#fg-potere-acquisto-2026 .fg-prof { margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid #D0D8E8; }
+#fg-potere-acquisto-2026 .fg-ral .fg-prompt { margin: 4px 0 0; padding-top: 14px; border-top: 2px solid #1A1A2E; font-size: 16px; }
+#fg-potere-acquisto-2026 .fg-ral .fg-soft { background: #ffffff; }
+#fg-potere-acquisto-2026 .fg-prof { margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid #1A1A2E; }
 #fg-potere-acquisto-2026 .fg-prof-val { margin: 2px 0 4px; font-size: 15px; color: #1A1A2E; }
-#fg-potere-acquisto-2026 .fg-prof-val strong { font-size: 26px; font-weight: 800; color: #003F87; font-variant-numeric: tabular-nums; }
+#fg-potere-acquisto-2026 .fg-prof-val strong { font-size: 30px; font-weight: 700; letter-spacing: -.02em; color: #1A1A2E; }
 #fg-potere-acquisto-2026 .fg-prof-warn {
-  margin: 8px 0 0; padding: 10px 12px; border-left: 3px solid #00A6D6; background: #E8F4FD;
+  margin: 8px 0 0; padding: 10px 12px; border-left: 4px solid #003F87; background: #ffffff;
   font-size: 13.5px; line-height: 1.45; color: #1A1A2E;
 }
-#fg-potere-acquisto-2026 .fg-ral-notes { margin: 16px 0 0; padding: 12px 0 0; border-top: 1px solid #D0D8E8; color: #666680; font-size: 12.5px; }
+#fg-potere-acquisto-2026 .fg-ral-notes { margin: 18px 0 0; padding: 12px 0 0; border-top: 1px solid #1A1A2E; color: #666680; font-size: 12.5px; }
 #fg-potere-acquisto-2026 .fg-ral-notes p { margin: 0 0 6px; padding: 0; font-size: inherit; color: inherit; line-height: 1.45; }
-#fg-potere-acquisto-2026 .fg-cmp-list li.fg-grp {
-  padding-top: 9px; color: #666680; font-size: 12px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: .04em; cursor: default;
-}
+#fg-potere-acquisto-2026 .fg-ral-notes strong { color: #1A1A2E; }
 
-/* Stato e piede */
-#fg-potere-acquisto-2026 .fg-status { margin: 0 0 18px; padding: 12px 14px; border-radius: 8px; background: #E8F4FD; font-size: 14px; }
-#fg-potere-acquisto-2026 .fg-status.fg-fail { background: #FDECEA; color: #8C1D18; }
-#fg-potere-acquisto-2026 .fg-foot { margin: 0; padding: 14px 0 0; border-top: 1px solid #D0D8E8; color: #666680; font-size: 12.5px; }
-#fg-potere-acquisto-2026 .fg-foot p { margin: 0 0 6px; padding: 0; font-size: inherit; color: inherit; line-height: 1.45; }
+/* Stato, errore, piede */
+#fg-potere-acquisto-2026 .fg-status { margin: 0; padding-top: 14px; border-top: 2px solid #1A1A2E; font-size: 16px; color: #666680; }
+#fg-potere-acquisto-2026 .fg-err { display: grid; grid-template-columns: 1fr; gap: 14px; padding-top: 16px; border-top: 2px solid #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-err .fg-cap { color: #B3261E; }
+#fg-potere-acquisto-2026 .fg-err strong { display: block; margin: 4px 0 0; font-size: 22px; line-height: 1.15; font-weight: 800; }
+#fg-potere-acquisto-2026 .fg-err p { margin: 0 0 12px; color: #1A1A2E; font-size: 15px; }
+#fg-potere-acquisto-2026 .fg-notes { display: grid; grid-template-columns: 1fr; gap: 12px 32px; }
+#fg-potere-acquisto-2026 .fg-notes p { margin: 0; padding: 0; color: #666680; font-size: 13px; line-height: 1.5; }
+#fg-potere-acquisto-2026 .fg-notes strong { color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-foot {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; margin: 0;
+  padding-top: 12px; border-top: 1px solid #D0D8E8; font-size: 13px; color: #666680;
+}
 #fg-potere-acquisto-2026 .fg-foot strong { color: #1A1A2E; }
-#fg-potere-acquisto-2026 .fg-foot a { color: #0070C0; text-decoration: underline; }
+#fg-potere-acquisto-2026 .fg-foot a { color: #003F87; text-decoration: underline; }
 
 @media (min-width: 600px) {
-  #fg-potere-acquisto-2026 { padding: 28px 28px 22px; }
-  #fg-potere-acquisto-2026 .fg-title { font-size: 28px; }
-  #fg-potere-acquisto-2026 .fg-sub { font-size: 16px; }
-  #fg-potere-acquisto-2026 .fg-form { grid-template-columns: 1fr 1fr 1fr; align-items: start; }
-  #fg-potere-acquisto-2026 .fg-cmp { max-width: 420px; }
-  #fg-potere-acquisto-2026 .fg-ral { padding: 22px 22px 18px; }
-  #fg-potere-acquisto-2026 .fg-ral-title { font-size: 23px; }
-  #fg-potere-acquisto-2026 .fg-form.fg-form-2 { grid-template-columns: 2fr 1fr; }
-  #fg-potere-acquisto-2026 .fg-ral-big strong { font-size: 44px; }
-  #fg-potere-acquisto-2026 .fg-big-num { font-size: 60px; }
-  #fg-potere-acquisto-2026 .fg-cards { grid-template-columns: 1fr 1fr; }
-  #fg-potere-acquisto-2026 .fg-card.fg-wide { grid-column: 1 / -1; }
-  #fg-potere-acquisto-2026 .fg-card-v.fg-vs { font-size: 26px; }
+  #fg-potere-acquisto-2026 .fg-in { padding: 34px 36px 32px; gap: 40px; }
+  #fg-potere-acquisto-2026 .fg-title { font-size: 46px; }
+  #fg-potere-acquisto-2026 .fg-sub { font-size: 18px; }
+  #fg-potere-acquisto-2026 .fg-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  #fg-potere-acquisto-2026 .fg-res-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
+  #fg-potere-acquisto-2026 .fg-big-num { font-size: 120px; }
+  #fg-potere-acquisto-2026 .fg-boxes { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+  #fg-potere-acquisto-2026 .fg-box { grid-template-columns: auto minmax(0, 1fr); }
+  #fg-potere-acquisto-2026 .fg-ral { padding: 28px 28px 22px; }
+  #fg-potere-acquisto-2026 .fg-ral-title { font-size: 30px; }
+  #fg-potere-acquisto-2026 .fg-form { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  #fg-potere-acquisto-2026 .fg-form.fg-form-2 { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  #fg-potere-acquisto-2026 .fg-ral-big strong { font-size: 64px; }
+  #fg-potere-acquisto-2026 .fg-err { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+  #fg-potere-acquisto-2026 .fg-notes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 </style>
 
-  <p class="fg-kicker">Calcolatore</p>
-  <h2 class="fg-title">Quanto potere d’acquisto ha perso il tuo stipendio</h2>
-  <p class="fg-sub">Scegli il mese da cui partire e inserisci lo stipendio netto di allora: il calcolo usa l'inflazione misurata dall'ISTAT e, se vuoi, gli aumenti previsti dal tuo contratto.</p>
+<div class="fg-topbar"></div>
+<div class="fg-in">
 
-  <div class="fg-status" data-fg="status" role="status">Caricamento dei dati ISTAT…</div>
+  <header>
+    <p class="fg-kick"><span>Calcolatore</span><span>Dati ISTAT ed Eurostat</span></p>
+    <h2 class="fg-title">Quanto potere d’acquisto ha perso il tuo stipendio</h2>
+    <p class="fg-sub">Indica quanto guadagnavi e da quando: il calcolo confronta lo stipendio netto con l’andamento dei prezzi misurato dall’ISTAT e, se vuoi, con gli aumenti previsti dal tuo contratto.</p>
+  </header>
 
-  <div data-fg="app" hidden>
-    <div class="fg-form">
-      <div class="fg-field">
-        <label class="fg-label" for="fg-pa-month">Mese di partenza</label>
-        <div class="fg-row">
-          <select id="fg-pa-month" data-fg="month" aria-label="Mese di partenza"></select>
-          <select data-fg="year" aria-label="Anno di partenza"></select>
-        </div>
-      </div>
-      <div class="fg-field">
-        <label class="fg-label" for="fg-pa-sal0" data-fg="sal0-label">Stipendio netto mensile di allora</label>
-        <div class="fg-money">
-          <input id="fg-pa-sal0" data-fg="sal0" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 1.500" aria-describedby="fg-pa-sal0-msg">
-          <span class="fg-unit" data-fg="sal0-unit">€</span>
-        </div>
-        <p class="fg-hint" id="fg-pa-sal0-msg" data-fg="sal0-msg"></p>
-      </div>
-      <div class="fg-field">
-        <label class="fg-label" for="fg-pa-sal1" data-fg="sal1-label">Stipendio netto attuale <small>(facoltativo)</small></label>
-        <div class="fg-money">
-          <input id="fg-pa-sal1" data-fg="sal1" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 1.800" aria-describedby="fg-pa-sal1-msg">
-          <span class="fg-unit">€</span>
-        </div>
-        <p class="fg-hint" id="fg-pa-sal1-msg" data-fg="sal1-msg"></p>
-      </div>
+  <p class="fg-status" data-fg="status" role="status">Caricamento dei dati ISTAT…</p>
+
+  <div class="fg-err" data-fg="err" role="alert" hidden>
+    <div>
+      <p class="fg-cap">Errore</p>
+      <strong>I dati ISTAT non si sono caricati</strong>
     </div>
+    <div>
+      <p data-fg="err-msg"></p>
+      <button type="button" class="fg-btn" data-fg="retry">Riprova ↻</button>
+    </div>
+  </div>
 
-    <div class="fg-contract" data-fg="contract">
-      <label class="fg-check" data-fg="ctr-label">
-        <input type="checkbox" data-fg="ctr-on" checked>
-        <span>Considera gli aumenti del contratto</span>
-      </label>
-      <div class="fg-cmp" data-fg="cmp-wrap">
-        <label class="fg-label" for="fg-pa-cmp">Comparto</label>
-        <div class="fg-cmp-box">
-          <input id="fg-pa-cmp" data-fg="cmp-input" type="text" role="combobox" autocomplete="off"
-                 aria-autocomplete="list" aria-expanded="false" aria-controls="fg-pa-cmp-list"
-                 placeholder="Cerca: commercio, scuole, metalmeccanica…">
-          <span class="fg-cmp-caret" aria-hidden="true">▼</span>
-          <ul class="fg-cmp-list" id="fg-pa-cmp-list" data-fg="cmp-list" role="listbox" aria-label="Comparti" hidden></ul>
+  <div data-fg="app" class="fg-res" hidden>
+    <section class="fg-steps" aria-label="Dati da inserire">
+      <div class="fg-step fg-rule">
+        <p class="fg-step-h"><b>01</b><span>Quando</span></p>
+        <div class="fg-field">
+          <label class="fg-label" for="fg-pa-month">Mese e anno di partenza</label>
+          <div class="fg-row">
+            <select id="fg-pa-month" data-fg="month" aria-label="Mese di partenza"></select>
+            <select data-fg="year" aria-label="Anno di partenza"></select>
+          </div>
         </div>
       </div>
-      <p class="fg-hint" data-fg="ctr-msg"></p>
-    </div>
 
-    <div aria-live="polite">
-      <div class="fg-big">
-        <span class="fg-big-num" data-fg="loss"></span>
-        <span class="fg-big-txt" data-fg="loss-txt"></span>
-        <span class="fg-big-subs" data-fg="subs"></span>
+      <div class="fg-step fg-rule">
+        <p class="fg-step-h"><b>02</b><span>Quanto</span></p>
+        <div class="fg-field">
+          <label class="fg-label" for="fg-pa-sal0" data-fg="sal0-label">Netto mensile di allora</label>
+          <div class="fg-money">
+            <input id="fg-pa-sal0" data-fg="sal0" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 1.500" aria-describedby="fg-pa-sal0-msg">
+            <span class="fg-unit" data-fg="sal0-unit">€</span>
+          </div>
+          <p class="fg-hint" id="fg-pa-sal0-msg" data-fg="sal0-msg"></p>
+        </div>
+        <div class="fg-field">
+          <label class="fg-label" for="fg-pa-sal1" data-fg="sal1-label">Netto mensile attuale <small>(facoltativo)</small></label>
+          <div class="fg-money">
+            <input id="fg-pa-sal1" data-fg="sal1" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 1.800" aria-describedby="fg-pa-sal1-msg">
+            <span class="fg-unit">€</span>
+          </div>
+          <p class="fg-hint" id="fg-pa-sal1-msg" data-fg="sal1-msg"></p>
+        </div>
       </div>
 
-      <p class="fg-prompt" data-fg="prompt">Inserisci lo stipendio netto di partenza per vedere quanto servirebbe per avere lo stesso potere d'acquisto.</p>
+      <div class="fg-step fg-rule" data-fg="contract">
+        <p class="fg-step-h"><b>03</b><span>Contratto</span></p>
+        <label class="fg-check" data-fg="ctr-label">
+          <input type="checkbox" data-fg="ctr-on" checked>
+          <span>Considera gli aumenti del contratto</span>
+        </label>
+        <div class="fg-field" data-fg="cmp-wrap">
+          <label class="fg-label" for="fg-pa-cmp">Comparto</label>
+          <div class="fg-cmp-box">
+            <input id="fg-pa-cmp" data-fg="cmp-input" type="text" role="combobox" autocomplete="off"
+                   aria-autocomplete="list" aria-expanded="false" aria-controls="fg-pa-cmp-list"
+                   placeholder="Cerca il comparto">
+            <span class="fg-cmp-caret" aria-hidden="true">▼</span>
+            <ul class="fg-cmp-list" id="fg-pa-cmp-list" data-fg="cmp-list" role="listbox" aria-label="Comparti" hidden></ul>
+          </div>
+        </div>
+        <p class="fg-hint" data-fg="ctr-msg"></p>
+      </div>
+    </section>
 
-      <div class="fg-cards" data-fg="cards" hidden></div>
-    </div>
+    <section class="fg-res fg-rule" aria-live="polite">
+      <div class="fg-res-grid">
+        <div class="fg-res-main">
+          <p class="fg-cap" data-fg="basis"></p>
+          <p class="fg-word" data-fg="word"></p>
+          <span class="fg-big-num" data-fg="loss"></span>
+          <p class="fg-res-label" data-fg="loss-txt"></p>
+        </div>
+        <div class="fg-res-side">
+          <div class="fg-sentence" data-fg="sentence"></div>
+          <dl class="fg-rows" data-fg="rows"></dl>
+        </div>
+      </div>
+      <p class="fg-prompt" data-fg="prompt">Inserisci lo stipendio netto di allora per vedere lo stipendio necessario all’ultimo mese disponibile e il grafico.</p>
+      <div class="fg-boxes" data-fg="boxes" hidden></div>
+    </section>
 
-    <div data-fg="chart-box" hidden>
+    <section class="fg-rule" data-fg="chart-box" hidden>
       <p class="fg-chart-title" data-fg="chart-title"></p>
       <p class="fg-chart-sub" data-fg="chart-sub"></p>
       <div class="fg-chart" data-fg="chart"></div>
@@ -290,13 +340,13 @@
         <button type="button" class="fg-btn" data-fg="png">Scarica l’immagine (PNG)</button>
         <span class="fg-hint" data-fg="png-msg"></span>
       </div>
-    </div>
+    </section>
 
     <section class="fg-ral" data-fg="ral" aria-labelledby="fg-pa-ral-title">
-      <p class="fg-kicker">Confronto con il settore</p>
+      <p class="fg-cap">Confronto con il settore</p>
       <h3 class="fg-ral-title" id="fg-pa-ral-title">Come si colloca la tua retribuzione</h3>
-      <p class="fg-sub">Confronta la tua retribuzione lorda con quella dei dipendenti a tempo pieno del settore privato. Il confronto è sulla paga oraria, così l'orario di lavoro non lo falsa.</p>
-      <p class="fg-ral-pa" data-fg="ral-pa" hidden></p>
+      <p class="fg-sub">La tua retribuzione lorda a confronto con quella dei dipendenti a tempo pieno del settore privato. Il confronto è sulla paga oraria, così l’orario di lavoro non lo falsa.</p>
+      <div class="fg-soft" data-fg="ral-pa" hidden></div>
       <div data-fg="ral-body">
         <div class="fg-form">
           <div class="fg-field">
@@ -358,12 +408,20 @@
     </section>
   </div>
 
-  <div class="fg-foot">
-    <p><strong>Fonte:</strong> ISTAT, indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI) senza tabacchi, indici delle retribuzioni contrattuali per dipendente e registro RACLI sulle retribuzioni orarie. <span data-fg="foot-data"></span></p>
-    <p><strong>Metodo:</strong> la perdita di potere d'acquisto è 1 − I(partenza)/I(arrivo), dove I è l'indice FOI senza tabacchi, lo stesso usato per rivalutare affitti e assegni di mantenimento. L'indice misura i prezzi di un paniere medio: l'inflazione vissuta da ciascuna famiglia può essere diversa. Usa lo stipendio netto, perché il lordo risente anche delle variazioni di tasse e contributi. Per i mesi dal 1996 al 2001 l'importo va inserito in lire ed è convertito a 1.936,27 lire per euro.</p>
-    <p><strong>Contratto:</strong> l'opzione applica allo stipendio la crescita dell'indice ISTAT delle retribuzioni contrattuali per dipendente del comparto scelto (dati dal 2005). L'indice misura gli aumenti previsti dai contratti nazionali (minimi tabellari e voci contrattuali), non la crescita effettiva della busta paga, che include anche anzianità, superminimi e promozioni; riguarda inoltre le retribuzioni lorde, quindi applicarlo al netto è un'approssimazione: a parità di regole fiscali, applicare al netto la crescita del lordo tende a sovrastimarla, per effetto della progressività dell'IRPEF. I mesi con un aumento una tantum che rientra il mese successivo (come dicembre 2023 nella pubblica amministrazione) sono sostituiti dal mese precedente. I confronti si fermano all'ultimo mese disponibile per entrambe le serie.</p>
-    <p><strong>Elaborazione:</strong> Daniele Angrisani (<a href="https://x.com/putino" target="_blank" rel="noopener">@putino</a>)</p>
-  </div>
+  <section class="fg-rule">
+    <p class="fg-cap" style="margin-bottom:10px">Note metodologiche</p>
+    <div class="fg-notes">
+      <p><strong>Metodo.</strong> La perdita di potere d’acquisto è 1 − I(partenza)/I(arrivo), dove I è l’indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI) senza tabacchi, lo stesso usato per rivalutare affitti e assegni di mantenimento. L’indice misura un paniere medio: l’inflazione vissuta da ciascuna famiglia può essere diversa. Usa lo stipendio netto, perché il lordo risente anche di tasse e contributi. Per i mesi dal 1996 al 2001 l’importo va inserito in lire ed è convertito a 1.936,27 lire per euro.</p>
+      <p><strong>Contratto.</strong> L’opzione applica allo stipendio la crescita dell’indice ISTAT delle retribuzioni contrattuali per dipendente del comparto scelto (dati dal 2005): misura gli aumenti previsti dai contratti nazionali (minimi tabellari), non la crescita effettiva della busta paga, che include anzianità, superminimi e promozioni. Riguarda il lordo: a parità di regole fiscali, applicare al netto la crescita del lordo tende a sovrastimarla, per effetto della progressività dell’IRPEF. I mesi con un aumento una tantum che rientra il mese successivo (come dicembre 2023 nella pubblica amministrazione) sono sostituiti dal mese precedente. I confronti si fermano all’ultimo mese disponibile per entrambe le serie.</p>
+      <p><strong>Retribuzione.</strong> Il confronto con il settore usa il registro ISTAT RACLI (retribuzioni orarie dei dipendenti a tempo pieno del settore privato extra-agricolo); il valore di riferimento per professione usa l’indagine sulla struttura delle retribuzioni pubblicata da Eurostat. I dettagli sono nel riquadro «Come si colloca la tua retribuzione».</p>
+    </div>
+  </section>
+
+  <p class="fg-foot">
+    <span><strong>Fonti:</strong> ISTAT, Eurostat. <span data-fg="foot-data"></span></span>
+    <span><strong>Elaborazione:</strong> Daniele Angrisani (<a href="https://x.com/putino" target="_blank" rel="noopener">@putino</a>)</span>
+  </p>
+</div>
 
 <script>
 (function () {
@@ -451,8 +509,9 @@
     sal1: $('sal1'), sal1Label: $('sal1-label'), sal1Msg: $('sal1-msg'),
     contract: $('contract'), ctrLabel: $('ctr-label'), ctrOn: $('ctr-on'), ctrMsg: $('ctr-msg'),
     cmpWrap: $('cmp-wrap'), cmpInput: $('cmp-input'), cmpList: $('cmp-list'),
-    loss: $('loss'), lossTxt: $('loss-txt'), subs: $('subs'),
-    prompt: $('prompt'), cards: $('cards'),
+    loss: $('loss'), lossTxt: $('loss-txt'), word: $('word'), basis: $('basis'),
+    sentence: $('sentence'), rows: $('rows'), prompt: $('prompt'), boxes: $('boxes'),
+    err: $('err'), errMsg: $('err-msg'), retry: $('retry'),
     chartBox: $('chart-box'), chartTitle: $('chart-title'), chartSub: $('chart-sub'), chart: $('chart'),
     png: $('png'), pngMsg: $('png-msg'), footData: $('foot-data'),
     ralPa: $('ral-pa'), ralBody: $('ral-body'), ralIn: $('ral-in'), ralMsg: $('ral-msg'),
@@ -718,16 +777,17 @@
     input.setAttribute('aria-invalid', isError ? 'true' : 'false');
   }
 
-  function addCard(card) {
+  // Riquadro con filetti: titolo, valore, testo e nota facoltativa.
+  function addBox(b) {
     var d = document.createElement('div');
-    d.className = 'fg-card' + (card.wide ? ' fg-wide' : '');
-    function span(cls, text) { var s = document.createElement('span'); s.className = cls; s.textContent = text; d.appendChild(s); return s; }
-    span('fg-card-k', card.k);
-    var v = span('fg-card-v' + (card.cls ? ' ' + card.cls : ''), card.v);
-    if (card.unit) { var u = document.createElement('small'); u.className = 'fg-card-u'; u.textContent = ' ' + card.unit; v.appendChild(u); }
-    span('fg-card-t', card.t);
-    if (card.note) span('fg-card-note', card.note);
-    el.cards.appendChild(d);
+    d.className = 'fg-box';
+    var h = document.createElement('p'); h.className = 'fg-box-h'; h.textContent = b.h;
+    if (b.k) { var k = document.createElement('span'); k.textContent = ' · ' + b.k; h.appendChild(k); }
+    d.appendChild(h);
+    var v = document.createElement('span'); v.className = 'fg-box-v'; v.textContent = b.v; d.appendChild(v);
+    var t = document.createElement('span'); t.className = 'fg-box-t'; t.textContent = b.t; d.appendChild(t);
+    if (b.n) { var n = document.createElement('p'); n.className = 'fg-box-n'; n.textContent = b.n; d.appendChild(n); }
+    el.boxes.appendChild(d);
   }
 
   // ---------- calcolo e rendering ----------
@@ -760,16 +820,23 @@
         }
       });
     }
-    el.ctrMsg.textContent = cs.available
-      ? (active ? 'Confronti fino ' + aEnd + ', ultimo mese disponibile sia per i prezzi sia per le retribuzioni.' +
-                  (peakNotes.length ? ' ' + peakNotes.join(' ') : '') : '')
-      : cs.reason;
+    el.ctrMsg.innerHTML = '';
+    if (cs.available) {
+      el.ctrMsg.className = 'fg-hint';
+      el.ctrMsg.textContent = active ? 'Confronti fino ' + aEnd + ', ultimo mese disponibile sia per i prezzi sia per le retribuzioni.' +
+        (peakNotes.length ? ' ' + peakNotes.join(' ') : '') : '';
+    } else {
+      el.ctrMsg.className = 'fg-alert';
+      var na = document.createElement('strong'); na.textContent = '⚠ Confronto con il contratto non disponibile';
+      el.ctrMsg.appendChild(na);
+      el.ctrMsg.appendChild(document.createTextNode(cs.reason));
+    }
 
-    el.sal0Label.textContent = 'Stipendio netto mensile ' + aMonth(start);
+    el.sal0Label.textContent = 'Netto mensile ' + aMonth(start);
     el.sal0Unit.textContent = lire ? 'lire' : '€';
     el.sal0.placeholder = lire ? 'es. 2.500.000' : 'es. 1.500';
     el.sal1Label.innerHTML = '';
-    el.sal1Label.appendChild(document.createTextNode('Stipendio netto ' + aEnd + ' '));
+    el.sal1Label.appendChild(document.createTextNode('Netto mensile ' + aEnd + ' '));
     var sm = document.createElement('small'); sm.textContent = '(facoltativo)'; el.sal1Label.appendChild(sm);
 
     // stipendi inseriti (letti per primi: decidono il risultato principale)
@@ -819,59 +886,94 @@
       R.subs.push('Le retribuzioni previste dai contratti del comparto «' + c.name + '» sono ' +
         (g >= 1 ? 'cresciute' : 'diminuite') + ' del ' + pct(Math.abs(g - 1)) + '.');
     }
+    // Direzione del risultato principale: etichetta testuale e simbolo, mai solo il colore.
+    var mainX = curReal !== null ? curReal : active ? ctrReal : fixedReal;
+    R.dir = Math.abs(mainX) < 0.0005 ? 'even' : mainX < 0 ? 'loss' : 'gain';
+    R.word = R.dir === 'loss' ? 'Perdita' : R.dir === 'gain' ? 'Guadagno' : 'Invariato';
+    R.arrow = R.dir === 'loss' ? '▼' : R.dir === 'gain' ? '▲' : '=';
+    if (R.dir === 'even') R.loss = '0,0%';
+    R.basis = 'Risultato · ' + (curReal !== null ? 'calcolato sul tuo stipendio di ' + monthName(end)
+      : active ? 'con gli aumenti del contratto' : 'a stipendio fermo');
+    el.basis.textContent = R.basis;
+    el.word.className = 'fg-word fg-' + R.dir;
+    el.word.innerHTML = '';
+    var ic = document.createElement('i'); ic.setAttribute('aria-hidden', 'true'); ic.textContent = R.arrow;
+    el.word.appendChild(ic);
+    el.word.appendChild(document.createTextNode(R.word));
+    el.loss.className = 'fg-big-num fg-' + R.dir;
     el.loss.textContent = R.loss;
     el.lossTxt.textContent = R.lossTxt;
-    el.subs.innerHTML = '';
-    R.subs.forEach(function (t) {
-      var sp = document.createElement('span'); sp.className = 'fg-big-sub'; sp.textContent = t; el.subs.appendChild(sp);
+
+    var infl = IL / I0 - 1;
+    var origTxt = sal0 !== null ? (lire ? lireFmt(p0.value) + ' (' + euro(sal0) + ')' : euro(sal0)) : '';
+    // frase principale e righe di riepilogo (il mese è sempre esplicito, mai "oggi")
+    var lead = 'Da ' + startName + ' ' + aEnd + ' i prezzi al consumo sono ' + (infl >= 0 ? 'aumentati' : 'diminuiti') +
+      ' del ' + pct(Math.abs(infl)) + '.';
+    if (sal0 !== null) {
+      lead += ' Per comprare ' + aEnd + ' ciò che acquistavi con ' + origTxt + ' al mese ' + aMonth(start) +
+        ' servirebbero ' + euro(need) + '.';
+      if (cur !== null) lead += ' Con ' + euro(cur) + ' hai ' + verb(curReal) + ' il ' + pct(Math.abs(curReal)) + ' del potere d’acquisto.';
+      if (active) lead += ' Con i soli aumenti del contratto saresti arrivato a ' + euro(sal0 * g) + '.';
+    } else {
+      lead += ' Ciò che costava 100 € ' + aMonth(start) + ' costava ' + fmt(100 * IL / I0, 2) + ' € ' + aEnd + '.';
+    }
+    var second = (curReal !== null || active) ? R.subs[0] : '';
+    R.subs = [lead].concat(second ? [second] : []);
+    el.sentence.innerHTML = '';
+    R.subs.forEach(function (t) { var e = document.createElement('p'); e.textContent = t; el.sentence.appendChild(e); });
+
+    var rows = [['Inflazione nel periodo', pct(infl, true)]];
+    if (active) rows.push(['Aumenti del contratto («' + c.name + '»)', pct(g - 1, true)]);
+    if (sal0 !== null) rows.push(['Stipendio necessario ' + aEnd, euro(need)]);
+    if (cur !== null) rows.push(['Differenza al mese, ' + monthName(end), signedEuro(cur - need)]);
+    if (active && sal0 !== null && cur === null) rows.push(['Con gli aumenti del contratto, ' + monthName(end), euro(sal0 * g)]);
+    el.rows.innerHTML = '';
+    rows.forEach(function (r) {
+      var d = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd');
+      dt.textContent = r[0]; dd.textContent = r[1]; d.appendChild(dt); d.appendChild(dd); el.rows.appendChild(d);
     });
 
-    el.cards.innerHTML = '';
+    el.boxes.innerHTML = '';
     if (sal0 === null) {
-      el.prompt.hidden = false; el.cards.hidden = true; el.chartBox.hidden = true;
+      el.prompt.hidden = false; el.boxes.hidden = true; el.chartBox.hidden = true;
       calc = null;
       return;
     }
-    el.prompt.hidden = true; el.cards.hidden = false; el.chartBox.hidden = false;
+    el.prompt.hidden = true; el.chartBox.hidden = false;
 
-    var origTxt = lire ? lireFmt(p0.value) + ' (' + euro(sal0) + ')' : euro(sal0);
     var ctrNote = 'Crescita prevista dal contratto (minimi tabellari), non crescita effettiva della busta paga, ' +
       'che include anche anzianità, superminimi e promozioni.' + (peakNotes.length ? ' ' + peakNotes.join(' ') : '');
+    var boxes = [];
+    if (cur !== null) {
+      var ga = cur / sal0 - 1, tx = 'Da ' + origTxt + ' a ' + euro(cur) + ', contro un’inflazione del ' + pct(infl) +
+        '. In termini reali: ' + pct(curReal, true) + '.';
+      if (active) {
+        var gc0 = g - 1;
+        // differenza in punti calcolata sulle percentuali mostrate (arrotondate a un decimale)
+        var dpp = (Math.round(Math.abs(ga) * 1000) * (ga < 0 ? -1 : 1) - Math.round(Math.abs(gc0) * 1000) * (gc0 < 0 ? -1 : 1)) / 10;
+        tx += ' È cresciuto ' + (Math.abs(dpp) < 0.05 ? 'come il tuo contratto' : dpp > 0 ? 'più del tuo contratto' : 'meno del tuo contratto') +
+          ' (' + (dpp >= 0 ? '+' : '−') + fmt(Math.abs(dpp), 1) + ' punti).';
+      }
+      boxes.push({ h: 'Il tuo stipendio', k: 'variazione nominale', v: pct(ga, true), t: tx });
+    }
+    if (active) {
+      boxes.push({ h: 'Il contratto', k: c.name, v: pct(g - 1, true),
+        t: 'Aumenti previsti dai contratti nel periodo, contro un’inflazione del ' + pct(infl) + '. In termini reali: ' + pct(ctrReal, true) + '.',
+        n: ctrNote });
+    }
+    el.boxes.hidden = !boxes.length;
+    boxes.forEach(addBox);
 
-    var needT = 'al posto di ' + origTxt + ' ' + aMonth(start) + '.';
+    // schede per il PNG
+    var diffTxt = '';
     if (cur !== null) {
       var diff = Math.round(cur - need);
-      needT += ' Il tuo stipendio di ' + euro(cur) + (diff === 0 ? ' è in linea.' :
+      diffTxt = ' Il tuo stipendio di ' + euro(cur) + (diff === 0 ? ' è in linea.' :
         ' è ' + (diff > 0 ? 'superiore' : 'inferiore') + ' di ' + euro(Math.abs(diff)) + ' al mese.');
     }
-    var cards = [{
-      k: 'Per avere lo stesso potere d’acquisto, ' + aEnd + ' servirebbero',
-      v: euro(need), unit: 'netti al mese', t: needT
-    }];
-    if (cur !== null && active) {
-      var ga = cur / sal0 - 1, gc = g - 1;
-      // differenza in punti calcolata sulle percentuali mostrate (arrotondate a un decimale)
-      var dpp = (Math.round(Math.abs(ga) * 1000) * (ga < 0 ? -1 : 1) - Math.round(Math.abs(gc) * 1000) * (gc < 0 ? -1 : 1)) / 10;
-      var verdict = Math.abs(dpp) < 0.05 ? 'come il tuo contratto' : dpp > 0 ? 'più del tuo contratto' : 'meno del tuo contratto';
-      cards.push({
-        k: 'Il tuo stipendio rispetto al contratto (comparto «' + c.name + '»)',
-        v: pct(ga, true) + ' contro ' + pct(gc, true), cls: 'fg-vs' + (Math.abs(dpp) < 0.05 ? '' : dpp > 0 ? ' fg-pos' : ' fg-neg'),
-        t: 'Da ' + startName + ' ' + aEnd + ' il tuo stipendio è cresciuto ' + verdict + ': ' +
-           pct(ga, true) + ' contro ' + pct(gc, true) + ' previsto dal contratto (' +
-           (dpp >= 0 ? '+' : '−') + fmt(Math.abs(dpp), 1) + ' punti).',
-        note: ctrNote
-      });
-    } else if (cur === null && active) {
-      var est = sal0 * g;
-      cards.push({
-        k: 'Con gli aumenti del contratto (comparto «' + c.name + '»), ' + aEnd + ' lo stipendio stimato è',
-        v: euro(est), unit: 'netti al mese',
-        t: signedEuro(est - need) + ' al mese rispetto ai ' + euro(need) + ' necessari per non perdere potere d’acquisto.',
-        note: ctrNote
-      });
-    }
-    cards.forEach(addCard);
-
+    var cards = [{ k: 'Stipendio necessario ' + aEnd, v: euro(need), unit: 'netti al mese',
+                   t: 'al posto di ' + origTxt + ' ' + aMonth(start) + '.' + diffTxt }];
+    boxes.forEach(function (b) { cards.push({ k: b.h + ' · ' + b.k, v: b.v, t: b.t, note: b.n }); });
     R.cards = cards;
     R.sal0 = sal0;
     R.lireVal = lire ? p0.value : 0;
@@ -1464,47 +1566,51 @@
         y += lh;
       });
     }
-    if (draw) { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, PW, 99999); }
+    if (draw) {
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, PW, 99999);
+      ctx.fillStyle = C.text; ctx.fillRect(0, 0, PW, 8);
+    }
     ctx.textBaseline = 'alphabetic';
+    var dirColor = R.dir === 'loss' ? C.dark : R.dir === 'gain' ? C.mid : C.text;
+    function rule(h) { if (draw) { ctx.fillStyle = C.text; ctx.fillRect(PAD, y, CW, h); } y += h; }
 
-    text('CALCOLATORE · POTERE D’ACQUISTO', 14, 700, C.mid, 22);
+    y += 10;
+    text('CALCOLATORE · DATI ISTAT', 13, 700, C.text, 22);
     y += 4;
-    text('Quanto potere d’acquisto ha perso il tuo stipendio', 34, 800, C.dark, 42);
+    text('Quanto potere d’acquisto ha perso il tuo stipendio', 38, 800, C.text, 44);
     y += 4;
     text(R.period, 17, 400, C.muted, 25);
-    y += 18;
+    y += 16;
 
-    // risultato principale
-    var boxTop = y, inX = PAD + 26, inW = CW - 40;
-    y += 20;
-    var yBig = y;
-    y += 70;
-    var saveY = y;
-    font(17, 400); var l1 = wrap(ctx, R.lossTxt, inW).length;
-    font(15, 400);
-    var subH = 0;
-    R.subs.forEach(function (t) { subH += 6 + wrap(ctx, t, inW).length * 22; });
-    var boxH = 20 + 70 + l1 * 25 + subH + 18;
+    // risultato principale: etichetta con simbolo, numero grande, testo
+    rule(2);
+    y += 12;
+    text(R.basis.toUpperCase(), 13, 700, C.muted, 20);
+    y += 6;
     if (draw) {
-      ctx.fillStyle = C.light; ctx.fillRect(PAD, boxTop, CW, boxH);
-      ctx.fillStyle = C.dark; ctx.fillRect(PAD, boxTop, 6, boxH);
-      font(72, 800); ctx.fillStyle = C.dark; ctx.fillText(R.loss, inX, yBig + 62);
+      ctx.fillStyle = dirColor; ctx.fillRect(PAD, y, 24, 24);
+      font(13, 800); ctx.fillStyle = '#ffffff'; ctx.textAlign = 'center'; ctx.fillText(R.arrow, PAD + 12, y + 17); ctx.textAlign = 'left';
+      font(16, 800); ctx.fillStyle = dirColor; ctx.fillText(R.word.toUpperCase(), PAD + 34, y + 18);
     }
-    y = saveY;
-    text(R.lossTxt, 17, 400, C.text, 25, inX, inW);
-    R.subs.forEach(function (t) { y += 6; text(t, 15, 400, C.muted, 22, inX, inW); });
-    y = boxTop + boxH + 22;
+    y += 34;
+    if (draw) { font(110, 700); ctx.fillStyle = dirColor; ctx.fillText(R.loss, PAD - 4, y + 92); }
+    y += 108;
+    text(R.lossTxt, 19, 600, C.text, 27);
+    R.subs.forEach(function (t, k) { y += 6; text(t, k ? 15 : 17, 400, k ? C.muted : C.text, k ? 22 : 25); });
+    y += 20;
 
     // schede dei risultati
     R.cards.forEach(function (c) {
-      text(c.k, 15, 400, C.muted, 21);
-      font(26, 800);
+      rule(1);
+      y += 10;
+      text(c.k.toUpperCase(), 13, 700, C.muted, 20);
+      font(30, 700);
       var v = c.v + (c.unit ? ' ' + c.unit : '');
       if (draw) {
-        ctx.fillStyle = /fg-neg/.test(c.cls || '') ? '#B3261E' : /fg-pos/.test(c.cls || '') ? '#1B7F3B' : C.dark;
-        ctx.fillText(v, PAD, y + 28);
+        ctx.fillStyle = C.text;
+        ctx.fillText(v, PAD, y + 30);
       }
-      y += 36;
+      y += 40;
       text(c.t, 15, 400, C.text, 21);
       if (c.note) text(c.note, 13, 400, C.muted, 18);
       y += 14;
@@ -1528,11 +1634,12 @@
   }
 
   // ---------- avvio ----------
-  function fail(msg) {
-    el.status.hidden = false;
-    el.status.className = 'fg-status fg-fail';
-    el.status.textContent = msg;
+  function fail(detail) {
+    el.status.hidden = true;
     el.app.hidden = true;
+    el.err.hidden = false;
+    el.errMsg.textContent = 'Il calcolatore ha bisogno delle serie dei prezzi dell’ISTAT e senza non può funzionare: non ci sono dati di riserva. ' +
+      'Controlla la connessione e riprova; se il problema continua, torna più tardi. (' + detail + ')';
   }
 
   function getJson(u) {
@@ -1618,25 +1725,37 @@
     update(false);
   }
 
-  // Il FOI è indispensabile; le retribuzioni no: se mancano, l'opzione contratto
-  // si disattiva con un messaggio e il resto funziona.
-  var pWages = getJson(wagesUrl).then(null, function (e) {
-    wagesError = 'Dati sulle retribuzioni contrattuali non disponibili (' + e.message + '): il calcolo usa solo l’inflazione.';
-    return null;
-  });
-  var pRacli = getJson(racliUrl).then(null, function (e) {
-    racliError = 'Dati ISTAT RACLI non disponibili (' + e.message + '): il confronto della retribuzione con il settore non può essere mostrato.';
-    return null;
-  });
-  var pSes = getJson(sesUrl).then(null, function (e) {
-    sesError = 'Dati Eurostat sulle professioni non disponibili (' + e.message + ').';
-    return null;
-  });
-  Promise.all([getJson(foiUrl), pWages, pRacli, pSes])
-    .then(function (r) { init(r[0], r[1], r[2], r[3]); })
-    .catch(function (e) {
-      fail('Impossibile caricare i dati ISTAT (' + e.message + '). Il calcolatore non può funzionare senza i dati aggiornati: riprova tra qualche minuto.');
+  // Il FOI è indispensabile; retribuzioni, RACLI e professioni no: se mancano, le
+  // rispettive parti si disattivano con un messaggio e il resto funziona.
+  var started = false;
+  function load() {
+    var pWages = getJson(wagesUrl).then(null, function (e) {
+      wagesError = 'Dati sulle retribuzioni contrattuali non disponibili (' + e.message + '): il calcolo usa solo l’inflazione.';
+      return null;
     });
+    var pRacli = getJson(racliUrl).then(null, function (e) {
+      racliError = 'Dati ISTAT RACLI non disponibili (' + e.message + '): il confronto della retribuzione con il settore non può essere mostrato.';
+      return null;
+    });
+    var pSes = getJson(sesUrl).then(null, function (e) {
+      sesError = 'Dati Eurostat sulle professioni non disponibili (' + e.message + ').';
+      return null;
+    });
+    Promise.all([getJson(foiUrl), pWages, pRacli, pSes])
+      .then(function (r) {
+        if (started) return;
+        started = true;
+        init(r[0], r[1], r[2], r[3]);
+      })
+      .catch(function (e) { fail('dettaglio: ' + e.message); });
+  }
+  el.retry.addEventListener('click', function () {
+    el.err.hidden = true;
+    el.status.hidden = false;
+    wagesError = racliError = sesError = '';
+    load();
+  });
+  load();
 })();
 </script>
 </div>
