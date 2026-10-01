@@ -4,7 +4,7 @@
  "base_note": "Serie concatenata in base 2025=100. I dati in base 1995 (1996-2010), 2010 (2011-2015) e 2015 (2016-2025) sono riportati in base 2025 con i coefficienti di raccordo ufficiali ISTAT per l'indice senza tabacchi: 1,373 (1995->2010), 1,071 (2010->2015), 1,214 (2015->2025). Solo dati definitivi.",
  "first_month": "1996-01",
  "last_month": "2026-08",
- "last_checked": "2026-10-01T07:14:09Z",
+ "last_checked": "2026-10-01T07:30:30Z",
  "series": {
   "1996-01": 57.3616,
   "1996-02": 57.5297,
