@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Potere d'acquisto dello stipendio</title>
-<meta name="description" content="Calcola quanto potere d'acquisto ha perso il tuo stipendio con l'indice ISTAT FOI senza tabacchi.">
+<meta name="description" content="Calcola quanto potere d'acquisto ha perso il tuo stipendio con l'indice ISTAT FOI senza tabacchi e le retribuzioni contrattuali.">
 </head>
 <body style="margin:0;padding:0 12px;background:#ffffff;">
 
@@ -41,7 +41,7 @@
 #fg-potere-acquisto-2026 .fg-sub { margin: 0 0 18px; color: #666680; font-size: 15px; }
 
 /* Modulo */
-#fg-potere-acquisto-2026 .fg-form { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 0 0 20px; }
+#fg-potere-acquisto-2026 .fg-form { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 0 0 14px; }
 #fg-potere-acquisto-2026 .fg-field { margin: 0; padding: 0; border: 0; min-width: 0; }
 #fg-potere-acquisto-2026 .fg-label {
   display: block; margin: 0 0 5px; padding: 0; color: #1A1A2E; font-size: 14px; font-weight: 600;
@@ -51,13 +51,13 @@
 #fg-potere-acquisto-2026 .fg-row select:first-child { flex: 1.4; }
 #fg-potere-acquisto-2026 .fg-row select:last-child { flex: 1; }
 #fg-potere-acquisto-2026 select,
-#fg-potere-acquisto-2026 input {
+#fg-potere-acquisto-2026 input[type="text"] {
   display: block; width: 100%; min-width: 0; height: 44px; margin: 0; padding: 0 10px;
   font: inherit; font-size: 16px; color: #1A1A2E; background: #ffffff;
   border: 1px solid #D0D8E8; border-radius: 6px; box-shadow: none; outline: none;
 }
 #fg-potere-acquisto-2026 select:focus,
-#fg-potere-acquisto-2026 input:focus { border-color: #0070C0; box-shadow: 0 0 0 3px #E8F4FD; }
+#fg-potere-acquisto-2026 input[type="text"]:focus { border-color: #0070C0; box-shadow: 0 0 0 3px #E8F4FD; }
 #fg-potere-acquisto-2026 input[aria-invalid="true"] { border-color: #B3261E; }
 #fg-potere-acquisto-2026 .fg-money { position: relative; }
 #fg-potere-acquisto-2026 .fg-money input { padding-right: 52px; }
@@ -67,6 +67,42 @@
 }
 #fg-potere-acquisto-2026 .fg-hint { margin: 5px 0 0; color: #666680; font-size: 13px; }
 #fg-potere-acquisto-2026 .fg-error { margin: 5px 0 0; color: #B3261E; font-size: 13px; font-weight: 600; }
+
+/* Opzione contratto */
+#fg-potere-acquisto-2026 .fg-contract {
+  margin: 0 0 20px; padding: 12px 14px; border: 1px solid #D0D8E8; border-radius: 8px;
+}
+#fg-potere-acquisto-2026 .fg-check {
+  display: flex; align-items: center; gap: 10px; margin: 0; padding: 0;
+  font-size: 15px; font-weight: 600; color: #1A1A2E; cursor: pointer;
+}
+#fg-potere-acquisto-2026 .fg-check input {
+  flex: none; width: 20px; height: 20px; margin: 0; padding: 0; accent-color: #003F87; cursor: pointer;
+}
+#fg-potere-acquisto-2026 .fg-check.fg-off { color: #666680; cursor: default; }
+#fg-potere-acquisto-2026 .fg-check.fg-off input { cursor: default; }
+#fg-potere-acquisto-2026 .fg-cmp { margin: 12px 0 0; }
+#fg-potere-acquisto-2026 .fg-cmp-box { position: relative; }
+#fg-potere-acquisto-2026 .fg-cmp-box input { padding-right: 34px; }
+#fg-potere-acquisto-2026 .fg-cmp-caret {
+  position: absolute; right: 12px; top: 0; height: 44px; line-height: 44px;
+  color: #666680; font-size: 12px; pointer-events: none;
+}
+#fg-potere-acquisto-2026 .fg-cmp-list {
+  position: absolute; left: 0; right: 0; top: 48px; z-index: 30; max-height: 290px; overflow-y: auto;
+  margin: 0; padding: 4px 0; list-style: none; background: #ffffff;
+  border: 1px solid #D0D8E8; border-radius: 6px; box-shadow: 0 8px 20px rgba(26, 26, 46, .14);
+}
+#fg-potere-acquisto-2026 .fg-cmp-list li {
+  margin: 0; padding: 7px 10px; list-style: none; font-size: 14px; line-height: 1.3;
+  color: #1A1A2E; cursor: pointer; background: none;
+}
+#fg-potere-acquisto-2026 .fg-cmp-list li::before { content: none; }
+#fg-potere-acquisto-2026 .fg-cmp-list li.fg-ctx { color: #666680; }
+#fg-potere-acquisto-2026 .fg-cmp-list li.fg-act { background: #E8F4FD; }
+#fg-potere-acquisto-2026 .fg-cmp-list li[aria-selected="true"] { font-weight: 700; color: #003F87; }
+#fg-potere-acquisto-2026 .fg-cmp-list li.fg-empty { color: #666680; cursor: default; }
+#fg-potere-acquisto-2026 .fg-cmp-list .fg-from { color: #666680; font-size: 12px; font-weight: 400; }
 
 /* Risultati */
 #fg-potere-acquisto-2026 .fg-big {
@@ -78,16 +114,19 @@
   font-variant-numeric: tabular-nums; letter-spacing: -.01em;
 }
 #fg-potere-acquisto-2026 .fg-big-txt { display: block; margin: 6px 0 0; font-size: 15px; }
+#fg-potere-acquisto-2026 .fg-big-subs { display: block; margin: 0; }
 #fg-potere-acquisto-2026 .fg-big-sub { display: block; margin: 6px 0 0; color: #666680; font-size: 14px; }
 #fg-potere-acquisto-2026 .fg-cards { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 0 0 18px; }
-#fg-potere-acquisto-2026 .fg-card { padding: 12px 14px; border: 1px solid #D0D8E8; border-radius: 8px; }
+#fg-potere-acquisto-2026 .fg-card { padding: 12px 14px; border: 1px solid #D0D8E8; border-radius: 8px; min-width: 0; }
 #fg-potere-acquisto-2026 .fg-card-k { display: block; color: #666680; font-size: 13px; }
 #fg-potere-acquisto-2026 .fg-card-v {
   display: block; margin: 2px 0; color: #003F87; font-size: 26px; font-weight: 800;
   font-variant-numeric: tabular-nums;
 }
+#fg-potere-acquisto-2026 .fg-card-v.fg-vs { font-size: 21px; }
 #fg-potere-acquisto-2026 .fg-card-u { font-size: 15px; font-weight: 600; letter-spacing: 0; }
 #fg-potere-acquisto-2026 .fg-card-t { display: block; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-card-note { display: block; margin: 8px 0 0; color: #666680; font-size: 12px; line-height: 1.4; }
 #fg-potere-acquisto-2026 .fg-neg { color: #B3261E; }
 #fg-potere-acquisto-2026 .fg-pos { color: #1B7F3B; }
 #fg-potere-acquisto-2026 .fg-prompt {
@@ -98,17 +137,24 @@
 /* Grafico */
 #fg-potere-acquisto-2026 .fg-chart-title { margin: 0 0 2px; font-size: 15px; font-weight: 700; color: #1A1A2E; }
 #fg-potere-acquisto-2026 .fg-chart-sub { margin: 0 0 8px; font-size: 13px; color: #666680; }
-#fg-potere-acquisto-2026 .fg-chart { position: relative; width: 100%; margin: 0 0 18px; }
+#fg-potere-acquisto-2026 .fg-chart { position: relative; width: 100%; margin: 0 0 12px; }
 #fg-potere-acquisto-2026 .fg-chart svg { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
-#fg-potere-acquisto-2026 .fg-chart text { font-family: inherit; font-size: 11px; fill: #666680; }
-#fg-potere-acquisto-2026 .fg-chart .fg-end-lbl { font-size: 12px; font-weight: 700; fill: #003F87; stroke: #ffffff; stroke-width: 4px; stroke-linejoin: round; paint-order: stroke; }
-#fg-potere-acquisto-2026 .fg-chart .fg-axis-t { font-size: 11px; font-weight: 600; fill: #666680; }
-#fg-potere-acquisto-2026 .fg-tip strong { font-weight: 700; color: #ffffff; }
 #fg-potere-acquisto-2026 .fg-tip {
-  position: absolute; top: 0; padding: 6px 8px; background: #1A1A2E; color: #ffffff;
-  font-size: 12px; line-height: 1.3; border-radius: 5px; white-space: nowrap; pointer-events: none;
-  transform: translateX(-50%);
+  position: absolute; top: 0; width: max-content; max-width: 250px; padding: 6px 8px;
+  background: #1A1A2E; color: #ffffff; font-size: 12px; line-height: 1.35; border-radius: 5px;
+  pointer-events: none; transform: translateX(-50%);
 }
+#fg-potere-acquisto-2026 .fg-tip span { display: block; }
+#fg-potere-acquisto-2026 .fg-tip span + span { margin-top: 3px; }
+#fg-potere-acquisto-2026 .fg-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 18px; }
+#fg-potere-acquisto-2026 .fg-btn {
+  display: inline-block; height: 40px; margin: 0; padding: 0 14px; font: inherit; font-size: 14px;
+  font-weight: 600; line-height: 38px; color: #003F87; background: #ffffff;
+  border: 1px solid #003F87; border-radius: 6px; cursor: pointer;
+}
+#fg-potere-acquisto-2026 .fg-btn:hover,
+#fg-potere-acquisto-2026 .fg-btn:focus { background: #E8F4FD; outline: none; }
+#fg-potere-acquisto-2026 .fg-btn[disabled] { color: #666680; border-color: #D0D8E8; cursor: default; }
 
 /* Stato e piede */
 #fg-potere-acquisto-2026 .fg-status { margin: 0 0 18px; padding: 12px 14px; border-radius: 8px; background: #E8F4FD; font-size: 14px; }
@@ -116,20 +162,24 @@
 #fg-potere-acquisto-2026 .fg-foot { margin: 0; padding: 14px 0 0; border-top: 1px solid #D0D8E8; color: #666680; font-size: 12.5px; }
 #fg-potere-acquisto-2026 .fg-foot p { margin: 0 0 6px; padding: 0; font-size: inherit; color: inherit; line-height: 1.45; }
 #fg-potere-acquisto-2026 .fg-foot strong { color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-foot a { color: #0070C0; text-decoration: underline; }
 
 @media (min-width: 600px) {
   #fg-potere-acquisto-2026 { padding: 28px 28px 22px; }
   #fg-potere-acquisto-2026 .fg-title { font-size: 28px; }
   #fg-potere-acquisto-2026 .fg-sub { font-size: 16px; }
   #fg-potere-acquisto-2026 .fg-form { grid-template-columns: 1fr 1fr 1fr; align-items: start; }
+  #fg-potere-acquisto-2026 .fg-cmp { max-width: 420px; }
   #fg-potere-acquisto-2026 .fg-big-num { font-size: 60px; }
   #fg-potere-acquisto-2026 .fg-cards { grid-template-columns: 1fr 1fr; }
+  #fg-potere-acquisto-2026 .fg-card.fg-wide { grid-column: 1 / -1; }
+  #fg-potere-acquisto-2026 .fg-card-v.fg-vs { font-size: 26px; }
 }
 </style>
 
   <p class="fg-kicker">Calcolatore</p>
   <h2 class="fg-title">Quanto potere d’acquisto ha perso il tuo stipendio</h2>
-  <p class="fg-sub">Scegli il mese da cui partire e inserisci lo stipendio netto di allora: il calcolo usa l'inflazione misurata dall'ISTAT.</p>
+  <p class="fg-sub">Scegli il mese da cui partire e inserisci lo stipendio netto di allora: il calcolo usa l'inflazione misurata dall'ISTAT e, se vuoi, gli aumenti previsti dal tuo contratto.</p>
 
   <div class="fg-status" data-fg="status" role="status">Caricamento dei dati ISTAT…</div>
 
@@ -160,39 +210,52 @@
       </div>
     </div>
 
+    <div class="fg-contract" data-fg="contract">
+      <label class="fg-check" data-fg="ctr-label">
+        <input type="checkbox" data-fg="ctr-on" checked>
+        <span>Considera gli aumenti del contratto</span>
+      </label>
+      <div class="fg-cmp" data-fg="cmp-wrap">
+        <label class="fg-label" for="fg-pa-cmp">Comparto</label>
+        <div class="fg-cmp-box">
+          <input id="fg-pa-cmp" data-fg="cmp-input" type="text" role="combobox" autocomplete="off"
+                 aria-autocomplete="list" aria-expanded="false" aria-controls="fg-pa-cmp-list"
+                 placeholder="Cerca: commercio, scuole, metalmeccanica…">
+          <span class="fg-cmp-caret" aria-hidden="true">▼</span>
+          <ul class="fg-cmp-list" id="fg-pa-cmp-list" data-fg="cmp-list" role="listbox" aria-label="Comparti" hidden></ul>
+        </div>
+      </div>
+      <p class="fg-hint" data-fg="ctr-msg"></p>
+    </div>
+
     <div aria-live="polite">
       <div class="fg-big">
         <span class="fg-big-num" data-fg="loss"></span>
         <span class="fg-big-txt" data-fg="loss-txt"></span>
-        <span class="fg-big-sub" data-fg="infl-txt"></span>
+        <span class="fg-big-subs" data-fg="subs"></span>
       </div>
 
       <p class="fg-prompt" data-fg="prompt">Inserisci lo stipendio netto di partenza per vedere quanto servirebbe per avere lo stesso potere d'acquisto.</p>
 
-      <div class="fg-cards" data-fg="cards" hidden>
-        <div class="fg-card">
-          <span class="fg-card-k" data-fg="need-k"></span>
-          <span class="fg-card-v" data-fg="need-v"></span>
-          <span class="fg-card-t" data-fg="need-t"></span>
-        </div>
-        <div class="fg-card" data-fg="real-card" hidden>
-          <span class="fg-card-k" data-fg="real-k"></span>
-          <span class="fg-card-v" data-fg="real-v"></span>
-          <span class="fg-card-t" data-fg="real-t"></span>
-        </div>
-      </div>
+      <div class="fg-cards" data-fg="cards" hidden></div>
     </div>
 
     <div data-fg="chart-box" hidden>
       <p class="fg-chart-title" data-fg="chart-title"></p>
       <p class="fg-chart-sub" data-fg="chart-sub"></p>
       <div class="fg-chart" data-fg="chart"></div>
+      <div class="fg-actions">
+        <button type="button" class="fg-btn" data-fg="png">Scarica l’immagine (PNG)</button>
+        <span class="fg-hint" data-fg="png-msg"></span>
+      </div>
     </div>
   </div>
 
   <div class="fg-foot">
-    <p><strong>Fonte:</strong> ISTAT, indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI) senza tabacchi. <span data-fg="foot-data"></span></p>
+    <p><strong>Fonte:</strong> ISTAT, indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI) senza tabacchi e indici delle retribuzioni contrattuali per dipendente. <span data-fg="foot-data"></span></p>
     <p><strong>Metodo:</strong> la perdita di potere d'acquisto è 1 − I(partenza)/I(arrivo), dove I è l'indice FOI senza tabacchi, lo stesso usato per rivalutare affitti e assegni di mantenimento. L'indice misura i prezzi di un paniere medio: l'inflazione vissuta da ciascuna famiglia può essere diversa. Usa lo stipendio netto, perché il lordo risente anche delle variazioni di tasse e contributi. Per i mesi dal 1996 al 2001 l'importo va inserito in lire ed è convertito a 1.936,27 lire per euro.</p>
+    <p><strong>Contratto:</strong> l'opzione applica allo stipendio la crescita dell'indice ISTAT delle retribuzioni contrattuali per dipendente del comparto scelto (dati dal 2005). L'indice misura gli aumenti previsti dai contratti nazionali (minimi tabellari e voci contrattuali), non la crescita effettiva della busta paga, che include anche anzianità, superminimi e promozioni; riguarda inoltre le retribuzioni lorde, quindi applicarlo al netto è un'approssimazione: a parità di regole fiscali, applicare al netto la crescita del lordo tende a sovrastimarla, per effetto della progressività dell'IRPEF. I mesi con un aumento una tantum che rientra il mese successivo (come dicembre 2023 nella pubblica amministrazione) sono sostituiti dal mese precedente. I confronti si fermano all'ultimo mese disponibile per entrambe le serie.</p>
+    <p><strong>Elaborazione:</strong> Daniele Angrisani (<a href="https://x.com/putino" target="_blank" rel="noopener">@putino</a>)</p>
   </div>
 
 <script>
@@ -200,14 +263,22 @@
   'use strict';
 
   var DATA_URL = 'https://angrisanidj.github.io/potere-acquisto/data/foi.json';
+  var WAGES_URL = 'https://angrisanidj.github.io/potere-acquisto/data/retribuzioni.json';
   var LIRE_PER_EURO = 1936.27;
   var EURO_START = '2002-01';
   var MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio',
               'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
   var MESI_BREVI = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
+  var FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+  var CREDIT = 'Elaborazione: Daniele Angrisani (@putino)';
+  var SOURCE = 'Fonte: ISTAT, indice FOI senza tabacchi e indici delle retribuzioni contrattuali per dipendente.';
+  var C = { dark: '#003F87', mid: '#0070C0', accent: '#00A6D6', light: '#E8F4FD', text: '#1A1A2E',
+            muted: '#666680', border: '#D0D8E8' };
 
   var host = (typeof location !== 'undefined' && location.hostname) || '';
-  var url = (host === 'localhost' || host === '127.0.0.1') ? 'data/foi.json' : DATA_URL;
+  var isLocal = host === 'localhost' || host === '127.0.0.1';
+  var foiUrl = isLocal ? 'data/foi.json' : DATA_URL;
+  var wagesUrl = isLocal ? 'data/retribuzioni.json' : WAGES_URL;
 
   // --- parser-start ---
   // Interpreta un importo scritto all'italiana: punto per le migliaia, virgola
@@ -267,16 +338,24 @@
     status: $('status'), app: $('app'), month: $('month'), year: $('year'),
     sal0: $('sal0'), sal0Label: $('sal0-label'), sal0Unit: $('sal0-unit'), sal0Msg: $('sal0-msg'),
     sal1: $('sal1'), sal1Label: $('sal1-label'), sal1Msg: $('sal1-msg'),
-    loss: $('loss'), lossTxt: $('loss-txt'), inflTxt: $('infl-txt'), prompt: $('prompt'),
-    cards: $('cards'), needK: $('need-k'), needV: $('need-v'), needT: $('need-t'),
-    realCard: $('real-card'), realK: $('real-k'), realV: $('real-v'), realT: $('real-t'),
+    contract: $('contract'), ctrLabel: $('ctr-label'), ctrOn: $('ctr-on'), ctrMsg: $('ctr-msg'),
+    cmpWrap: $('cmp-wrap'), cmpInput: $('cmp-input'), cmpList: $('cmp-list'),
+    loss: $('loss'), lossTxt: $('loss-txt'), subs: $('subs'),
+    prompt: $('prompt'), cards: $('cards'),
     chartBox: $('chart-box'), chartTitle: $('chart-title'), chartSub: $('chart-sub'), chart: $('chart'),
-    footData: $('foot-data')
+    png: $('png'), pngMsg: $('png-msg'), footData: $('foot-data')
   };
 
-  var D = null;          // dati caricati
-  var months = [];       // mesi ordinati "YYYY-MM"
-  var lastMonth = null;
+  var D = null;          // FOI
+  var W = null;          // retribuzioni contrattuali (facoltative)
+  var wagesError = '';
+  var months = [];
+  var lastMonth = null;  // ultimo mese FOI
+  var comp = {};         // codice -> comparto {code, name, parent, first_month, children}
+  var tree = [];         // comparti in ordine ad albero [{c, depth}]
+  var compCode = null;   // comparto scelto
+  var pref = true;       // preferenza dell'utente per l'opzione contratto
+  var calc = null;       // ultimo calcolo, per grafico ed export
 
   // ---------- formattazione ----------
   function fmt(n, dec) {
@@ -293,24 +372,66 @@
   function pct(x, signed) {
     var s = fmt(Math.abs(x * 100), 1) + '%';
     if (!signed) return s;
-    return (x > 0 ? '+' : x < 0 ? '−' : '') + s;
+    return (x > 0.0005 ? '+' : x < -0.0005 ? '−' : '') + s;
   }
   function signedEuro(n) {
     var r = Math.round(n);
-    return (r > 0 ? '+' : r < 0 ? '−' : '') + fmt(Math.abs(r)) + ' €';
+    return (r > 0 ? '+' : r < 0 ? '−' : '') + fmt(Math.abs(r)) + ' €';
   }
   function monthName(ym) { return MESI[+ym.slice(5, 7) - 1] + ' ' + ym.slice(0, 4); }
   // "a gennaio 2021", "ad agosto 2026", "ad aprile 2020"
   function aMonth(ym) { var n = monthName(ym); return (n.charAt(0) === 'a' ? 'ad ' : 'a ') + n; }
+  function daMonth(ym) { return 'da ' + monthName(ym); }
   function isLire(ym) { return ym < EURO_START; }
+  function mIndex(ym) { return +ym.slice(0, 4) * 12 + (+ym.slice(5, 7)) - 1; }
+  function addMonths(ym, k) {
+    var i = mIndex(ym) + k, y = Math.floor(i / 12), m = i % 12 + 1;
+    return y + '-' + (m < 10 ? '0' : '') + m;
+  }
+  function norm(s) {
+    s = s.toLowerCase();
+    return s.normalize ? s.normalize('NFD').replace(/[̀-ͯ]/g, '') : s;
+  }
+
+  // ---------- retribuzioni contrattuali ----------
+  function wageAt(code, m) {
+    var s = W && W.series[code];
+    if (!s) return null;
+    var i = mIndex(m) - mIndex(s.start);
+    return i >= 0 && i < s.values.length ? s.values[i] : null;
+  }
+  function isPeak(code, m) { return ((W && W.temporary_peaks && W.temporary_peaks[code]) || []).indexOf(m) !== -1; }
+  // Un picco una tantum (aumento che rientra il mese dopo) viene sostituito dal mese precedente.
+  function effMonth(code, m) { return isPeak(code, m) ? addMonths(m, -1) : m; }
+  function wageEff(code, m) { return wageAt(code, effMonth(code, m)); }
+
+  function contractStatus(start) {
+    if (!W) return { available: false, scope: 'global', reason: wagesError };
+    var end = W.last_month < lastMonth ? W.last_month : lastMonth;
+    if (start < W.first_month) {
+      return { available: false, scope: 'global',
+        reason: 'Le retribuzioni contrattuali ISTAT partono da ' + monthName(W.first_month) +
+                ': per partenze precedenti il confronto con il contratto non è disponibile.' };
+    }
+    var c = comp[compCode];
+    if (start < c.first_month || wageEff(compCode, start) === null) {
+      return { available: false, scope: 'comparto',
+        reason: 'La serie del comparto «' + c.name + '» parte da ' + monthName(c.first_month) +
+                ': per partire ' + daMonth(start) + ' scegli un comparto più ampio.' };
+    }
+    if (start >= end) {
+      return { available: false, scope: 'comparto',
+        reason: 'Le retribuzioni contrattuali arrivano a ' + monthName(end) + ': scegli un mese di partenza precedente.' };
+    }
+    return { available: true, end: end };
+  }
 
   // ---------- selettori mese/anno ----------
   function selectableMonths() { return months.filter(function (m) { return m < lastMonth; }); }
 
   function fillYears() {
-    var sel = selectableMonths();
     var years = [];
-    sel.forEach(function (m) { var y = m.slice(0, 4); if (years.indexOf(y) === -1) years.push(y); });
+    selectableMonths().forEach(function (m) { var y = m.slice(0, 4); if (years.indexOf(y) === -1) years.push(y); });
     el.year.innerHTML = '';
     years.reverse().forEach(function (y) {
       var o = document.createElement('option'); o.value = y; o.textContent = y; el.year.appendChild(o);
@@ -332,7 +453,121 @@
     else el.month.value = avail[0];
   }
 
-  function startMonth() { return el.month.value; }
+  // ---------- selettore del comparto (ricerca + albero) ----------
+  var cmpState = { items: [], active: -1 };
+
+  function buildTree() {
+    comp = {};
+    W.comparti.forEach(function (c) {
+      comp[c.code] = { code: c.code, name: c.name, parent: c.parent, first_month: c.first_month, children: [] };
+    });
+    var roots = [];
+    W.comparti.forEach(function (c) {
+      if (c.parent && comp[c.parent]) comp[c.parent].children.push(c.code);
+      else roots.push(c.code);
+    });
+    // il totale economia in cima
+    roots.sort(function (a, b) { return (a === W.total_code ? -1 : 0) - (b === W.total_code ? -1 : 0); });
+    tree = [];
+    (function walk(list, depth) {
+      list.forEach(function (code) { tree.push({ c: comp[code], depth: depth }); walk(comp[code].children, depth + 1); });
+    })(roots, 0);
+  }
+
+  function renderCmpList(query) {
+    var q = norm(query.trim()), show = {};
+    tree.forEach(function (t) {
+      if (!q || norm(t.c.name).indexOf(q) !== -1 || t.c.code.toLowerCase() === q) {
+        show[t.c.code] = 'm';
+        for (var p = t.c.parent; p && q; p = comp[p].parent) if (!show[p]) show[p] = 'c';
+      }
+    });
+    el.cmpList.innerHTML = '';
+    cmpState.items = [];
+    cmpState.active = -1;
+    tree.forEach(function (t) {
+      var st = show[t.c.code];
+      if (!st) return;
+      var li = document.createElement('li');
+      li.id = 'fg-pa-cmp-' + t.c.code;
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', t.c.code === compCode ? 'true' : 'false');
+      li.style.paddingLeft = (10 + t.depth * 16) + 'px';
+      if (st === 'c') li.className = 'fg-ctx';
+      li.appendChild(document.createTextNode(t.c.name));
+      if (t.c.first_month > W.first_month) {
+        var f = document.createElement('span');
+        f.className = 'fg-from';
+        f.textContent = ' · dati dal ' + t.c.first_month.slice(0, 4);
+        li.appendChild(f);
+      }
+      li.addEventListener('mousedown', function (e) { e.preventDefault(); chooseComp(t.c.code); });
+      el.cmpList.appendChild(li);
+      if (cmpState.active === -1 && (q ? st === 'm' : t.c.code === compCode)) cmpState.active = cmpState.items.length;
+      cmpState.items.push(t.c.code);
+    });
+    if (!cmpState.items.length) {
+      var e = document.createElement('li');
+      e.className = 'fg-empty';
+      e.textContent = 'Nessun comparto trovato';
+      el.cmpList.appendChild(e);
+    }
+    setActive(cmpState.active);
+  }
+
+  function setActive(i) {
+    var lis = el.cmpList.querySelectorAll('li[role="option"]');
+    for (var k = 0; k < lis.length; k++) lis[k].classList.toggle('fg-act', k === i);
+    cmpState.active = i;
+    if (i >= 0 && lis[i]) {
+      el.cmpInput.setAttribute('aria-activedescendant', lis[i].id);
+      var li = lis[i], box = el.cmpList;
+      if (li.offsetTop < box.scrollTop) box.scrollTop = li.offsetTop;
+      else if (li.offsetTop + li.offsetHeight > box.scrollTop + box.clientHeight) {
+        box.scrollTop = li.offsetTop + li.offsetHeight - box.clientHeight;
+      }
+    } else {
+      el.cmpInput.removeAttribute('aria-activedescendant');
+    }
+  }
+
+  function openCmp(query) {
+    el.cmpList.hidden = false;
+    el.cmpInput.setAttribute('aria-expanded', 'true');
+    renderCmpList(query);
+  }
+  function closeCmp() {
+    el.cmpList.hidden = true;
+    el.cmpInput.setAttribute('aria-expanded', 'false');
+    el.cmpInput.removeAttribute('aria-activedescendant');
+    el.cmpInput.value = comp[compCode].name;
+  }
+  function chooseComp(code) {
+    compCode = code;
+    closeCmp();
+    update(false);
+  }
+
+  function bindCmp() {
+    el.cmpInput.value = comp[compCode].name;
+    el.cmpInput.addEventListener('focus', function () { el.cmpInput.select(); openCmp(''); });
+    el.cmpInput.addEventListener('input', function () { openCmp(el.cmpInput.value); });
+    el.cmpInput.addEventListener('blur', function () { closeCmp(); });
+    el.cmpInput.addEventListener('keydown', function (e) {
+      var n = cmpState.items.length;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (el.cmpList.hidden) { openCmp(''); return; }
+        if (!n) return;
+        var d = e.key === 'ArrowDown' ? 1 : -1;
+        setActive(cmpState.active < 0 ? 0 : (cmpState.active + d + n) % n);
+      } else if (e.key === 'Enter') {
+        if (!el.cmpList.hidden && cmpState.active >= 0) { e.preventDefault(); chooseComp(cmpState.items[cmpState.active]); }
+      } else if (e.key === 'Escape') {
+        closeCmp(); el.cmpInput.blur();
+      }
+    });
+  }
 
   // ---------- messaggi campi ----------
   function setMsg(input, msgEl, text, isError, hint) {
@@ -341,13 +576,50 @@
     input.setAttribute('aria-invalid', isError ? 'true' : 'false');
   }
 
+  function addCard(card) {
+    var d = document.createElement('div');
+    d.className = 'fg-card' + (card.wide ? ' fg-wide' : '');
+    function span(cls, text) { var s = document.createElement('span'); s.className = cls; s.textContent = text; d.appendChild(s); return s; }
+    span('fg-card-k', card.k);
+    var v = span('fg-card-v' + (card.cls ? ' ' + card.cls : ''), card.v);
+    if (card.unit) { var u = document.createElement('small'); u.className = 'fg-card-u'; u.textContent = ' ' + card.unit; v.appendChild(u); }
+    span('fg-card-t', card.t);
+    if (card.note) span('fg-card-note', card.note);
+    el.cards.appendChild(d);
+  }
+
   // ---------- calcolo e rendering ----------
   function update(showErrors) {
-    var start = startMonth();
+    var start = el.month.value;
     if (!start) return;
-    var I0 = D.series[start], IL = D.series[lastMonth];
     var lire = isLire(start);
-    var endName = monthName(lastMonth), aEnd = aMonth(lastMonth), startName = monthName(start);
+    var cs = contractStatus(start);
+    var active = cs.available && pref;
+    var end = active ? cs.end : lastMonth;
+    var I0 = D.series[start], IL = D.series[end];
+    var aEnd = aMonth(end), startName = monthName(start);
+    var c = comp[compCode];
+
+    // stato dell'opzione contratto
+    el.contract.hidden = !W && !wagesError;
+    el.ctrOn.checked = active;
+    el.ctrOn.disabled = !cs.available;
+    el.ctrLabel.classList.toggle('fg-off', !cs.available);
+    el.cmpWrap.hidden = !W || cs.scope === 'global' || (cs.available && !pref);
+    var peakNotes = [];
+    if (active) {
+      [start, end].forEach(function (m) {
+        if (isPeak(compCode, m)) {
+          peakNotes.push(monthName(m).replace(/^./, function (x) { return x.toUpperCase(); }) +
+            ' contiene un aumento una tantum che rientra il mese dopo: per il contratto si usa ' +
+            monthName(addMonths(m, -1)) + '.');
+        }
+      });
+    }
+    el.ctrMsg.textContent = cs.available
+      ? (active ? 'Confronti fino ' + aEnd + ', ultimo mese disponibile sia per i prezzi sia per le retribuzioni.' +
+                  (peakNotes.length ? ' ' + peakNotes.join(' ') : '') : '')
+      : cs.reason;
 
     el.sal0Label.textContent = 'Stipendio netto mensile ' + aMonth(start);
     el.sal0Unit.textContent = lire ? 'lire' : '€';
@@ -356,56 +628,122 @@
     el.sal1Label.appendChild(document.createTextNode('Stipendio netto ' + aEnd + ' '));
     var sm = document.createElement('small'); sm.textContent = '(facoltativo)'; el.sal1Label.appendChild(sm);
 
-    var loss = 1 - I0 / IL;
-    el.loss.textContent = loss >= 0 ? '−' + pct(loss) : '+' + pct(-loss);
-    el.lossTxt.textContent = loss >= 0
-      ? 'di potere d’acquisto perso da ' + startName + ' ' + aEnd + '.'
-      : 'di potere d’acquisto guadagnato da ' + startName + ' ' + aEnd + ': i prezzi sono scesi.';
-    el.inflTxt.textContent = 'Nello stesso periodo i prezzi sono ' + (IL >= I0 ? 'aumentati' : 'diminuiti') +
-      ' del ' + pct(Math.abs(IL / I0 - 1)) + ': ciò che costava 100 € ' + aMonth(start) +
-      ' costava ' + fmt(100 * IL / I0, 2) + ' € ' + aEnd + '.';
-
-    // stipendio di partenza
+    // stipendi inseriti (letti per primi: decidono il risultato principale)
     var hint0 = lire ? 'Importo in lire, convertito a 1.936,27 lire per euro.' : '';
     var raw0 = el.sal0.value.trim();
     var p0 = raw0 ? parseImporto(raw0, { lire: lire }) : null;
     setMsg(el.sal0, el.sal0Msg, p0 && !p0.ok ? p0.error : '', !!(p0 && !p0.ok && (showErrors || el.sal0.dataset.touched)), hint0);
-
     var raw1 = el.sal1.value.trim();
     var p1 = raw1 ? parseImporto(raw1, { lire: false }) : null;
     setMsg(el.sal1, el.sal1Msg, p1 && !p1.ok ? p1.error : '', !!(p1 && !p1.ok && (showErrors || el.sal1.dataset.touched)), '');
+    var sal0 = p0 && p0.ok ? (lire ? p0.value / LIRE_PER_EURO : p0.value) : null;
+    var cur = sal0 !== null && p1 && p1.ok ? p1.value : null;
 
-    if (!p0 || !p0.ok) {
+    // Variazioni reali (negativo = potere d'acquisto perso).
+    var g = active ? wageEff(compCode, end) / wageEff(compCode, start) : null;
+    var fixedReal = I0 / IL - 1;                              // stipendio fermo
+    var ctrReal = active ? g * I0 / IL - 1 : null;            // con gli aumenti del contratto
+    var need = sal0 !== null ? sal0 * IL / I0 : null;
+    var curReal = cur !== null ? cur / need - 1 : null;       // stipendio attuale inserito
+    function big(x) { return x <= 0 ? '−' + pct(-x) : '+' + pct(x); }
+    function verb(x) { return x <= 0 ? 'perso' : 'guadagnato'; }
+    function would(x) { return x <= 0 ? 'la perdita sarebbe del ' + pct(-x) : 'il guadagno sarebbe del ' + pct(x); }
+    var period = 'da ' + startName + ' ' + aEnd;
+
+    // Risultato principale: stipendio attuale se c'è, altrimenti contratto se
+    // l'opzione è attiva, altrimenti stipendio fermo.
+    var R = { start: start, end: end, active: active, compName: active ? c.name : null, subs: [] };
+    if (curReal !== null) {
+      R.loss = big(curReal);
+      R.lossTxt = 'di potere d’acquisto ' + verb(curReal) + ' dal tuo stipendio ' + period + '.';
+      R.subs.push('A stipendio fermo, ' + would(fixedReal) +
+        (active ? '; con gli aumenti previsti dal contratto, ' + would(ctrReal) : '') + '.');
+    } else if (active) {
+      R.loss = big(ctrReal);
+      R.lossTxt = 'di potere d’acquisto ' + verb(ctrReal) + ' ' + period + ', considerando gli aumenti previsti dal contratto.';
+      R.subs.push('A stipendio fermo, ' + would(fixedReal) + '.');
+    } else {
+      R.loss = big(fixedReal);
+      R.lossTxt = fixedReal <= 0
+        ? 'di potere d’acquisto perso ' + period + '.'
+        : 'di potere d’acquisto guadagnato ' + period + ': i prezzi sono scesi.';
+    }
+    R.subs.push('Nello stesso periodo i prezzi sono ' + (IL >= I0 ? 'aumentati' : 'diminuiti') +
+      ' del ' + pct(Math.abs(IL / I0 - 1)) + ': ciò che costava 100 € ' + aMonth(start) +
+      ' costava ' + fmt(100 * IL / I0, 2) + ' € ' + aEnd + '.');
+    if (active) {
+      R.subs.push('Le retribuzioni previste dai contratti del comparto «' + c.name + '» sono ' +
+        (g >= 1 ? 'cresciute' : 'diminuite') + ' del ' + pct(Math.abs(g - 1)) + '.');
+    }
+    el.loss.textContent = R.loss;
+    el.lossTxt.textContent = R.lossTxt;
+    el.subs.innerHTML = '';
+    R.subs.forEach(function (t) {
+      var sp = document.createElement('span'); sp.className = 'fg-big-sub'; sp.textContent = t; el.subs.appendChild(sp);
+    });
+
+    el.cards.innerHTML = '';
+    if (sal0 === null) {
       el.prompt.hidden = false; el.cards.hidden = true; el.chartBox.hidden = true;
+      calc = null;
       return;
     }
     el.prompt.hidden = true; el.cards.hidden = false; el.chartBox.hidden = false;
 
-    var sal0 = lire ? p0.value / LIRE_PER_EURO : p0.value;
-    var need = sal0 * IL / I0;
     var origTxt = lire ? lireFmt(p0.value) + ' (' + euro(sal0) + ')' : euro(sal0);
+    var ctrNote = 'Crescita prevista dal contratto (minimi tabellari), non crescita effettiva della busta paga, ' +
+      'che include anche anzianità, superminimi e promozioni.' + (peakNotes.length ? ' ' + peakNotes.join(' ') : '');
 
-    el.needK.textContent = 'Per avere lo stesso potere d’acquisto, ' + aEnd + ' servirebbero';
-    el.needV.textContent = euro(need);
-    var nm = document.createElement('small'); nm.className = 'fg-card-u'; nm.textContent = ' netti al mese';
-    el.needV.appendChild(nm);
-    el.needT.textContent = 'al posto di ' + origTxt + ' ' + aMonth(start) + '.';
-
-    if (p1 && p1.ok) {
-      var real = p1.value / need - 1, diff = p1.value - need;
-      var cls = real >= 0 ? 'fg-pos' : 'fg-neg';
-      el.realCard.hidden = false;
-      el.realK.textContent = 'Il tuo stipendio ' + aEnd + ' (' + euro(p1.value) + '), in termini reali';
-      el.realV.textContent = pct(real, true);
-      el.realV.className = 'fg-card-v ' + cls;
-      el.realT.textContent = signedEuro(diff) + ' al mese rispetto allo stipendio rivalutato (' + euro(need) + ').';
-    } else {
-      el.realCard.hidden = true;
+    var needT = 'al posto di ' + origTxt + ' ' + aMonth(start) + '.';
+    if (cur !== null) {
+      var diff = Math.round(cur - need);
+      needT += ' Il tuo stipendio di ' + euro(cur) + (diff === 0 ? ' è in linea.' :
+        ' è ' + (diff > 0 ? 'superiore' : 'inferiore') + ' di ' + euro(Math.abs(diff)) + ' al mese.');
     }
+    var cards = [{
+      k: 'Per avere lo stesso potere d’acquisto, ' + aEnd + ' servirebbero',
+      v: euro(need), unit: 'netti al mese', t: needT
+    }];
+    if (cur !== null && active) {
+      var ga = cur / sal0 - 1, gc = g - 1;
+      // differenza in punti calcolata sulle percentuali mostrate (arrotondate a un decimale)
+      var dpp = (Math.round(Math.abs(ga) * 1000) * (ga < 0 ? -1 : 1) - Math.round(Math.abs(gc) * 1000) * (gc < 0 ? -1 : 1)) / 10;
+      var verdict = Math.abs(dpp) < 0.05 ? 'come il tuo contratto' : dpp > 0 ? 'più del tuo contratto' : 'meno del tuo contratto';
+      cards.push({
+        k: 'Il tuo stipendio rispetto al contratto (comparto «' + c.name + '»)',
+        v: pct(ga, true) + ' contro ' + pct(gc, true), cls: 'fg-vs' + (Math.abs(dpp) < 0.05 ? '' : dpp > 0 ? ' fg-pos' : ' fg-neg'),
+        t: 'Da ' + startName + ' ' + aEnd + ' il tuo stipendio è cresciuto ' + verdict + ': ' +
+           pct(ga, true) + ' contro ' + pct(gc, true) + ' previsto dal contratto (' +
+           (dpp >= 0 ? '+' : '−') + fmt(Math.abs(dpp), 1) + ' punti).',
+        note: ctrNote
+      });
+    } else if (cur === null && active) {
+      var est = sal0 * g;
+      cards.push({
+        k: 'Con gli aumenti del contratto (comparto «' + c.name + '»), ' + aEnd + ' lo stipendio stimato è',
+        v: euro(est), unit: 'netti al mese',
+        t: signedEuro(est - need) + ' al mese rispetto ai ' + euro(need) + ' necessari per non perdere potere d’acquisto.',
+        note: ctrNote
+      });
+    }
+    cards.forEach(addCard);
 
-    el.chartTitle.textContent = 'Quanto vale nel tempo lo stipendio di ' + startName;
-    el.chartSub.textContent = 'Potere d’acquisto di ' + origTxt + ' rimasti fermi, in euro di ' + startName + '.';
-    drawChart(start, sal0, lire ? p0.value : 0);
+    R.cards = cards;
+    R.sal0 = sal0;
+    R.lireVal = lire ? p0.value : 0;
+    R.cur = cur;
+    R.ctrCode = active ? compCode : null;
+    R.chartTitle = 'Quanto vale nel tempo lo stipendio di ' + startName;
+    R.chartSub = 'Potere d’acquisto di ' + origTxt + (active ? ' rimasti fermi e con gli aumenti del contratto' : ' rimasti fermi') +
+      ', in euro di ' + startName + '.';
+    R.period = 'Da ' + startName + ' ' + aEnd + ' · stipendio netto di ' + origTxt + ' ' + aMonth(start) +
+      (active ? ' · comparto: ' + c.name : '');
+    calc = R;
+
+    el.chartTitle.textContent = R.chartTitle;
+    el.chartSub.textContent = R.chartSub;
+    el.pngMsg.textContent = '';
+    drawChart();
   }
 
   // ---------- grafico SVG ----------
@@ -416,64 +754,81 @@
     if (parent) parent.appendChild(n);
     return n;
   }
+  // Testo con attributi di presentazione (non classi CSS), così l'SVG resta
+  // identico anche quando viene serializzato per l'export PNG.
+  function txt(parent, x, y, s, o) {
+    o = o || {};
+    var t = sv('text', { x: x, y: y, 'text-anchor': o.anchor || 'start', 'font-family': FONT,
+      'font-size': o.size || 11, 'font-weight': o.weight || 400, fill: o.fill || C.muted }, parent);
+    if (o.halo) {
+      t.setAttribute('stroke', '#ffffff'); t.setAttribute('stroke-width', 4);
+      t.setAttribute('stroke-linejoin', 'round'); t.setAttribute('paint-order', 'stroke');
+    }
+    if (s !== null) t.textContent = s;
+    return t;
+  }
+  function estW(s, size, bold) { return s.length * size * (bold ? 0.6 : 0.54); }
   function niceStep(range, target) {
     var raw = range / target, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p;
     return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
   }
-  function shortAxis(v) { return fmt(v) + ' €'; }
 
-  var chartState = null;
-  function drawChart(start, sal0, lireVal) {
-    chartState = { start: start, sal0: sal0, lireVal: lireVal };
-    var startName = monthName(start);
-    // Ogni importo porta il mese della sua moneta: nominale nel mese t,
-    // reale in euro del mese di partenza.
-    function nominal(t) { return ((lireVal && isLire(t)) ? lireFmt(lireVal) : euro(sal0)) + ' di ' + monthName(t); }
+  // Costruisce il grafico per il calcolo R alla larghezza Wd.
+  function buildChart(R, Wd) {
+    var small = Wd < 600;
+    var start = R.start, end = R.end, sal0 = R.sal0, startName = monthName(start);
+    var I0 = D.series[start];
+    var w0 = R.ctrCode ? wageEff(R.ctrCode, start) : null;
+    function nominal(t) { return ((R.lireVal && isLire(t)) ? lireFmt(R.lireVal) : euro(sal0)) + ' di ' + monthName(t); }
     function realTxt(v) { return euro(v) + ' di ' + startName; }
-    var box = el.chart;
-    var W = Math.max(260, Math.round(box.clientWidth || 300));
-    var small = W < 600;
-    // Su schermi stretti l'etichetta finale va in una nota sotto l'asse.
-    var NOTE_H = small ? 44 : 0;
-    var H = (small ? 220 : 300) + NOTE_H;
-    var m = { t: 38, r: small ? 12 : 18, b: 26 + NOTE_H, l: small ? 58 : 66 };
-    var iw = W - m.l - m.r, ih = H - m.t - m.b;
 
-    var idx0 = months.indexOf(start), idxL = months.indexOf(lastMonth);
     var pts = [];
-    for (var i = idx0; i <= idxL; i++) {
-      pts.push({ m: months[i], v: sal0 * D.series[start] / D.series[months[i]] });
+    for (var m = start; m <= end; m = addMonths(m, 1)) {
+      var defl = I0 / D.series[m];
+      var p = { m: m, v: sal0 * defl };
+      if (R.ctrCode) { p.cn = sal0 * wageEff(R.ctrCode, m) / w0; p.c = p.cn * defl; }
+      pts.push(p);
     }
-    var vmin = Math.min.apply(null, pts.map(function (p) { return p.v; }));
-    var vmax = Math.max.apply(null, pts.map(function (p) { return p.v; }));
+    var n = pts.length, last = pts[n - 1];
+    var curReal = R.cur !== null ? R.cur * I0 / D.series[end] : null;
+
+    // note sotto l'asse (sempre su schermi stretti o con più serie)
+    var notes = [];
+    var useNotes = small || !!R.ctrCode || curReal !== null;
+    if (useNotes) {
+      notes.push({ color: C.mid, shape: 'dot', a: nominal(end), b: 'valgono ' + realTxt(last.v) });
+      if (R.ctrCode) notes.push({ color: C.accent, shape: 'dot', a: 'Con il contratto: ' + euro(last.cn) + ' di ' + monthName(end), b: 'pari a ' + realTxt(last.c) });
+      if (curReal !== null) notes.push({ color: C.text, shape: 'diamond', a: 'Il tuo stipendio: ' + euro(R.cur) + ' di ' + monthName(end), b: 'pari a ' + realTxt(curReal) });
+    }
+    var NOTE_LINE = 15, noteH = notes.length ? 10 + notes.length * (small ? 2 * NOTE_LINE + 6 : NOTE_LINE + 6) : 0;
+    var plotH = small ? 220 : 300;
+    var H = plotH + noteH;
+    var mg = { t: 38, r: small ? 12 : 18, b: 26 + noteH, l: small ? 58 : 66 };
+    var iw = Wd - mg.l - mg.r, ih = H - mg.t - mg.b;
+
+    var vals = [];
+    pts.forEach(function (p) { vals.push(p.v); if (p.c !== undefined) vals.push(p.c); });
+    vals.push(sal0);
+    if (curReal !== null) vals.push(curReal);
+    var vmin = Math.min.apply(null, vals), vmax = Math.max.apply(null, vals);
     var step = niceStep((vmax - vmin) || vmax * 0.05, small ? 3 : 4);
     var y0 = Math.floor(vmin / step) * step, y1 = Math.ceil(vmax / step) * step;
     if (y1 === y0) y1 = y0 + step;
+    function X(i) { return mg.l + (n === 1 ? iw / 2 : i * iw / (n - 1)); }
+    function Y(v) { return mg.t + ih - (v - y0) / (y1 - y0) * ih; }
 
-    var n = pts.length;
-    function X(i) { return m.l + (n === 1 ? iw / 2 : i * iw / (n - 1)); }
-    function Y(v) { return m.t + ih - (v - y0) / (y1 - y0) * ih; }
+    var svg = sv('svg', { viewBox: '0 0 ' + Wd + ' ' + H, width: Wd, height: H, role: 'img',
+      'aria-label': 'Valore reale dello stipendio, in euro di ' + startName + ': ' + nominal(end) + ' valgono ' + realTxt(last.v) +
+        (R.ctrCode ? '; con il contratto ' + realTxt(last.c) : '') });
 
-    box.innerHTML = '';
-    var svg = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img',
-      'aria-label': 'Valore reale dello stipendio, in euro di ' + startName + ': ' + nominal(lastMonth) +
-        ' valgono ' + realTxt(pts[n - 1].v) });
-    box.appendChild(svg);
-
-    // griglia orizzontale
     for (var g = y0; g <= y1 + step / 2; g += step) {
       var gy = Y(g);
-      sv('line', { x1: m.l, x2: m.l + iw, y1: gy, y2: gy, stroke: '#D0D8E8', 'stroke-width': 1 }, svg);
-      var t = sv('text', { x: m.l - 8, y: gy + 4, 'text-anchor': 'end' }, svg);
-      t.textContent = shortAxis(g);
+      sv('line', { x1: mg.l, x2: mg.l + iw, y1: gy, y2: gy, stroke: C.border, 'stroke-width': 1 }, svg);
+      txt(svg, mg.l - 8, gy + 4, fmt(g) + ' €', { anchor: 'end' });
     }
+    txt(svg, 0, 11, 'valori in euro di ' + startName, { weight: 600 });
 
-    var ax = sv('text', { x: 0, y: 11, 'text-anchor': 'start', 'class': 'fg-axis-t' }, svg);
-    ax.textContent = 'valori in euro di ' + startName;
-
-    // etichette asse x
-    var span = n - 1;
-    var ticks = [];
+    var span = n - 1, ticks = [];
     if (span < 24) {
       var every = span <= 8 ? 1 : span <= 14 ? 2 : 3;
       if (small && span > 6) every = Math.max(every, 3);
@@ -487,77 +842,240 @@
     }
     ticks.forEach(function (tk) {
       var tx = X(tk.i);
-      sv('line', { x1: tx, x2: tx, y1: m.t + ih, y2: m.t + ih + 4, stroke: '#666680', 'stroke-width': 1 }, svg);
-      var anchor = tx < m.l + 14 ? 'start' : tx > m.l + iw - 14 ? 'end' : 'middle';
-      var tt = sv('text', { x: tx, y: m.t + ih + 20, 'text-anchor': anchor }, svg);
-      tt.textContent = tk.lbl;
+      sv('line', { x1: tx, x2: tx, y1: mg.t + ih, y2: mg.t + ih + 4, stroke: C.muted, 'stroke-width': 1 }, svg);
+      txt(svg, tx, mg.t + ih + 20, tk.lbl, { anchor: tx < mg.l + 14 ? 'start' : tx > mg.l + iw - 14 ? 'end' : 'middle' });
     });
-    sv('line', { x1: m.l, x2: m.l + iw, y1: m.t + ih, y2: m.t + ih, stroke: '#666680', 'stroke-width': 1 }, svg);
+    sv('line', { x1: mg.l, x2: mg.l + iw, y1: mg.t + ih, y2: mg.t + ih, stroke: C.muted, 'stroke-width': 1 }, svg);
 
-    // riferimento: stipendio di partenza
     var ry = Y(sal0);
-    sv('line', { x1: m.l, x2: m.l + iw, y1: ry, y2: ry, stroke: '#00A6D6', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, svg);
+    sv('line', { x1: mg.l, x2: mg.l + iw, y1: ry, y2: ry, stroke: C.muted, 'stroke-width': 1.2, 'stroke-dasharray': '5 4', opacity: 0.8 }, svg);
 
-    // area e linea
-    var d = '', i2;
-    for (i2 = 0; i2 < n; i2++) d += (i2 ? 'L' : 'M') + X(i2).toFixed(1) + ' ' + Y(pts[i2].v).toFixed(1);
-    sv('path', { d: d + 'L' + X(n - 1).toFixed(1) + ' ' + (m.t + ih) + 'L' + X(0).toFixed(1) + ' ' + (m.t + ih) + 'Z', fill: '#E8F4FD' }, svg);
-    sv('path', { d: d, fill: 'none', stroke: '#0070C0', 'stroke-width': 2.5, 'stroke-linejoin': 'round' }, svg);
-
-    // punto finale con etichetta
-    var ex = X(n - 1), ey = Y(pts[n - 1].v);
-    sv('circle', { cx: ex, cy: ey, r: 4.5, fill: '#003F87', stroke: '#ffffff', 'stroke-width': 1.5 }, svg);
-    // etichetta finale sopra il tratto di linea che le sta sotto, con alone bianco
-    if (small) {
-      var ny = H - NOTE_H + 18;
-      sv('circle', { cx: 4.5, cy: ny - 4, r: 4.5, fill: '#003F87' }, svg);
-      var nt = sv('text', { x: 14, y: ny, 'text-anchor': 'start', 'class': 'fg-end-lbl' }, svg);
-      var n1 = sv('tspan', { x: 14 }, nt); n1.textContent = nominal(lastMonth);
-      var n2 = sv('tspan', { x: 14, dy: 15 }, nt); n2.textContent = 'valgono ' + realTxt(pts[n - 1].v);
-    } else {
-      var el1 = sv('text', { x: ex, y: 0, 'text-anchor': 'end', 'class': 'fg-end-lbl' }, svg);
-      var l1 = sv('tspan', { x: ex, dy: 0 }, el1);
-      l1.textContent = nominal(lastMonth);
-      var l2 = sv('tspan', { x: ex, dy: 15 }, el1);
-      l2.textContent = 'valgono ' + realTxt(pts[n - 1].v);
-      var lw = el1.getBBox ? el1.getBBox().width : 200;
-      var topY = ey;
-      for (var j = 0; j < n; j++) { if (X(j) >= ex - lw - 4) topY = Math.min(topY, Y(pts[j].v)); }
-      el1.setAttribute('y', Math.max(m.t + 12, topY - 24));
-      l1.setAttribute('y', el1.getAttribute('y'));
+    function path(key) {
+      var d = '';
+      for (var i = 0; i < n; i++) d += (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(pts[i][key]).toFixed(1);
+      return d;
     }
-    var el0 = sv('text', { x: m.l + 6, y: ry - 6, 'text-anchor': 'start' }, svg);
-    el0.textContent = 'partenza: ' + realTxt(sal0);
+    var dv = path('v');
+    sv('path', { d: dv + 'L' + X(n - 1).toFixed(1) + ' ' + (mg.t + ih) + 'L' + X(0).toFixed(1) + ' ' + (mg.t + ih) + 'Z', fill: C.light }, svg);
+    sv('path', { d: dv, fill: 'none', stroke: C.mid, 'stroke-width': 2.5, 'stroke-linejoin': 'round' }, svg);
+    if (R.ctrCode) {
+      sv('path', { d: path('c'), fill: 'none', stroke: C.accent, 'stroke-width': 2.5, 'stroke-linejoin': 'round' }, svg);
+      sv('circle', { cx: X(n - 1), cy: Y(last.c), r: 4.5, fill: C.accent, stroke: '#ffffff', 'stroke-width': 1.5 }, svg);
+    }
+    sv('circle', { cx: X(n - 1), cy: Y(last.v), r: 4.5, fill: C.mid, stroke: '#ffffff', 'stroke-width': 1.5 }, svg);
+    if (curReal !== null) {
+      var cx = X(n - 1), cy = Y(curReal);
+      sv('path', { d: 'M' + cx + ' ' + (cy - 6) + 'L' + (cx + 6) + ' ' + cy + 'L' + cx + ' ' + (cy + 6) + 'L' + (cx - 6) + ' ' + cy + 'Z',
+        fill: C.text, stroke: '#ffffff', 'stroke-width': 1.5 }, svg);
+    }
+    txt(svg, mg.l + 6, ry - 6, 'partenza: ' + realTxt(sal0), { halo: true });
 
-    // tooltip
-    var guide = sv('line', { x1: 0, x2: 0, y1: m.t, y2: m.t + ih, stroke: '#1A1A2E', 'stroke-width': 1, opacity: 0 }, svg);
-    var dot = sv('circle', { r: 4, fill: '#0070C0', stroke: '#ffffff', 'stroke-width': 1.5, opacity: 0 }, svg);
+    if (useNotes) {
+      var ny = plotH + 4;
+      notes.forEach(function (nt) {
+        ny += 6;
+        var my = ny + 7;
+        if (nt.shape === 'diamond') {
+          sv('path', { d: 'M4.5 ' + (my - 5) + 'L9.5 ' + my + 'L4.5 ' + (my + 5) + 'L-0.5 ' + my + 'Z', fill: nt.color }, svg);
+        } else {
+          sv('circle', { cx: 4.5, cy: my, r: 4.5, fill: nt.color }, svg);
+        }
+        var t = txt(svg, 16, ny + 11, null, { size: 12, weight: 700, fill: C.dark });
+        if (small) {
+          var a = sv('tspan', { x: 16 }, t); a.textContent = nt.a;
+          var b = sv('tspan', { x: 16, dy: NOTE_LINE }, t); b.textContent = nt.b;
+          ny += 2 * NOTE_LINE;
+        } else {
+          t.textContent = nt.a + ' ' + nt.b;
+          ny += NOTE_LINE;
+        }
+      });
+    } else {
+      // etichetta finale sopra il tratto di linea che le sta sotto
+      var l1s = nominal(end), l2s = 'valgono ' + realTxt(last.v);
+      var lw = Math.max(estW(l1s, 12, true), estW(l2s, 12, true));
+      var ex = X(n - 1), topY = Y(last.v);
+      for (var j = 0; j < n; j++) if (X(j) >= ex - lw - 4) topY = Math.min(topY, Y(pts[j].v));
+      var ly = Math.max(mg.t + 12, topY - 24);
+      var el1 = txt(svg, ex, ly, null, { anchor: 'end', size: 12, weight: 700, fill: C.dark, halo: true });
+      var t1 = sv('tspan', { x: ex }, el1); t1.textContent = l1s;
+      var t2 = sv('tspan', { x: ex, dy: 15 }, el1); t2.textContent = l2s;
+    }
+
+    return { svg: svg, pts: pts, X: X, Y: Y, mg: mg, iw: iw, ih: ih, W: Wd, n: n,
+             nominal: nominal, realTxt: realTxt, start: start };
+  }
+
+  function drawChart() {
+    if (!calc) return;
+    var box = el.chart;
+    var Wd = Math.max(260, Math.round(box.clientWidth || 300));
+    var ch = buildChart(calc, Wd);
+    box.innerHTML = '';
+    box.appendChild(ch.svg);
+    var svg = ch.svg, n = ch.n, pts = ch.pts, mg = ch.mg;
+
+    var guide = sv('line', { x1: 0, x2: 0, y1: mg.t, y2: mg.t + ch.ih, stroke: C.text, 'stroke-width': 1, opacity: 0 }, svg);
+    var dot = sv('circle', { r: 4, fill: C.mid, stroke: '#ffffff', 'stroke-width': 1.5, opacity: 0 }, svg);
+    var dotC = sv('circle', { r: 4, fill: C.accent, stroke: '#ffffff', 'stroke-width': 1.5, opacity: 0 }, svg);
     var tip = document.createElement('div');
     tip.className = 'fg-tip'; tip.hidden = true; box.appendChild(tip);
-    var hit = sv('rect', { x: m.l, y: m.t, width: iw, height: ih, fill: 'transparent' }, svg);
+    var hit = sv('rect', { x: mg.l, y: mg.t, width: ch.iw, height: ch.ih, fill: 'transparent' }, svg);
 
     function show(evt) {
       var r = svg.getBoundingClientRect();
-      var px = (evt.clientX - r.left) * W / r.width;
-      var i = Math.round((px - m.l) / iw * (n - 1));
-      i = Math.max(0, Math.min(n - 1, i));
-      var x = X(i), y = Y(pts[i].v);
+      var px = (evt.clientX - r.left) * ch.W / r.width;
+      var i = Math.max(0, Math.min(n - 1, Math.round((px - mg.l) / ch.iw * (n - 1))));
+      var p = pts[i], x = ch.X(i), y = ch.Y(p.v);
       guide.setAttribute('x1', x); guide.setAttribute('x2', x); guide.setAttribute('opacity', 0.35);
       dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('opacity', 1);
-      tip.hidden = false;
+      var top = y;
+      if (p.c !== undefined) {
+        dotC.setAttribute('cx', x); dotC.setAttribute('cy', ch.Y(p.c)); dotC.setAttribute('opacity', 1);
+        top = Math.min(y, ch.Y(p.c));
+      }
       tip.textContent = '';
-      var tb = document.createElement('strong'); tb.textContent = nominal(pts[i].m);
-      tip.appendChild(tb); tip.appendChild(document.createElement('br'));
-      tip.appendChild(document.createTextNode('valgono ' + realTxt(pts[i].v)));
-      var scale = r.width / W, half = tip.offsetWidth / 2;
-      var left = Math.max(half, Math.min(r.width - half, x * scale));
-      tip.style.left = left + 'px';
-      tip.style.top = Math.max(0, y * scale - 54) + 'px';
+      function line(s, bold) {
+        var e = document.createElement('span');
+        if (bold) { var b = document.createElement('strong'); b.textContent = s; e.appendChild(b); } else e.textContent = s;
+        tip.appendChild(e);
+      }
+      line(ch.nominal(p.m) + ' valgono ' + ch.realTxt(p.v), true);
+      if (p.c !== undefined) line('Con il contratto: ' + euro(p.cn) + ' di ' + monthName(p.m) + ', pari a ' + ch.realTxt(p.c));
+      tip.hidden = false;
+      var scale = r.width / ch.W, half = tip.offsetWidth / 2;
+      tip.style.left = Math.max(half, Math.min(r.width - half, x * scale)) + 'px';
+      tip.style.top = Math.max(0, top * scale - tip.offsetHeight - 10) + 'px';
     }
-    function hide() { guide.setAttribute('opacity', 0); dot.setAttribute('opacity', 0); tip.hidden = true; }
+    function hide() { guide.setAttribute('opacity', 0); dot.setAttribute('opacity', 0); dotC.setAttribute('opacity', 0); tip.hidden = true; }
     hit.addEventListener('pointermove', show);
     hit.addEventListener('pointerdown', show);
     hit.addEventListener('pointerleave', hide);
+  }
+
+  // ---------- export PNG (canvas, nessuna libreria) ----------
+  function wrap(ctx, text, maxW) {
+    var words = text.split(' '), lines = [], cur = '';
+    words.forEach(function (w) {
+      var t = cur ? cur + ' ' + w : w;
+      if (ctx.measureText(t).width > maxW && cur) { lines.push(cur); cur = w; } else cur = t;
+    });
+    if (cur) lines.push(cur);
+    return lines;
+  }
+
+  function exportPng() {
+    if (!calc) return;
+    var R = calc, PW = 1200, PAD = 56, CW = PW - 2 * PAD, SCALE = 2;
+    var ch = buildChart(R, CW);
+    var svgText = new XMLSerializer().serializeToString(ch.svg);
+    var img = new Image();
+    el.png.disabled = true;
+    el.pngMsg.textContent = 'Preparazione dell’immagine…';
+    img.onload = function () {
+      try {
+        // Prima passata per misurare l'altezza, seconda per disegnare.
+        var probe = document.createElement('canvas').getContext('2d');
+        var h = paint(probe, false, R, img, ch, PW, PAD, CW);
+        var canvas = document.createElement('canvas');
+        canvas.width = PW * SCALE; canvas.height = Math.ceil(h * SCALE);
+        var ctx = canvas.getContext('2d');
+        ctx.scale(SCALE, SCALE);
+        paint(ctx, true, R, img, ch, PW, PAD, CW);
+        var name = 'potere-acquisto_' + R.start + '_' + R.end + '.png';
+        var done = function (href, revoke) {
+          var a = document.createElement('a');
+          a.href = href; a.download = name; a.style.display = 'none';
+          root.appendChild(a); a.click(); root.removeChild(a);
+          if (revoke) setTimeout(function () { URL.revokeObjectURL(href); }, 4000);
+          el.png.disabled = false; el.pngMsg.textContent = '';
+        };
+        if (canvas.toBlob) canvas.toBlob(function (b) { done(URL.createObjectURL(b), true); }, 'image/png');
+        else done(canvas.toDataURL('image/png'), false);
+      } catch (e) {
+        el.png.disabled = false;
+        el.pngMsg.textContent = 'Non è stato possibile creare l’immagine in questo browser.';
+      }
+    };
+    img.onerror = function () {
+      el.png.disabled = false;
+      el.pngMsg.textContent = 'Non è stato possibile creare l’immagine in questo browser.';
+    };
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgText);
+  }
+
+  function paint(ctx, draw, R, img, ch, PW, PAD, CW) {
+    var y = PAD;
+    function font(size, weight) { ctx.font = (weight || 400) + ' ' + size + 'px ' + FONT; }
+    function text(s, size, weight, color, lh, x, maxW) {
+      font(size, weight);
+      var lines = wrap(ctx, s, maxW || CW);
+      lines.forEach(function (l) {
+        if (draw) { ctx.fillStyle = color; ctx.fillText(l, x || PAD, y + size); }
+        y += lh;
+      });
+    }
+    if (draw) { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, PW, 99999); }
+    ctx.textBaseline = 'alphabetic';
+
+    text('CALCOLATORE · POTERE D’ACQUISTO', 14, 700, C.mid, 22);
+    y += 4;
+    text('Quanto potere d’acquisto ha perso il tuo stipendio', 34, 800, C.dark, 42);
+    y += 4;
+    text(R.period, 17, 400, C.muted, 25);
+    y += 18;
+
+    // risultato principale
+    var boxTop = y, inX = PAD + 26, inW = CW - 40;
+    y += 20;
+    var yBig = y;
+    y += 70;
+    var saveY = y;
+    font(17, 400); var l1 = wrap(ctx, R.lossTxt, inW).length;
+    font(15, 400);
+    var subH = 0;
+    R.subs.forEach(function (t) { subH += 6 + wrap(ctx, t, inW).length * 22; });
+    var boxH = 20 + 70 + l1 * 25 + subH + 18;
+    if (draw) {
+      ctx.fillStyle = C.light; ctx.fillRect(PAD, boxTop, CW, boxH);
+      ctx.fillStyle = C.dark; ctx.fillRect(PAD, boxTop, 6, boxH);
+      font(72, 800); ctx.fillStyle = C.dark; ctx.fillText(R.loss, inX, yBig + 62);
+    }
+    y = saveY;
+    text(R.lossTxt, 17, 400, C.text, 25, inX, inW);
+    R.subs.forEach(function (t) { y += 6; text(t, 15, 400, C.muted, 22, inX, inW); });
+    y = boxTop + boxH + 22;
+
+    // schede dei risultati
+    R.cards.forEach(function (c) {
+      text(c.k, 15, 400, C.muted, 21);
+      font(26, 800);
+      var v = c.v + (c.unit ? ' ' + c.unit : '');
+      if (draw) {
+        ctx.fillStyle = /fg-neg/.test(c.cls || '') ? '#B3261E' : /fg-pos/.test(c.cls || '') ? '#1B7F3B' : C.dark;
+        ctx.fillText(v, PAD, y + 28);
+      }
+      y += 36;
+      text(c.t, 15, 400, C.text, 21);
+      if (c.note) text(c.note, 13, 400, C.muted, 18);
+      y += 14;
+    });
+    y += 6;
+
+    text(R.chartTitle, 18, 700, C.text, 25);
+    text(R.chartSub, 14, 400, C.muted, 20);
+    y += 8;
+    var chH = CW * img.height / img.width || ch.svg.getAttribute('height');
+    if (draw) ctx.drawImage(img, PAD, y, CW, chH);
+    y += chH + 22;
+
+    if (draw) { ctx.fillStyle = C.border; ctx.fillRect(PAD, y, CW, 1); }
+    y += 14;
+    text(SOURCE, 14, 400, C.muted, 20);
+    text('Ultimo mese disponibile: prezzi ' + monthName(D.last_month) + (W ? ', retribuzioni ' + monthName(W.last_month) : '') + '.', 14, 400, C.muted, 20);
+    y += 4;
+    text(CREDIT, 15, 700, C.text, 22);
+    return y + PAD - 10;
   }
 
   // ---------- avvio ----------
@@ -568,17 +1086,34 @@
     el.app.hidden = true;
   }
 
-  function init(data) {
-    if (!data || !data.series || !data.last_month || !data.series[data.last_month]) {
+  function getJson(u) {
+    return fetch(u, { cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    });
+  }
+
+  function init(foi, wages) {
+    if (!foi || !foi.series || !foi.last_month || !foi.series[foi.last_month]) {
       throw new Error('formato dati non valido');
     }
-    D = data;
+    D = foi;
     months = Object.keys(D.series).sort();
     lastMonth = D.last_month;
     if (selectableMonths().length === 0) throw new Error('serie troppo corta');
 
+    if (wages && wages.series && wages.comparti && wages.total_code && wages.series[wages.total_code]) {
+      W = wages;
+      compCode = W.total_code;
+      buildTree();
+      bindCmp();
+    } else if (!wagesError) {
+      wagesError = 'Dati sulle retribuzioni contrattuali non disponibili: il calcolo usa solo l’inflazione.';
+    }
+
     var checked = D.last_checked ? new Date(D.last_checked) : null;
-    el.footData.textContent = 'Ultimo mese disponibile: ' + monthName(lastMonth) + '.' +
+    el.footData.textContent = 'Ultimo mese disponibile: prezzi ' + monthName(lastMonth) +
+      (W ? ', retribuzioni ' + monthName(W.last_month) : '') + '.' +
       (checked && !isNaN(checked) ? ' Dati verificati il ' +
         checked.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }).replace(/^1 /, '1° ') + '.' : '');
 
@@ -589,19 +1124,20 @@
     fillMonths('01');
 
     el.year.addEventListener('change', function () {
-      var mm = (startMonth() || '-01').slice(5, 7);
-      fillMonths(mm); update(false);
+      fillMonths((el.month.value || '-01').slice(5, 7)); update(false);
     });
     el.month.addEventListener('change', function () { update(false); });
+    el.ctrOn.addEventListener('change', function () { pref = el.ctrOn.checked; update(false); });
     [el.sal0, el.sal1].forEach(function (inp) {
       inp.addEventListener('input', function () { update(false); });
       inp.addEventListener('blur', function () { if (inp.value.trim()) inp.dataset.touched = '1'; update(false); });
     });
+    el.png.addEventListener('click', exportPng);
 
     var lastW = 0;
     function redraw() {
       var w = el.chart.clientWidth;
-      if (chartState && w && w !== lastW && !el.chartBox.hidden) { lastW = w; drawChart(chartState.start, chartState.sal0, chartState.lireVal); }
+      if (calc && w && w !== lastW && !el.chartBox.hidden) { lastW = w; drawChart(); }
     }
     if (typeof ResizeObserver !== 'undefined') new ResizeObserver(redraw).observe(el.chart);
     else window.addEventListener('resize', redraw);
@@ -611,12 +1147,14 @@
     update(false);
   }
 
-  fetch(url, { cache: 'no-cache' })
-    .then(function (r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    })
-    .then(init)
+  // Il FOI è indispensabile; le retribuzioni no: se mancano, l'opzione contratto
+  // si disattiva con un messaggio e il resto funziona.
+  var pWages = getJson(wagesUrl).then(null, function (e) {
+    wagesError = 'Dati sulle retribuzioni contrattuali non disponibili (' + e.message + '): il calcolo usa solo l’inflazione.';
+    return null;
+  });
+  Promise.all([getJson(foiUrl), pWages])
+    .then(function (r) { init(r[0], r[1]); })
     .catch(function (e) {
       fail('Impossibile caricare i dati ISTAT (' + e.message + '). Il calcolatore non può funzionare senza i dati aggiornati: riprova tra qualche minuto.');
     });

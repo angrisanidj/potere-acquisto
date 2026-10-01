@@ -90,10 +90,10 @@ class UpdateError(Exception):
     pass
 
 
-def http_get(url, accept):
-    req = urllib.request.Request(
-        url, headers={"Accept": accept, "User-Agent": "potere-acquisto/1.0"}
-    )
+def http_get(url, accept, extra_headers=None):
+    headers = {"Accept": accept, "User-Agent": "potere-acquisto/1.0"}
+    headers.update(extra_headers or {})
+    req = urllib.request.Request(url, headers=headers)
     last = None
     for attempt in range(1, ATTEMPTS + 1):
         try:

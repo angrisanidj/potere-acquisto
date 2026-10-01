@@ -25,10 +25,19 @@ jobs:
         with:
           python-version: "3.12"
 
-      # Se lo script esce con errore (API irraggiungibile o validazione
-      # fallita) il job fallisce qui e data/foi.json non viene toccato.
+      # I due script sono indipendenti: se uno fallisce (API irraggiungibile o
+      # validazione fallita) lascia intatto il proprio file, l'altro va avanti
+      # e il suo aggiornamento viene comunque committato. Il job fallisce
+      # nell'ultimo passo.
       - name: Scarica e valida la serie FOI
+        id: foi
+        continue-on-error: true
         run: python scripts/update_foi.py
+
+      - name: Scarica e valida le retribuzioni contrattuali
+        id: retr
+        continue-on-error: true
+        run: python scripts/update_retribuzioni.py
 
       # last_checked cambia a ogni esecuzione riuscita, quindi c'è sempre un
       # commit mensile: evita che GitHub disattivi il workflow schedulato
@@ -38,11 +47,18 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/foi.json
+          git add data/foi.json data/retribuzioni.json
           if git diff --cached --quiet; then
             echo "Nessuna modifica da committare"
             exit 0
           fi
-          LAST=$(python -c "import json; print(json.load(open('data/foi.json'))['last_month'])")
-          git commit -m "Aggiorna FOI (ultimo mese: ${LAST})"
+          FOI=$(python -c "import json; print(json.load(open('data/foi.json'))['last_month'])" 2>/dev/null || echo n/d)
+          RETR=$(python -c "import json; print(json.load(open('data/retribuzioni.json'))['last_month'])" 2>/dev/null || echo n/d)
+          git commit -m "Aggiorna dati (FOI: ${FOI}, retribuzioni: ${RETR})"
           git push
+
+      - name: Esito degli aggiornamenti
+        if: steps.foi.outcome == 'failure' || steps.retr.outcome == 'failure'
+        run: |
+          echo "FOI: ${{ steps.foi.outcome }} - retribuzioni: ${{ steps.retr.outcome }}"
+          exit 1
