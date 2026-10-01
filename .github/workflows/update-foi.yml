@@ -19,9 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
@@ -57,8 +57,18 @@ jobs:
           git commit -m "Aggiorna dati (FOI: ${FOI}, retribuzioni: ${RETR})"
           git push
 
+      # Con continue-on-error un passo fallito risulta comunque "success":
+      # qui il fallimento diventa un'annotazione visibile nel riepilogo del run.
       - name: Esito degli aggiornamenti
         if: steps.foi.outcome == 'failure' || steps.retr.outcome == 'failure'
+        env:
+          FOI_OUTCOME: ${{ steps.foi.outcome }}
+          RETR_OUTCOME: ${{ steps.retr.outcome }}
         run: |
-          echo "FOI: ${{ steps.foi.outcome }} - retribuzioni: ${{ steps.retr.outcome }}"
+          if [ "$FOI_OUTCOME" = "failure" ]; then
+            echo "::error title=Aggiornamento fallito::scripts/update_foi.py è fallito: data/foi.json non è stato aggiornato (dettagli nel passo 'Scarica e valida la serie FOI')"
+          fi
+          if [ "$RETR_OUTCOME" = "failure" ]; then
+            echo "::error title=Aggiornamento fallito::scripts/update_retribuzioni.py è fallito: data/retribuzioni.json non è stato aggiornato (dettagli nel passo 'Scarica e valida le retribuzioni contrattuali')"
+          fi
           exit 1

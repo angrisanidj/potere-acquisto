@@ -94,19 +94,29 @@ def http_get(url, accept, extra_headers=None):
     headers = {"Accept": accept, "User-Agent": "potere-acquisto/1.0"}
     headers.update(extra_headers or {})
     req = urllib.request.Request(url, headers=headers)
+    # Due casi distinti, entrambi ritentati: il server risponde con un codice
+    # d'errore (ISTAT dà 500 anche per un dataflow inesistente) oppure non
+    # risponde affatto (DNS, connessione, timeout).
     last = None
     for attempt in range(1, ATTEMPTS + 1):
         try:
             with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
                 if r.status != 200:
-                    raise UpdateError(f"HTTP {r.status}")
+                    raise urllib.error.HTTPError(url, r.status, r.reason, r.headers, None)
                 return r.read().decode("utf-8-sig")
-        except (urllib.error.URLError, TimeoutError, OSError, UpdateError) as e:
-            last = e
-            print(f"  tentativo {attempt}/{ATTEMPTS} fallito: {e}", file=sys.stderr)
-            if attempt < ATTEMPTS:
-                time.sleep(BACKOFF[attempt - 1])
-    raise UpdateError(f"API ISTAT non raggiungibile dopo {ATTEMPTS} tentativi: {last}")
+        except urllib.error.HTTPError as e:  # sottoclasse di URLError: va prima
+            last = ("http", e.code)
+            detail = f"errore HTTP {e.code}"
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            last = ("rete", getattr(e, "reason", None) or e)
+            detail = f"server non raggiungibile ({last[1]})"
+        print(f"  tentativo {attempt}/{ATTEMPTS} fallito: {detail}", file=sys.stderr)
+        if attempt < ATTEMPTS:
+            time.sleep(BACKOFF[attempt - 1])
+    if last[0] == "http":
+        raise UpdateError(f"il server ISTAT ha risposto con errore HTTP {last[1]} "
+                          f"(dataflow cambiato o problema temporaneo) dopo {ATTEMPTS} tentativi")
+    raise UpdateError(f"server ISTAT non raggiungibile dopo {ATTEMPTS} tentativi ({last[1]})")
 
 
 def check_metadata():
