@@ -1,0 +1,1866 @@
+<div id="fg-potere-acquisto-2026">
+<style>
+#fg-potere-acquisto-2026 {
+  box-sizing: border-box;
+  max-width: 1100px;
+  margin: 28px auto !important;
+  padding: 0;
+  background: #ffffff;
+  color: #1A1A2E;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+}
+#fg-potere-acquisto-2026 *,
+#fg-potere-acquisto-2026 *::before,
+#fg-potere-acquisto-2026 *::after { box-sizing: inherit; }
+#fg-potere-acquisto-2026 [hidden] { display: none !important; }
+#fg-potere-acquisto-2026 .fg-topbar { height: 8px; background: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-in { padding: 18px 16px 22px; display: flex; flex-direction: column; gap: 30px; }
+
+/* Testata */
+#fg-potere-acquisto-2026 .fg-kick {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; margin: 0 0 12px;
+  font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #1A1A2E;
+}
+#fg-potere-acquisto-2026 .fg-kick span + span { color: #666680; }
+#fg-potere-acquisto-2026 .fg-title {
+  margin: 0 0 12px; padding: 0; border: 0; font-family: inherit; color: #1A1A2E;
+  font-size: 30px; font-weight: 800; line-height: 1.04; letter-spacing: -.025em; max-width: 900px;
+}
+#fg-potere-acquisto-2026 .fg-sub { margin: 0; color: #666680; font-size: 16px; max-width: 680px; }
+
+/* Elementi comuni */
+#fg-potere-acquisto-2026 .fg-cap {
+  margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #666680;
+}
+#fg-potere-acquisto-2026 .fg-rule { border-top: 2px solid #1A1A2E; padding-top: 12px; }
+#fg-potere-acquisto-2026 .fg-label { display: block; margin: 0 0 2px; padding: 0; color: #666680; font-size: 13px; font-weight: 400; }
+#fg-potere-acquisto-2026 .fg-label small { font-size: 13px; color: #666680; }
+#fg-potere-acquisto-2026 .fg-hint { margin: 6px 0 0; color: #666680; font-size: 13px; }
+#fg-potere-acquisto-2026 .fg-error { margin: 6px 0 0; color: #B3261E; font-size: 13px; font-weight: 700; }
+#fg-potere-acquisto-2026 select,
+#fg-potere-acquisto-2026 input[type="text"] {
+  display: block; width: 100%; min-width: 0; height: 44px; margin: 0; padding: 0 4px;
+  font: inherit; font-size: 18px; font-weight: 500; color: #1A1A2E; background: transparent;
+  border: 0; border-bottom: 2px solid #1A1A2E; border-radius: 0; box-shadow: none; outline: none;
+}
+#fg-potere-acquisto-2026 select:focus,
+#fg-potere-acquisto-2026 input[type="text"]:focus { border-bottom-color: #003F87; box-shadow: 0 2px 0 #003F87; }
+#fg-potere-acquisto-2026 input[aria-invalid="true"] { border-bottom-color: #B3261E; }
+#fg-potere-acquisto-2026 .fg-row { display: flex; gap: 12px; }
+#fg-potere-acquisto-2026 .fg-row select:first-child { flex: 1.4; }
+#fg-potere-acquisto-2026 .fg-row select:last-child { flex: 1; }
+#fg-potere-acquisto-2026 .fg-money { position: relative; }
+#fg-potere-acquisto-2026 .fg-money input { padding-right: 48px; }
+#fg-potere-acquisto-2026 .fg-unit {
+  position: absolute; right: 4px; top: 0; height: 44px; line-height: 44px; color: #1A1A2E; font-size: 16px; pointer-events: none;
+}
+#fg-potere-acquisto-2026 .fg-field { margin: 0; padding: 0; border: 0; min-width: 0; }
+#fg-potere-acquisto-2026 .fg-alert { margin: 8px 0 0; padding: 12px; border: 2px solid #1A1A2E; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-alert strong { display: block; margin: 0 0 2px; }
+#fg-potere-acquisto-2026 .fg-soft { margin: 8px 0 0; padding: 12px; background: #E8F4FD; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-soft strong { display: block; margin: 0 0 2px; }
+
+/* Passi 01 02 03 */
+#fg-potere-acquisto-2026 .fg-steps { display: grid; grid-template-columns: 1fr; gap: 26px; align-items: start; }
+#fg-potere-acquisto-2026 .fg-step { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+#fg-potere-acquisto-2026 .fg-step-h { display: flex; gap: 10px; align-items: baseline; font-size: 13px; }
+#fg-potere-acquisto-2026 .fg-step-h b { font-weight: 800; }
+#fg-potere-acquisto-2026 .fg-step-h span { font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+#fg-potere-acquisto-2026 .fg-check {
+  display: flex; align-items: center; gap: 10px; min-height: 44px; margin: 0; padding: 0;
+  font-size: 15px; font-weight: 700; color: #1A1A2E; cursor: pointer;
+}
+#fg-potere-acquisto-2026 .fg-check input { flex: none; width: 22px; height: 22px; margin: 0; padding: 0; accent-color: #003F87; cursor: pointer; }
+#fg-potere-acquisto-2026 .fg-check.fg-off { color: #666680; cursor: default; }
+#fg-potere-acquisto-2026 .fg-cmp-box { position: relative; }
+#fg-potere-acquisto-2026 .fg-cmp-box input { padding-right: 30px; font-size: 16px; }
+#fg-potere-acquisto-2026 .fg-cmp-caret {
+  position: absolute; right: 4px; top: 0; height: 44px; line-height: 44px; color: #1A1A2E; font-size: 12px; pointer-events: none;
+}
+#fg-potere-acquisto-2026 .fg-cmp-list {
+  position: absolute; left: 0; right: 0; top: 46px; z-index: 30; max-height: 300px; overflow-y: auto;
+  margin: 0; padding: 0; list-style: none; background: #ffffff; border: 2px solid #1A1A2E;
+  box-shadow: 0 10px 24px rgba(26, 26, 46, .16);
+}
+#fg-potere-acquisto-2026 .fg-cmp-list li {
+  margin: 0; padding: 9px 10px; list-style: none; font-size: 14px; line-height: 1.3; color: #1A1A2E;
+  cursor: pointer; background: none; border-bottom: 1px solid #D0D8E8;
+}
+#fg-potere-acquisto-2026 .fg-cmp-list li::before { content: none; }
+#fg-potere-acquisto-2026 .fg-cmp-list li.fg-ctx { color: #666680; }
+#fg-potere-acquisto-2026 .fg-cmp-list li.fg-act { background: #E8F4FD; }
+#fg-potere-acquisto-2026 .fg-cmp-list li[aria-selected="true"] { font-weight: 800; color: #003F87; }
+#fg-potere-acquisto-2026 .fg-cmp-list li[aria-selected="true"]::after { content: ' ✓'; }
+#fg-potere-acquisto-2026 .fg-cmp-list li.fg-empty { color: #666680; cursor: default; }
+#fg-potere-acquisto-2026 .fg-cmp-list li.fg-grp {
+  padding-top: 12px; color: #666680; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; cursor: default;
+}
+#fg-potere-acquisto-2026 .fg-cmp-list .fg-from { color: #666680; font-size: 11px; font-weight: 700; }
+
+/* Risultato */
+#fg-potere-acquisto-2026 .fg-res { display: flex; flex-direction: column; gap: 24px; }
+#fg-potere-acquisto-2026 .fg-res-grid { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; }
+#fg-potere-acquisto-2026 .fg-res-main { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+#fg-potere-acquisto-2026 .fg-word {
+  display: flex; align-items: center; gap: 8px; margin: 4px 0 0;
+  font-size: 14px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+}
+#fg-potere-acquisto-2026 .fg-word i {
+  display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px;
+  font-style: normal; font-size: 11px; color: #ffffff; background: #1A1A2E;
+}
+#fg-potere-acquisto-2026 .fg-word.fg-loss i { background: #003F87; }
+#fg-potere-acquisto-2026 .fg-word.fg-gain i { background: #0070C0; }
+#fg-potere-acquisto-2026 .fg-big-num {
+  display: block; font-size: 76px; font-weight: 700; line-height: .92; letter-spacing: -.045em; white-space: nowrap;
+}
+#fg-potere-acquisto-2026 .fg-loss { color: #003F87; }
+#fg-potere-acquisto-2026 .fg-gain { color: #0070C0; }
+#fg-potere-acquisto-2026 .fg-even { color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-res-label { margin: 2px 0 0; font-size: 17px; font-weight: 600; }
+#fg-potere-acquisto-2026 .fg-res-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+#fg-potere-acquisto-2026 .fg-sentence p { margin: 0 0 8px; font-size: 16px; line-height: 1.5; }
+#fg-potere-acquisto-2026 .fg-sentence p + p { color: #666680; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-rows { margin: 0; padding: 0; border-top: 1px solid #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-rows div {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0; border-bottom: 1px solid #D0D8E8;
+}
+#fg-potere-acquisto-2026 .fg-rows dt { margin: 0; color: #666680; }
+#fg-potere-acquisto-2026 .fg-rows dd { margin: 0; font-weight: 700; white-space: nowrap; }
+#fg-potere-acquisto-2026 .fg-boxes { display: grid; grid-template-columns: 1fr; gap: 16px; }
+#fg-potere-acquisto-2026 .fg-box {
+  display: grid; grid-template-columns: 1fr; gap: 4px 16px; align-items: baseline;
+  padding: 14px 0; border-top: 1px solid #1A1A2E; border-bottom: 1px solid #1A1A2E; min-width: 0;
+}
+#fg-potere-acquisto-2026 .fg-box-h { grid-column: 1 / -1; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+#fg-potere-acquisto-2026 .fg-box-h span { color: #666680; }
+#fg-potere-acquisto-2026 .fg-box-v { font-size: 34px; font-weight: 700; letter-spacing: -.02em; line-height: 1.1; white-space: nowrap; }
+#fg-potere-acquisto-2026 .fg-box-t { font-size: 14px; color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-box-n { grid-column: 1 / -1; margin: 4px 0 0; font-size: 12.5px; color: #666680; }
+#fg-potere-acquisto-2026 .fg-prompt { margin: 0; font-size: 18px; color: #666680; }
+
+/* Grafico */
+#fg-potere-acquisto-2026 .fg-chart-title { margin: 0 0 2px; font-size: 22px; font-weight: 800; letter-spacing: -.01em; color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-chart-sub { margin: 0 0 10px; font-size: 13px; color: #666680; }
+#fg-potere-acquisto-2026 .fg-chart { position: relative; width: 100%; margin: 0 0 14px; }
+#fg-potere-acquisto-2026 .fg-chart svg { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
+#fg-potere-acquisto-2026 .fg-tip {
+  position: absolute; top: 0; width: max-content; max-width: 250px; padding: 6px 8px;
+  background: #1A1A2E; color: #ffffff; font-size: 12px; line-height: 1.35; pointer-events: none; transform: translateX(-50%);
+}
+#fg-potere-acquisto-2026 .fg-tip span { display: block; }
+#fg-potere-acquisto-2026 .fg-tip span + span { margin-top: 3px; }
+#fg-potere-acquisto-2026 .fg-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0; }
+#fg-potere-acquisto-2026 .fg-btn {
+  display: inline-block; height: 44px; margin: 0; padding: 0 20px; font: inherit; font-size: 15px; font-weight: 700;
+  line-height: 40px; color: #1A1A2E; background: #ffffff; border: 2px solid #1A1A2E; border-radius: 0; cursor: pointer;
+}
+#fg-potere-acquisto-2026 .fg-btn:hover,
+#fg-potere-acquisto-2026 .fg-btn:focus { background: #1A1A2E; color: #ffffff; outline: none; }
+#fg-potere-acquisto-2026 .fg-btn[disabled] { color: #666680; border-color: #D0D8E8; background: #ffffff; cursor: default; }
+
+/* Confronto della RAL */
+#fg-potere-acquisto-2026 .fg-ral { margin: 0; padding: 20px 16px; background: #E8F4FD; }
+#fg-potere-acquisto-2026 .fg-ral-title {
+  margin: 4px 0 6px; padding: 0; border: 0; font-family: inherit; color: #1A1A2E;
+  font-size: 24px; line-height: 1.15; font-weight: 800; letter-spacing: -.015em;
+}
+#fg-potere-acquisto-2026 .fg-ral .fg-sub { margin: 0 0 18px; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-form { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 0 0 16px; }
+#fg-potere-acquisto-2026 .fg-ral-out { margin: 4px 0 0; padding-top: 14px; border-top: 2px solid #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-ral-big { margin: 4px 0 4px; font-size: 15px; color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-ral-big strong {
+  display: block; color: #1A1A2E; font-size: 48px; line-height: 1; font-weight: 700; letter-spacing: -.03em;
+}
+#fg-potere-acquisto-2026 .fg-ral-rel { margin: 8px 0 2px; font-size: 15px; }
+#fg-potere-acquisto-2026 .fg-ral-rel strong { font-weight: 800; color: #003F87; }
+#fg-potere-acquisto-2026 .fg-ral-sec { margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-ral-h { margin: 0 0 4px; font-size: 15px; font-weight: 800; color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-bar { width: 100%; margin: 6px 0 4px; }
+#fg-potere-acquisto-2026 .fg-bar svg { display: block; width: 100%; height: auto; overflow: visible; }
+#fg-potere-acquisto-2026 .fg-ral .fg-prompt { margin: 4px 0 0; padding-top: 14px; border-top: 2px solid #1A1A2E; font-size: 16px; }
+#fg-potere-acquisto-2026 .fg-ral .fg-soft { background: #ffffff; }
+#fg-potere-acquisto-2026 .fg-ral-big .fg-pre { display: inline; font-size: .5em; letter-spacing: -.01em; }
+#fg-potere-acquisto-2026 .fg-ral-sec .fg-ral-big strong { font-size: 40px; }
+#fg-potere-acquisto-2026 .fg-ral-warn {
+  margin: 8px 0 0; padding: 10px 12px; border-left: 4px solid #003F87; background: #ffffff;
+  font-size: 13.5px; line-height: 1.45; color: #1A1A2E;
+}
+#fg-potere-acquisto-2026 .fg-ral-notes { margin: 18px 0 0; padding: 12px 0 0; border-top: 1px solid #1A1A2E; color: #666680; font-size: 12.5px; }
+#fg-potere-acquisto-2026 .fg-ral-notes p { margin: 0 0 6px; padding: 0; font-size: inherit; color: inherit; line-height: 1.45; }
+#fg-potere-acquisto-2026 .fg-ral-notes strong { color: #1A1A2E; }
+
+/* Stato, errore, piede */
+#fg-potere-acquisto-2026 .fg-status { margin: 0; padding-top: 14px; border-top: 2px solid #1A1A2E; font-size: 16px; color: #666680; }
+#fg-potere-acquisto-2026 .fg-err { display: grid; grid-template-columns: 1fr; gap: 14px; padding-top: 16px; border-top: 2px solid #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-err .fg-cap { color: #B3261E; }
+#fg-potere-acquisto-2026 .fg-err strong { display: block; margin: 4px 0 0; font-size: 22px; line-height: 1.15; font-weight: 800; }
+#fg-potere-acquisto-2026 .fg-err p { margin: 0 0 12px; color: #1A1A2E; font-size: 15px; }
+#fg-potere-acquisto-2026 .fg-notes { display: grid; grid-template-columns: 1fr; gap: 12px 32px; }
+#fg-potere-acquisto-2026 .fg-notes p { margin: 0; padding: 0; color: #666680; font-size: 13px; line-height: 1.5; }
+#fg-potere-acquisto-2026 .fg-notes strong { color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-foot {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; margin: 0;
+  padding-top: 12px; border-top: 1px solid #D0D8E8; font-size: 13px; color: #666680;
+}
+#fg-potere-acquisto-2026 .fg-foot strong { color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-foot a { color: #003F87; text-decoration: underline; }
+
+@media (min-width: 600px) {
+  #fg-potere-acquisto-2026 .fg-in { padding: 34px 36px 32px; gap: 40px; }
+  #fg-potere-acquisto-2026 .fg-title { font-size: 46px; }
+  #fg-potere-acquisto-2026 .fg-sub { font-size: 18px; }
+  #fg-potere-acquisto-2026 .fg-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  #fg-potere-acquisto-2026 .fg-res-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
+  #fg-potere-acquisto-2026 .fg-big-num { font-size: 120px; }
+  #fg-potere-acquisto-2026 .fg-boxes { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+  #fg-potere-acquisto-2026 .fg-box { grid-template-columns: auto minmax(0, 1fr); }
+  #fg-potere-acquisto-2026 .fg-ral { padding: 28px 28px 22px; }
+  #fg-potere-acquisto-2026 .fg-ral-title { font-size: 30px; }
+  #fg-potere-acquisto-2026 .fg-form { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  #fg-potere-acquisto-2026 .fg-form.fg-form-2 { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  #fg-potere-acquisto-2026 .fg-ral-big strong { font-size: 64px; }
+  #fg-potere-acquisto-2026 .fg-ral-sec .fg-ral-big strong { font-size: 48px; }
+  #fg-potere-acquisto-2026 .fg-err { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+  #fg-potere-acquisto-2026 .fg-notes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+</style>
+
+<div class="fg-topbar"></div>
+<div class="fg-in">
+
+  <header>
+    <p class="fg-kick"><span>Calcolatore</span><span>Dati ISTAT e INPS</span></p>
+    <h2 class="fg-title">Quanto potere d’acquisto ha perso il tuo stipendio</h2>
+    <p class="fg-sub">Indica quanto guadagnavi e da quando: il calcolo confronta lo stipendio netto con l’andamento dei prezzi misurato dall’ISTAT e, se vuoi, con gli aumenti previsti dal tuo contratto.</p>
+  </header>
+
+  <p class="fg-status" data-fg="status" role="status">Caricamento dei dati ISTAT…</p>
+
+  <div class="fg-err" data-fg="err" role="alert" hidden>
+    <div>
+      <p class="fg-cap">Errore</p>
+      <strong>I dati ISTAT non si sono caricati</strong>
+    </div>
+    <div>
+      <p data-fg="err-msg"></p>
+      <button type="button" class="fg-btn" data-fg="retry">Riprova ↻</button>
+    </div>
+  </div>
+
+  <div data-fg="app" class="fg-res" hidden>
+    <section class="fg-steps" aria-label="Dati da inserire">
+      <div class="fg-step fg-rule">
+        <p class="fg-step-h"><b>01</b><span>Quando</span></p>
+        <div class="fg-field">
+          <label class="fg-label" for="fg-pa-month">Mese e anno di partenza</label>
+          <div class="fg-row">
+            <select id="fg-pa-month" data-fg="month" aria-label="Mese di partenza"></select>
+            <select data-fg="year" aria-label="Anno di partenza"></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-step fg-rule">
+        <p class="fg-step-h"><b>02</b><span>Quanto</span></p>
+        <div class="fg-field">
+          <label class="fg-label" for="fg-pa-sal0" data-fg="sal0-label">Netto mensile di allora</label>
+          <div class="fg-money">
+            <input id="fg-pa-sal0" data-fg="sal0" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 1.500" aria-describedby="fg-pa-sal0-msg">
+            <span class="fg-unit" data-fg="sal0-unit">€</span>
+          </div>
+          <p class="fg-hint" id="fg-pa-sal0-msg" data-fg="sal0-msg"></p>
+        </div>
+        <div class="fg-field">
+          <label class="fg-label" for="fg-pa-sal1" data-fg="sal1-label">Netto mensile attuale <small>(facoltativo)</small></label>
+          <div class="fg-money">
+            <input id="fg-pa-sal1" data-fg="sal1" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 1.800" aria-describedby="fg-pa-sal1-msg">
+            <span class="fg-unit">€</span>
+          </div>
+          <p class="fg-hint" id="fg-pa-sal1-msg" data-fg="sal1-msg"></p>
+        </div>
+      </div>
+
+      <div class="fg-step fg-rule" data-fg="contract">
+        <p class="fg-step-h"><b>03</b><span>Contratto</span></p>
+        <label class="fg-check" data-fg="ctr-label">
+          <input type="checkbox" data-fg="ctr-on" checked>
+          <span>Considera gli aumenti del contratto</span>
+        </label>
+        <div class="fg-field" data-fg="cmp-wrap">
+          <label class="fg-label" for="fg-pa-cmp">Comparto</label>
+          <div class="fg-cmp-box">
+            <input id="fg-pa-cmp" data-fg="cmp-input" type="text" role="combobox" autocomplete="off"
+                   aria-autocomplete="list" aria-expanded="false" aria-controls="fg-pa-cmp-list"
+                   placeholder="Cerca il comparto">
+            <span class="fg-cmp-caret" aria-hidden="true">▼</span>
+            <ul class="fg-cmp-list" id="fg-pa-cmp-list" data-fg="cmp-list" role="listbox" aria-label="Comparti" hidden></ul>
+          </div>
+        </div>
+        <p class="fg-hint" data-fg="ctr-msg"></p>
+      </div>
+    </section>
+
+    <section class="fg-res fg-rule" aria-live="polite">
+      <div class="fg-res-grid">
+        <div class="fg-res-main">
+          <p class="fg-cap" data-fg="basis"></p>
+          <p class="fg-word" data-fg="word"></p>
+          <span class="fg-big-num" data-fg="loss"></span>
+          <p class="fg-res-label" data-fg="loss-txt"></p>
+        </div>
+        <div class="fg-res-side">
+          <div class="fg-sentence" data-fg="sentence"></div>
+          <dl class="fg-rows" data-fg="rows"></dl>
+        </div>
+      </div>
+      <p class="fg-prompt" data-fg="prompt">Inserisci lo stipendio netto di allora per vedere lo stipendio necessario all’ultimo mese disponibile e il grafico.</p>
+      <div class="fg-boxes" data-fg="boxes" hidden></div>
+    </section>
+
+    <section class="fg-rule" data-fg="chart-box" hidden>
+      <p class="fg-chart-title" data-fg="chart-title"></p>
+      <p class="fg-chart-sub" data-fg="chart-sub"></p>
+      <div class="fg-chart" data-fg="chart"></div>
+      <div class="fg-actions">
+        <button type="button" class="fg-btn" data-fg="png">Scarica l’immagine (PNG)</button>
+        <span class="fg-hint" data-fg="png-msg"></span>
+      </div>
+    </section>
+
+    <section class="fg-ral" data-fg="ral" aria-labelledby="fg-pa-ral-title">
+      <p class="fg-cap">Confronto con il settore</p>
+      <h3 class="fg-ral-title" id="fg-pa-ral-title">Come si colloca la tua retribuzione</h3>
+      <p class="fg-sub">La tua retribuzione lorda annua a confronto con quella dei dipendenti del settore privato che hanno lavorato tutto l’anno a tempo pieno, secondo i dati INPS.</p>
+      <div class="fg-soft" data-fg="ral-pa" hidden></div>
+      <div data-fg="ral-body">
+        <div class="fg-form">
+          <div class="fg-field">
+            <label class="fg-label" for="fg-pa-ral">Retribuzione annua lorda (RAL)</label>
+            <div class="fg-money">
+              <input id="fg-pa-ral" data-fg="ral-in" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 30.000" aria-describedby="fg-pa-ral-msg">
+              <span class="fg-unit">€</span>
+            </div>
+            <p class="fg-hint" id="fg-pa-ral-msg" data-fg="ral-msg"></p>
+          </div>
+          <div class="fg-field">
+            <label class="fg-label" for="fg-pa-premi">Premi e straordinari <small>(facoltativo)</small></label>
+            <div class="fg-money">
+              <input id="fg-pa-premi" data-fg="premi-in" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 1.200" aria-describedby="fg-pa-premi-msg">
+              <span class="fg-unit">€</span>
+            </div>
+            <p class="fg-hint" id="fg-pa-premi-msg" data-fg="premi-msg">Lordi, dell’ultimo anno: si sommano alla RAL.</p>
+          </div>
+          <div class="fg-field">
+            <label class="fg-label" for="fg-pa-qual">Qualifica <small>(facoltativo)</small></label>
+            <select id="fg-pa-qual" data-fg="qual-in"></select>
+          </div>
+        </div>
+        <div class="fg-form fg-form-2">
+          <div class="fg-field">
+            <label class="fg-label" for="fg-pa-ateco">Settore di attività (ATECO)</label>
+            <div class="fg-cmp-box">
+              <input id="fg-pa-ateco" data-fg="ateco-input" type="text" role="combobox" autocomplete="off"
+                     aria-autocomplete="list" aria-expanded="false" aria-controls="fg-pa-ateco-list"
+                     placeholder="Cerca: commercio, software, alberghi…" aria-describedby="fg-pa-ateco-msg">
+              <span class="fg-cmp-caret" aria-hidden="true">▼</span>
+              <ul class="fg-cmp-list" id="fg-pa-ateco-list" data-fg="ateco-list" role="listbox" aria-label="Settori ATECO" hidden></ul>
+            </div>
+            <p class="fg-hint" id="fg-pa-ateco-msg" data-fg="ateco-msg"></p>
+          </div>
+          <div class="fg-field">
+            <label class="fg-label" for="fg-pa-reg">Regione <small>(facoltativo)</small></label>
+            <select id="fg-pa-reg" data-fg="reg-in"></select>
+          </div>
+        </div>
+        <div aria-live="polite">
+          <p class="fg-prompt" data-fg="ral-prompt">Inserisci la RAL per vedere quanti dipendenti a tempo pieno del settore guadagnano meno di te.</p>
+          <div class="fg-ral-out" data-fg="ral-out" hidden></div>
+        </div>
+      </div>
+      <div class="fg-ral-notes" data-fg="ral-notes"></div>
+    </section>
+  </div>
+
+  <section class="fg-rule">
+    <p class="fg-cap" style="margin-bottom:10px">Note metodologiche</p>
+    <div class="fg-notes">
+      <p><strong>Metodo.</strong> La perdita di potere d’acquisto è 1 − I(partenza)/I(arrivo), dove I è l’indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI) senza tabacchi, lo stesso usato per rivalutare affitti e assegni di mantenimento. L’indice misura un paniere medio: l’inflazione vissuta da ciascuna famiglia può essere diversa. Usa lo stipendio netto, perché il lordo risente anche di tasse e contributi. Per i mesi dal 1996 al 2001 l’importo va inserito in lire ed è convertito a 1.936,27 lire per euro.</p>
+      <p><strong>Contratto.</strong> L’opzione applica allo stipendio la crescita dell’indice ISTAT delle retribuzioni contrattuali per dipendente del comparto scelto (dati dal 2005): misura gli aumenti previsti dai contratti nazionali (minimi tabellari), non la crescita effettiva della busta paga, che include anzianità, superminimi e promozioni. Riguarda il lordo: a parità di regole fiscali, applicare al netto la crescita del lordo tende a sovrastimarla, per effetto della progressività dell’IRPEF. I mesi con un aumento una tantum che rientra il mese successivo (come dicembre 2023 nella pubblica amministrazione) sono sostituiti dal mese precedente. I confronti si fermano all’ultimo mese disponibile per entrambe le serie.</p>
+      <p><strong>Retribuzione.</strong> Il confronto con il settore usa l’Osservatorio INPS sui lavoratori dipendenti del settore privato non agricolo: distribuzione per classi della retribuzione annua di chi ha lavorato tutto l’anno a tempo pieno, aggiornata con l’indice ISTAT delle retribuzioni contrattuali. I dettagli sono nel riquadro «Come si colloca la tua retribuzione».</p>
+    </div>
+  </section>
+
+  <p class="fg-foot">
+    <span><strong>Fonti:</strong> ISTAT, INPS. <span data-fg="foot-data"></span></span>
+    <span><strong>Elaborazione:</strong> Daniele Angrisani (<a href="https://x.com/putino" target="_blank" rel="noopener">@putino</a>)</span>
+  </p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var DATA_URL = 'https://angrisanidj.github.io/potere-acquisto/data/foi.json';
+  var WAGES_URL = 'https://angrisanidj.github.io/potere-acquisto/data/retribuzioni.json';
+  var INPS_URL = 'https://angrisanidj.github.io/potere-acquisto/data/inps.json';
+  var INDEX_URL = 'https://angrisanidj.github.io/potere-acquisto/data/indice_ateco.json';
+  var LIRE_PER_EURO = 1936.27;
+  var EURO_START = '2002-01';
+  var MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio',
+              'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  var MESI_BREVI = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
+  var FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+  var CREDIT = 'Elaborazione: Daniele Angrisani (@putino)';
+  var SOURCE = 'Fonte: ISTAT, indice FOI senza tabacchi e indici delle retribuzioni contrattuali per dipendente.';
+  var C = { dark: '#003F87', mid: '#0070C0', accent: '#00A6D6', light: '#E8F4FD', text: '#1A1A2E',
+            muted: '#666680', border: '#D0D8E8' };
+
+  var host = (typeof location !== 'undefined' && location.hostname) || '';
+  var isLocal = host === 'localhost' || host === '127.0.0.1';
+  var foiUrl = isLocal ? 'data/foi.json' : DATA_URL;
+  var wagesUrl = isLocal ? 'data/retribuzioni.json' : WAGES_URL;
+  var inpsUrl = isLocal ? 'data/inps.json' : INPS_URL;
+  var indexUrl = isLocal ? 'data/indice_ateco.json' : INDEX_URL;
+
+  // --- parser-start ---
+  // Interpreta un importo scritto all'italiana: punto per le migliaia, virgola
+  // per i decimali. Restituisce {ok:true, value} oppure {ok:false, error}.
+  // Rifiuta le forme ambigue ("1.50", "1,500") invece di indovinare.
+  function parseImporto(raw, opts) {
+    var lire = !!(opts && opts.lire);
+    function no(msg) { return { ok: false, error: msg }; }
+    var s = String(raw == null ? '' : raw).replace(/[  ]/g, ' ').trim();
+    s = s.replace(/^€\s*/, '').replace(/\s*€$/, '');
+    if (lire) s = s.replace(/\s*(lire|lit\.?|l\.)$/i, '');
+    s = s.trim();
+    if (s === '') return no('Inserisci un importo.');
+    if (/^[-−]/.test(s)) return no("L'importo deve essere maggiore di zero.");
+    if (/\s/.test(s)) return no('Non usare spazi: scrivi ad esempio ' + (lire ? '2.500.000' : '1.500') + '.');
+    if (!/^[\d.,]+$/.test(s)) return no('Importo non valido: usa solo cifre, il punto per le migliaia e la virgola per i decimali.');
+    var parts = s.split(',');
+    if (parts.length > 2) return no('Più di una virgola: la virgola separa i decimali (es. 1.500,50).');
+    var intPart = parts[0];
+    var dec = parts.length === 2 ? parts[1] : null;
+    if (dec !== null && dec.indexOf('.') !== -1) {
+      return no('Formato non valido: il punto separa le migliaia e va prima della virgola (es. 1.500,50).');
+    }
+    if (intPart === '') return no('Manca la parte intera (es. 0,50).');
+    if (dec === '') return no('Mancano le cifre dopo la virgola.');
+    if (dec !== null && dec.length > 2) {
+      return no('Importo ambiguo: "' + s + '" ha ' + dec.length + ' cifre dopo la virgola. ' +
+                'Per le migliaia usa il punto (1.500), per i decimali al massimo due cifre (1,50).');
+    }
+    if (intPart.indexOf('.') !== -1) {
+      if (/^\d+\.\d{1,2}$/.test(intPart) && dec === null) {
+        return no('Importo ambiguo: "' + s + '". Il punto separa le migliaia; per i decimali usa la virgola (es. 1,50).');
+      }
+      if (!/^\d{1,3}(\.\d{3})+$/.test(intPart)) {
+        return no('Separatore delle migliaia non valido: i gruppi dopo il punto devono avere tre cifre (es. 1.500 o 2.500.000).');
+      }
+    }
+    if (lire && dec !== null) return no('Le lire non hanno decimali: inserisci un importo intero (es. 2.500.000).');
+    var value = Number(intPart.replace(/\./g, '') + (dec !== null ? '.' + dec : ''));
+    if (!isFinite(value)) return no('Importo non valido.');
+    if (!(value > 0)) return no("L'importo deve essere maggiore di zero.");
+    if (lire && value < 50000) {
+      return no('Importo troppo basso per uno stipendio in lire: prima del 2002 inserisci la cifra in lire (es. 2.500.000).');
+    }
+    if (!lire && value > 1000000) return no('Importo troppo alto per uno stipendio mensile in euro.');
+    if (lire && value > 2000000000) return no('Importo troppo alto per uno stipendio mensile in lire.');
+    return { ok: true, value: value };
+  }
+  // --- parser-end ---
+
+  // --- inps-start ---
+  // Distribuzioni INPS per classi di retribuzione annua. Una voce di inps.json ha
+  // counts (solo le classi pubblicate) e soglia: "nessuna", "da 15.000" (solo le
+  // classi da quell'importo in su) o "esclusa 5000-9999" (manca quella classe).
+  // Tutti gli importi sono in valori dell'anno INPS: i coefficienti si applicano fuori.
+  function inpsDist(classes, entry) {
+    if (!entry || entry.non_disponibile || !entry.counts) return null;
+    var s = entry.soglia || 'nessuna', from = 0, skip = null, m;
+    if ((m = /^da (\d{1,3}(?:\.\d{3})*)$/.exec(s))) from = Number(m[1].replace(/\./g, ''));
+    else if ((m = /^esclusa (.+)$/.exec(s))) skip = m[1];
+    else if (s !== 'nessuna') return null;   // soglia sconosciuta: meglio nessun dato che un dato sbagliato
+    var rows = [], total = 0, skipped = null;
+    classes.forEach(function (c) {
+      if (c.label === skip) { skipped = c; return; }
+      if (c.lo < from) return;
+      var n = entry.counts[c.label] || 0;
+      rows.push({ lo: c.lo, hi: c.hi, n: n });
+      total += n;
+    });
+    if (!(total > 0) || (skip && !skipped)) return null;
+    return { rows: rows, total: total, soglia: s, from: from, skipped: skipped };
+  }
+
+  // Quota di lavoratori con retribuzione inferiore a x, interpolando in modo
+  // lineare dentro la classe. Restituisce {p}, oppure {open: true, p} se x cade
+  // nella classe aperta (p è la quota sotto quella classe), oppure {out: true} se
+  // x cade sotto le classi pubblicate o in una classe esclusa.
+  function inpsPercentile(d, x) {
+    var below = 0;
+    for (var i = 0; i < d.rows.length; i++) {
+      var r = d.rows[i];
+      if (x < r.lo) return { out: true };
+      if (r.hi === null) return r.n > 0 ? { open: true, p: below / d.total } : { p: 1 };
+      if (x < r.hi) return { p: (below + r.n * (x - r.lo) / (r.hi - r.lo)) / d.total };
+      below += r.n;
+    }
+    return { p: 1 };
+  }
+
+  // Quantile q (0-1) per interpolazione lineare: {v} oppure {open: true} se cade
+  // nella classe aperta, dove non si può stimare.
+  function inpsQuantile(d, q) {
+    var target = q * d.total, cum = 0;
+    for (var i = 0; i < d.rows.length; i++) {
+      var r = d.rows[i];
+      if (r.n > 0 && cum + r.n >= target) {
+        return r.hi === null ? { open: true } : { v: r.lo + (target - cum) / r.n * (r.hi - r.lo) };
+      }
+      cum += r.n;
+    }
+    return { open: true };
+  }
+
+  // Testo del percentile P (da inpsPercentile), arrotondato ai 5 punti con "circa";
+  // nella classe aperta solo il limite inferiore. {pre, num} oppure null.
+  function inpsPctText(P) {
+    function art(n) { return n === 80 ? 'l’' : 'il '; }
+    var n;
+    if (P.open) {
+      n = Math.floor(P.p * 20) * 5;
+      return n > 0 ? { pre: 'oltre ' + art(n), num: n + '%' } : null;
+    }
+    n = Math.round(P.p * 20) * 5;
+    if (n <= 0) return { pre: 'meno del ', num: '5%' };
+    if (n >= 100) return { pre: 'più del ', num: '95%' };
+    return { pre: 'circa ' + art(n), num: n + '%' };
+  }
+
+  // Scarto di x dalla mediana, in percentuale intera con segno ("−4%", "+12%").
+  function inpsGap(x, med) {
+    var r = x / med - 1, n = Math.round(Math.abs(r) * 100);
+    return (n === 0 ? '' : r > 0 ? '+' : '−') + n + '%';
+  }
+  // --- inps-end ---
+
+  if (typeof document === 'undefined') return;
+  var root = document.getElementById('fg-potere-acquisto-2026');
+  if (!root) return;
+  function $(name) { return root.querySelector('[data-fg="' + name + '"]'); }
+
+  var el = {
+    status: $('status'), app: $('app'), month: $('month'), year: $('year'),
+    sal0: $('sal0'), sal0Label: $('sal0-label'), sal0Unit: $('sal0-unit'), sal0Msg: $('sal0-msg'),
+    sal1: $('sal1'), sal1Label: $('sal1-label'), sal1Msg: $('sal1-msg'),
+    contract: $('contract'), ctrLabel: $('ctr-label'), ctrOn: $('ctr-on'), ctrMsg: $('ctr-msg'),
+    cmpWrap: $('cmp-wrap'), cmpInput: $('cmp-input'), cmpList: $('cmp-list'),
+    loss: $('loss'), lossTxt: $('loss-txt'), word: $('word'), basis: $('basis'),
+    sentence: $('sentence'), rows: $('rows'), prompt: $('prompt'), boxes: $('boxes'),
+    err: $('err'), errMsg: $('err-msg'), retry: $('retry'),
+    chartBox: $('chart-box'), chartTitle: $('chart-title'), chartSub: $('chart-sub'), chart: $('chart'),
+    png: $('png'), pngMsg: $('png-msg'), footData: $('foot-data'),
+    ralPa: $('ral-pa'), ralBody: $('ral-body'), ralIn: $('ral-in'), ralMsg: $('ral-msg'),
+    premiIn: $('premi-in'), premiMsg: $('premi-msg'), qualIn: $('qual-in'),
+    atecoInput: $('ateco-input'), atecoList: $('ateco-list'), atecoMsg: $('ateco-msg'), regIn: $('reg-in'),
+    ralPrompt: $('ral-prompt'), ralOut: $('ral-out'), ralNotes: $('ral-notes')
+  };
+
+  var D = null;          // FOI
+  var W = null;          // retribuzioni contrattuali (facoltative)
+  var wagesError = '';
+  var months = [];
+  var lastMonth = null;  // ultimo mese FOI
+  var comp = {};         // codice -> comparto {code, name, parent, first_month, children}
+  var tree = [];         // comparti in ordine ad albero [{c, depth}]
+  var compCode = null;   // comparto scelto
+  var pref = true;       // preferenza dell'utente per l'opzione contratto
+  var calc = null;       // ultimo calcolo, per grafico ed export
+
+  // ---------- formattazione ----------
+  function fmt(n, dec) {
+    dec = dec || 0;
+    var s = n.toLocaleString('it-IT', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    // In it-IT il CLDR non raggruppa i numeri di 4 cifre ("1835"): forziamo
+    // sempre il punto delle migliaia ("1.835").
+    var p = s.split(',');
+    p[0] = p[0].replace(/\./g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return p.join(',');
+  }
+  function euro(n) { return fmt(Math.round(n)) + ' €'; }
+  function lireFmt(n) { return fmt(Math.round(n)) + ' lire'; }
+  function pct(x, signed) {
+    var s = fmt(Math.abs(x * 100), 1) + '%';
+    if (!signed) return s;
+    return (x > 0.0005 ? '+' : x < -0.0005 ? '−' : '') + s;
+  }
+  function signedEuro(n) {
+    var r = Math.round(n);
+    return (r > 0 ? '+' : r < 0 ? '−' : '') + fmt(Math.abs(r)) + ' €';
+  }
+  function monthName(ym) { return MESI[+ym.slice(5, 7) - 1] + ' ' + ym.slice(0, 4); }
+  // "a gennaio 2021", "ad agosto 2026", "ad aprile 2020"
+  function aMonth(ym) { var n = monthName(ym); return (n.charAt(0) === 'a' ? 'ad ' : 'a ') + n; }
+  function daMonth(ym) { return 'da ' + monthName(ym); }
+  function isLire(ym) { return ym < EURO_START; }
+  function mIndex(ym) { return +ym.slice(0, 4) * 12 + (+ym.slice(5, 7)) - 1; }
+  function addMonths(ym, k) {
+    var i = mIndex(ym) + k, y = Math.floor(i / 12), m = i % 12 + 1;
+    return y + '-' + (m < 10 ? '0' : '') + m;
+  }
+  function norm(s) {
+    s = s.toLowerCase();
+    return s.normalize ? s.normalize('NFD').replace(/[̀-ͯ]/g, '') : s;
+  }
+
+  // ---------- retribuzioni contrattuali ----------
+  function wageAt(code, m) {
+    var s = W && W.series[code];
+    if (!s) return null;
+    var i = mIndex(m) - mIndex(s.start);
+    return i >= 0 && i < s.values.length ? s.values[i] : null;
+  }
+  function isPeak(code, m) { return ((W && W.temporary_peaks && W.temporary_peaks[code]) || []).indexOf(m) !== -1; }
+  // Un picco una tantum (aumento che rientra il mese dopo) viene sostituito dal mese precedente.
+  function effMonth(code, m) { return isPeak(code, m) ? addMonths(m, -1) : m; }
+  function wageEff(code, m) { return wageAt(code, effMonth(code, m)); }
+
+  function contractStatus(start) {
+    if (!W) return { available: false, scope: 'global', reason: wagesError };
+    var end = W.last_month < lastMonth ? W.last_month : lastMonth;
+    if (start < W.first_month) {
+      return { available: false, scope: 'global',
+        reason: 'Le retribuzioni contrattuali ISTAT partono da ' + monthName(W.first_month) +
+                ': per partenze precedenti il confronto con il contratto non è disponibile.' };
+    }
+    var c = comp[compCode];
+    if (start < c.first_month || wageEff(compCode, start) === null) {
+      return { available: false, scope: 'comparto',
+        reason: 'La serie del comparto «' + c.name + '» parte da ' + monthName(c.first_month) +
+                ': per partire ' + daMonth(start) + ' scegli un comparto più ampio.' };
+    }
+    if (start >= end) {
+      return { available: false, scope: 'comparto',
+        reason: 'Le retribuzioni contrattuali arrivano a ' + monthName(end) + ': scegli un mese di partenza precedente.' };
+    }
+    return { available: true, end: end };
+  }
+
+  // ---------- selettori mese/anno ----------
+  function selectableMonths() { return months.filter(function (m) { return m < lastMonth; }); }
+
+  function fillYears() {
+    var years = [];
+    selectableMonths().forEach(function (m) { var y = m.slice(0, 4); if (years.indexOf(y) === -1) years.push(y); });
+    el.year.innerHTML = '';
+    years.reverse().forEach(function (y) {
+      var o = document.createElement('option'); o.value = y; o.textContent = y; el.year.appendChild(o);
+    });
+  }
+
+  function fillMonths(keep) {
+    var y = el.year.value;
+    var avail = selectableMonths().filter(function (m) { return m.slice(0, 4) === y; });
+    el.month.innerHTML = '';
+    avail.forEach(function (m) {
+      var o = document.createElement('option');
+      o.value = m; o.textContent = MESI[+m.slice(5, 7) - 1];
+      el.month.appendChild(o);
+    });
+    var want = y + '-' + (keep || '01');
+    if (avail.indexOf(want) !== -1) el.month.value = want;
+    else if (keep && keep > avail[avail.length - 1].slice(5, 7)) el.month.value = avail[avail.length - 1];
+    else el.month.value = avail[0];
+  }
+
+  // ---------- casella di ricerca con elenco ad albero (comparto, settore ATECO) ----------
+  // nodes: [{code, name, parent, depth, group, suffix}] in ordine d'albero; i nodi
+  // "group" sono intestazioni non selezionabili.
+  function makeCombo(o) {
+    var st = { items: [], active: -1 }, byCode = {};
+    o.nodes.forEach(function (n) { byCode[n.code] = n; });
+
+    function setActive(i) {
+      var lis = o.list.querySelectorAll('li[role="option"]');
+      for (var k = 0; k < lis.length; k++) lis[k].classList.toggle('fg-act', k === i);
+      st.active = i;
+      if (i >= 0 && lis[i]) {
+        o.input.setAttribute('aria-activedescendant', lis[i].id);
+        var li = lis[i], box = o.list;
+        if (li.offsetTop < box.scrollTop) box.scrollTop = li.offsetTop;
+        else if (li.offsetTop + li.offsetHeight > box.scrollTop + box.clientHeight) {
+          box.scrollTop = li.offsetTop + li.offsetHeight - box.clientHeight;
+        }
+      } else {
+        o.input.removeAttribute('aria-activedescendant');
+      }
+    }
+
+    function render(query) {
+      var q = norm(query.trim()), show = {}, cur = o.getValue();
+      o.nodes.forEach(function (n) {
+        if (!q || o.match(n, q)) {
+          show[n.code] = 'm';
+          for (var p = n.parent; p && q && byCode[p]; p = byCode[p].parent) if (!show[p]) show[p] = 'c';
+        }
+      });
+      o.list.innerHTML = '';
+      st.items = [];
+      st.active = -1;
+      o.nodes.forEach(function (n) {
+        var s0 = show[n.code];
+        if (!s0) return;
+        var li = document.createElement('li');
+        li.style.paddingLeft = (10 + n.depth * 16) + 'px';
+        if (n.group) {
+          li.className = 'fg-grp';
+          li.setAttribute('role', 'presentation');
+          li.textContent = n.name;
+          o.list.appendChild(li);
+          return;
+        }
+        li.id = o.idPrefix + n.code;
+        li.setAttribute('role', 'option');
+        li.setAttribute('aria-selected', n.code === cur ? 'true' : 'false');
+        if (s0 === 'c') li.className = 'fg-ctx';
+        li.appendChild(document.createTextNode(n.name));
+        if (n.suffix) {
+          var f = document.createElement('span');
+          f.className = 'fg-from';
+          f.textContent = n.suffix;
+          li.appendChild(f);
+        }
+        li.addEventListener('mousedown', function (e) { e.preventDefault(); choose(n.code); });
+        o.list.appendChild(li);
+        if (st.active === -1 && (q ? s0 === 'm' : n.code === cur)) st.active = st.items.length;
+        st.items.push(n.code);
+      });
+      if (!st.items.length) {
+        var e = document.createElement('li');
+        e.className = 'fg-empty';
+        e.textContent = o.empty;
+        o.list.appendChild(e);
+      }
+      setActive(st.active);
+    }
+
+    function open(query) {
+      o.list.hidden = false;
+      o.input.setAttribute('aria-expanded', 'true');
+      render(query);
+    }
+    function close() {
+      o.list.hidden = true;
+      o.input.setAttribute('aria-expanded', 'false');
+      o.input.removeAttribute('aria-activedescendant');
+      o.input.value = o.labelOf(o.getValue());
+    }
+    function choose(code) {
+      close();
+      o.onChoose(code);
+      o.input.value = o.labelOf(o.getValue());
+    }
+
+    o.input.value = o.labelOf(o.getValue());
+    o.input.addEventListener('focus', function () { o.input.select(); open(''); });
+    o.input.addEventListener('input', function () { open(o.input.value); });
+    o.input.addEventListener('blur', function () { close(); });
+    o.input.addEventListener('keydown', function (e) {
+      var n = st.items.length;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (o.list.hidden) { open(''); return; }
+        if (!n) return;
+        var d = e.key === 'ArrowDown' ? 1 : -1;
+        setActive(st.active < 0 ? 0 : (st.active + d + n) % n);
+      } else if (e.key === 'Enter') {
+        if (!o.list.hidden && st.active >= 0) { e.preventDefault(); choose(st.items[st.active]); }
+      } else if (e.key === 'Escape') {
+        close(); o.input.blur();
+      }
+    });
+    return { refresh: function () { if (o.list.hidden) o.input.value = o.labelOf(o.getValue()); } };
+  }
+
+  // ---------- comparto contrattuale ----------
+  function buildTree() {
+    comp = {};
+    W.comparti.forEach(function (c) {
+      comp[c.code] = { code: c.code, name: c.name, parent: c.parent, first_month: c.first_month, children: [] };
+    });
+    var roots = [];
+    W.comparti.forEach(function (c) {
+      if (c.parent && comp[c.parent]) comp[c.parent].children.push(c.code);
+      else roots.push(c.code);
+    });
+    // il totale economia in cima
+    roots.sort(function (a, b) { return (a === W.total_code ? -1 : 0) - (b === W.total_code ? -1 : 0); });
+    tree = [];
+    (function walk(list, depth) {
+      list.forEach(function (code) { tree.push({ c: comp[code], depth: depth }); walk(comp[code].children, depth + 1); });
+    })(roots, 0);
+  }
+
+  function bindCmp() {
+    makeCombo({
+      input: el.cmpInput, list: el.cmpList, idPrefix: 'fg-pa-cmp-', empty: 'Nessun comparto trovato',
+      nodes: tree.map(function (t) {
+        return { code: t.c.code, name: t.c.name, parent: t.c.parent, depth: t.depth,
+                 suffix: t.c.first_month > W.first_month ? ' · dati dal ' + t.c.first_month.slice(0, 4) : '' };
+      }),
+      match: function (n, q) { return norm(n.name).indexOf(q) !== -1 || n.code.toLowerCase() === q; },
+      getValue: function () { return compCode; },
+      labelOf: function (code) { return comp[code].name; },
+      onChoose: function (code) { compCode = code; update(false); }
+    });
+  }
+
+  // ---------- messaggi campi ----------
+  function setMsg(input, msgEl, text, isError, hint) {
+    msgEl.textContent = isError ? text : (hint || '');
+    msgEl.className = isError ? 'fg-error' : 'fg-hint';
+    input.setAttribute('aria-invalid', isError ? 'true' : 'false');
+  }
+
+  // Riquadro con filetti: titolo, valore, testo e nota facoltativa.
+  function addBox(b) {
+    var d = document.createElement('div');
+    d.className = 'fg-box';
+    var h = document.createElement('p'); h.className = 'fg-box-h'; h.textContent = b.h;
+    if (b.k) { var k = document.createElement('span'); k.textContent = ' · ' + b.k; h.appendChild(k); }
+    d.appendChild(h);
+    var v = document.createElement('span'); v.className = 'fg-box-v'; v.textContent = b.v; d.appendChild(v);
+    var t = document.createElement('span'); t.className = 'fg-box-t'; t.textContent = b.t; d.appendChild(t);
+    if (b.n) { var n = document.createElement('p'); n.className = 'fg-box-n'; n.textContent = b.n; d.appendChild(n); }
+    el.boxes.appendChild(d);
+  }
+
+  // ---------- calcolo e rendering ----------
+  function update(showErrors) {
+    syncSec();
+    updateRal(false);
+    var start = el.month.value;
+    if (!start) return;
+    var lire = isLire(start);
+    var cs = contractStatus(start);
+    var active = cs.available && pref;
+    var end = active ? cs.end : lastMonth;
+    var I0 = D.series[start], IL = D.series[end];
+    var aEnd = aMonth(end), startName = monthName(start);
+    var c = comp[compCode];
+
+    // stato dell'opzione contratto
+    el.contract.hidden = !W && !wagesError;
+    el.ctrOn.checked = active;
+    el.ctrOn.disabled = !cs.available;
+    el.ctrLabel.classList.toggle('fg-off', !cs.available);
+    el.cmpWrap.hidden = !W || cs.scope === 'global' || (cs.available && !pref);
+    var peakNotes = [];
+    if (active) {
+      [start, end].forEach(function (m) {
+        if (isPeak(compCode, m)) {
+          peakNotes.push(monthName(m).replace(/^./, function (x) { return x.toUpperCase(); }) +
+            ' contiene un aumento una tantum che rientra il mese dopo: per il contratto si usa ' +
+            monthName(addMonths(m, -1)) + '.');
+        }
+      });
+    }
+    el.ctrMsg.innerHTML = '';
+    if (cs.available) {
+      el.ctrMsg.className = 'fg-hint';
+      el.ctrMsg.textContent = active ? 'Confronti fino ' + aEnd + ', ultimo mese disponibile sia per i prezzi sia per le retribuzioni.' +
+        (peakNotes.length ? ' ' + peakNotes.join(' ') : '') : '';
+    } else {
+      el.ctrMsg.className = 'fg-alert';
+      var na = document.createElement('strong'); na.textContent = '⚠ Confronto con il contratto non disponibile';
+      el.ctrMsg.appendChild(na);
+      el.ctrMsg.appendChild(document.createTextNode(cs.reason));
+    }
+
+    el.sal0Label.textContent = 'Netto mensile ' + aMonth(start);
+    el.sal0Unit.textContent = lire ? 'lire' : '€';
+    el.sal0.placeholder = lire ? 'es. 2.500.000' : 'es. 1.500';
+    el.sal1Label.innerHTML = '';
+    el.sal1Label.appendChild(document.createTextNode('Netto mensile ' + aEnd + ' '));
+    var sm = document.createElement('small'); sm.textContent = '(facoltativo)'; el.sal1Label.appendChild(sm);
+
+    // stipendi inseriti (letti per primi: decidono il risultato principale)
+    var hint0 = lire ? 'Importo in lire, convertito a 1.936,27 lire per euro.' : '';
+    var raw0 = el.sal0.value.trim();
+    var p0 = raw0 ? parseImporto(raw0, { lire: lire }) : null;
+    setMsg(el.sal0, el.sal0Msg, p0 && !p0.ok ? p0.error : '', !!(p0 && !p0.ok && (showErrors || el.sal0.dataset.touched)), hint0);
+    var raw1 = el.sal1.value.trim();
+    var p1 = raw1 ? parseImporto(raw1, { lire: false }) : null;
+    setMsg(el.sal1, el.sal1Msg, p1 && !p1.ok ? p1.error : '', !!(p1 && !p1.ok && (showErrors || el.sal1.dataset.touched)), '');
+    var sal0 = p0 && p0.ok ? (lire ? p0.value / LIRE_PER_EURO : p0.value) : null;
+    var cur = sal0 !== null && p1 && p1.ok ? p1.value : null;
+
+    // Variazioni reali (negativo = potere d'acquisto perso).
+    var g = active ? wageEff(compCode, end) / wageEff(compCode, start) : null;
+    var fixedReal = I0 / IL - 1;                              // stipendio fermo
+    var ctrReal = active ? g * I0 / IL - 1 : null;            // con gli aumenti del contratto
+    var need = sal0 !== null ? sal0 * IL / I0 : null;
+    var curReal = cur !== null ? cur / need - 1 : null;       // stipendio attuale inserito
+    function big(x) { return x <= 0 ? '−' + pct(-x) : '+' + pct(x); }
+    function verb(x) { return x <= 0 ? 'perso' : 'guadagnato'; }
+    function would(x) { return x <= 0 ? 'la perdita sarebbe del ' + pct(-x) : 'il guadagno sarebbe del ' + pct(x); }
+    var period = 'da ' + startName + ' ' + aEnd;
+
+    // Risultato principale: stipendio attuale se c'è, altrimenti contratto se
+    // l'opzione è attiva, altrimenti stipendio fermo.
+    var R = { start: start, end: end, active: active, compName: active ? c.name : null, subs: [] };
+    if (curReal !== null) {
+      R.loss = big(curReal);
+      R.lossTxt = 'di potere d’acquisto ' + verb(curReal) + ' dal tuo stipendio ' + period + '.';
+      R.subs.push('A stipendio fermo, ' + would(fixedReal) +
+        (active ? '; con gli aumenti previsti dal contratto, ' + would(ctrReal) : '') + '.');
+    } else if (active) {
+      R.loss = big(ctrReal);
+      R.lossTxt = 'di potere d’acquisto ' + verb(ctrReal) + ' ' + period + ', considerando gli aumenti previsti dal contratto.';
+      R.subs.push('A stipendio fermo, ' + would(fixedReal) + '.');
+    } else {
+      R.loss = big(fixedReal);
+      R.lossTxt = fixedReal <= 0
+        ? 'di potere d’acquisto perso ' + period + '.'
+        : 'di potere d’acquisto guadagnato ' + period + ': i prezzi sono scesi.';
+    }
+    R.subs.push('Nello stesso periodo i prezzi sono ' + (IL >= I0 ? 'aumentati' : 'diminuiti') +
+      ' del ' + pct(Math.abs(IL / I0 - 1)) + ': ciò che costava 100 € ' + aMonth(start) +
+      ' costava ' + fmt(100 * IL / I0, 2) + ' € ' + aEnd + '.');
+    if (active) {
+      R.subs.push('Le retribuzioni previste dai contratti del comparto «' + c.name + '» sono ' +
+        (g >= 1 ? 'cresciute' : 'diminuite') + ' del ' + pct(Math.abs(g - 1)) + '.');
+    }
+    // Direzione del risultato principale: etichetta testuale e simbolo, mai solo il colore.
+    var mainX = curReal !== null ? curReal : active ? ctrReal : fixedReal;
+    R.dir = Math.abs(mainX) < 0.0005 ? 'even' : mainX < 0 ? 'loss' : 'gain';
+    R.word = R.dir === 'loss' ? 'Perdita' : R.dir === 'gain' ? 'Guadagno' : 'Invariato';
+    R.arrow = R.dir === 'loss' ? '▼' : R.dir === 'gain' ? '▲' : '=';
+    if (R.dir === 'even') R.loss = '0,0%';
+    R.basis = 'Risultato · ' + (curReal !== null ? 'calcolato sul tuo stipendio di ' + monthName(end)
+      : active ? 'con gli aumenti del contratto' : 'a stipendio fermo');
+    el.basis.textContent = R.basis;
+    el.word.className = 'fg-word fg-' + R.dir;
+    el.word.innerHTML = '';
+    var ic = document.createElement('i'); ic.setAttribute('aria-hidden', 'true'); ic.textContent = R.arrow;
+    el.word.appendChild(ic);
+    el.word.appendChild(document.createTextNode(R.word));
+    el.loss.className = 'fg-big-num fg-' + R.dir;
+    el.loss.textContent = R.loss;
+    el.lossTxt.textContent = R.lossTxt;
+
+    var infl = IL / I0 - 1;
+    var origTxt = sal0 !== null ? (lire ? lireFmt(p0.value) + ' (' + euro(sal0) + ')' : euro(sal0)) : '';
+    // frase principale e righe di riepilogo (il mese è sempre esplicito, mai "oggi")
+    var lead = 'Da ' + startName + ' ' + aEnd + ' i prezzi al consumo sono ' + (infl >= 0 ? 'aumentati' : 'diminuiti') +
+      ' del ' + pct(Math.abs(infl)) + '.';
+    if (sal0 !== null) {
+      lead += ' Per comprare ' + aEnd + ' ciò che acquistavi con ' + origTxt + ' al mese ' + aMonth(start) +
+        ' servirebbero ' + euro(need) + '.';
+      if (cur !== null) lead += ' Con ' + euro(cur) + ' hai ' + verb(curReal) + ' il ' + pct(Math.abs(curReal)) + ' del potere d’acquisto.';
+      if (active) lead += ' Con i soli aumenti del contratto saresti arrivato a ' + euro(sal0 * g) + '.';
+    } else {
+      lead += ' Ciò che costava 100 € ' + aMonth(start) + ' costava ' + fmt(100 * IL / I0, 2) + ' € ' + aEnd + '.';
+    }
+    var second = (curReal !== null || active) ? R.subs[0] : '';
+    R.subs = [lead].concat(second ? [second] : []);
+    el.sentence.innerHTML = '';
+    R.subs.forEach(function (t) { var e = document.createElement('p'); e.textContent = t; el.sentence.appendChild(e); });
+
+    var rows = [['Inflazione nel periodo', pct(infl, true)]];
+    if (active) rows.push(['Aumenti del contratto («' + c.name + '»)', pct(g - 1, true)]);
+    if (sal0 !== null) rows.push(['Stipendio necessario ' + aEnd, euro(need)]);
+    if (cur !== null) rows.push(['Differenza al mese, ' + monthName(end), signedEuro(cur - need)]);
+    if (active && sal0 !== null && cur === null) rows.push(['Con gli aumenti del contratto, ' + monthName(end), euro(sal0 * g)]);
+    el.rows.innerHTML = '';
+    rows.forEach(function (r) {
+      var d = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd');
+      dt.textContent = r[0]; dd.textContent = r[1]; d.appendChild(dt); d.appendChild(dd); el.rows.appendChild(d);
+    });
+
+    el.boxes.innerHTML = '';
+    if (sal0 === null) {
+      el.prompt.hidden = false; el.boxes.hidden = true; el.chartBox.hidden = true;
+      calc = null;
+      return;
+    }
+    el.prompt.hidden = true; el.chartBox.hidden = false;
+
+    var ctrNote = 'Crescita prevista dal contratto (minimi tabellari), non crescita effettiva della busta paga, ' +
+      'che include anche anzianità, superminimi e promozioni.' + (peakNotes.length ? ' ' + peakNotes.join(' ') : '');
+    var boxes = [];
+    if (cur !== null) {
+      var ga = cur / sal0 - 1, tx = 'Da ' + origTxt + ' a ' + euro(cur) + ', contro un’inflazione del ' + pct(infl) +
+        '. In termini reali: ' + pct(curReal, true) + '.';
+      if (active) {
+        var gc0 = g - 1;
+        // differenza in punti calcolata sulle percentuali mostrate (arrotondate a un decimale)
+        var dpp = (Math.round(Math.abs(ga) * 1000) * (ga < 0 ? -1 : 1) - Math.round(Math.abs(gc0) * 1000) * (gc0 < 0 ? -1 : 1)) / 10;
+        tx += ' È cresciuto ' + (Math.abs(dpp) < 0.05 ? 'come il tuo contratto' : dpp > 0 ? 'più del tuo contratto' : 'meno del tuo contratto') +
+          ' (' + (dpp >= 0 ? '+' : '−') + fmt(Math.abs(dpp), 1) + ' punti).';
+      }
+      boxes.push({ h: 'Il tuo stipendio', k: 'variazione nominale', v: pct(ga, true), t: tx });
+    }
+    if (active) {
+      boxes.push({ h: 'Il contratto', k: c.name, v: pct(g - 1, true),
+        t: 'Aumenti previsti dai contratti nel periodo, contro un’inflazione del ' + pct(infl) + '. In termini reali: ' + pct(ctrReal, true) + '.',
+        n: ctrNote });
+    }
+    el.boxes.hidden = !boxes.length;
+    boxes.forEach(addBox);
+
+    // schede per il PNG
+    var diffTxt = '';
+    if (cur !== null) {
+      var diff = Math.round(cur - need);
+      diffTxt = ' Il tuo stipendio di ' + euro(cur) + (diff === 0 ? ' è in linea.' :
+        ' è ' + (diff > 0 ? 'superiore' : 'inferiore') + ' di ' + euro(Math.abs(diff)) + ' al mese.');
+    }
+    var cards = [{ k: 'Stipendio necessario ' + aEnd, v: euro(need), unit: 'netti al mese',
+                   t: 'al posto di ' + origTxt + ' ' + aMonth(start) + '.' + diffTxt }];
+    boxes.forEach(function (b) { cards.push({ k: b.h + ' · ' + b.k, v: b.v, t: b.t, note: b.n }); });
+    R.cards = cards;
+    R.sal0 = sal0;
+    R.lireVal = lire ? p0.value : 0;
+    R.cur = cur;
+    R.ctrCode = active ? compCode : null;
+    R.chartTitle = 'Quanto vale nel tempo lo stipendio di ' + startName;
+    R.chartSub = 'Potere d’acquisto di ' + origTxt + (active ? ' rimasti fermi e con gli aumenti del contratto' : ' rimasti fermi') +
+      ', in euro di ' + startName + '.';
+    R.period = 'Da ' + startName + ' ' + aEnd + ' · stipendio netto di ' + origTxt + ' ' + aMonth(start) +
+      (active ? ' · comparto: ' + c.name : '');
+    calc = R;
+
+    el.chartTitle.textContent = R.chartTitle;
+    el.chartSub.textContent = R.chartSub;
+    el.pngMsg.textContent = '';
+    drawChart();
+  }
+
+  // ---------- grafico SVG ----------
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function sv(tag, attrs, parent) {
+    var n = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  // Testo con attributi di presentazione (non classi CSS), così l'SVG resta
+  // identico anche quando viene serializzato per l'export PNG.
+  function txt(parent, x, y, s, o) {
+    o = o || {};
+    var t = sv('text', { x: x, y: y, 'text-anchor': o.anchor || 'start', 'font-family': FONT,
+      'font-size': o.size || 11, 'font-weight': o.weight || 400, fill: o.fill || C.muted }, parent);
+    if (o.halo) {
+      t.setAttribute('stroke', '#ffffff'); t.setAttribute('stroke-width', 4);
+      t.setAttribute('stroke-linejoin', 'round'); t.setAttribute('paint-order', 'stroke');
+    }
+    if (s !== null) t.textContent = s;
+    return t;
+  }
+  function estW(s, size, bold) { return s.length * size * (bold ? 0.6 : 0.54); }
+  function niceStep(range, target) {
+    var raw = range / target, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p;
+    return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
+  }
+
+  // Costruisce il grafico per il calcolo R alla larghezza Wd.
+  function buildChart(R, Wd) {
+    var small = Wd < 600;
+    var start = R.start, end = R.end, sal0 = R.sal0, startName = monthName(start);
+    var I0 = D.series[start];
+    var w0 = R.ctrCode ? wageEff(R.ctrCode, start) : null;
+    function nominal(t) { return ((R.lireVal && isLire(t)) ? lireFmt(R.lireVal) : euro(sal0)) + ' di ' + monthName(t); }
+    function realTxt(v) { return euro(v) + ' di ' + startName; }
+
+    var pts = [];
+    for (var m = start; m <= end; m = addMonths(m, 1)) {
+      var defl = I0 / D.series[m];
+      var p = { m: m, v: sal0 * defl };
+      if (R.ctrCode) { p.cn = sal0 * wageEff(R.ctrCode, m) / w0; p.c = p.cn * defl; }
+      pts.push(p);
+    }
+    var n = pts.length, last = pts[n - 1];
+    var curReal = R.cur !== null ? R.cur * I0 / D.series[end] : null;
+
+    // note sotto l'asse (sempre su schermi stretti o con più serie)
+    var notes = [];
+    var useNotes = small || !!R.ctrCode || curReal !== null;
+    if (useNotes) {
+      notes.push({ color: C.mid, shape: 'dot', a: nominal(end), b: 'valgono ' + realTxt(last.v) });
+      if (R.ctrCode) notes.push({ color: C.accent, shape: 'dot', a: 'Con il contratto: ' + euro(last.cn) + ' di ' + monthName(end), b: 'pari a ' + realTxt(last.c) });
+      if (curReal !== null) notes.push({ color: C.text, shape: 'diamond', a: 'Il tuo stipendio: ' + euro(R.cur) + ' di ' + monthName(end), b: 'pari a ' + realTxt(curReal) });
+    }
+    var NOTE_LINE = 15, noteH = notes.length ? 10 + notes.length * (small ? 2 * NOTE_LINE + 6 : NOTE_LINE + 6) : 0;
+    var plotH = small ? 220 : 300;
+    var H = plotH + noteH;
+    var mg = { t: 38, r: small ? 12 : 18, b: 26 + noteH, l: small ? 58 : 66 };
+    var iw = Wd - mg.l - mg.r, ih = H - mg.t - mg.b;
+
+    var vals = [];
+    pts.forEach(function (p) { vals.push(p.v); if (p.c !== undefined) vals.push(p.c); });
+    vals.push(sal0);
+    if (curReal !== null) vals.push(curReal);
+    var vmin = Math.min.apply(null, vals), vmax = Math.max.apply(null, vals);
+    var step = niceStep((vmax - vmin) || vmax * 0.05, small ? 3 : 4);
+    var y0 = Math.floor(vmin / step) * step, y1 = Math.ceil(vmax / step) * step;
+    if (y1 === y0) y1 = y0 + step;
+    function X(i) { return mg.l + (n === 1 ? iw / 2 : i * iw / (n - 1)); }
+    function Y(v) { return mg.t + ih - (v - y0) / (y1 - y0) * ih; }
+
+    var svg = sv('svg', { viewBox: '0 0 ' + Wd + ' ' + H, width: Wd, height: H, role: 'img',
+      'aria-label': 'Valore reale dello stipendio, in euro di ' + startName + ': ' + nominal(end) + ' valgono ' + realTxt(last.v) +
+        (R.ctrCode ? '; con il contratto ' + realTxt(last.c) : '') });
+
+    for (var g = y0; g <= y1 + step / 2; g += step) {
+      var gy = Y(g);
+      sv('line', { x1: mg.l, x2: mg.l + iw, y1: gy, y2: gy, stroke: C.border, 'stroke-width': 1 }, svg);
+      txt(svg, mg.l - 8, gy + 4, fmt(g) + ' €', { anchor: 'end' });
+    }
+    txt(svg, 0, 11, 'valori in euro di ' + startName, { weight: 600 });
+
+    var span = n - 1, ticks = [];
+    if (span < 24) {
+      var every = span <= 8 ? 1 : span <= 14 ? 2 : 3;
+      if (small && span > 6) every = Math.max(every, 3);
+      for (var k = 0; k < n; k += every) ticks.push({ i: k, lbl: MESI_BREVI[+pts[k].m.slice(5, 7) - 1] + ' ' + pts[k].m.slice(2, 4) });
+    } else {
+      var years = span / 12, maxT = small ? 4 : 7;
+      var ys = [1, 2, 5, 10].filter(function (s) { return years / s <= maxT; })[0] || 10;
+      pts.forEach(function (p, i) {
+        if (p.m.slice(5, 7) === '01' && (+p.m.slice(0, 4)) % ys === 0) ticks.push({ i: i, lbl: p.m.slice(0, 4) });
+      });
+    }
+    ticks.forEach(function (tk) {
+      var tx = X(tk.i);
+      sv('line', { x1: tx, x2: tx, y1: mg.t + ih, y2: mg.t + ih + 4, stroke: C.muted, 'stroke-width': 1 }, svg);
+      txt(svg, tx, mg.t + ih + 20, tk.lbl, { anchor: tx < mg.l + 14 ? 'start' : tx > mg.l + iw - 14 ? 'end' : 'middle' });
+    });
+    sv('line', { x1: mg.l, x2: mg.l + iw, y1: mg.t + ih, y2: mg.t + ih, stroke: C.muted, 'stroke-width': 1 }, svg);
+
+    var ry = Y(sal0);
+    sv('line', { x1: mg.l, x2: mg.l + iw, y1: ry, y2: ry, stroke: C.muted, 'stroke-width': 1.2, 'stroke-dasharray': '5 4', opacity: 0.8 }, svg);
+
+    function path(key) {
+      var d = '';
+      for (var i = 0; i < n; i++) d += (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(pts[i][key]).toFixed(1);
+      return d;
+    }
+    var dv = path('v');
+    sv('path', { d: dv + 'L' + X(n - 1).toFixed(1) + ' ' + (mg.t + ih) + 'L' + X(0).toFixed(1) + ' ' + (mg.t + ih) + 'Z', fill: C.light }, svg);
+    sv('path', { d: dv, fill: 'none', stroke: C.mid, 'stroke-width': 2.5, 'stroke-linejoin': 'round' }, svg);
+    if (R.ctrCode) {
+      sv('path', { d: path('c'), fill: 'none', stroke: C.accent, 'stroke-width': 2.5, 'stroke-linejoin': 'round' }, svg);
+      sv('circle', { cx: X(n - 1), cy: Y(last.c), r: 4.5, fill: C.accent, stroke: '#ffffff', 'stroke-width': 1.5 }, svg);
+    }
+    sv('circle', { cx: X(n - 1), cy: Y(last.v), r: 4.5, fill: C.mid, stroke: '#ffffff', 'stroke-width': 1.5 }, svg);
+    if (curReal !== null) {
+      var cx = X(n - 1), cy = Y(curReal);
+      sv('path', { d: 'M' + cx + ' ' + (cy - 6) + 'L' + (cx + 6) + ' ' + cy + 'L' + cx + ' ' + (cy + 6) + 'L' + (cx - 6) + ' ' + cy + 'Z',
+        fill: C.text, stroke: '#ffffff', 'stroke-width': 1.5 }, svg);
+    }
+    txt(svg, mg.l + 6, ry - 6, 'partenza: ' + realTxt(sal0), { halo: true });
+
+    if (useNotes) {
+      var ny = plotH + 4;
+      notes.forEach(function (nt) {
+        ny += 6;
+        var my = ny + 7;
+        if (nt.shape === 'diamond') {
+          sv('path', { d: 'M4.5 ' + (my - 5) + 'L9.5 ' + my + 'L4.5 ' + (my + 5) + 'L-0.5 ' + my + 'Z', fill: nt.color }, svg);
+        } else {
+          sv('circle', { cx: 4.5, cy: my, r: 4.5, fill: nt.color }, svg);
+        }
+        var t = txt(svg, 16, ny + 11, null, { size: 12, weight: 700, fill: C.dark });
+        if (small) {
+          var a = sv('tspan', { x: 16 }, t); a.textContent = nt.a;
+          var b = sv('tspan', { x: 16, dy: NOTE_LINE }, t); b.textContent = nt.b;
+          ny += 2 * NOTE_LINE;
+        } else {
+          t.textContent = nt.a + ' ' + nt.b;
+          ny += NOTE_LINE;
+        }
+      });
+    } else {
+      // etichetta finale sopra il tratto di linea che le sta sotto
+      var l1s = nominal(end), l2s = 'valgono ' + realTxt(last.v);
+      var lw = Math.max(estW(l1s, 12, true), estW(l2s, 12, true));
+      var ex = X(n - 1), topY = Y(last.v);
+      for (var j = 0; j < n; j++) if (X(j) >= ex - lw - 4) topY = Math.min(topY, Y(pts[j].v));
+      var ly = Math.max(mg.t + 12, topY - 24);
+      var el1 = txt(svg, ex, ly, null, { anchor: 'end', size: 12, weight: 700, fill: C.dark, halo: true });
+      var t1 = sv('tspan', { x: ex }, el1); t1.textContent = l1s;
+      var t2 = sv('tspan', { x: ex, dy: 15 }, el1); t2.textContent = l2s;
+    }
+
+    return { svg: svg, pts: pts, X: X, Y: Y, mg: mg, iw: iw, ih: ih, W: Wd, n: n,
+             nominal: nominal, realTxt: realTxt, start: start };
+  }
+
+  function drawChart() {
+    if (!calc) return;
+    var box = el.chart;
+    var Wd = Math.max(260, Math.round(box.clientWidth || 300));
+    var ch = buildChart(calc, Wd);
+    box.innerHTML = '';
+    box.appendChild(ch.svg);
+    var svg = ch.svg, n = ch.n, pts = ch.pts, mg = ch.mg;
+
+    var guide = sv('line', { x1: 0, x2: 0, y1: mg.t, y2: mg.t + ch.ih, stroke: C.text, 'stroke-width': 1, opacity: 0 }, svg);
+    var dot = sv('circle', { r: 4, fill: C.mid, stroke: '#ffffff', 'stroke-width': 1.5, opacity: 0 }, svg);
+    var dotC = sv('circle', { r: 4, fill: C.accent, stroke: '#ffffff', 'stroke-width': 1.5, opacity: 0 }, svg);
+    var tip = document.createElement('div');
+    tip.className = 'fg-tip'; tip.hidden = true; box.appendChild(tip);
+    var hit = sv('rect', { x: mg.l, y: mg.t, width: ch.iw, height: ch.ih, fill: 'transparent' }, svg);
+
+    function show(evt) {
+      var r = svg.getBoundingClientRect();
+      var px = (evt.clientX - r.left) * ch.W / r.width;
+      var i = Math.max(0, Math.min(n - 1, Math.round((px - mg.l) / ch.iw * (n - 1))));
+      var p = pts[i], x = ch.X(i), y = ch.Y(p.v);
+      guide.setAttribute('x1', x); guide.setAttribute('x2', x); guide.setAttribute('opacity', 0.35);
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('opacity', 1);
+      var top = y;
+      if (p.c !== undefined) {
+        dotC.setAttribute('cx', x); dotC.setAttribute('cy', ch.Y(p.c)); dotC.setAttribute('opacity', 1);
+        top = Math.min(y, ch.Y(p.c));
+      }
+      tip.textContent = '';
+      function line(s, bold) {
+        var e = document.createElement('span');
+        if (bold) { var b = document.createElement('strong'); b.textContent = s; e.appendChild(b); } else e.textContent = s;
+        tip.appendChild(e);
+      }
+      line(ch.nominal(p.m) + ' valgono ' + ch.realTxt(p.v), true);
+      if (p.c !== undefined) line('Con il contratto: ' + euro(p.cn) + ' di ' + monthName(p.m) + ', pari a ' + ch.realTxt(p.c));
+      tip.hidden = false;
+      var scale = r.width / ch.W, half = tip.offsetWidth / 2;
+      tip.style.left = Math.max(half, Math.min(r.width - half, x * scale)) + 'px';
+      tip.style.top = Math.max(0, top * scale - tip.offsetHeight - 10) + 'px';
+    }
+    function hide() { guide.setAttribute('opacity', 0); dot.setAttribute('opacity', 0); dotC.setAttribute('opacity', 0); tip.hidden = true; }
+    hit.addEventListener('pointermove', show);
+    hit.addEventListener('pointerdown', show);
+    hit.addEventListener('pointerleave', hide);
+  }
+
+  // ---------- confronto della RAL con il settore (INPS) ----------
+  var INPS = null;               // data/inps.json
+  var IDX = null;                // data/indice_ateco.json
+  var inpsError = '';
+  var secCode = 'IT';            // IT = tutti i settori, altrimenti la lettera della sezione ATECO
+  var secFromComp = null;        // comparto da cui è stato precompilato
+  var secTouched = false;        // l'utente ha scelto il settore a mano
+  var secCombo = null;
+  var PA_ROOT = 'Z2540';         // attività della pubblica amministrazione
+  var QUANT = [0.1, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.75, 0.8, 0.9];
+
+  // Sezioni ATECO 2007 dell'Osservatorio: nome nell'elenco, nome breve nelle frasi,
+  // parole in più per la ricerca.
+  var SEC = {
+    B: ['Estrazione di minerali da cave e miniere', 'Estrazione di minerali', 'miniere cave petrolio'],
+    C: ['Attività manifatturiere', 'Attività manifatturiere', 'industria fabbrica manifattura metalmeccanica alimentare tessile chimica farmaceutica automobili'],
+    D: ['Fornitura di energia elettrica, gas, vapore e aria condizionata', 'Energia elettrica e gas', 'energia elettricità luce'],
+    E: ['Acqua, reti fognarie, gestione dei rifiuti e risanamento', 'Acqua e rifiuti', 'ambiente fognature nettezza'],
+    F: ['Costruzioni', 'Costruzioni', 'edilizia cantiere impianti'],
+    G: ['Commercio all’ingrosso e al dettaglio, riparazione di autoveicoli e motocicli', 'Commercio', 'negozio supermercato vendita grande distribuzione officina'],
+    H: ['Trasporto e magazzinaggio', 'Trasporto e magazzinaggio', 'trasporti logistica corriere poste autista ferrovie'],
+    I: ['Servizi di alloggio e di ristorazione', 'Alloggio e ristorazione', 'albergo hotel ristorante bar turismo'],
+    J: ['Servizi di informazione e comunicazione', 'Informazione e comunicazione', 'software informatica telecomunicazioni editoria giornali televisione radio'],
+    K: ['Attività finanziarie e assicurative', 'Attività finanziarie e assicurative', 'banca banche assicurazioni finanza credito'],
+    L: ['Attività immobiliari', 'Attività immobiliari', 'agenzia immobiliare'],
+    M: ['Attività professionali, scientifiche e tecniche', 'Attività professionali, scientifiche e tecniche', 'studio professionale avvocato commercialista ingegneria architetto consulenza ricerca pubblicità'],
+    N: ['Noleggio, agenzie di viaggio, servizi di supporto alle imprese', 'Noleggio e servizi alle imprese', 'pulizie vigilanza agenzia viaggi call center somministrazione'],
+    P: ['Istruzione', 'Istruzione', 'scuola privata formazione'],
+    Q: ['Sanità e assistenza sociale', 'Sanità e assistenza sociale', 'ospedale clinica casa di cura rsa'],
+    R: ['Attività artistiche, sportive, di intrattenimento e divertimento', 'Arte, sport e intrattenimento', 'cultura spettacolo musei giochi'],
+    S: ['Altre attività di servizi', 'Altri servizi', 'associazioni parrucchiere estetista riparazioni lavanderia'],
+    T: ['Attività di famiglie e convivenze come datori di lavoro', 'Famiglie come datori di lavoro', 'personale domestico']
+  };
+  var QUALS = [
+    { k: '', name: 'Non lo so (tutte le qualifiche)', pl: 'dipendenti', of: 'dei dipendenti', all: 'i dipendenti' },
+    { k: 'Operaio', name: 'Operaio', pl: 'operai', of: 'degli operai', all: 'gli operai' },
+    { k: 'Impiegato', name: 'Impiegato', pl: 'impiegati', of: 'degli impiegati', all: 'gli impiegati' },
+    { k: 'Quadro', name: 'Quadro', pl: 'quadri', of: 'dei quadri', all: 'i quadri' },
+    { k: 'Dirigente', name: 'Dirigente', pl: 'dirigenti', of: 'dei dirigenti', all: 'i dirigenti' },
+    { k: 'Apprendista', name: 'Apprendista', pl: 'apprendisti', of: 'degli apprendisti', all: 'gli apprendisti' }
+  ];
+  // Regioni come le scrive l'INPS: nome in pagina e preposizione dove non è "in".
+  var REG_NAME = { 'Valle d\'Aosta/Vallee d\'Aoste': 'Valle d’Aosta', 'Trentino-Alto-Adige': 'Trentino-Alto Adige' };
+  var REG_IN = { Lazio: 'nel Lazio', Marche: 'nelle Marche' };
+
+  // Corrispondenza fra comparto contrattuale e sezione ATECO: si risale l'albero
+  // dei comparti fino al primo nodo che ricade chiaramente in una sola sezione;
+  // altrimenti il settore resta da scegliere.
+  var COMP_TO_SEC = {
+    Z0110: 'B', Z0160: 'C', Z0940: 'D', Z1120: 'E', Z1180: 'F', Z1260: 'G', Z1261: 'G', Z1270: 'G',
+    Z1280: 'H', Z1840: 'I', Z1900: 'J', Z2080: 'J', Z2100: 'K', Z2300: 'M', Z2320: 'N', Z2340: 'N',
+    Z2360: 'P', Z2420: 'Q', Z2480: 'Q', Z2500: 'S'
+  };
+
+  function cap(t) { return t ? t.charAt(0).toUpperCase() + t.slice(1) : t; }
+  function isPA(code) {
+    for (var c = code; c && comp[c]; c = comp[c].parent) if (c === PA_ROOT) return true;
+    return false;
+  }
+  function paActive() { return !!(W && pref && compCode && isPA(compCode)); }
+  function regLabel(r) { return REG_NAME[r] || r; }
+  function qualOf(k) { return QUALS.filter(function (q) { return q.k === k; })[0] || QUALS[0]; }
+  // I valori stimati si arrotondano alle centinaia: la precisione dei dati non va oltre.
+  function euro100(v) { return euro(Math.round(v / 100) * 100); }
+  function openLo() { return INPS.classes[INPS.classes.length - 1].lo; }
+  // Limite della classe aperta riportato all'ultimo mese con il coefficiente f, alle migliaia.
+  function openTxt(f) { return 'oltre ' + euro(Math.round(openLo() * f / 1000) * 1000) + ' di ' + monthName(IDX.index_last_month); }
+
+  // Distribuzione per un ambito (Italia, sezione o regione) e una qualifica ('' =
+  // tutte), con il coefficiente dell'indice. Se la combinazione non è disponibile
+  // si usa la distribuzione nazionale della qualifica, segnalandolo.
+  function scopeDist(kind, key, qual) {
+    var entry, fcode = IDX.total_code, where;
+    if (kind === 'sec') {
+      var sz = INPS.sezioni[key];
+      entry = qual ? sz.quals[qual] : sz.tutte;
+      if (IDX.factors[key]) fcode = key;
+      where = 'del settore «' + SEC[key][1] + '»';
+    } else if (kind === 'reg') {
+      var rg = INPS.regioni[key];
+      entry = qual ? rg.quals[qual] : rg.tutte;
+      where = REG_IN[key] || 'in ' + regLabel(key);
+    } else {
+      entry = INPS.italia[qual || 'Totale'];
+      where = 'in Italia (tutti i settori)';
+    }
+    var S = { kind: kind, key: key, qual: qual, d: inpsDist(INPS.classes, entry), fcode: fcode,
+              f: IDX.factors[fcode], where: where, fallback: null };
+    if (!S.d && kind !== 'it') {
+      var nat = scopeDist('it', null, qual);
+      nat.fallback = { where: where, refused: !!(entry && (entry.tentativi || []).some(function (t) { return t.esito === 'rifiutata'; })) };
+      return nat;
+    }
+    return S;
+  }
+
+  function scopeTitle(kind, key, q) {
+    if (kind === 'reg') return 'Nella tua regione: ' + regLabel(key) + (q.k ? ', ' + q.pl : '');
+    if (kind === 'sec') return cap(q.pl) + ' del settore «' + SEC[key][1] + '»';
+    return cap(q.pl) + ' in Italia, tutti i settori privati';
+  }
+  function fallbackText(q, fb) {
+    return 'La distribuzione ' + q.of + ' ' + fb.where + ' non è disponibile' +
+      (fb.refused ? ' (l’INPS non la pubblica per tutelare l’anonimato)' : '');
+  }
+
+  // Barra della distribuzione: fascia dal 1° al 9° decile, fascia scura fra i
+  // quartili, mediana, altri decili come linee bianche e posizione dell'utente.
+  // I quantili nella classe aperta vanno in una zona a destra, oltre l'interruzione.
+  function drawDistBar(box, d, f, x) {
+    var Wd = Math.max(260, Math.round(box.clientWidth || 300));
+    var B = openLo() * f, q = {};
+    QUANT.forEach(function (k) { var r = inpsQuantile(d, k); q[k] = r.open ? null : r.v * f; });
+    var userOpen = x >= B, anyOpen = userOpen || q[0.9] === null;
+    var pad = 8, inner = Wd - 2 * pad, openW = anyOpen ? Math.max(64, inner * 0.2) : 0, linW = inner - openW;
+    var vals = QUANT.map(function (k) { return q[k]; }).filter(function (v) { return v !== null; });
+    if (!userOpen) vals.push(x);
+    var lo = (vals.length ? Math.min.apply(null, vals) : B * 0.8) * 0.92;
+    var hi = anyOpen ? B : Math.max.apply(null, vals) * 1.05;
+    function X(v) { return v === null || v >= B ? pad + linW + openW / 2 : pad + Math.min(linW, (v - lo) / (hi - lo) * linW); }
+    function XB(v) { return v === null ? pad + inner : X(v); }   // estremo destro delle fasce
+    var barY = 34, barH = 14;
+
+    var marks = [
+      { k: 0.1, lbl: '1° decile' }, { k: 0.25, lbl: '1° quartile' }, { k: 0.5, lbl: 'mediana', bold: true },
+      { k: 0.75, lbl: '3° quartile' }, { k: 0.9, lbl: '9° decile' }
+    ];
+    var shown = marks.filter(function (m) { return q[m.k] !== null; })
+      .map(function (m) { return { x: X(q[m.k]), lbl: m.lbl, val: euro100(q[m.k]), bold: m.bold }; });
+    var opens = marks.filter(function (m) { return q[m.k] === null; });
+    if (opens.length) {
+      shown.push({ x: X(null), lbl: opens.map(function (m) { return m.lbl; }).join(' e '),
+                   val: openTxt(f), bold: opens.some(function (m) { return m.bold; }) });
+    }
+    // etichette sotto la barra, ognuna sulla prima riga libera
+    var rowEnd = [];
+    shown.forEach(function (mk) {
+      var w = Math.max(estW(mk.lbl, 11, mk.bold), estW(mk.val, 11, mk.bold));
+      mk.cx = Math.max(pad + w / 2, Math.min(Wd - pad - w / 2, mk.x));
+      for (mk.row = 0; rowEnd[mk.row] !== undefined && mk.cx - w / 2 < rowEnd[mk.row] + 8; mk.row++) {}
+      rowEnd[mk.row] = mk.cx + w / 2;
+    });
+    var H = barY + barH + 14 + rowEnd.length * 30;
+    var svg = sv('svg', { viewBox: '0 0 ' + Wd + ' ' + H, width: Wd, height: H, role: 'img',
+      'aria-label': 'Tu: ' + euro(x) + '. ' + shown.map(function (mk) { return mk.lbl + ' ' + mk.val; }).join(', ') +
+        '. Valori stimati ' + aMonth(IDX.index_last_month) + '.' });
+    sv('rect', { x: pad, y: barY, width: inner, height: barH, fill: '#ffffff' }, svg);
+    var x1 = X(q[0.1]), x9 = XB(q[0.9]), xq1 = X(q[0.25]), xq3 = XB(q[0.75]);
+    sv('rect', { x: x1, y: barY, width: Math.max(1, x9 - x1), height: barH, fill: '#CFE6F7' }, svg);
+    sv('rect', { x: xq1, y: barY, width: Math.max(1, xq3 - xq1), height: barH, fill: '#8EC3E8' }, svg);
+    [0.2, 0.3, 0.4, 0.6, 0.7, 0.8].forEach(function (k) {
+      if (q[k] === null) return;
+      var tx = X(q[k]);
+      sv('line', { x1: tx, x2: tx, y1: barY, y2: barY + barH, stroke: '#ffffff', 'stroke-width': 1.5 }, svg);
+    });
+    // interruzione dell'asse prima della classe aperta
+    if (anyOpen) sv('rect', { x: pad + linW - 1, y: barY - 3, width: 4, height: barH + 6, fill: C.light }, svg);
+    shown.forEach(function (mk) {
+      var ly = barY + barH + 14 + mk.row * 30;
+      sv('line', { x1: mk.x, x2: mk.x, y1: barY - 3, y2: ly - 10, stroke: mk.bold ? C.dark : C.mid, 'stroke-width': mk.bold ? 2.5 : 1.2 }, svg);
+      txt(svg, mk.cx, ly, mk.lbl, { anchor: 'middle', fill: C.muted, weight: mk.bold ? 700 : 400 });
+      txt(svg, mk.cx, ly + 13, mk.val, { anchor: 'middle', fill: C.text, weight: mk.bold ? 700 : 400 });
+    });
+    var ux = X(userOpen ? null : x), ul = 'Tu: ' + euro(x), uw = estW(ul, 12, true);
+    sv('path', { d: 'M' + (ux - 6) + ' ' + (barY - 10) + 'L' + (ux + 6) + ' ' + (barY - 10) + 'L' + ux + ' ' + (barY - 1) + 'Z', fill: C.text }, svg);
+    sv('line', { x1: ux, x2: ux, y1: barY - 1, y2: barY + barH + 2, stroke: C.text, 'stroke-width': 2 }, svg);
+    txt(svg, Math.max(pad + uw / 2, Math.min(Wd - pad - uw / 2, ux)), barY - 15, ul,
+        { anchor: 'middle', size: 12, weight: 700, fill: C.text, halo: true });
+    box.innerHTML = '';
+    box.appendChild(svg);
+  }
+
+  // Un blocco di risultato (settore o regione) dentro parent; prev è il blocco
+  // principale, per non ripetere nel blocco della regione la stessa nota.
+  function renderBlock(parent, S, x, prev) {
+    var q = qualOf(S.qual), d = S.d, last = IDX.index_last_month, y = INPS.year;
+    function add(tag, cls, text) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      parent.appendChild(e);
+      return e;
+    }
+    add('p', 'fg-ral-h', scopeTitle(S.fallback ? (prev ? 'reg' : 'sec') : S.kind, S.fallback ? S.fallback.key : S.key, q));
+    if (S.fallback) add('p', 'fg-ral-warn', fallbackText(q, S.fallback) + ': il confronto è con ' + q.all + ' di tutta Italia.');
+    if (!d) { add('p', 'fg-hint', 'Dati INPS non disponibili per questa scelta.'); return; }
+    var who = ' ' + q.of + ' a tempo pieno ' + S.where;
+    var x24 = x / S.f;
+
+    if (S.qual === 'Dirigente') {
+      // Quasi tutti i dirigenti stanno nella classe aperta: niente percentile né mediana.
+      var share = d.rows[d.rows.length - 1].n / d.total;
+      var bd = add('p', 'fg-ral-big'), bs = document.createElement('strong');
+      bs.textContent = pct(share);
+      bd.appendChild(bs);
+      bd.appendChild(document.createTextNode(who + ' ha una retribuzione annua nella classe più alta dell’INPS: da ' +
+        euro(openLo()) + ' in su nel ' + y + ', cioè ' + openTxt(S.f) + '.'));
+      add('p', 'fg-ral-rel', 'La tua retribuzione, riportata ai valori del ' + y + ', è di circa ' + euro100(x24) + ': ' +
+        (x24 >= openLo() ? 'rientra in questa classe.' : 'è sotto questa soglia.'));
+      add('p', 'fg-hint', 'Per i dirigenti non si stimano percentile e mediana: quasi tutti sono nella classe più alta, che l’INPS non suddivide.');
+      return;
+    }
+
+    var P = inpsPercentile(d, x24);
+    if (P.out) {
+      add('p', 'fg-ral-warn', 'La tua retribuzione, riportata ai valori del ' + y + ' (circa ' + euro100(x24) +
+        '), cade in una classe che l’INPS non pubblica per questo gruppo: il percentile non si può stimare.');
+    } else {
+      var T = inpsPctText(P), big = add('p', 'fg-ral-big');
+      if (T) {
+        var st = document.createElement('strong'), ps = document.createElement('span');
+        ps.className = 'fg-pre'; ps.textContent = T.pre; st.appendChild(ps);
+        st.appendChild(document.createTextNode(T.num));
+        big.appendChild(st);
+      }
+      big.appendChild(document.createTextNode((T ? who : cap(who.slice(1))) + ' ha una retribuzione annua più bassa della tua' +
+        (P.open ? ': sei nella classe più alta dell’INPS, ' + openTxt(S.f) : '') + '.'));
+    }
+    var med = inpsQuantile(d, 0.5);
+    var rel = add('p', 'fg-ral-rel');
+    if (med.open) {
+      rel.textContent = 'La mediana è ' + openTxt(S.f) + ' (stima).';
+    } else {
+      var rs = document.createElement('strong');
+      rs.textContent = inpsGap(x, med.v * S.f);
+      rel.appendChild(rs);
+      rel.appendChild(document.createTextNode(' rispetto alla mediana, stimata in ' + euro100(med.v * S.f) + ' ' + aMonth(last) +
+        (prev ? '.' : ': metà ' + q.of + ' guadagna meno, metà di più.')));
+    }
+    drawDistBar(add('div', 'fg-bar'), d, S.f, x);
+    if (!prev) {
+      add('p', 'fg-hint', 'Valori stimati ' + aMonth(last) + ', arrotondati alle centinaia. Fascia scura: la metà centrale ' + q.of +
+        ' (dal 1° al 3° quartile); fascia chiara: dal 1° al 9° decile; linee bianche: gli altri decili.');
+    }
+
+    var notes = [];
+    if (d.from > 0) {
+      notes.push('L’INPS pubblica solo le classi da ' + euro(d.from) + ' in su (valori ' + y + '): il percentile riguarda solo ' +
+        q.all + ' di queste classi (' + fmt(d.total) + ').');
+    } else if (d.skipped) {
+      notes.push('L’INPS non pubblica la classe da ' + euro(d.skipped.lo) + ' a ' + euro(d.skipped.hi - 1) + ' (valori ' + y +
+        '): il percentile riguarda solo ' + q.all + ' delle altre classi (' + fmt(d.total) + ').');
+    }
+    if (!prev || prev.fcode !== S.fcode) {
+      notes.push('Il confronto è sui valori del ' + y + ': ' + euro(x) + ' di ' + monthName(last) + ' equivalgono a circa ' + euro100(x24) +
+        ' del ' + y + ', togliendo gli aumenti contrattuali ' +
+        (S.fcode === IDX.total_code ? 'di industria e servizi di mercato' : 'della sezione') + ' (' + pct(S.f - 1, true) + ').' +
+        (S.kind === 'sec' && S.fcode !== S.key ? ' La sezione ' + S.key + ' non ha un indice proprio: si usa quello di industria e servizi di mercato.' : ''));
+    }
+    notes.forEach(function (t) { add('p', 'fg-hint', t); });
+  }
+
+  function renderRalNotes() {
+    el.ralNotes.innerHTML = '';
+    function p(html) { var e = document.createElement('p'); e.innerHTML = html; el.ralNotes.appendChild(e); }
+    if (!INPS || !IDX) { p(inpsError); return; }
+    var y = INPS.year, pub = INPS.published || '';
+    var pubTxt = /^\d{8}$/.test(pub) ? ' (pubblicata il ' + (+pub.slice(6, 8) === 1 ? '1°' : +pub.slice(6, 8)) + ' ' +
+      MESI[+pub.slice(4, 6) - 1] + ' ' + pub.slice(0, 4) + ')' : '';
+    p('<strong>Fonte:</strong> INPS, Osservatorio sui lavoratori dipendenti del settore privato non agricolo, tavola «Lavoratori dipendenti per classi di importo della retribuzione annua», anno ' +
+      y + pubTxt + '. Sono compresi solo i lavoratori retribuiti per tutto l’anno e mai a tempo parziale: se lavori part time o hai lavorato solo una parte dell’anno, il confronto non è omogeneo.');
+    p('<strong>Cosa misura:</strong> la retribuzione annua è l’imponibile previdenziale, cioè la retribuzione lorda su cui si pagano i contributi: comprende tredicesima, straordinari e premi, non il TFR. La qualifica è quella dichiarata dal datore di lavoro.');
+    p('<strong>Calcolo:</strong> l’INPS pubblica il numero di lavoratori per classi di 5.000 € (di 10.000 e 20.000 € fra 50.000 e 80.000 €). Percentile e quantili sono stimati supponendo i lavoratori distribuiti in modo uniforme dentro ogni classe; il percentile è arrotondato ai 5 punti e lo scarto dalla mediana all’unità. Nella classe più alta, ' +
+      euro(openLo()) + ' e oltre nel ' + y + ', non si può stimare più della quota complessiva.');
+    p('<strong>Aggiornamento:</strong> i valori ' + y + ' sono riportati ' + aMonth(IDX.index_last_month) +
+      ' con l’indice ISTAT delle retribuzioni contrattuali per dipendente della sezione; per l’Italia, le regioni e la sezione T con quello di industria e servizi di mercato (sezioni B–N), perché l’indice non ha il solo settore privato. È una stima: l’indice non comprende la crescita oltre i minimi contrattuali.');
+    p('<strong>Dati mancanti:</strong> quando l’INPS non pubblica la tavola completa per tutelare l’anonimato si usano le sole classi pubblicate, e il percentile riguarda solo quei lavoratori; se non c’è nemmeno così, si usa la distribuzione nazionale della qualifica. In entrambi i casi il risultato lo indica. Per i dirigenti si mostra solo la quota nella classe più alta.');
+    p('<strong>Pubblica amministrazione:</strong> il confronto non è disponibile, perché l’Osservatorio riguarda solo i dipendenti del settore privato.');
+  }
+
+  function initInps() {
+    var nodes = [{ code: 'IT', name: 'Tutti i settori', parent: null, depth: 0 }];
+    Object.keys(SEC).forEach(function (k) {
+      if (INPS.sezioni[k]) nodes.push({ code: k, name: k + ' · ' + SEC[k][0], parent: null, depth: 0, kw: SEC[k][2] });
+    });
+    secCombo = makeCombo({
+      input: el.atecoInput, list: el.atecoList, idPrefix: 'fg-pa-ateco-', empty: 'Nessun settore trovato',
+      nodes: nodes,
+      match: function (n, q) { return norm(n.name).indexOf(q) !== -1 || (!!n.kw && norm(n.kw).indexOf(q) !== -1); },
+      getValue: function () { return secCode; },
+      labelOf: function (code) { return code === 'IT' ? 'Tutti i settori' : code + ' · ' + SEC[code][0]; },
+      onChoose: function (code) { secCode = code; secTouched = true; secFromComp = null; updateRal(false); }
+    });
+    QUALS.forEach(function (q) {
+      var o = document.createElement('option'); o.value = q.k; o.textContent = q.name; el.qualIn.appendChild(o);
+    });
+    var regs = Object.keys(INPS.regioni).sort(function (a, b) { return regLabel(a).localeCompare(regLabel(b), 'it'); });
+    var o0 = document.createElement('option'); o0.value = ''; o0.textContent = 'Nessuna'; el.regIn.appendChild(o0);
+    regs.forEach(function (r) {
+      var o = document.createElement('option'); o.value = r; o.textContent = regLabel(r); el.regIn.appendChild(o);
+    });
+    [el.ralIn, el.premiIn].forEach(function (inp) {
+      inp.addEventListener('input', function () { updateRal(false); });
+      inp.addEventListener('blur', function () { if (inp.value.trim()) inp.dataset.touched = '1'; updateRal(false); });
+    });
+    el.qualIn.addEventListener('change', function () { updateRal(false); });
+    el.regIn.addEventListener('change', function () { updateRal(false); });
+    renderRalNotes();
+  }
+
+  // Precompila il settore dal comparto contrattuale, finché l'utente non lo sceglie a mano.
+  function syncSec() {
+    if (!INPS || secTouched) return;
+    var code = null;
+    if (W && pref && compCode) {
+      for (var c = compCode; c && comp[c] && !code; c = comp[c].parent) code = COMP_TO_SEC[c] || null;
+    }
+    secCode = code && INPS.sezioni[code] ? code : 'IT';
+    secFromComp = secCode !== 'IT' ? compCode : null;
+    if (secCombo) secCombo.refresh();
+  }
+
+  function updateRal(showErrors) {
+    if (!el.ralBody) return;
+    var pa = paActive();
+    el.ralPa.hidden = !pa;
+    el.ralBody.hidden = pa || !INPS;
+    if (pa) {
+      el.ralPa.textContent = 'Il comparto scelto («' + comp[compCode].name + '») è della pubblica amministrazione: il confronto con il settore non è disponibile, perché l’Osservatorio INPS usato qui riguarda solo i dipendenti del settore privato.';
+      return;
+    }
+    if (!INPS) return;
+
+    el.atecoMsg.textContent = secFromComp && comp[secFromComp]
+      ? 'Precompilato dal comparto «' + comp[secFromComp].name + '»: puoi cambiarlo.' : '';
+
+    var pr = el.ralIn.value.trim() ? parseImporto(el.ralIn.value, { lire: false }) : null;
+    var pp = el.premiIn.value.trim() ? parseImporto(el.premiIn.value, { lire: false }) : null;
+    setMsg(el.ralIn, el.ralMsg, pr && !pr.ok ? pr.error : '', !!(pr && !pr.ok && (showErrors || el.ralIn.dataset.touched)),
+      pr && pr.ok && pr.value < 6000 ? 'Sembra un importo mensile: inserisci la retribuzione annua lorda.' : '');
+    setMsg(el.premiIn, el.premiMsg, pp && !pp.ok ? pp.error : '', !!(pp && !pp.ok && (showErrors || el.premiIn.dataset.touched)), 'Lordi, dell’ultimo anno: si sommano alla RAL.');
+
+    var ok = pr && pr.ok && !(pp && !pp.ok);
+    el.ralPrompt.hidden = !!ok;
+    el.ralOut.hidden = !ok;
+    if (!ok) return;
+
+    var x = pr.value + (pp && pp.ok ? pp.value : 0), qual = el.qualIn.value, q = qualOf(qual);
+    el.ralOut.innerHTML = '';
+    var main = secCode === 'IT' ? scopeDist('it', null, qual) : scopeDist('sec', secCode, qual);
+    if (main.fallback) main.fallback.key = secCode;
+    renderBlock(el.ralOut, main, x, null);
+
+    var rc = el.regIn.value;
+    if (rc && INPS.regioni[rc]) {
+      var box = document.createElement('div');
+      box.className = 'fg-ral-sec';
+      el.ralOut.appendChild(box);
+      var S2 = scopeDist('reg', rc, qual);
+      if (S2.fallback) S2.fallback.key = rc;
+      if (S2.fallback && main.kind === 'it') {
+        // sarebbe di nuovo la distribuzione nazionale già mostrata sopra
+        var h = document.createElement('p'); h.className = 'fg-ral-h'; h.textContent = scopeTitle('reg', rc, q);
+        var w = document.createElement('p'); w.className = 'fg-ral-warn';
+        w.textContent = fallbackText(q, S2.fallback) + ': vale il confronto nazionale qui sopra.';
+        box.appendChild(h);
+        box.appendChild(w);
+      } else {
+        renderBlock(box, S2, x, main);
+      }
+    }
+  }
+
+  // ---------- export PNG (canvas, nessuna libreria) ----------
+  function wrap(ctx, text, maxW) {
+    var words = text.split(' '), lines = [], cur = '';
+    words.forEach(function (w) {
+      var t = cur ? cur + ' ' + w : w;
+      if (ctx.measureText(t).width > maxW && cur) { lines.push(cur); cur = w; } else cur = t;
+    });
+    if (cur) lines.push(cur);
+    return lines;
+  }
+
+  function exportPng() {
+    if (!calc) return;
+    var R = calc, PW = 1200, PAD = 56, CW = PW - 2 * PAD, SCALE = 2;
+    var ch = buildChart(R, CW);
+    var svgText = new XMLSerializer().serializeToString(ch.svg);
+    var img = new Image();
+    el.png.disabled = true;
+    el.pngMsg.textContent = 'Preparazione dell’immagine…';
+    img.onload = function () {
+      try {
+        // Prima passata per misurare l'altezza, seconda per disegnare.
+        var probe = document.createElement('canvas').getContext('2d');
+        var h = paint(probe, false, R, img, ch, PW, PAD, CW);
+        var canvas = document.createElement('canvas');
+        canvas.width = PW * SCALE; canvas.height = Math.ceil(h * SCALE);
+        var ctx = canvas.getContext('2d');
+        ctx.scale(SCALE, SCALE);
+        paint(ctx, true, R, img, ch, PW, PAD, CW);
+        var name = 'potere-acquisto_' + R.start + '_' + R.end + '.png';
+        var done = function (href, revoke) {
+          var a = document.createElement('a');
+          a.href = href; a.download = name; a.style.display = 'none';
+          root.appendChild(a); a.click(); root.removeChild(a);
+          if (revoke) setTimeout(function () { URL.revokeObjectURL(href); }, 4000);
+          el.png.disabled = false; el.pngMsg.textContent = '';
+        };
+        if (canvas.toBlob) canvas.toBlob(function (b) { done(URL.createObjectURL(b), true); }, 'image/png');
+        else done(canvas.toDataURL('image/png'), false);
+      } catch (e) {
+        el.png.disabled = false;
+        el.pngMsg.textContent = 'Non è stato possibile creare l’immagine in questo browser.';
+      }
+    };
+    img.onerror = function () {
+      el.png.disabled = false;
+      el.pngMsg.textContent = 'Non è stato possibile creare l’immagine in questo browser.';
+    };
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgText);
+  }
+
+  function paint(ctx, draw, R, img, ch, PW, PAD, CW) {
+    var y = PAD;
+    function font(size, weight) { ctx.font = (weight || 400) + ' ' + size + 'px ' + FONT; }
+    function text(s, size, weight, color, lh, x, maxW) {
+      font(size, weight);
+      var lines = wrap(ctx, s, maxW || CW);
+      lines.forEach(function (l) {
+        if (draw) { ctx.fillStyle = color; ctx.fillText(l, x || PAD, y + size); }
+        y += lh;
+      });
+    }
+    if (draw) {
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, PW, 99999);
+      ctx.fillStyle = C.text; ctx.fillRect(0, 0, PW, 8);
+    }
+    ctx.textBaseline = 'alphabetic';
+    var dirColor = R.dir === 'loss' ? C.dark : R.dir === 'gain' ? C.mid : C.text;
+    function rule(h) { if (draw) { ctx.fillStyle = C.text; ctx.fillRect(PAD, y, CW, h); } y += h; }
+
+    y += 10;
+    text('CALCOLATORE · DATI ISTAT', 13, 700, C.text, 22);
+    y += 4;
+    text('Quanto potere d’acquisto ha perso il tuo stipendio', 38, 800, C.text, 44);
+    y += 4;
+    text(R.period, 17, 400, C.muted, 25);
+    y += 16;
+
+    // risultato principale: etichetta con simbolo, numero grande, testo
+    rule(2);
+    y += 12;
+    text(R.basis.toUpperCase(), 13, 700, C.muted, 20);
+    y += 6;
+    if (draw) {
+      ctx.fillStyle = dirColor; ctx.fillRect(PAD, y, 24, 24);
+      font(13, 800); ctx.fillStyle = '#ffffff'; ctx.textAlign = 'center'; ctx.fillText(R.arrow, PAD + 12, y + 17); ctx.textAlign = 'left';
+      font(16, 800); ctx.fillStyle = dirColor; ctx.fillText(R.word.toUpperCase(), PAD + 34, y + 18);
+    }
+    y += 34;
+    if (draw) { font(110, 700); ctx.fillStyle = dirColor; ctx.fillText(R.loss, PAD - 4, y + 92); }
+    y += 108;
+    text(R.lossTxt, 19, 600, C.text, 27);
+    R.subs.forEach(function (t, k) { y += 6; text(t, k ? 15 : 17, 400, k ? C.muted : C.text, k ? 22 : 25); });
+    y += 20;
+
+    // schede dei risultati
+    R.cards.forEach(function (c) {
+      rule(1);
+      y += 10;
+      text(c.k.toUpperCase(), 13, 700, C.muted, 20);
+      font(30, 700);
+      var v = c.v + (c.unit ? ' ' + c.unit : '');
+      if (draw) {
+        ctx.fillStyle = C.text;
+        ctx.fillText(v, PAD, y + 30);
+      }
+      y += 40;
+      text(c.t, 15, 400, C.text, 21);
+      if (c.note) text(c.note, 13, 400, C.muted, 18);
+      y += 14;
+    });
+    y += 6;
+
+    text(R.chartTitle, 18, 700, C.text, 25);
+    text(R.chartSub, 14, 400, C.muted, 20);
+    y += 8;
+    var chH = CW * img.height / img.width || ch.svg.getAttribute('height');
+    if (draw) ctx.drawImage(img, PAD, y, CW, chH);
+    y += chH + 22;
+
+    if (draw) { ctx.fillStyle = C.border; ctx.fillRect(PAD, y, CW, 1); }
+    y += 14;
+    text(SOURCE, 14, 400, C.muted, 20);
+    text('Ultimo mese disponibile: prezzi ' + monthName(D.last_month) + (W ? ', retribuzioni ' + monthName(W.last_month) : '') + '.', 14, 400, C.muted, 20);
+    y += 4;
+    text(CREDIT, 15, 700, C.text, 22);
+    return y + PAD - 10;
+  }
+
+  // ---------- avvio ----------
+  function fail(detail) {
+    el.status.hidden = true;
+    el.app.hidden = true;
+    el.err.hidden = false;
+    el.errMsg.textContent = 'Il calcolatore ha bisogno delle serie dei prezzi dell’ISTAT e senza non può funzionare: non ci sono dati di riserva. ' +
+      'Controlla la connessione e riprova; se il problema continua, torna più tardi. (' + detail + ')';
+  }
+
+  function getJson(u) {
+    return fetch(u, { cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    });
+  }
+
+  function init(foi, wages, inps, idx) {
+    if (!foi || !foi.series || !foi.last_month || !foi.series[foi.last_month]) {
+      throw new Error('formato dati non valido');
+    }
+    D = foi;
+    months = Object.keys(D.series).sort();
+    lastMonth = D.last_month;
+    if (selectableMonths().length === 0) throw new Error('serie troppo corta');
+
+    if (wages && wages.series && wages.comparti && wages.total_code && wages.series[wages.total_code]) {
+      W = wages;
+      compCode = W.total_code;
+      buildTree();
+      bindCmp();
+    } else if (!wagesError) {
+      wagesError = 'Dati sulle retribuzioni contrattuali non disponibili: il calcolo usa solo l’inflazione.';
+    }
+
+    if (inps && inps.classes && inps.italia && inps.sezioni && inps.regioni && inps.year &&
+        idx && idx.factors && idx.total_code && idx.factors[idx.total_code] && idx.index_last_month) {
+      INPS = inps;
+      IDX = idx;
+      initInps();
+    } else {
+      if (!inpsError) inpsError = 'Dati INPS non disponibili: il confronto della retribuzione con il settore non può essere mostrato.';
+      el.ralBody.hidden = true;
+      renderRalNotes();
+    }
+
+    var checked = D.last_checked ? new Date(D.last_checked) : null;
+    el.footData.textContent = 'Ultimo mese disponibile: prezzi ' + monthName(lastMonth) +
+      (W ? ', retribuzioni ' + monthName(W.last_month) : '') + '.' +
+      (checked && !isNaN(checked) ? ' Dati verificati il ' +
+        checked.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }).replace(/^1 /, '1° ') + '.' : '');
+
+    fillYears();
+    var defYear = '2021';
+    el.year.value = Array.prototype.some.call(el.year.options, function (o) { return o.value === defYear; })
+      ? defYear : el.year.options[el.year.options.length - 1].value;
+    fillMonths('01');
+
+    el.year.addEventListener('change', function () {
+      fillMonths((el.month.value || '-01').slice(5, 7)); update(false);
+    });
+    el.month.addEventListener('change', function () { update(false); });
+    el.ctrOn.addEventListener('change', function () { pref = el.ctrOn.checked; update(false); });
+    [el.sal0, el.sal1].forEach(function (inp) {
+      inp.addEventListener('input', function () { update(false); });
+      inp.addEventListener('blur', function () { if (inp.value.trim()) inp.dataset.touched = '1'; update(false); });
+    });
+    el.png.addEventListener('click', exportPng);
+
+    var lastW = 0;
+    function redraw() {
+      var w = el.chart.clientWidth;
+      if (calc && w && w !== lastW && !el.chartBox.hidden) { lastW = w; drawChart(); }
+    }
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(redraw).observe(el.chart);
+    else window.addEventListener('resize', redraw);
+    var lastRW = 0;
+    function redrawRal() {
+      var w = el.ralOut.clientWidth;
+      if (w && w !== lastRW && !el.ralOut.hidden) { lastRW = w; updateRal(false); }
+    }
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(redrawRal).observe(el.ralOut);
+
+    el.status.hidden = true;
+    el.app.hidden = false;
+    update(false);
+  }
+
+  // Il FOI è indispensabile; retribuzioni e dati INPS no: se mancano, le
+  // rispettive parti si disattivano con un messaggio e il resto funziona.
+  var started = false;
+  function load() {
+    var pWages = getJson(wagesUrl).then(null, function (e) {
+      wagesError = 'Dati sulle retribuzioni contrattuali non disponibili (' + e.message + '): il calcolo usa solo l’inflazione.';
+      return null;
+    });
+    var pInps = getJson(inpsUrl).then(null, function (e) {
+      inpsError = 'Dati INPS non disponibili (' + e.message + '): il confronto della retribuzione con il settore non può essere mostrato.';
+      return null;
+    });
+    var pIdx = getJson(indexUrl).then(null, function (e) {
+      inpsError = 'Indice ISTAT per sezione non disponibile (' + e.message + '): il confronto della retribuzione con il settore non può essere mostrato.';
+      return null;
+    });
+    Promise.all([getJson(foiUrl), pWages, pInps, pIdx])
+      .then(function (r) {
+        if (started) return;
+        started = true;
+        init(r[0], r[1], r[2], r[3]);
+      })
+      .catch(function (e) { fail('dettaglio: ' + e.message); });
+  }
+  el.retry.addEventListener('click', function () {
+    el.err.hidden = true;
+    el.status.hidden = false;
+    wagesError = inpsError = '';
+    load();
+  });
+  load();
+})();
+</script>
+</div>

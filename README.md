@@ -145,14 +145,34 @@ quando compare un picco temporaneo nuovo.
 
 ## Incorporare la pagina in un altro sito
 
-Copiare tutto il blocco `<div id="fg-potere-acquisto-2026"> … </div>` da
-`index.html`: contiene stile e script, con tutto il CSS sotto quell'ID e il
-JavaScript in una IIFE. I dati vengono letti dall'URL assoluto di GitHub Pages,
-che risponde con `Access-Control-Allow-Origin: *`, quindi il calcolatore
-funziona anche su altri domini. Se i prezzi non si caricano compare un messaggio
-d'errore; se mancano solo le retribuzioni, l'opzione contratto si disattiva con
-un avviso; se mancano i dati INPS o l'indice per sezione, il blocco del confronto
-retributivo mostra un messaggio al posto dei campi. Non ci sono copie di riserva dei dati nel codice.
+Il blocco da incollare è in [`embed.html`](embed.html): il solo
+`<div id="fg-potere-acquisto-2026"> … </div>` di `index.html`, con stile e
+script, senza `<html>`, `<head>` e `<body>`. Tutto il CSS è sotto quell'ID e il
+JavaScript è in una IIFE, quindi non tocca il resto della pagina e il tema del
+sito non lo altera.
+
+In un articolo **Ghost**: nell'editor aggiungere una scheda **HTML** (`/html`
+oppure il pulsante `+` → *HTML*) e incollarci tutto il contenuto di
+`embed.html`, poi controllare il risultato nell'anteprima dell'articolo. Gli
+stessi passi valgono per qualsiasi CMS che accetti un blocco HTML con script.
+
+`embed.html` non si modifica a mano: lo genera `scripts/build_embed.py`
+estraendo il blocco da `index.html`, e `tests/embed.test.mjs` fallisce se i due
+file non coincidono. Dopo ogni modifica a `index.html`:
+
+```bash
+python scripts/build_embed.py
+```
+
+Il codice incollato non si aggiorna da solo: dopo una modifica alla pagina va
+incollata di nuovo la nuova versione di `embed.html`. I dati invece sì: vengono
+letti ogni volta dall'URL assoluto di GitHub Pages, che risponde con
+`Access-Control-Allow-Origin: *`, quindi il calcolatore funziona anche su altri
+domini. Se i prezzi non si caricano compare un messaggio d'errore; se mancano
+solo le retribuzioni, l'opzione contratto si disattiva con un avviso; se mancano
+i dati INPS o l'indice per sezione, il blocco del confronto retributivo mostra
+un messaggio al posto dei campi. Non ci sono copie di riserva dei dati nel
+codice.
 
 ## Sviluppo locale
 
@@ -162,7 +182,8 @@ python scripts/update_retribuzioni.py     # aggiorna data/retribuzioni.json
 python scripts/update_indice_ateco.py     # aggiorna data/indice_ateco.json
 python scripts/inps_collect.py --offline  # ricostruisce data/inps.json dalle risposte salvate
 python -m http.server 8000                # poi apri http://localhost:8000/
-node --test tests/parser.test.mjs tests/inps.test.mjs   # parser degli importi e calcoli INPS
+python scripts/build_embed.py             # rigenera embed.html da index.html
+node --test tests/parser.test.mjs tests/inps.test.mjs tests/embed.test.mjs
 ```
 
 In locale (`localhost` o `127.0.0.1`) la pagina legge i file in `data/` con un

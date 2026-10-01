@@ -18,6 +18,9 @@ Commit e push solo quando l'utente li chiede.
 | File | Cosa contiene |
 |---|---|
 | `index.html` | Tutta la pagina: un solo `<div id="fg-potere-acquisto-2026">` con `<style>` e `<script>` (IIFE) dentro |
+| `embed.html` | Il solo div radice da incollare in una scheda HTML di Ghost; generato, mai modificato a mano |
+| `scripts/build_embed.py` | Estrae il div radice da `index.html` (fino all'ultimo `</div>` prima di `</body>`) → `embed.html` |
+| `tests/embed.test.mjs` | Verifica che `embed.html` coincida con il blocco di `index.html` e sia autonomo |
 | `tests/parser.test.mjs` | Test del parser degli importi in formato italiano; estrae il blocco fra `// --- parser-start ---` e `// --- parser-end ---` di `index.html` |
 | `tests/inps.test.mjs` | Test di percentile e quantili INPS sui dati veri; estrae il blocco fra `// --- inps-start ---` e `// --- inps-end ---` |
 | `scripts/update_foi.py` | FOI senza tabacchi → `data/foi.json`; contiene `http_get` (tentativi, limite ISTAT) usato dagli altri script |
@@ -94,6 +97,8 @@ dalla pagina e dal repository (sostituiti dall'INPS).
   #E8F4FD / testo #1A1A2E / secondario #666680 / bordi #D0D8E8, radice con `margin:28px auto !important`,
   breakpoint a 600px. Dati letti dagli URL assoluti di GitHub Pages (relativi su localhost/127.0.0.1);
   se il FOI non si carica, errore con pulsante "Riprova" e nessun dato di riserva.
+- **Dopo ogni modifica a `index.html`**: rigenerare `embed.html` con `scripts/build_embed.py` e committarli
+  insieme (il test `embed.test.mjs` fallisce se divergono).
 - **Prima di ogni commit della pagina**: fermarsi e mandare gli screenshot a **320 px e 1280 px** (più il PNG
   e gli stati particolari quando toccati). Le immagini molto alte non arrivano al cellulare: a 320 px
   mandare la pagina divisa in sezioni.
@@ -116,13 +121,18 @@ dalla pagina e dal repository (sostituiti dall'INPS).
 
 ```bash
 py -m http.server 8765 --bind 127.0.0.1     # poi http://127.0.0.1:8765/
-node --test tests/parser.test.mjs tests/inps.test.mjs
+py scripts/build_embed.py                    # dopo ogni modifica a index.html
+node --test tests/parser.test.mjs tests/inps.test.mjs tests/embed.test.mjs
 ```
 Screenshot: Edge headless con `--remote-debugging-port`, viewport 320/1280 e
 `Page.captureScreenshot` con `captureBeyondViewport` (lo script di supporto stava nella cartella
 temporanea della sessione, non nel repository). Esempi di controllo del confronto retributivo:
 operaio nel commercio in Lombardia con 26.000 €, impiegato in finanza con 45.000 €, quadro nella
 manifattura con 70.000 €.
+Verifica dell'incorporamento (2026-10-01, script nella cartella temporanea): pagina finta con stili
+globali tipo tema Ghost, `getComputedStyle` di html, body, titoli, paragrafi, link, campi e pulsanti
+dell'articolo con e senza `embed.html`: nessuna differenza rispetto a un div vuoto della stessa altezza e
+con gli stessi margini (cambiano solo le dimensioni di html e body).
 
 ## Stato attuale (2026-10-01)
 
