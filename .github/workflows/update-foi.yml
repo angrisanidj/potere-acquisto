@@ -22,7 +22,12 @@ jobs:
     # Così l'ambiente non cambia sotto il workflow; il passaggio a 26.04 si fa a
     # mano, con un avvio di prova.
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    # Richieste all'ISTAT: 2 (FOI) + 3 (retribuzioni), distanziate di almeno 40 s.
+    # Caso normale: circa 4 minuti. Caso peggiore, entrambi gli script fermi
+    # sull'ultima richiesta dopo risposte lente: FOI 1 x (180 + 40) + 3 x 180 + 60 + 120
+    # = 940 s; retribuzioni 2 x (180 + 40) + 3 x 180 + 60 + 120 = 1160 s; in tutto
+    # circa 35 minuti, più l'installazione. 45 minuti lasciano margine.
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v7
 

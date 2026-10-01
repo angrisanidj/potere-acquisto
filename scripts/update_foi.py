@@ -76,7 +76,15 @@ NOT_FINAL_FLAGS = {"p", "pr", "0P", "P_ERROR", "PB", "PE", "PC", "PI", "e", "f"}
 
 TIMEOUT = 180  # secondi per richiesta
 ATTEMPTS = 3
-BACKOFF = [20, 60]  # attesa prima del 2° e del 3° tentativo
+BACKOFF = [60, 120]  # attesa prima del 2° e del 3° tentativo
+
+# L'API ISTAT ammette 5 richieste al minuto per IP; chi supera il limite resta
+# bloccato da 1 a 2 giorni (https://www.istat.it/en/classifications-and-tools/sdmx-web-services/).
+# Ogni richiesta, compresi i tentativi ripetuti, parte almeno MIN_INTERVAL
+# secondi dopo la precedente. L'orario dell'ultima richiesta sta in un file
+# temporaneo, così il limite vale anche fra script diversi nello stesso job.
+MIN_INTERVAL = 40
+THROTTLE_FILE = os.path.join(tempfile.gettempdir(), "potere-acquisto-istat-ultima-richiesta")
 
 MAX_MONTHLY_CHANGE = 0.05
 
@@ -90,6 +98,24 @@ class UpdateError(Exception):
     pass
 
 
+def wait_turn():
+    """Aspetta finché sono passati MIN_INTERVAL secondi dall'ultima richiesta all'ISTAT."""
+    try:
+        with open(THROTTLE_FILE, encoding="ascii") as f:
+            last = float(f.read().strip() or 0)
+    except (OSError, ValueError):
+        last = 0.0
+    delay = last + MIN_INTERVAL - time.time()
+    if delay > 0:
+        print(f"  attesa di {delay:.0f} s per rispettare il limite dell'API ISTAT", file=sys.stderr)
+        time.sleep(delay)
+    try:
+        with open(THROTTLE_FILE, "w", encoding="ascii") as f:
+            f.write(f"{time.time():.3f}")
+    except OSError:
+        pass
+
+
 def http_get(url, accept, extra_headers=None):
     headers = {"Accept": accept, "User-Agent": "potere-acquisto/1.0"}
     headers.update(extra_headers or {})
@@ -99,6 +125,7 @@ def http_get(url, accept, extra_headers=None):
     # risponde affatto (DNS, connessione, timeout).
     last = None
     for attempt in range(1, ATTEMPTS + 1):
+        wait_turn()
         try:
             with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
                 if r.status != 200:
