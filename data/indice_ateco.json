@@ -3,7 +3,7 @@
  "base_note": "Coefficiente = indice di 2026-08 / media dell'indice nel 2024 (anno dei dati INPS). Italia e regioni: 0015 (industria e servizi di mercato B-N).",
  "year": "2024",
  "index_last_month": "2026-08",
- "last_checked": "2026-10-01T16:23:07Z",
+ "last_checked": "2026-10-01T16:29:40Z",
  "total_code": "0015",
  "factors": {
   "B": 1.10245,
