@@ -4,7 +4,7 @@
  "base_note": "Valori RACLI 2023 da moltiplicare per factor (indice contrattuale di 2026-08 / media 2023) per la stima all'ultimo mese. Totale e regioni con l'indice 0015 (industria e servizi di mercato B-N).",
  "year": "2023",
  "index_last_month": "2026-08",
- "last_checked": "2026-10-01T12:16:11Z",
+ "last_checked": "2026-10-01T13:12:45Z",
  "total": {
   "code": "0010",
   "values": {
