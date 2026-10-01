@@ -22,15 +22,14 @@ jobs:
     # Così l'ambiente non cambia sotto il workflow; il passaggio a 26.04 si fa a
     # mano, con un avvio di prova.
     runs-on: ubuntu-24.04
-    # Richieste all'ISTAT: 2 (FOI) + 3 (retribuzioni) + 4 (RACLI) + 1 (professioni),
-    # distanziate di almeno 40 s, più 2 richieste a Eurostat senza limite.
-    # Caso normale: circa 8 minuti. Caso peggiore, ogni script fermo sull'ultima
+    # Richieste all'ISTAT: 2 (FOI) + 3 (retribuzioni) + 1 (indice per sezione),
+    # distanziate di almeno 40 s, più 1 richiesta all'albero degli Osservatori INPS.
+    # Caso normale: circa 4 minuti. Caso peggiore, ogni script fermo sull'ultima
     # richiesta dopo risposte lente, con n richieste:
-    # (n - 1) x (180 + 40) + 3 x 180 + 60 + 120 secondi, cioè 940 + 1160 + 1380 per
-    # i primi tre script e 180 + 720 + 60 per le professioni (Eurostat lento, ISTAT
-    # fermo, controllo della nuova edizione): 4440 s (74 minuti), più l'installazione.
-    # 85 minuti lasciano margine.
-    timeout-minutes: 85
+    # (n - 1) x (180 + 40) + 3 x 180 + 60 + 120 secondi, cioè 940 + 1160 + 720 =
+    # 2820 s, più 120 s per il controllo INPS: circa 50 minuti con l'installazione.
+    # 60 minuti lasciano margine.
+    timeout-minutes: 60
     env:
       # output degli script nel log subito, non tutto a fine passo
       PYTHONUNBUFFERED: "1"
@@ -41,7 +40,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      # I due script sono indipendenti: se uno fallisce (API irraggiungibile o
+      # Gli script sono indipendenti: se uno fallisce (API irraggiungibile o
       # validazione fallita) lascia intatto il proprio file, l'altro va avanti
       # e il suo aggiornamento viene comunque committato. Il job fallisce
       # nell'ultimo passo.
@@ -55,15 +54,15 @@ jobs:
         continue-on-error: true
         run: python scripts/update_retribuzioni.py
 
-      - name: Scarica e valida le retribuzioni orarie RACLI
-        id: racli
+      - name: Aggiorna i coefficienti dell'indice contrattuale per sezione
+        id: indice
         continue-on-error: true
-        run: python scripts/update_racli.py
+        run: python scripts/update_indice_ateco.py
 
-      - name: Scarica e valida le retribuzioni per professione (Eurostat)
-        id: ses
-        continue-on-error: true
-        run: python scripts/update_ses.py
+      # Solo un controllo: avvisa se l'INPS ha pubblicato la tavola di un anno
+      # nuovo (la raccolta si lancia a mano con "Raccolta INPS"); non fallisce mai.
+      - name: Controlla nuove tavole INPS
+        run: python scripts/check_inps.py
 
       # last_checked cambia a ogni esecuzione riuscita, quindi c'è sempre un
       # commit mensile: evita che GitHub disattivi il workflow schedulato
@@ -73,27 +72,26 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/foi.json data/retribuzioni.json data/racli.json data/ses.json
+          git add data/foi.json data/retribuzioni.json data/indice_ateco.json
           if git diff --cached --quiet; then
             echo "Nessuna modifica da committare"
             exit 0
           fi
           FOI=$(python -c "import json; print(json.load(open('data/foi.json'))['last_month'])" 2>/dev/null || echo n/d)
           RETR=$(python -c "import json; print(json.load(open('data/retribuzioni.json'))['last_month'])" 2>/dev/null || echo n/d)
-          RACLI=$(python -c "import json; print(json.load(open('data/racli.json'))['year'])" 2>/dev/null || echo n/d)
-          SES=$(python -c "import json; print(json.load(open('data/ses.json'))['year'])" 2>/dev/null || echo n/d)
-          git commit -m "Aggiorna dati (FOI: ${FOI}, retribuzioni: ${RETR}, RACLI: ${RACLI}, SES: ${SES})"
+          IND=$(python -c "import json; print(json.load(open('data/indice_ateco.json'))['index_last_month'])" 2>/dev/null || echo n/d)
+          git commit -m "Aggiorna dati (FOI: ${FOI}, retribuzioni: ${RETR}, indice per sezione: ${IND})"
+          git pull --rebase --quiet
           git push
 
       # Con continue-on-error un passo fallito risulta comunque "success":
       # qui il fallimento diventa un'annotazione visibile nel riepilogo del run.
       - name: Esito degli aggiornamenti
-        if: steps.foi.outcome == 'failure' || steps.retr.outcome == 'failure' || steps.racli.outcome == 'failure' || steps.ses.outcome == 'failure'
+        if: steps.foi.outcome == 'failure' || steps.retr.outcome == 'failure' || steps.indice.outcome == 'failure'
         env:
           FOI_OUTCOME: ${{ steps.foi.outcome }}
           RETR_OUTCOME: ${{ steps.retr.outcome }}
-          RACLI_OUTCOME: ${{ steps.racli.outcome }}
-          SES_OUTCOME: ${{ steps.ses.outcome }}
+          IND_OUTCOME: ${{ steps.indice.outcome }}
         run: |
           if [ "$FOI_OUTCOME" = "failure" ]; then
             echo "::error title=Aggiornamento fallito::scripts/update_foi.py è fallito: data/foi.json non è stato aggiornato (dettagli nel passo 'Scarica e valida la serie FOI')"
@@ -101,10 +99,7 @@ jobs:
           if [ "$RETR_OUTCOME" = "failure" ]; then
             echo "::error title=Aggiornamento fallito::scripts/update_retribuzioni.py è fallito: data/retribuzioni.json non è stato aggiornato (dettagli nel passo 'Scarica e valida le retribuzioni contrattuali')"
           fi
-          if [ "$RACLI_OUTCOME" = "failure" ]; then
-            echo "::error title=Aggiornamento fallito::scripts/update_racli.py è fallito: data/racli.json non è stato aggiornato (dettagli nel passo 'Scarica e valida le retribuzioni orarie RACLI')"
-          fi
-          if [ "$SES_OUTCOME" = "failure" ]; then
-            echo "::error title=Aggiornamento fallito::scripts/update_ses.py è fallito: data/ses.json non è stato aggiornato (dettagli nel passo 'Scarica e valida le retribuzioni per professione (Eurostat)')"
+          if [ "$IND_OUTCOME" = "failure" ]; then
+            echo "::error title=Aggiornamento fallito::scripts/update_indice_ateco.py è fallito: data/indice_ateco.json non è stato aggiornato (dettagli nel passo 'Aggiorna i coefficienti dell'indice contrattuale per sezione')"
           fi
           exit 1

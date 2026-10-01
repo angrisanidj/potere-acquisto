@@ -1,0 +1,61 @@
+name: Raccolta INPS
+
+# Si lancia a mano (Actions → Raccolta INPS → Run workflow) quando il controllo
+# mensile segnala una tavola INPS di un anno nuovo. Scarica le distribuzioni per
+# classe di retribuzione annua (Italia, sezioni, regioni) e ricostruisce
+# data/inps.json; le risposte grezze restano in data/inps_raw/<anno>/ e non
+# vengono mai richieste di nuovo.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-foi
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    # Fino a circa 420 richieste nel caso peggiore (ogni combinazione rifiutata e
+    # ritentata), almeno 12 s l'una dall'altra, più i tempi di risposta (5-10 s):
+    # circa 2 ore e mezza; normalmente 230-250 richieste, circa 75 minuti.
+    timeout-minutes: 240
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # Si ferma (e fa fallire il job) alla prima risposta che non è né dati né
+      # un rifiuto per anonimizzazione; le risposte già salvate vengono comunque
+      # committate nel passo successivo, così un nuovo lancio riparte da lì.
+      - name: Raccogli le tavole INPS
+        id: collect
+        continue-on-error: true
+        run: python scripts/inps_collect.py
+
+      - name: Commit e push
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/inps_raw data/inps.json
+          if git diff --cached --quiet; then
+            echo "Nessuna modifica da committare"
+            exit 0
+          fi
+          YEAR=$(python -c "import json; print(json.load(open('data/inps.json'))['year'])" 2>/dev/null || echo n/d)
+          git commit -m "Raccolta INPS (anno dei dati: ${YEAR})"
+          git pull --rebase --quiet
+          git push
+
+      - name: Esito della raccolta
+        if: steps.collect.outcome == 'failure'
+        run: |
+          echo "::error title=Raccolta INPS interrotta::scripts/inps_collect.py si è fermato su una risposta inattesa: dettagli nel passo 'Raccogli le tavole INPS'. Le risposte già scaricate sono state salvate."
+          exit 1
