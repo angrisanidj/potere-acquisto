@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- Modello dell'immagine per i social (1200 x 630). Il PNG si genera con
+     node scripts/build_images.mjs: non modificare a mano assets/og-image.png. -->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden; background: #ffffff; color: #1A1A2E;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+  .bar { height: 16px; background: #1A1A2E; }
+  .in { box-sizing: border-box; height: 614px; padding: 46px 64px 44px; display: flex; flex-direction: column; }
+  .kick { display: flex; justify-content: space-between; margin: 0 0 22px; font-size: 21px; font-weight: 700;
+          letter-spacing: .05em; text-transform: uppercase; }
+  .kick span + span { color: #666680; }
+  h1 { margin: 0; font-size: 76px; line-height: 1.02; font-weight: 800; letter-spacing: -.03em; max-width: 1000px; }
+  h1 em { font-style: normal; color: #003F87; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: auto; }
+  .step { border-top: 4px solid #1A1A2E; padding-top: 14px; }
+  .step b { display: block; font-size: 22px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+  .step span { display: block; margin-top: 6px; font-size: 22px; line-height: 1.3; color: #666680; }
+  .foot { display: flex; justify-content: space-between; margin-top: 30px; padding-top: 14px; border-top: 2px solid #D0D8E8;
+          font-size: 20px; color: #666680; }
+  .foot strong { color: #1A1A2E; }
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<div class="in">
+  <p class="kick"><span>Calcolatore</span><span>Dati ISTAT e INPS</span></p>
+  <h1>Quanto potere d’acquisto ha perso il tuo <em>stipendio</em></h1>
+  <div class="steps">
+    <div class="step"><b>01 · Prezzi</b><span>Lo stipendio netto confrontato con l’inflazione ISTAT</span></div>
+    <div class="step"><b>02 · Contratto</b><span>Gli aumenti previsti dal contratto del tuo comparto</span></div>
+    <div class="step"><b>03 · Settore</b><span>Come si colloca la tua retribuzione (dati INPS)</span></div>
+  </div>
+  <p class="foot"><span><strong>Elaborazione:</strong> Daniele Angrisani (@putino)</span><span>angrisanidj.github.io/potere-acquisto</span></p>
+</div>
+</body>
+</html>

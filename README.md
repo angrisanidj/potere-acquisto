@@ -41,6 +41,10 @@ Elaborazione: Daniele Angrisani ([@putino](https://x.com/putino)).
   settore si precompila dal comparto contrattuale quando questo ricade in una
   sola sezione. Per i comparti della pubblica amministrazione il confronto non
   è disponibile.
+- Riga **"Condividi il calcolatore"**: link diretti a X, Threads, Facebook,
+  LinkedIn, Telegram e WhatsApp e pulsante per copiare il link. Si condivide la
+  pagina in cui si trova il calcolatore (l'articolo, se è incorporato), senza
+  parametri; il testo proposto è generico e non contiene i dati inseriti.
 - Gli importi si scrivono all'italiana: punto per le migliaia, virgola per i
   decimali (`1.500`, `1.500,50`, `2.500.000`). Le forme ambigue come `1.50` o
   `1,500` vengono rifiutate con un messaggio.
@@ -126,6 +130,27 @@ non ha) si usa `0015`, industria e servizi di mercato (B–N), perché l'indice
 non ha il solo settore privato. È una stima: non comprende la crescita oltre i
 minimi contrattuali. Lo genera `scripts/update_indice_ateco.py`.
 
+## Favicon e immagine per i social
+
+In `assets/`: `favicon.svg` (sorgente), `favicon-32.png` e `apple-touch-icon.png`
+(per i browser che non leggono l'SVG e per iOS), `og-image.html` (modello) e
+`og-image.png` (1200 × 630, l'anteprima quando si condivide il link). I PNG si
+generano con un browser Chromium headless (Edge o Chrome, percorso in `BROWSER`
+se non è quello predefinito):
+
+```bash
+node scripts/build_images.mjs
+```
+
+Vanno rigenerati solo quando cambiano `favicon.svg` o `og-image.html`.
+`tests/assets.test.mjs` controlla che i file citati nella testata di
+`index.html` esistano e abbiano le dimensioni dichiarate. Le icone dei social
+sono di Font Awesome Free 6.7.2 (licenza CC BY 4.0, attribuzione nel codice),
+tranne l'aereo di Telegram, disegnato per la pagina.
+
+Favicon e meta tag stanno nella testata di `index.html`, fuori dal blocco
+incorporabile: in un articolo valgono quelli del sito che lo ospita.
+
 ## Aggiornamento automatico
 
 Il workflow `.github/workflows/update-foi.yml` gira il 20 di ogni mese (e a mano
@@ -183,7 +208,8 @@ python scripts/update_indice_ateco.py     # aggiorna data/indice_ateco.json
 python scripts/inps_collect.py --offline  # ricostruisce data/inps.json dalle risposte salvate
 python -m http.server 8000                # poi apri http://localhost:8000/
 python scripts/build_embed.py             # rigenera embed.html da index.html
-node --test tests/parser.test.mjs tests/inps.test.mjs tests/embed.test.mjs
+node scripts/build_images.mjs             # rigenera favicon PNG e immagine per i social
+node --test tests/parser.test.mjs tests/inps.test.mjs tests/embed.test.mjs tests/assets.test.mjs
 ```
 
 In locale (`localhost` o `127.0.0.1`) la pagina legge i file in `data/` con un

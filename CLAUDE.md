@@ -20,7 +20,10 @@ Commit e push solo quando l'utente li chiede.
 | `index.html` | Tutta la pagina: un solo `<div id="fg-potere-acquisto-2026">` con `<style>` e `<script>` (IIFE) dentro |
 | `embed.html` | Il solo div radice da incollare in una scheda HTML di Ghost; generato, mai modificato a mano |
 | `scripts/build_embed.py` | Estrae il div radice da `index.html` (fino all'ultimo `</div>` prima di `</body>`) → `embed.html` |
-| `tests/embed.test.mjs` | Verifica che `embed.html` coincida con il blocco di `index.html` e sia autonomo |
+| `tests/embed.test.mjs` | Verifica che `embed.html` coincida con il blocco di `index.html`, sia autonomo e che ogni selettore CSS inizi con l'ID radice |
+| `assets/` | `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, `og-image.html` (modello) e `og-image.png` (1200 × 630) |
+| `scripts/build_images.mjs` | Genera i PNG di `assets/` con Edge/Chrome headless via DevTools Protocol (`BROWSER` per il percorso) |
+| `tests/assets.test.mjs` | File citati nella testata (favicon, `og:image`) presenti e con le dimensioni dichiarate |
 | `tests/parser.test.mjs` | Test del parser degli importi in formato italiano; estrae il blocco fra `// --- parser-start ---` e `// --- parser-end ---` di `index.html` |
 | `tests/inps.test.mjs` | Test di percentile e quantili INPS sui dati veri; estrae il blocco fra `// --- inps-start ---` e `// --- inps-end ---` |
 | `scripts/update_foi.py` | FOI senza tabacchi → `data/foi.json`; contiene `http_get` (tentativi, limite ISTAT) usato dagli altri script |
@@ -122,7 +125,8 @@ dalla pagina e dal repository (sostituiti dall'INPS).
 ```bash
 py -m http.server 8765 --bind 127.0.0.1     # poi http://127.0.0.1:8765/
 py scripts/build_embed.py                    # dopo ogni modifica a index.html
-node --test tests/parser.test.mjs tests/inps.test.mjs tests/embed.test.mjs
+node scripts/build_images.mjs                # solo se cambiano favicon.svg o og-image.html
+node --test tests/parser.test.mjs tests/inps.test.mjs tests/embed.test.mjs tests/assets.test.mjs
 ```
 Screenshot: Edge headless con `--remote-debugging-port`, viewport 320/1280 e
 `Page.captureScreenshot` con `captureBeyondViewport` (lo script di supporto stava nella cartella
@@ -136,8 +140,8 @@ con gli stessi margini (cambiano solo le dimensioni di html e body).
 
 ## Stato attuale (2026-10-01)
 
-Calcolatore sul netto in stile "Griglia" (proposta 1b di Claude Design: passi 01 Quando, 02 Quanto,
-03 Contratto; numero grande; tabella di riepilogo; riquadri; note su tre colonne), opzione contratto per
+Calcolatore sul netto in stile "Griglia" (proposta 1b di Claude Design: passi 1 Quando, 2 Quanto,
+3 Contratto, senza zero iniziale; numero grande; tabella di riepilogo; riquadri; note su tre colonne), opzione contratto per
 comparto, grafico SVG, export PNG. Blocco "Come si colloca la tua retribuzione" basato sull'INPS:
 - input: RAL, premi e straordinari (facoltativi), qualifica facoltativa con "Non lo so" (= tutte),
   settore tra "Tutti i settori" e le 18 sezioni (casella di ricerca, precompilata dal comparto con
@@ -152,6 +156,16 @@ comparto, grafico SVG, export PNG. Blocco "Come si colloca la tua retribuzione" 
   dichiarata (in regione solo il messaggio se il blocco principale è già nazionale);
 - dirigenti: solo la quota nella classe aperta (Italia 93,2%);
 - comparto della PA: confronto non disponibile.
+Selettori di comparto e settore (`makeCombo`, ruoli ARIA da combobox): chiusi mostrano la voce scelta; al
+tocco o al clic il campo si svuota con la voce come segnaposto e l'albero si filtra mentre si scrive (senza
+accenti); Invio sceglie la voce evidenziata (la prima trovata, finché non si usano le frecce), Esc chiude e
+ripristina la voce lasciando il fuoco nel campo, frecce per muoversi e per riaprire; il clic su una voce
+chiude anche la tastiera.
+Riga "Condividi il calcolatore" prima delle note (X, Threads, Facebook, LinkedIn, Telegram, WhatsApp, copia
+link; cerchi con bordo #666680, pieni #1A1A2E al passaggio): condivide `location.origin + pathname` (la
+pagina pubblica in locale), testo generico senza i dati dell'utente. Icone Font Awesome Free 6.7.2
+(CC BY 4.0) copiate nel codice, aereo di Telegram disegnato a mano. Favicon, `og:*` e `twitter:card` nella
+testata di `index.html` (fuori dall'embed).
 Esempi di controllo nei test con coefficiente 1,0 (commercio 40%, −4%; Lombardia 30%, −11%; finanza
 50%, −1%; manifattura 40%, −8%), indipendenti dall'indice mensile.
 
