@@ -180,6 +180,13 @@
 #fg-potere-acquisto-2026 .fg-ral-h { margin: 0 0 4px; font-size: 15px; font-weight: 700; color: #1A1A2E; }
 #fg-potere-acquisto-2026 .fg-bar { width: 100%; margin: 6px 0 4px; }
 #fg-potere-acquisto-2026 .fg-bar svg { display: block; width: 100%; height: auto; overflow: visible; }
+#fg-potere-acquisto-2026 .fg-prof { margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid #D0D8E8; }
+#fg-potere-acquisto-2026 .fg-prof-val { margin: 2px 0 4px; font-size: 15px; color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-prof-val strong { font-size: 26px; font-weight: 800; color: #003F87; font-variant-numeric: tabular-nums; }
+#fg-potere-acquisto-2026 .fg-prof-warn {
+  margin: 8px 0 0; padding: 10px 12px; border-left: 3px solid #00A6D6; background: #E8F4FD;
+  font-size: 13.5px; line-height: 1.45; color: #1A1A2E;
+}
 #fg-potere-acquisto-2026 .fg-ral-notes { margin: 16px 0 0; padding: 12px 0 0; border-top: 1px solid #D0D8E8; color: #666680; font-size: 12.5px; }
 #fg-potere-acquisto-2026 .fg-ral-notes p { margin: 0 0 6px; padding: 0; font-size: inherit; color: inherit; line-height: 1.45; }
 #fg-potere-acquisto-2026 .fg-cmp-list li.fg-grp {
@@ -334,9 +341,17 @@
             <select id="fg-pa-reg" data-fg="reg-in"></select>
           </div>
         </div>
+        <div class="fg-form fg-form-2" data-fg="prof-row">
+          <div class="fg-field">
+            <label class="fg-label" for="fg-pa-prof">Professione <small>(facoltativo)</small></label>
+            <select id="fg-pa-prof" data-fg="prof-in" aria-describedby="fg-pa-prof-msg"></select>
+            <p class="fg-hint" id="fg-pa-prof-msg" data-fg="prof-msg">Mostra un valore di riferimento per il tuo grande gruppo professionale.</p>
+          </div>
+        </div>
         <div aria-live="polite">
           <p class="fg-prompt" data-fg="ral-prompt">Inserisci la RAL per vedere come si colloca la tua paga oraria rispetto ai dipendenti a tempo pieno del settore.</p>
           <div class="fg-ral-out" data-fg="ral-out" hidden></div>
+          <div class="fg-prof" data-fg="prof-out" hidden></div>
         </div>
       </div>
       <div class="fg-ral-notes" data-fg="ral-notes"></div>
@@ -357,6 +372,7 @@
   var DATA_URL = 'https://angrisanidj.github.io/potere-acquisto/data/foi.json';
   var WAGES_URL = 'https://angrisanidj.github.io/potere-acquisto/data/retribuzioni.json';
   var RACLI_URL = 'https://angrisanidj.github.io/potere-acquisto/data/racli.json';
+  var SES_URL = 'https://angrisanidj.github.io/potere-acquisto/data/ses.json';
   var LIRE_PER_EURO = 1936.27;
   var EURO_START = '2002-01';
   var MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio',
@@ -373,6 +389,7 @@
   var foiUrl = isLocal ? 'data/foi.json' : DATA_URL;
   var wagesUrl = isLocal ? 'data/retribuzioni.json' : WAGES_URL;
   var racliUrl = isLocal ? 'data/racli.json' : RACLI_URL;
+  var sesUrl = isLocal ? 'data/ses.json' : SES_URL;
 
   // --- parser-start ---
   // Interpreta un importo scritto all'italiana: punto per le migliaia, virgola
@@ -441,7 +458,8 @@
     ralPa: $('ral-pa'), ralBody: $('ral-body'), ralIn: $('ral-in'), ralMsg: $('ral-msg'),
     oreIn: $('ore-in'), oreMsg: $('ore-msg'), premiIn: $('premi-in'), premiMsg: $('premi-msg'),
     atecoInput: $('ateco-input'), atecoList: $('ateco-list'), atecoMsg: $('ateco-msg'), regIn: $('reg-in'),
-    ralPrompt: $('ral-prompt'), ralOut: $('ral-out'), ralNotes: $('ral-notes')
+    ralPrompt: $('ral-prompt'), ralOut: $('ral-out'), ralNotes: $('ral-notes'),
+    profRow: $('prof-row'), profIn: $('prof-in'), profOut: $('prof-out'), profMsg: $('prof-msg')
   };
 
   var D = null;          // FOI
@@ -1196,7 +1214,70 @@
     p('<strong>Calcolo:</strong> retribuzione oraria = (RAL + premi e straordinari) ÷ (ore settimanali × 52,14 settimane).');
     p('<strong>Livelli superiori usati:</strong> ' + (up.length ? up.join(', ') + '. ' : '') +
       'Per il totale e le regioni gli aumenti contrattuali sono quelli di industria e servizi di mercato (sezioni B–N), perché l’indice non ha un dato per il solo settore privato.');
+    if (SQ) {
+      p('<strong>Professione:</strong> Eurostat, indagine sulla struttura delle retribuzioni ' + SQ.year +
+        ' (dati ISTAT), retribuzione lorda media annua per grande gruppo professionale (ISCO-08, a una cifra; denominazioni CP2011) e sezione di attività, unità con almeno 10 dipendenti, ricondotta ad anno intero e tempo pieno. Aggiornata ' +
+        aMonth(SQ.index_last_month) + ' con gli aumenti contrattuali della sezione. È un valore di riferimento: non viene confrontato con la tua retribuzione.');
+    } else if (sesError) {
+      p('<strong>Professione:</strong> ' + sesError);
+    }
     p('<strong>Pubblica amministrazione:</strong> il confronto non è disponibile, perché il registro RACLI copre solo il settore privato.');
+  }
+
+  // ---------- valore di riferimento per professione (Eurostat SES) ----------
+  var SQ = null;                 // data/ses.json
+  var sesError = '';
+  // Grandi gruppi CP2011 (ISTAT) con il corrispondente grande gruppo ISCO-08 usato da
+  // Eurostat; il gruppo 6 CP2011 comprende anche gli agricoltori (ISCO 6), assenti
+  // dall'indagine, quindi qui vale per artigiani e operai specializzati (ISCO 7).
+  var PROF = [
+    { isco: 'OC1', name: 'Legislatori, imprenditori e alta dirigenza', ex: 'direttore d’azienda o di filiale' },
+    { isco: 'OC2', name: 'Professioni intellettuali, scientifiche e di elevata specializzazione', ex: 'ingegnere, sviluppatore software, avvocato' },
+    { isco: 'OC3', name: 'Professioni tecniche', ex: 'tecnico informatico, geometra, agente commerciale' },
+    { isco: 'OC4', name: 'Professioni esecutive nel lavoro d’ufficio', ex: 'impiegato amministrativo, segretario' },
+    { isco: 'OC5', name: 'Professioni qualificate nelle attività commerciali e nei servizi', ex: 'commesso, cuoco, addetto all’assistenza' },
+    { isco: 'OC7', name: 'Artigiani e operai specializzati', ex: 'elettricista, meccanico, muratore' },
+    { isco: 'OC8', name: 'Conduttori di impianti, operai di macchinari e conducenti di veicoli', ex: 'operaio di linea, autista' },
+    { isco: 'OC9', name: 'Professioni non qualificate', ex: 'addetto alle pulizie, facchino' }
+  ];
+
+  function initSes() {
+    var o0 = document.createElement('option'); o0.value = ''; o0.textContent = 'Nessuna'; el.profIn.appendChild(o0);
+    PROF.forEach(function (g) {
+      var o = document.createElement('option');
+      o.value = g.isco; o.textContent = g.name + ' (es. ' + g.ex + ')';
+      el.profIn.appendChild(o);
+    });
+    el.profIn.addEventListener('change', function () { updateRal(false); });
+  }
+
+  // Nessuno scarto con la RAL dell'utente: è un valore di riferimento, non un confronto.
+  function renderProf() {
+    var code = el.profIn.value;
+    var sel = PROF.filter(function (x) { return x.isco === code; })[0];
+    el.profMsg.textContent = sel ? 'Esempi: ' + sel.ex + '.' : 'Mostra un valore di riferimento per il tuo grande gruppo professionale.';
+    el.profOut.hidden = !SQ || !code;
+    if (!SQ || !code) return;
+    var g = PROF.filter(function (x) { return x.isco === code; })[0];
+    var sec = atecoCode === '0010' ? null : divs[atecoCode].section;
+    var row = SQ.values[code];
+    var useSec = sec && row[sec] != null;
+    var key = useSec ? sec : SQ.total_code;
+    var secName = sec ? cap(divs[atecoCode].section_name) : '';
+    var base = row[key], est = base * SQ.factors[key];
+    el.profOut.innerHTML = '';
+    function add(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; el.profOut.appendChild(e); return e; }
+    add('p', 'fg-ral-h', 'Valore di riferimento: ' + g.name);
+    add('p', 'fg-hint', useSec ? 'Sezione: ' + secName + '.' :
+      (sec ? 'Per la sezione «' + secName + '» il dato del gruppo non è pubblicato: si usa la media del gruppo in tutti i settori escluse le amministrazioni pubbliche.'
+           : 'Tutti i settori escluse le amministrazioni pubbliche.'));
+    var v = add('p', 'fg-prof-val');
+    var st = document.createElement('strong'); st.textContent = euro(est); v.appendChild(st);
+    v.appendChild(document.createTextNode(' lordi annui, media stimata ' + aMonth(SQ.index_last_month) +
+      ' (media ' + SQ.year + ': ' + euro(base) + ', aggiornata con gli aumenti contrattuali ' +
+      (useSec ? 'della sezione' : 'di industria e servizi di mercato') + ').'));
+    add('p', 'fg-prof-warn', 'È una media: la maggior parte dei lavoratori del gruppo guadagna meno. Dati ' + SQ.year +
+      ', imprese con almeno 10 dipendenti; nelle sezioni istruzione e sanità sono comprese le unità pubbliche.');
   }
 
   function bandText(x, s) {
@@ -1262,6 +1343,7 @@
       return;
     }
     if (!RQ) return;
+    renderProf();
 
     el.atecoMsg.textContent = atecoFromComp && comp[atecoFromComp]
       ? 'Precompilato dal comparto «' + comp[atecoFromComp].name + '»: puoi cambiarlo.' : '';
@@ -1460,7 +1542,7 @@
     });
   }
 
-  function init(foi, wages, racli) {
+  function init(foi, wages, racli, ses) {
     if (!foi || !foi.series || !foi.last_month || !foi.series[foi.last_month]) {
       throw new Error('formato dati non valido');
     }
@@ -1478,6 +1560,13 @@
       wagesError = 'Dati sulle retribuzioni contrattuali non disponibili: il calcolo usa solo l’inflazione.';
     }
 
+    if (ses && ses.values && ses.factors && ses.total_code && ses.index_last_month) {
+      SQ = ses;
+      initSes();
+    } else {
+      if (!sesError) sesError = 'Dati Eurostat sulle professioni non disponibili.';
+      el.profRow.hidden = true;
+    }
     if (racli && racli.divisions && racli.total && racli.regions && racli.year) {
       RQ = racli;
       initRacli();
@@ -1539,8 +1628,12 @@
     racliError = 'Dati ISTAT RACLI non disponibili (' + e.message + '): il confronto della retribuzione con il settore non può essere mostrato.';
     return null;
   });
-  Promise.all([getJson(foiUrl), pWages, pRacli])
-    .then(function (r) { init(r[0], r[1], r[2]); })
+  var pSes = getJson(sesUrl).then(null, function (e) {
+    sesError = 'Dati Eurostat sulle professioni non disponibili (' + e.message + ').';
+    return null;
+  });
+  Promise.all([getJson(foiUrl), pWages, pRacli, pSes])
+    .then(function (r) { init(r[0], r[1], r[2], r[3]); })
     .catch(function (e) {
       fail('Impossibile caricare i dati ISTAT (' + e.message + '). Il calcolatore non può funzionare senza i dati aggiornati: riprova tra qualche minuto.');
     });

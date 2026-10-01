@@ -116,7 +116,7 @@ def wait_turn():
         pass
 
 
-def http_get(url, accept, extra_headers=None):
+def http_get(url, accept, extra_headers=None, throttle=True, server="ISTAT"):
     headers = {"Accept": accept, "User-Agent": "potere-acquisto/1.0"}
     headers.update(extra_headers or {})
     req = urllib.request.Request(url, headers=headers)
@@ -125,7 +125,8 @@ def http_get(url, accept, extra_headers=None):
     # risponde affatto (DNS, connessione, timeout).
     last = None
     for attempt in range(1, ATTEMPTS + 1):
-        wait_turn()
+        if throttle:  # il limite di 5 richieste al minuto vale solo per l'API ISTAT
+            wait_turn()
         try:
             with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
                 if r.status != 200:
@@ -141,9 +142,9 @@ def http_get(url, accept, extra_headers=None):
         if attempt < ATTEMPTS:
             time.sleep(BACKOFF[attempt - 1])
     if last[0] == "http":
-        raise UpdateError(f"il server ISTAT ha risposto con errore HTTP {last[1]} "
+        raise UpdateError(f"il server {server} ha risposto con errore HTTP {last[1]} "
                           f"(dataflow cambiato o problema temporaneo) dopo {ATTEMPTS} tentativi")
-    raise UpdateError(f"server ISTAT non raggiungibile dopo {ATTEMPTS} tentativi ({last[1]})")
+    raise UpdateError(f"server {server} non raggiungibile dopo {ATTEMPTS} tentativi ({last[1]})")
 
 
 def check_metadata():
