@@ -1,0 +1,48 @@
+name: Aggiorna indice FOI
+
+on:
+  schedule:
+    # Il 20 di ogni mese alle 06:00 UTC: ISTAT pubblica il FOI definitivo
+    # del mese precedente intorno a metà mese.
+    - cron: "0 6 20 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-foi
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Se lo script esce con errore (API irraggiungibile o validazione
+      # fallita) il job fallisce qui e data/foi.json non viene toccato.
+      - name: Scarica e valida la serie FOI
+        run: python scripts/update_foi.py
+
+      # last_checked cambia a ogni esecuzione riuscita, quindi c'è sempre un
+      # commit mensile: evita che GitHub disattivi il workflow schedulato
+      # dopo 60 giorni di inattività del repository.
+      - name: Commit e push
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/foi.json
+          if git diff --cached --quiet; then
+            echo "Nessuna modifica da committare"
+            exit 0
+          fi
+          LAST=$(python -c "import json; print(json.load(open('data/foi.json'))['last_month'])")
+          git commit -m "Aggiorna FOI (ultimo mese: ${LAST})"
+          git push

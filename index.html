@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Potere d'acquisto dello stipendio</title>
+<meta name="description" content="Calcola quanto potere d'acquisto ha perso il tuo stipendio con l'indice ISTAT FOI senza tabacchi.">
+</head>
+<body style="margin:0;padding:0 12px;background:#ffffff;">
+
+<div id="fg-potere-acquisto-2026">
+<style>
+#fg-potere-acquisto-2026 {
+  box-sizing: border-box;
+  max-width: 760px;
+  margin: 28px auto !important;
+  padding: 20px 16px;
+  background: #ffffff;
+  color: #1A1A2E;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  border: 1px solid #D0D8E8;
+  border-radius: 10px;
+  text-align: left;
+}
+#fg-potere-acquisto-2026 *,
+#fg-potere-acquisto-2026 *::before,
+#fg-potere-acquisto-2026 *::after { box-sizing: inherit; }
+#fg-potere-acquisto-2026 [hidden] { display: none !important; }
+
+/* Testata */
+#fg-potere-acquisto-2026 .fg-kicker {
+  margin: 0 0 6px; color: #0070C0; font-size: 12px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+#fg-potere-acquisto-2026 .fg-title {
+  margin: 0 0 8px; padding: 0; color: #003F87; font-size: 22px; line-height: 1.2;
+  font-weight: 800; font-family: inherit; border: 0;
+}
+#fg-potere-acquisto-2026 .fg-sub { margin: 0 0 18px; color: #666680; font-size: 15px; }
+
+/* Modulo */
+#fg-potere-acquisto-2026 .fg-form { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 0 0 20px; }
+#fg-potere-acquisto-2026 .fg-field { margin: 0; padding: 0; border: 0; min-width: 0; }
+#fg-potere-acquisto-2026 .fg-label {
+  display: block; margin: 0 0 5px; padding: 0; color: #1A1A2E; font-size: 14px; font-weight: 600;
+}
+#fg-potere-acquisto-2026 .fg-label small { font-weight: 400; color: #666680; font-size: 13px; }
+#fg-potere-acquisto-2026 .fg-row { display: flex; gap: 8px; }
+#fg-potere-acquisto-2026 .fg-row select:first-child { flex: 1.4; }
+#fg-potere-acquisto-2026 .fg-row select:last-child { flex: 1; }
+#fg-potere-acquisto-2026 select,
+#fg-potere-acquisto-2026 input {
+  display: block; width: 100%; min-width: 0; height: 44px; margin: 0; padding: 0 10px;
+  font: inherit; font-size: 16px; color: #1A1A2E; background: #ffffff;
+  border: 1px solid #D0D8E8; border-radius: 6px; box-shadow: none; outline: none;
+}
+#fg-potere-acquisto-2026 select:focus,
+#fg-potere-acquisto-2026 input:focus { border-color: #0070C0; box-shadow: 0 0 0 3px #E8F4FD; }
+#fg-potere-acquisto-2026 input[aria-invalid="true"] { border-color: #B3261E; }
+#fg-potere-acquisto-2026 .fg-money { position: relative; }
+#fg-potere-acquisto-2026 .fg-money input { padding-right: 52px; }
+#fg-potere-acquisto-2026 .fg-unit {
+  position: absolute; right: 10px; top: 0; height: 44px; line-height: 44px;
+  color: #666680; font-size: 14px; pointer-events: none;
+}
+#fg-potere-acquisto-2026 .fg-hint { margin: 5px 0 0; color: #666680; font-size: 13px; }
+#fg-potere-acquisto-2026 .fg-error { margin: 5px 0 0; color: #B3261E; font-size: 13px; font-weight: 600; }
+
+/* Risultati */
+#fg-potere-acquisto-2026 .fg-big {
+  margin: 0 0 14px; padding: 16px; background: #E8F4FD; border-radius: 8px;
+  border-left: 5px solid #003F87;
+}
+#fg-potere-acquisto-2026 .fg-big-num {
+  display: block; color: #003F87; font-size: 44px; font-weight: 800; line-height: 1.05;
+  font-variant-numeric: tabular-nums; letter-spacing: -.01em;
+}
+#fg-potere-acquisto-2026 .fg-big-txt { display: block; margin: 6px 0 0; font-size: 15px; }
+#fg-potere-acquisto-2026 .fg-big-sub { display: block; margin: 6px 0 0; color: #666680; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-cards { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 0 0 18px; }
+#fg-potere-acquisto-2026 .fg-card { padding: 12px 14px; border: 1px solid #D0D8E8; border-radius: 8px; }
+#fg-potere-acquisto-2026 .fg-card-k { display: block; color: #666680; font-size: 13px; }
+#fg-potere-acquisto-2026 .fg-card-v {
+  display: block; margin: 2px 0; color: #003F87; font-size: 26px; font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+#fg-potere-acquisto-2026 .fg-card-u { font-size: 15px; font-weight: 600; letter-spacing: 0; }
+#fg-potere-acquisto-2026 .fg-card-t { display: block; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-neg { color: #B3261E; }
+#fg-potere-acquisto-2026 .fg-pos { color: #1B7F3B; }
+#fg-potere-acquisto-2026 .fg-prompt {
+  margin: 0 0 18px; padding: 12px 14px; border: 1px dashed #D0D8E8; border-radius: 8px;
+  color: #666680; font-size: 14px;
+}
+
+/* Grafico */
+#fg-potere-acquisto-2026 .fg-chart-title { margin: 0 0 2px; font-size: 15px; font-weight: 700; color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-chart-sub { margin: 0 0 8px; font-size: 13px; color: #666680; }
+#fg-potere-acquisto-2026 .fg-chart { position: relative; width: 100%; margin: 0 0 18px; }
+#fg-potere-acquisto-2026 .fg-chart svg { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
+#fg-potere-acquisto-2026 .fg-chart text { font-family: inherit; font-size: 11px; fill: #666680; }
+#fg-potere-acquisto-2026 .fg-chart .fg-end-lbl { font-size: 12px; font-weight: 700; fill: #003F87; stroke: #ffffff; stroke-width: 4px; stroke-linejoin: round; paint-order: stroke; }
+#fg-potere-acquisto-2026 .fg-chart .fg-axis-t { font-size: 11px; font-weight: 600; fill: #666680; }
+#fg-potere-acquisto-2026 .fg-tip strong { font-weight: 700; color: #ffffff; }
+#fg-potere-acquisto-2026 .fg-tip {
+  position: absolute; top: 0; padding: 6px 8px; background: #1A1A2E; color: #ffffff;
+  font-size: 12px; line-height: 1.3; border-radius: 5px; white-space: nowrap; pointer-events: none;
+  transform: translateX(-50%);
+}
+
+/* Stato e piede */
+#fg-potere-acquisto-2026 .fg-status { margin: 0 0 18px; padding: 12px 14px; border-radius: 8px; background: #E8F4FD; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-status.fg-fail { background: #FDECEA; color: #8C1D18; }
+#fg-potere-acquisto-2026 .fg-foot { margin: 0; padding: 14px 0 0; border-top: 1px solid #D0D8E8; color: #666680; font-size: 12.5px; }
+#fg-potere-acquisto-2026 .fg-foot p { margin: 0 0 6px; padding: 0; font-size: inherit; color: inherit; line-height: 1.45; }
+#fg-potere-acquisto-2026 .fg-foot strong { color: #1A1A2E; }
+
+@media (min-width: 600px) {
+  #fg-potere-acquisto-2026 { padding: 28px 28px 22px; }
+  #fg-potere-acquisto-2026 .fg-title { font-size: 28px; }
+  #fg-potere-acquisto-2026 .fg-sub { font-size: 16px; }
+  #fg-potere-acquisto-2026 .fg-form { grid-template-columns: 1fr 1fr 1fr; align-items: start; }
+  #fg-potere-acquisto-2026 .fg-big-num { font-size: 60px; }
+  #fg-potere-acquisto-2026 .fg-cards { grid-template-columns: 1fr 1fr; }
+}
+</style>
+
+  <p class="fg-kicker">Calcolatore</p>
+  <h2 class="fg-title">Quanto potere d’acquisto ha perso il tuo stipendio</h2>
+  <p class="fg-sub">Scegli il mese da cui partire e inserisci lo stipendio netto di allora: il calcolo usa l'inflazione misurata dall'ISTAT.</p>
+
+  <div class="fg-status" data-fg="status" role="status">Caricamento dei dati ISTAT…</div>
+
+  <div data-fg="app" hidden>
+    <div class="fg-form">
+      <div class="fg-field">
+        <label class="fg-label" for="fg-pa-month">Mese di partenza</label>
+        <div class="fg-row">
+          <select id="fg-pa-month" data-fg="month" aria-label="Mese di partenza"></select>
+          <select data-fg="year" aria-label="Anno di partenza"></select>
+        </div>
+      </div>
+      <div class="fg-field">
+        <label class="fg-label" for="fg-pa-sal0" data-fg="sal0-label">Stipendio netto mensile di allora</label>
+        <div class="fg-money">
+          <input id="fg-pa-sal0" data-fg="sal0" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 1.500" aria-describedby="fg-pa-sal0-msg">
+          <span class="fg-unit" data-fg="sal0-unit">€</span>
+        </div>
+        <p class="fg-hint" id="fg-pa-sal0-msg" data-fg="sal0-msg"></p>
+      </div>
+      <div class="fg-field">
+        <label class="fg-label" for="fg-pa-sal1" data-fg="sal1-label">Stipendio netto attuale <small>(facoltativo)</small></label>
+        <div class="fg-money">
+          <input id="fg-pa-sal1" data-fg="sal1" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 1.800" aria-describedby="fg-pa-sal1-msg">
+          <span class="fg-unit">€</span>
+        </div>
+        <p class="fg-hint" id="fg-pa-sal1-msg" data-fg="sal1-msg"></p>
+      </div>
+    </div>
+
+    <div aria-live="polite">
+      <div class="fg-big">
+        <span class="fg-big-num" data-fg="loss"></span>
+        <span class="fg-big-txt" data-fg="loss-txt"></span>
+        <span class="fg-big-sub" data-fg="infl-txt"></span>
+      </div>
+
+      <p class="fg-prompt" data-fg="prompt">Inserisci lo stipendio netto di partenza per vedere quanto servirebbe per avere lo stesso potere d'acquisto.</p>
+
+      <div class="fg-cards" data-fg="cards" hidden>
+        <div class="fg-card">
+          <span class="fg-card-k" data-fg="need-k"></span>
+          <span class="fg-card-v" data-fg="need-v"></span>
+          <span class="fg-card-t" data-fg="need-t"></span>
+        </div>
+        <div class="fg-card" data-fg="real-card" hidden>
+          <span class="fg-card-k" data-fg="real-k"></span>
+          <span class="fg-card-v" data-fg="real-v"></span>
+          <span class="fg-card-t" data-fg="real-t"></span>
+        </div>
+      </div>
+    </div>
+
+    <div data-fg="chart-box" hidden>
+      <p class="fg-chart-title" data-fg="chart-title"></p>
+      <p class="fg-chart-sub" data-fg="chart-sub"></p>
+      <div class="fg-chart" data-fg="chart"></div>
+    </div>
+  </div>
+
+  <div class="fg-foot">
+    <p><strong>Fonte:</strong> ISTAT, indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI) senza tabacchi. <span data-fg="foot-data"></span></p>
+    <p><strong>Metodo:</strong> la perdita di potere d'acquisto è 1 − I(partenza)/I(arrivo), dove I è l'indice FOI senza tabacchi, lo stesso usato per rivalutare affitti e assegni di mantenimento. L'indice misura i prezzi di un paniere medio: l'inflazione vissuta da ciascuna famiglia può essere diversa. Usa lo stipendio netto, perché il lordo risente anche delle variazioni di tasse e contributi. Per i mesi dal 1996 al 2001 l'importo va inserito in lire ed è convertito a 1.936,27 lire per euro.</p>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+
+  var DATA_URL = 'https://angrisanidj.github.io/potere-acquisto/data/foi.json';
+  var LIRE_PER_EURO = 1936.27;
+  var EURO_START = '2002-01';
+  var MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio',
+              'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  var MESI_BREVI = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
+
+  var host = (typeof location !== 'undefined' && location.hostname) || '';
+  var url = (host === 'localhost' || host === '127.0.0.1') ? 'data/foi.json' : DATA_URL;
+
+  // --- parser-start ---
+  // Interpreta un importo scritto all'italiana: punto per le migliaia, virgola
+  // per i decimali. Restituisce {ok:true, value} oppure {ok:false, error}.
+  // Rifiuta le forme ambigue ("1.50", "1,500") invece di indovinare.
+  function parseImporto(raw, opts) {
+    var lire = !!(opts && opts.lire);
+    function no(msg) { return { ok: false, error: msg }; }
+    var s = String(raw == null ? '' : raw).replace(/[  ]/g, ' ').trim();
+    s = s.replace(/^€\s*/, '').replace(/\s*€$/, '');
+    if (lire) s = s.replace(/\s*(lire|lit\.?|l\.)$/i, '');
+    s = s.trim();
+    if (s === '') return no('Inserisci un importo.');
+    if (/^[-−]/.test(s)) return no("L'importo deve essere maggiore di zero.");
+    if (/\s/.test(s)) return no('Non usare spazi: scrivi ad esempio ' + (lire ? '2.500.000' : '1.500') + '.');
+    if (!/^[\d.,]+$/.test(s)) return no('Importo non valido: usa solo cifre, il punto per le migliaia e la virgola per i decimali.');
+    var parts = s.split(',');
+    if (parts.length > 2) return no('Più di una virgola: la virgola separa i decimali (es. 1.500,50).');
+    var intPart = parts[0];
+    var dec = parts.length === 2 ? parts[1] : null;
+    if (dec !== null && dec.indexOf('.') !== -1) {
+      return no('Formato non valido: il punto separa le migliaia e va prima della virgola (es. 1.500,50).');
+    }
+    if (intPart === '') return no('Manca la parte intera (es. 0,50).');
+    if (dec === '') return no('Mancano le cifre dopo la virgola.');
+    if (dec !== null && dec.length > 2) {
+      return no('Importo ambiguo: "' + s + '" ha ' + dec.length + ' cifre dopo la virgola. ' +
+                'Per le migliaia usa il punto (1.500), per i decimali al massimo due cifre (1,50).');
+    }
+    if (intPart.indexOf('.') !== -1) {
+      if (/^\d+\.\d{1,2}$/.test(intPart) && dec === null) {
+        return no('Importo ambiguo: "' + s + '". Il punto separa le migliaia; per i decimali usa la virgola (es. 1,50).');
+      }
+      if (!/^\d{1,3}(\.\d{3})+$/.test(intPart)) {
+        return no('Separatore delle migliaia non valido: i gruppi dopo il punto devono avere tre cifre (es. 1.500 o 2.500.000).');
+      }
+    }
+    if (lire && dec !== null) return no('Le lire non hanno decimali: inserisci un importo intero (es. 2.500.000).');
+    var value = Number(intPart.replace(/\./g, '') + (dec !== null ? '.' + dec : ''));
+    if (!isFinite(value)) return no('Importo non valido.');
+    if (!(value > 0)) return no("L'importo deve essere maggiore di zero.");
+    if (lire && value < 50000) {
+      return no('Importo troppo basso per uno stipendio in lire: prima del 2002 inserisci la cifra in lire (es. 2.500.000).');
+    }
+    if (!lire && value > 1000000) return no('Importo troppo alto per uno stipendio mensile in euro.');
+    if (lire && value > 2000000000) return no('Importo troppo alto per uno stipendio mensile in lire.');
+    return { ok: true, value: value };
+  }
+  // --- parser-end ---
+
+  if (typeof document === 'undefined') return;
+  var root = document.getElementById('fg-potere-acquisto-2026');
+  if (!root) return;
+  function $(name) { return root.querySelector('[data-fg="' + name + '"]'); }
+
+  var el = {
+    status: $('status'), app: $('app'), month: $('month'), year: $('year'),
+    sal0: $('sal0'), sal0Label: $('sal0-label'), sal0Unit: $('sal0-unit'), sal0Msg: $('sal0-msg'),
+    sal1: $('sal1'), sal1Label: $('sal1-label'), sal1Msg: $('sal1-msg'),
+    loss: $('loss'), lossTxt: $('loss-txt'), inflTxt: $('infl-txt'), prompt: $('prompt'),
+    cards: $('cards'), needK: $('need-k'), needV: $('need-v'), needT: $('need-t'),
+    realCard: $('real-card'), realK: $('real-k'), realV: $('real-v'), realT: $('real-t'),
+    chartBox: $('chart-box'), chartTitle: $('chart-title'), chartSub: $('chart-sub'), chart: $('chart'),
+    footData: $('foot-data')
+  };
+
+  var D = null;          // dati caricati
+  var months = [];       // mesi ordinati "YYYY-MM"
+  var lastMonth = null;
+
+  // ---------- formattazione ----------
+  function fmt(n, dec) {
+    dec = dec || 0;
+    var s = n.toLocaleString('it-IT', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    // In it-IT il CLDR non raggruppa i numeri di 4 cifre ("1835"): forziamo
+    // sempre il punto delle migliaia ("1.835").
+    var p = s.split(',');
+    p[0] = p[0].replace(/\./g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return p.join(',');
+  }
+  function euro(n) { return fmt(Math.round(n)) + ' €'; }
+  function lireFmt(n) { return fmt(Math.round(n)) + ' lire'; }
+  function pct(x, signed) {
+    var s = fmt(Math.abs(x * 100), 1) + '%';
+    if (!signed) return s;
+    return (x > 0 ? '+' : x < 0 ? '−' : '') + s;
+  }
+  function signedEuro(n) {
+    var r = Math.round(n);
+    return (r > 0 ? '+' : r < 0 ? '−' : '') + fmt(Math.abs(r)) + ' €';
+  }
+  function monthName(ym) { return MESI[+ym.slice(5, 7) - 1] + ' ' + ym.slice(0, 4); }
+  // "a gennaio 2021", "ad agosto 2026", "ad aprile 2020"
+  function aMonth(ym) { var n = monthName(ym); return (n.charAt(0) === 'a' ? 'ad ' : 'a ') + n; }
+  function isLire(ym) { return ym < EURO_START; }
+
+  // ---------- selettori mese/anno ----------
+  function selectableMonths() { return months.filter(function (m) { return m < lastMonth; }); }
+
+  function fillYears() {
+    var sel = selectableMonths();
+    var years = [];
+    sel.forEach(function (m) { var y = m.slice(0, 4); if (years.indexOf(y) === -1) years.push(y); });
+    el.year.innerHTML = '';
+    years.reverse().forEach(function (y) {
+      var o = document.createElement('option'); o.value = y; o.textContent = y; el.year.appendChild(o);
+    });
+  }
+
+  function fillMonths(keep) {
+    var y = el.year.value;
+    var avail = selectableMonths().filter(function (m) { return m.slice(0, 4) === y; });
+    el.month.innerHTML = '';
+    avail.forEach(function (m) {
+      var o = document.createElement('option');
+      o.value = m; o.textContent = MESI[+m.slice(5, 7) - 1];
+      el.month.appendChild(o);
+    });
+    var want = y + '-' + (keep || '01');
+    if (avail.indexOf(want) !== -1) el.month.value = want;
+    else if (keep && keep > avail[avail.length - 1].slice(5, 7)) el.month.value = avail[avail.length - 1];
+    else el.month.value = avail[0];
+  }
+
+  function startMonth() { return el.month.value; }
+
+  // ---------- messaggi campi ----------
+  function setMsg(input, msgEl, text, isError, hint) {
+    msgEl.textContent = isError ? text : (hint || '');
+    msgEl.className = isError ? 'fg-error' : 'fg-hint';
+    input.setAttribute('aria-invalid', isError ? 'true' : 'false');
+  }
+
+  // ---------- calcolo e rendering ----------
+  function update(showErrors) {
+    var start = startMonth();
+    if (!start) return;
+    var I0 = D.series[start], IL = D.series[lastMonth];
+    var lire = isLire(start);
+    var endName = monthName(lastMonth), aEnd = aMonth(lastMonth), startName = monthName(start);
+
+    el.sal0Label.textContent = 'Stipendio netto mensile ' + aMonth(start);
+    el.sal0Unit.textContent = lire ? 'lire' : '€';
+    el.sal0.placeholder = lire ? 'es. 2.500.000' : 'es. 1.500';
+    el.sal1Label.innerHTML = '';
+    el.sal1Label.appendChild(document.createTextNode('Stipendio netto ' + aEnd + ' '));
+    var sm = document.createElement('small'); sm.textContent = '(facoltativo)'; el.sal1Label.appendChild(sm);
+
+    var loss = 1 - I0 / IL;
+    el.loss.textContent = loss >= 0 ? '−' + pct(loss) : '+' + pct(-loss);
+    el.lossTxt.textContent = loss >= 0
+      ? 'di potere d’acquisto perso da ' + startName + ' ' + aEnd + '.'
+      : 'di potere d’acquisto guadagnato da ' + startName + ' ' + aEnd + ': i prezzi sono scesi.';
+    el.inflTxt.textContent = 'Nello stesso periodo i prezzi sono ' + (IL >= I0 ? 'aumentati' : 'diminuiti') +
+      ' del ' + pct(Math.abs(IL / I0 - 1)) + ': ciò che costava 100 € ' + aMonth(start) +
+      ' costava ' + fmt(100 * IL / I0, 2) + ' € ' + aEnd + '.';
+
+    // stipendio di partenza
+    var hint0 = lire ? 'Importo in lire, convertito a 1.936,27 lire per euro.' : '';
+    var raw0 = el.sal0.value.trim();
+    var p0 = raw0 ? parseImporto(raw0, { lire: lire }) : null;
+    setMsg(el.sal0, el.sal0Msg, p0 && !p0.ok ? p0.error : '', !!(p0 && !p0.ok && (showErrors || el.sal0.dataset.touched)), hint0);
+
+    var raw1 = el.sal1.value.trim();
+    var p1 = raw1 ? parseImporto(raw1, { lire: false }) : null;
+    setMsg(el.sal1, el.sal1Msg, p1 && !p1.ok ? p1.error : '', !!(p1 && !p1.ok && (showErrors || el.sal1.dataset.touched)), '');
+
+    if (!p0 || !p0.ok) {
+      el.prompt.hidden = false; el.cards.hidden = true; el.chartBox.hidden = true;
+      return;
+    }
+    el.prompt.hidden = true; el.cards.hidden = false; el.chartBox.hidden = false;
+
+    var sal0 = lire ? p0.value / LIRE_PER_EURO : p0.value;
+    var need = sal0 * IL / I0;
+    var origTxt = lire ? lireFmt(p0.value) + ' (' + euro(sal0) + ')' : euro(sal0);
+
+    el.needK.textContent = 'Per avere lo stesso potere d’acquisto, ' + aEnd + ' servirebbero';
+    el.needV.textContent = euro(need);
+    var nm = document.createElement('small'); nm.className = 'fg-card-u'; nm.textContent = ' netti al mese';
+    el.needV.appendChild(nm);
+    el.needT.textContent = 'al posto di ' + origTxt + ' ' + aMonth(start) + '.';
+
+    if (p1 && p1.ok) {
+      var real = p1.value / need - 1, diff = p1.value - need;
+      var cls = real >= 0 ? 'fg-pos' : 'fg-neg';
+      el.realCard.hidden = false;
+      el.realK.textContent = 'Il tuo stipendio ' + aEnd + ' (' + euro(p1.value) + '), in termini reali';
+      el.realV.textContent = pct(real, true);
+      el.realV.className = 'fg-card-v ' + cls;
+      el.realT.textContent = signedEuro(diff) + ' al mese rispetto allo stipendio rivalutato (' + euro(need) + ').';
+    } else {
+      el.realCard.hidden = true;
+    }
+
+    el.chartTitle.textContent = 'Quanto vale nel tempo lo stipendio di ' + startName;
+    el.chartSub.textContent = 'Potere d’acquisto di ' + origTxt + ' rimasti fermi, in euro di ' + startName + '.';
+    drawChart(start, sal0, lire ? p0.value : 0);
+  }
+
+  // ---------- grafico SVG ----------
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function sv(tag, attrs, parent) {
+    var n = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function niceStep(range, target) {
+    var raw = range / target, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p;
+    return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
+  }
+  function shortAxis(v) { return fmt(v) + ' €'; }
+
+  var chartState = null;
+  function drawChart(start, sal0, lireVal) {
+    chartState = { start: start, sal0: sal0, lireVal: lireVal };
+    var startName = monthName(start);
+    // Ogni importo porta il mese della sua moneta: nominale nel mese t,
+    // reale in euro del mese di partenza.
+    function nominal(t) { return ((lireVal && isLire(t)) ? lireFmt(lireVal) : euro(sal0)) + ' di ' + monthName(t); }
+    function realTxt(v) { return euro(v) + ' di ' + startName; }
+    var box = el.chart;
+    var W = Math.max(260, Math.round(box.clientWidth || 300));
+    var small = W < 600;
+    // Su schermi stretti l'etichetta finale va in una nota sotto l'asse.
+    var NOTE_H = small ? 44 : 0;
+    var H = (small ? 220 : 300) + NOTE_H;
+    var m = { t: 38, r: small ? 12 : 18, b: 26 + NOTE_H, l: small ? 58 : 66 };
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+
+    var idx0 = months.indexOf(start), idxL = months.indexOf(lastMonth);
+    var pts = [];
+    for (var i = idx0; i <= idxL; i++) {
+      pts.push({ m: months[i], v: sal0 * D.series[start] / D.series[months[i]] });
+    }
+    var vmin = Math.min.apply(null, pts.map(function (p) { return p.v; }));
+    var vmax = Math.max.apply(null, pts.map(function (p) { return p.v; }));
+    var step = niceStep((vmax - vmin) || vmax * 0.05, small ? 3 : 4);
+    var y0 = Math.floor(vmin / step) * step, y1 = Math.ceil(vmax / step) * step;
+    if (y1 === y0) y1 = y0 + step;
+
+    var n = pts.length;
+    function X(i) { return m.l + (n === 1 ? iw / 2 : i * iw / (n - 1)); }
+    function Y(v) { return m.t + ih - (v - y0) / (y1 - y0) * ih; }
+
+    box.innerHTML = '';
+    var svg = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img',
+      'aria-label': 'Valore reale dello stipendio, in euro di ' + startName + ': ' + nominal(lastMonth) +
+        ' valgono ' + realTxt(pts[n - 1].v) });
+    box.appendChild(svg);
+
+    // griglia orizzontale
+    for (var g = y0; g <= y1 + step / 2; g += step) {
+      var gy = Y(g);
+      sv('line', { x1: m.l, x2: m.l + iw, y1: gy, y2: gy, stroke: '#D0D8E8', 'stroke-width': 1 }, svg);
+      var t = sv('text', { x: m.l - 8, y: gy + 4, 'text-anchor': 'end' }, svg);
+      t.textContent = shortAxis(g);
+    }
+
+    var ax = sv('text', { x: 0, y: 11, 'text-anchor': 'start', 'class': 'fg-axis-t' }, svg);
+    ax.textContent = 'valori in euro di ' + startName;
+
+    // etichette asse x
+    var span = n - 1;
+    var ticks = [];
+    if (span < 24) {
+      var every = span <= 8 ? 1 : span <= 14 ? 2 : 3;
+      if (small && span > 6) every = Math.max(every, 3);
+      for (var k = 0; k < n; k += every) ticks.push({ i: k, lbl: MESI_BREVI[+pts[k].m.slice(5, 7) - 1] + ' ' + pts[k].m.slice(2, 4) });
+    } else {
+      var years = span / 12, maxT = small ? 4 : 7;
+      var ys = [1, 2, 5, 10].filter(function (s) { return years / s <= maxT; })[0] || 10;
+      pts.forEach(function (p, i) {
+        if (p.m.slice(5, 7) === '01' && (+p.m.slice(0, 4)) % ys === 0) ticks.push({ i: i, lbl: p.m.slice(0, 4) });
+      });
+    }
+    ticks.forEach(function (tk) {
+      var tx = X(tk.i);
+      sv('line', { x1: tx, x2: tx, y1: m.t + ih, y2: m.t + ih + 4, stroke: '#666680', 'stroke-width': 1 }, svg);
+      var anchor = tx < m.l + 14 ? 'start' : tx > m.l + iw - 14 ? 'end' : 'middle';
+      var tt = sv('text', { x: tx, y: m.t + ih + 20, 'text-anchor': anchor }, svg);
+      tt.textContent = tk.lbl;
+    });
+    sv('line', { x1: m.l, x2: m.l + iw, y1: m.t + ih, y2: m.t + ih, stroke: '#666680', 'stroke-width': 1 }, svg);
+
+    // riferimento: stipendio di partenza
+    var ry = Y(sal0);
+    sv('line', { x1: m.l, x2: m.l + iw, y1: ry, y2: ry, stroke: '#00A6D6', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, svg);
+
+    // area e linea
+    var d = '', i2;
+    for (i2 = 0; i2 < n; i2++) d += (i2 ? 'L' : 'M') + X(i2).toFixed(1) + ' ' + Y(pts[i2].v).toFixed(1);
+    sv('path', { d: d + 'L' + X(n - 1).toFixed(1) + ' ' + (m.t + ih) + 'L' + X(0).toFixed(1) + ' ' + (m.t + ih) + 'Z', fill: '#E8F4FD' }, svg);
+    sv('path', { d: d, fill: 'none', stroke: '#0070C0', 'stroke-width': 2.5, 'stroke-linejoin': 'round' }, svg);
+
+    // punto finale con etichetta
+    var ex = X(n - 1), ey = Y(pts[n - 1].v);
+    sv('circle', { cx: ex, cy: ey, r: 4.5, fill: '#003F87', stroke: '#ffffff', 'stroke-width': 1.5 }, svg);
+    // etichetta finale sopra il tratto di linea che le sta sotto, con alone bianco
+    if (small) {
+      var ny = H - NOTE_H + 18;
+      sv('circle', { cx: 4.5, cy: ny - 4, r: 4.5, fill: '#003F87' }, svg);
+      var nt = sv('text', { x: 14, y: ny, 'text-anchor': 'start', 'class': 'fg-end-lbl' }, svg);
+      var n1 = sv('tspan', { x: 14 }, nt); n1.textContent = nominal(lastMonth);
+      var n2 = sv('tspan', { x: 14, dy: 15 }, nt); n2.textContent = 'valgono ' + realTxt(pts[n - 1].v);
+    } else {
+      var el1 = sv('text', { x: ex, y: 0, 'text-anchor': 'end', 'class': 'fg-end-lbl' }, svg);
+      var l1 = sv('tspan', { x: ex, dy: 0 }, el1);
+      l1.textContent = nominal(lastMonth);
+      var l2 = sv('tspan', { x: ex, dy: 15 }, el1);
+      l2.textContent = 'valgono ' + realTxt(pts[n - 1].v);
+      var lw = el1.getBBox ? el1.getBBox().width : 200;
+      var topY = ey;
+      for (var j = 0; j < n; j++) { if (X(j) >= ex - lw - 4) topY = Math.min(topY, Y(pts[j].v)); }
+      el1.setAttribute('y', Math.max(m.t + 12, topY - 24));
+      l1.setAttribute('y', el1.getAttribute('y'));
+    }
+    var el0 = sv('text', { x: m.l + 6, y: ry - 6, 'text-anchor': 'start' }, svg);
+    el0.textContent = 'partenza: ' + realTxt(sal0);
+
+    // tooltip
+    var guide = sv('line', { x1: 0, x2: 0, y1: m.t, y2: m.t + ih, stroke: '#1A1A2E', 'stroke-width': 1, opacity: 0 }, svg);
+    var dot = sv('circle', { r: 4, fill: '#0070C0', stroke: '#ffffff', 'stroke-width': 1.5, opacity: 0 }, svg);
+    var tip = document.createElement('div');
+    tip.className = 'fg-tip'; tip.hidden = true; box.appendChild(tip);
+    var hit = sv('rect', { x: m.l, y: m.t, width: iw, height: ih, fill: 'transparent' }, svg);
+
+    function show(evt) {
+      var r = svg.getBoundingClientRect();
+      var px = (evt.clientX - r.left) * W / r.width;
+      var i = Math.round((px - m.l) / iw * (n - 1));
+      i = Math.max(0, Math.min(n - 1, i));
+      var x = X(i), y = Y(pts[i].v);
+      guide.setAttribute('x1', x); guide.setAttribute('x2', x); guide.setAttribute('opacity', 0.35);
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('opacity', 1);
+      tip.hidden = false;
+      tip.textContent = '';
+      var tb = document.createElement('strong'); tb.textContent = nominal(pts[i].m);
+      tip.appendChild(tb); tip.appendChild(document.createElement('br'));
+      tip.appendChild(document.createTextNode('valgono ' + realTxt(pts[i].v)));
+      var scale = r.width / W, half = tip.offsetWidth / 2;
+      var left = Math.max(half, Math.min(r.width - half, x * scale));
+      tip.style.left = left + 'px';
+      tip.style.top = Math.max(0, y * scale - 54) + 'px';
+    }
+    function hide() { guide.setAttribute('opacity', 0); dot.setAttribute('opacity', 0); tip.hidden = true; }
+    hit.addEventListener('pointermove', show);
+    hit.addEventListener('pointerdown', show);
+    hit.addEventListener('pointerleave', hide);
+  }
+
+  // ---------- avvio ----------
+  function fail(msg) {
+    el.status.hidden = false;
+    el.status.className = 'fg-status fg-fail';
+    el.status.textContent = msg;
+    el.app.hidden = true;
+  }
+
+  function init(data) {
+    if (!data || !data.series || !data.last_month || !data.series[data.last_month]) {
+      throw new Error('formato dati non valido');
+    }
+    D = data;
+    months = Object.keys(D.series).sort();
+    lastMonth = D.last_month;
+    if (selectableMonths().length === 0) throw new Error('serie troppo corta');
+
+    var checked = D.last_checked ? new Date(D.last_checked) : null;
+    el.footData.textContent = 'Ultimo mese disponibile: ' + monthName(lastMonth) + '.' +
+      (checked && !isNaN(checked) ? ' Dati verificati il ' +
+        checked.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }).replace(/^1 /, '1° ') + '.' : '');
+
+    fillYears();
+    var defYear = '2021';
+    el.year.value = Array.prototype.some.call(el.year.options, function (o) { return o.value === defYear; })
+      ? defYear : el.year.options[el.year.options.length - 1].value;
+    fillMonths('01');
+
+    el.year.addEventListener('change', function () {
+      var mm = (startMonth() || '-01').slice(5, 7);
+      fillMonths(mm); update(false);
+    });
+    el.month.addEventListener('change', function () { update(false); });
+    [el.sal0, el.sal1].forEach(function (inp) {
+      inp.addEventListener('input', function () { update(false); });
+      inp.addEventListener('blur', function () { if (inp.value.trim()) inp.dataset.touched = '1'; update(false); });
+    });
+
+    var lastW = 0;
+    function redraw() {
+      var w = el.chart.clientWidth;
+      if (chartState && w && w !== lastW && !el.chartBox.hidden) { lastW = w; drawChart(chartState.start, chartState.sal0, chartState.lireVal); }
+    }
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(redraw).observe(el.chart);
+    else window.addEventListener('resize', redraw);
+
+    el.status.hidden = true;
+    el.app.hidden = false;
+    update(false);
+  }
+
+  fetch(url, { cache: 'no-cache' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(init)
+    .catch(function (e) {
+      fail('Impossibile caricare i dati ISTAT (' + e.message + '). Il calcolatore non può funzionare senza i dati aggiornati: riprova tra qualche minuto.');
+    });
+})();
+</script>
+</div>
+
+</body>
+</html>
