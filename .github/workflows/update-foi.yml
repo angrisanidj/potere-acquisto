@@ -22,12 +22,12 @@ jobs:
     # Così l'ambiente non cambia sotto il workflow; il passaggio a 26.04 si fa a
     # mano, con un avvio di prova.
     runs-on: ubuntu-24.04
-    # Richieste all'ISTAT: 2 (FOI) + 3 (retribuzioni), distanziate di almeno 40 s.
-    # Caso normale: circa 4 minuti. Caso peggiore, entrambi gli script fermi
-    # sull'ultima richiesta dopo risposte lente: FOI 1 x (180 + 40) + 3 x 180 + 60 + 120
-    # = 940 s; retribuzioni 2 x (180 + 40) + 3 x 180 + 60 + 120 = 1160 s; in tutto
-    # circa 35 minuti, più l'installazione. 45 minuti lasciano margine.
-    timeout-minutes: 45
+    # Richieste all'ISTAT: 2 (FOI) + 3 (retribuzioni) + 4 (RACLI), distanziate di
+    # almeno 40 s. Caso normale: circa 7 minuti. Caso peggiore, ogni script fermo
+    # sull'ultima richiesta dopo risposte lente, con n richieste:
+    # (n - 1) x (180 + 40) + 3 x 180 + 60 + 120 secondi, cioè 940 + 1160 + 1380 =
+    # 3480 s (58 minuti), più l'installazione. 70 minuti lasciano margine.
+    timeout-minutes: 70
     steps:
       - uses: actions/checkout@v7
 
@@ -49,6 +49,11 @@ jobs:
         continue-on-error: true
         run: python scripts/update_retribuzioni.py
 
+      - name: Scarica e valida le retribuzioni orarie RACLI
+        id: racli
+        continue-on-error: true
+        run: python scripts/update_racli.py
+
       # last_checked cambia a ogni esecuzione riuscita, quindi c'è sempre un
       # commit mensile: evita che GitHub disattivi il workflow schedulato
       # dopo 60 giorni di inattività del repository.
@@ -57,28 +62,33 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/foi.json data/retribuzioni.json
+          git add data/foi.json data/retribuzioni.json data/racli.json
           if git diff --cached --quiet; then
             echo "Nessuna modifica da committare"
             exit 0
           fi
           FOI=$(python -c "import json; print(json.load(open('data/foi.json'))['last_month'])" 2>/dev/null || echo n/d)
           RETR=$(python -c "import json; print(json.load(open('data/retribuzioni.json'))['last_month'])" 2>/dev/null || echo n/d)
-          git commit -m "Aggiorna dati (FOI: ${FOI}, retribuzioni: ${RETR})"
+          RACLI=$(python -c "import json; print(json.load(open('data/racli.json'))['year'])" 2>/dev/null || echo n/d)
+          git commit -m "Aggiorna dati (FOI: ${FOI}, retribuzioni: ${RETR}, RACLI: ${RACLI})"
           git push
 
       # Con continue-on-error un passo fallito risulta comunque "success":
       # qui il fallimento diventa un'annotazione visibile nel riepilogo del run.
       - name: Esito degli aggiornamenti
-        if: steps.foi.outcome == 'failure' || steps.retr.outcome == 'failure'
+        if: steps.foi.outcome == 'failure' || steps.retr.outcome == 'failure' || steps.racli.outcome == 'failure'
         env:
           FOI_OUTCOME: ${{ steps.foi.outcome }}
           RETR_OUTCOME: ${{ steps.retr.outcome }}
+          RACLI_OUTCOME: ${{ steps.racli.outcome }}
         run: |
           if [ "$FOI_OUTCOME" = "failure" ]; then
             echo "::error title=Aggiornamento fallito::scripts/update_foi.py è fallito: data/foi.json non è stato aggiornato (dettagli nel passo 'Scarica e valida la serie FOI')"
           fi
           if [ "$RETR_OUTCOME" = "failure" ]; then
             echo "::error title=Aggiornamento fallito::scripts/update_retribuzioni.py è fallito: data/retribuzioni.json non è stato aggiornato (dettagli nel passo 'Scarica e valida le retribuzioni contrattuali')"
+          fi
+          if [ "$RACLI_OUTCOME" = "failure" ]; then
+            echo "::error title=Aggiornamento fallito::scripts/update_racli.py è fallito: data/racli.json non è stato aggiornato (dettagli nel passo 'Scarica e valida le retribuzioni orarie RACLI')"
           fi
           exit 1

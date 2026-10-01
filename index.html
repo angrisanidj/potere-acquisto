@@ -156,6 +156,37 @@
 #fg-potere-acquisto-2026 .fg-btn:focus { background: #E8F4FD; outline: none; }
 #fg-potere-acquisto-2026 .fg-btn[disabled] { color: #666680; border-color: #D0D8E8; cursor: default; }
 
+/* Confronto della RAL */
+#fg-potere-acquisto-2026 .fg-ral {
+  margin: 26px 0 22px; padding: 18px 14px; border: 1px solid #D0D8E8; border-top: 4px solid #00A6D6;
+  border-radius: 8px; background: #ffffff;
+}
+#fg-potere-acquisto-2026 .fg-ral-title {
+  margin: 0 0 6px; padding: 0; color: #003F87; font-size: 20px; line-height: 1.25; font-weight: 800;
+  font-family: inherit; border: 0;
+}
+#fg-potere-acquisto-2026 .fg-ral .fg-sub { margin: 0 0 16px; font-size: 14px; }
+#fg-potere-acquisto-2026 .fg-ral-pa {
+  margin: 0 0 14px; padding: 12px 14px; border-radius: 8px; background: #E8F4FD; font-size: 14px;
+}
+#fg-potere-acquisto-2026 .fg-ral-out { margin: 4px 0 0; }
+#fg-potere-acquisto-2026 .fg-ral-big { margin: 0 0 4px; font-size: 15px; color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-ral-big strong {
+  display: block; color: #003F87; font-size: 34px; line-height: 1.1; font-weight: 800; font-variant-numeric: tabular-nums;
+}
+#fg-potere-acquisto-2026 .fg-ral-rel { margin: 6px 0 2px; font-size: 15px; }
+#fg-potere-acquisto-2026 .fg-ral-rel strong { font-weight: 800; }
+#fg-potere-acquisto-2026 .fg-ral-sec { margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid #D0D8E8; }
+#fg-potere-acquisto-2026 .fg-ral-h { margin: 0 0 4px; font-size: 15px; font-weight: 700; color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-bar { width: 100%; margin: 6px 0 4px; }
+#fg-potere-acquisto-2026 .fg-bar svg { display: block; width: 100%; height: auto; overflow: visible; }
+#fg-potere-acquisto-2026 .fg-ral-notes { margin: 16px 0 0; padding: 12px 0 0; border-top: 1px solid #D0D8E8; color: #666680; font-size: 12.5px; }
+#fg-potere-acquisto-2026 .fg-ral-notes p { margin: 0 0 6px; padding: 0; font-size: inherit; color: inherit; line-height: 1.45; }
+#fg-potere-acquisto-2026 .fg-cmp-list li.fg-grp {
+  padding-top: 9px; color: #666680; font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .04em; cursor: default;
+}
+
 /* Stato e piede */
 #fg-potere-acquisto-2026 .fg-status { margin: 0 0 18px; padding: 12px 14px; border-radius: 8px; background: #E8F4FD; font-size: 14px; }
 #fg-potere-acquisto-2026 .fg-status.fg-fail { background: #FDECEA; color: #8C1D18; }
@@ -170,6 +201,10 @@
   #fg-potere-acquisto-2026 .fg-sub { font-size: 16px; }
   #fg-potere-acquisto-2026 .fg-form { grid-template-columns: 1fr 1fr 1fr; align-items: start; }
   #fg-potere-acquisto-2026 .fg-cmp { max-width: 420px; }
+  #fg-potere-acquisto-2026 .fg-ral { padding: 22px 22px 18px; }
+  #fg-potere-acquisto-2026 .fg-ral-title { font-size: 23px; }
+  #fg-potere-acquisto-2026 .fg-form.fg-form-2 { grid-template-columns: 2fr 1fr; }
+  #fg-potere-acquisto-2026 .fg-ral-big strong { font-size: 44px; }
   #fg-potere-acquisto-2026 .fg-big-num { font-size: 60px; }
   #fg-potere-acquisto-2026 .fg-cards { grid-template-columns: 1fr 1fr; }
   #fg-potere-acquisto-2026 .fg-card.fg-wide { grid-column: 1 / -1; }
@@ -249,10 +284,67 @@
         <span class="fg-hint" data-fg="png-msg"></span>
       </div>
     </div>
+
+    <section class="fg-ral" data-fg="ral" aria-labelledby="fg-pa-ral-title">
+      <p class="fg-kicker">Confronto con il settore</p>
+      <h3 class="fg-ral-title" id="fg-pa-ral-title">Come si colloca la tua retribuzione</h3>
+      <p class="fg-sub">Confronta la tua retribuzione lorda con quella dei dipendenti a tempo pieno del settore privato. Il confronto è sulla paga oraria, così l'orario di lavoro non lo falsa.</p>
+      <p class="fg-ral-pa" data-fg="ral-pa" hidden></p>
+      <div data-fg="ral-body">
+        <div class="fg-form">
+          <div class="fg-field">
+            <label class="fg-label" for="fg-pa-ral">Retribuzione annua lorda (RAL)</label>
+            <div class="fg-money">
+              <input id="fg-pa-ral" data-fg="ral-in" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 30.000" aria-describedby="fg-pa-ral-msg">
+              <span class="fg-unit">€</span>
+            </div>
+            <p class="fg-hint" id="fg-pa-ral-msg" data-fg="ral-msg"></p>
+          </div>
+          <div class="fg-field">
+            <label class="fg-label" for="fg-pa-ore">Ore settimanali da contratto</label>
+            <div class="fg-money">
+              <input id="fg-pa-ore" data-fg="ore-in" type="text" inputmode="decimal" autocomplete="off" value="40" aria-describedby="fg-pa-ore-msg">
+              <span class="fg-unit">ore</span>
+            </div>
+            <p class="fg-hint" id="fg-pa-ore-msg" data-fg="ore-msg"></p>
+          </div>
+          <div class="fg-field">
+            <label class="fg-label" for="fg-pa-premi">Premi e straordinari <small>(facoltativo)</small></label>
+            <div class="fg-money">
+              <input id="fg-pa-premi" data-fg="premi-in" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 1.200" aria-describedby="fg-pa-premi-msg">
+              <span class="fg-unit">€</span>
+            </div>
+            <p class="fg-hint" id="fg-pa-premi-msg" data-fg="premi-msg">Lordi, dell’ultimo anno: si sommano alla RAL.</p>
+          </div>
+        </div>
+        <div class="fg-form fg-form-2">
+          <div class="fg-field">
+            <label class="fg-label" for="fg-pa-ateco">Settore di attività (ATECO)</label>
+            <div class="fg-cmp-box">
+              <input id="fg-pa-ateco" data-fg="ateco-input" type="text" role="combobox" autocomplete="off"
+                     aria-autocomplete="list" aria-expanded="false" aria-controls="fg-pa-ateco-list"
+                     placeholder="Cerca: commercio, software, alberghi…" aria-describedby="fg-pa-ateco-msg">
+              <span class="fg-cmp-caret" aria-hidden="true">▼</span>
+              <ul class="fg-cmp-list" id="fg-pa-ateco-list" data-fg="ateco-list" role="listbox" aria-label="Settori ATECO" hidden></ul>
+            </div>
+            <p class="fg-hint" id="fg-pa-ateco-msg" data-fg="ateco-msg"></p>
+          </div>
+          <div class="fg-field">
+            <label class="fg-label" for="fg-pa-reg">Regione <small>(facoltativo)</small></label>
+            <select id="fg-pa-reg" data-fg="reg-in"></select>
+          </div>
+        </div>
+        <div aria-live="polite">
+          <p class="fg-prompt" data-fg="ral-prompt">Inserisci la RAL per vedere come si colloca la tua paga oraria rispetto ai dipendenti a tempo pieno del settore.</p>
+          <div class="fg-ral-out" data-fg="ral-out" hidden></div>
+        </div>
+      </div>
+      <div class="fg-ral-notes" data-fg="ral-notes"></div>
+    </section>
   </div>
 
   <div class="fg-foot">
-    <p><strong>Fonte:</strong> ISTAT, indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI) senza tabacchi e indici delle retribuzioni contrattuali per dipendente. <span data-fg="foot-data"></span></p>
+    <p><strong>Fonte:</strong> ISTAT, indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI) senza tabacchi, indici delle retribuzioni contrattuali per dipendente e registro RACLI sulle retribuzioni orarie. <span data-fg="foot-data"></span></p>
     <p><strong>Metodo:</strong> la perdita di potere d'acquisto è 1 − I(partenza)/I(arrivo), dove I è l'indice FOI senza tabacchi, lo stesso usato per rivalutare affitti e assegni di mantenimento. L'indice misura i prezzi di un paniere medio: l'inflazione vissuta da ciascuna famiglia può essere diversa. Usa lo stipendio netto, perché il lordo risente anche delle variazioni di tasse e contributi. Per i mesi dal 1996 al 2001 l'importo va inserito in lire ed è convertito a 1.936,27 lire per euro.</p>
     <p><strong>Contratto:</strong> l'opzione applica allo stipendio la crescita dell'indice ISTAT delle retribuzioni contrattuali per dipendente del comparto scelto (dati dal 2005). L'indice misura gli aumenti previsti dai contratti nazionali (minimi tabellari e voci contrattuali), non la crescita effettiva della busta paga, che include anche anzianità, superminimi e promozioni; riguarda inoltre le retribuzioni lorde, quindi applicarlo al netto è un'approssimazione: a parità di regole fiscali, applicare al netto la crescita del lordo tende a sovrastimarla, per effetto della progressività dell'IRPEF. I mesi con un aumento una tantum che rientra il mese successivo (come dicembre 2023 nella pubblica amministrazione) sono sostituiti dal mese precedente. I confronti si fermano all'ultimo mese disponibile per entrambe le serie.</p>
     <p><strong>Elaborazione:</strong> Daniele Angrisani (<a href="https://x.com/putino" target="_blank" rel="noopener">@putino</a>)</p>
@@ -264,6 +356,7 @@
 
   var DATA_URL = 'https://angrisanidj.github.io/potere-acquisto/data/foi.json';
   var WAGES_URL = 'https://angrisanidj.github.io/potere-acquisto/data/retribuzioni.json';
+  var RACLI_URL = 'https://angrisanidj.github.io/potere-acquisto/data/racli.json';
   var LIRE_PER_EURO = 1936.27;
   var EURO_START = '2002-01';
   var MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio',
@@ -279,6 +372,7 @@
   var isLocal = host === 'localhost' || host === '127.0.0.1';
   var foiUrl = isLocal ? 'data/foi.json' : DATA_URL;
   var wagesUrl = isLocal ? 'data/retribuzioni.json' : WAGES_URL;
+  var racliUrl = isLocal ? 'data/racli.json' : RACLI_URL;
 
   // --- parser-start ---
   // Interpreta un importo scritto all'italiana: punto per le migliaia, virgola
@@ -343,7 +437,11 @@
     loss: $('loss'), lossTxt: $('loss-txt'), subs: $('subs'),
     prompt: $('prompt'), cards: $('cards'),
     chartBox: $('chart-box'), chartTitle: $('chart-title'), chartSub: $('chart-sub'), chart: $('chart'),
-    png: $('png'), pngMsg: $('png-msg'), footData: $('foot-data')
+    png: $('png'), pngMsg: $('png-msg'), footData: $('foot-data'),
+    ralPa: $('ral-pa'), ralBody: $('ral-body'), ralIn: $('ral-in'), ralMsg: $('ral-msg'),
+    oreIn: $('ore-in'), oreMsg: $('ore-msg'), premiIn: $('premi-in'), premiMsg: $('premi-msg'),
+    atecoInput: $('ateco-input'), atecoList: $('ateco-list'), atecoMsg: $('ateco-msg'), regIn: $('reg-in'),
+    ralPrompt: $('ral-prompt'), ralOut: $('ral-out'), ralNotes: $('ral-notes')
   };
 
   var D = null;          // FOI
@@ -453,9 +551,116 @@
     else el.month.value = avail[0];
   }
 
-  // ---------- selettore del comparto (ricerca + albero) ----------
-  var cmpState = { items: [], active: -1 };
+  // ---------- casella di ricerca con elenco ad albero (comparto, settore ATECO) ----------
+  // nodes: [{code, name, parent, depth, group, suffix}] in ordine d'albero; i nodi
+  // "group" sono intestazioni non selezionabili.
+  function makeCombo(o) {
+    var st = { items: [], active: -1 }, byCode = {};
+    o.nodes.forEach(function (n) { byCode[n.code] = n; });
 
+    function setActive(i) {
+      var lis = o.list.querySelectorAll('li[role="option"]');
+      for (var k = 0; k < lis.length; k++) lis[k].classList.toggle('fg-act', k === i);
+      st.active = i;
+      if (i >= 0 && lis[i]) {
+        o.input.setAttribute('aria-activedescendant', lis[i].id);
+        var li = lis[i], box = o.list;
+        if (li.offsetTop < box.scrollTop) box.scrollTop = li.offsetTop;
+        else if (li.offsetTop + li.offsetHeight > box.scrollTop + box.clientHeight) {
+          box.scrollTop = li.offsetTop + li.offsetHeight - box.clientHeight;
+        }
+      } else {
+        o.input.removeAttribute('aria-activedescendant');
+      }
+    }
+
+    function render(query) {
+      var q = norm(query.trim()), show = {}, cur = o.getValue();
+      o.nodes.forEach(function (n) {
+        if (!q || o.match(n, q)) {
+          show[n.code] = 'm';
+          for (var p = n.parent; p && q && byCode[p]; p = byCode[p].parent) if (!show[p]) show[p] = 'c';
+        }
+      });
+      o.list.innerHTML = '';
+      st.items = [];
+      st.active = -1;
+      o.nodes.forEach(function (n) {
+        var s0 = show[n.code];
+        if (!s0) return;
+        var li = document.createElement('li');
+        li.style.paddingLeft = (10 + n.depth * 16) + 'px';
+        if (n.group) {
+          li.className = 'fg-grp';
+          li.setAttribute('role', 'presentation');
+          li.textContent = n.name;
+          o.list.appendChild(li);
+          return;
+        }
+        li.id = o.idPrefix + n.code;
+        li.setAttribute('role', 'option');
+        li.setAttribute('aria-selected', n.code === cur ? 'true' : 'false');
+        if (s0 === 'c') li.className = 'fg-ctx';
+        li.appendChild(document.createTextNode(n.name));
+        if (n.suffix) {
+          var f = document.createElement('span');
+          f.className = 'fg-from';
+          f.textContent = n.suffix;
+          li.appendChild(f);
+        }
+        li.addEventListener('mousedown', function (e) { e.preventDefault(); choose(n.code); });
+        o.list.appendChild(li);
+        if (st.active === -1 && (q ? s0 === 'm' : n.code === cur)) st.active = st.items.length;
+        st.items.push(n.code);
+      });
+      if (!st.items.length) {
+        var e = document.createElement('li');
+        e.className = 'fg-empty';
+        e.textContent = o.empty;
+        o.list.appendChild(e);
+      }
+      setActive(st.active);
+    }
+
+    function open(query) {
+      o.list.hidden = false;
+      o.input.setAttribute('aria-expanded', 'true');
+      render(query);
+    }
+    function close() {
+      o.list.hidden = true;
+      o.input.setAttribute('aria-expanded', 'false');
+      o.input.removeAttribute('aria-activedescendant');
+      o.input.value = o.labelOf(o.getValue());
+    }
+    function choose(code) {
+      close();
+      o.onChoose(code);
+      o.input.value = o.labelOf(o.getValue());
+    }
+
+    o.input.value = o.labelOf(o.getValue());
+    o.input.addEventListener('focus', function () { o.input.select(); open(''); });
+    o.input.addEventListener('input', function () { open(o.input.value); });
+    o.input.addEventListener('blur', function () { close(); });
+    o.input.addEventListener('keydown', function (e) {
+      var n = st.items.length;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (o.list.hidden) { open(''); return; }
+        if (!n) return;
+        var d = e.key === 'ArrowDown' ? 1 : -1;
+        setActive(st.active < 0 ? 0 : (st.active + d + n) % n);
+      } else if (e.key === 'Enter') {
+        if (!o.list.hidden && st.active >= 0) { e.preventDefault(); choose(st.items[st.active]); }
+      } else if (e.key === 'Escape') {
+        close(); o.input.blur();
+      }
+    });
+    return { refresh: function () { if (o.list.hidden) o.input.value = o.labelOf(o.getValue()); } };
+  }
+
+  // ---------- comparto contrattuale ----------
   function buildTree() {
     comp = {};
     W.comparti.forEach(function (c) {
@@ -474,98 +679,17 @@
     })(roots, 0);
   }
 
-  function renderCmpList(query) {
-    var q = norm(query.trim()), show = {};
-    tree.forEach(function (t) {
-      if (!q || norm(t.c.name).indexOf(q) !== -1 || t.c.code.toLowerCase() === q) {
-        show[t.c.code] = 'm';
-        for (var p = t.c.parent; p && q; p = comp[p].parent) if (!show[p]) show[p] = 'c';
-      }
-    });
-    el.cmpList.innerHTML = '';
-    cmpState.items = [];
-    cmpState.active = -1;
-    tree.forEach(function (t) {
-      var st = show[t.c.code];
-      if (!st) return;
-      var li = document.createElement('li');
-      li.id = 'fg-pa-cmp-' + t.c.code;
-      li.setAttribute('role', 'option');
-      li.setAttribute('aria-selected', t.c.code === compCode ? 'true' : 'false');
-      li.style.paddingLeft = (10 + t.depth * 16) + 'px';
-      if (st === 'c') li.className = 'fg-ctx';
-      li.appendChild(document.createTextNode(t.c.name));
-      if (t.c.first_month > W.first_month) {
-        var f = document.createElement('span');
-        f.className = 'fg-from';
-        f.textContent = ' · dati dal ' + t.c.first_month.slice(0, 4);
-        li.appendChild(f);
-      }
-      li.addEventListener('mousedown', function (e) { e.preventDefault(); chooseComp(t.c.code); });
-      el.cmpList.appendChild(li);
-      if (cmpState.active === -1 && (q ? st === 'm' : t.c.code === compCode)) cmpState.active = cmpState.items.length;
-      cmpState.items.push(t.c.code);
-    });
-    if (!cmpState.items.length) {
-      var e = document.createElement('li');
-      e.className = 'fg-empty';
-      e.textContent = 'Nessun comparto trovato';
-      el.cmpList.appendChild(e);
-    }
-    setActive(cmpState.active);
-  }
-
-  function setActive(i) {
-    var lis = el.cmpList.querySelectorAll('li[role="option"]');
-    for (var k = 0; k < lis.length; k++) lis[k].classList.toggle('fg-act', k === i);
-    cmpState.active = i;
-    if (i >= 0 && lis[i]) {
-      el.cmpInput.setAttribute('aria-activedescendant', lis[i].id);
-      var li = lis[i], box = el.cmpList;
-      if (li.offsetTop < box.scrollTop) box.scrollTop = li.offsetTop;
-      else if (li.offsetTop + li.offsetHeight > box.scrollTop + box.clientHeight) {
-        box.scrollTop = li.offsetTop + li.offsetHeight - box.clientHeight;
-      }
-    } else {
-      el.cmpInput.removeAttribute('aria-activedescendant');
-    }
-  }
-
-  function openCmp(query) {
-    el.cmpList.hidden = false;
-    el.cmpInput.setAttribute('aria-expanded', 'true');
-    renderCmpList(query);
-  }
-  function closeCmp() {
-    el.cmpList.hidden = true;
-    el.cmpInput.setAttribute('aria-expanded', 'false');
-    el.cmpInput.removeAttribute('aria-activedescendant');
-    el.cmpInput.value = comp[compCode].name;
-  }
-  function chooseComp(code) {
-    compCode = code;
-    closeCmp();
-    update(false);
-  }
-
   function bindCmp() {
-    el.cmpInput.value = comp[compCode].name;
-    el.cmpInput.addEventListener('focus', function () { el.cmpInput.select(); openCmp(''); });
-    el.cmpInput.addEventListener('input', function () { openCmp(el.cmpInput.value); });
-    el.cmpInput.addEventListener('blur', function () { closeCmp(); });
-    el.cmpInput.addEventListener('keydown', function (e) {
-      var n = cmpState.items.length;
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        if (el.cmpList.hidden) { openCmp(''); return; }
-        if (!n) return;
-        var d = e.key === 'ArrowDown' ? 1 : -1;
-        setActive(cmpState.active < 0 ? 0 : (cmpState.active + d + n) % n);
-      } else if (e.key === 'Enter') {
-        if (!el.cmpList.hidden && cmpState.active >= 0) { e.preventDefault(); chooseComp(cmpState.items[cmpState.active]); }
-      } else if (e.key === 'Escape') {
-        closeCmp(); el.cmpInput.blur();
-      }
+    makeCombo({
+      input: el.cmpInput, list: el.cmpList, idPrefix: 'fg-pa-cmp-', empty: 'Nessun comparto trovato',
+      nodes: tree.map(function (t) {
+        return { code: t.c.code, name: t.c.name, parent: t.c.parent, depth: t.depth,
+                 suffix: t.c.first_month > W.first_month ? ' · dati dal ' + t.c.first_month.slice(0, 4) : '' };
+      }),
+      match: function (n, q) { return norm(n.name).indexOf(q) !== -1 || n.code.toLowerCase() === q; },
+      getValue: function () { return compCode; },
+      labelOf: function (code) { return comp[code].name; },
+      onChoose: function (code) { compCode = code; update(false); }
     });
   }
 
@@ -590,6 +714,8 @@
 
   // ---------- calcolo e rendering ----------
   function update(showErrors) {
+    syncAteco();
+    updateRal(false);
     var start = el.month.value;
     if (!start) return;
     var lire = isLire(start);
@@ -953,6 +1079,247 @@
     hit.addEventListener('pointerleave', hide);
   }
 
+  // ---------- confronto della RAL con il settore (ISTAT RACLI) ----------
+  var RQ = null;                 // data/racli.json
+  var racliError = '';
+  var atecoCode = '0010';        // 0010 = tutti i settori privati
+  var atecoFromComp = null;      // comparto da cui è stato precompilato
+  var atecoTouched = false;      // l'utente ha scelto il settore a mano
+  var atecoCombo = null;
+  var divs = {};                 // codice divisione -> dati
+  var WEEKS = 365 / 7;           // le ore retribuite ISTAT seguono il calendario
+  var PA_ROOT = 'Z2540';         // attività della pubblica amministrazione
+
+  // Corrispondenza fra comparto contrattuale e divisione ATECO, solo dove il
+  // comparto ricade chiaramente in una sola divisione; negli altri casi il
+  // settore resta da scegliere.
+  var COMP_TO_ATECO = {
+    Z0320: '15', Z0340: '15', Z0360: '15', Z0380: '15', Z0420: '16', Z0440: '17', Z0460: '17',
+    Z0480: '17', Z0500: '18', Z0540: '20', Z0580: '22', Z0600: '23', Z0620: '23', Z0640: '23',
+    Z0660: '23', Z0680: '23', Z0700: '23', Z0740: '24', Z0760: '24', Z0900: '30', Z0910: '29',
+    Z0940: '35', Z1120: '38', Z1261: '47', Z1270: '47', Z1340: '49', Z1360: '49', Z1380: '49',
+    Z1400: '49', Z1420: '49', Z1440: '49', Z1460: '49', Z1480: '49', Z1500: '50', Z1520: '51',
+    Z1640: '53', Z1660: '53', Z1680: '53', Z1700: '52', Z1720: '52', Z1760: '52', Z1780: '52',
+    Z1820: '52', Z1841: '55', Z1842: '56', Z1940: '58', Z1980: '60', Z2080: '61', Z2120: '64',
+    Z2220: '65', Z2320: '80', Z2340: '81', Z2360: '85', Z2380: '85', Z2400: '85', Z2420: '86',
+    Z2500: '96'
+  };
+
+  function cap(t) { return t ? t.charAt(0).toUpperCase() + t.slice(1) : t; }
+  function euroH(n) { return fmt(n, 2) + ' €'; }
+  function isPA(code) {
+    for (var c = code; c && comp[c]; c = comp[c].parent) if (c === PA_ROOT) return true;
+    return false;
+  }
+  function paActive() { return !!(W && pref && compCode && isPA(compCode)); }
+
+  function parseOre(raw) {
+    var s = String(raw || '').trim();
+    if (s === '') return { ok: false, error: 'Inserisci le ore settimanali da contratto.' };
+    if (!/^\d{1,2}([.,]\d{1,2})?$/.test(s)) return { ok: false, error: 'Ore non valide: scrivi un numero, ad esempio 40 o 37,5.' };
+    var v = Number(s.replace(',', '.'));
+    if (!(v >= 1 && v <= 60)) return { ok: false, error: 'Le ore settimanali devono essere tra 1 e 60.' };
+    return { ok: true, value: v };
+  }
+
+  function stats(entry, f) {
+    var v = entry.values;
+    return { d1: v.d1 * f, mediana: v.mediana * f, media: v.media * f, d9: v.d9 * f };
+  }
+
+  function initRacli() {
+    RQ.divisions.forEach(function (d) { divs[d.code] = d; });
+    var nodes = [{ code: '0010', name: 'Tutti i settori privati (industria e servizi)', parent: null, depth: 0 }];
+    var lastSec = null;
+    RQ.divisions.forEach(function (d) {
+      if (d.section !== lastSec) {
+        lastSec = d.section;
+        nodes.push({ code: 'S:' + d.section, name: d.section + ' · ' + cap(d.section_name || ''), parent: null, depth: 0, group: true });
+      }
+      nodes.push({ code: d.code, name: d.code + ' · ' + cap(d.name), parent: 'S:' + d.section, depth: 1,
+                   sectionName: d.section_name || '' });
+    });
+    atecoCombo = makeCombo({
+      input: el.atecoInput, list: el.atecoList, idPrefix: 'fg-pa-ateco-', empty: 'Nessun settore trovato',
+      nodes: nodes,
+      match: function (n, q) {
+        if (n.group) return norm(n.name).indexOf(q) !== -1;
+        return norm(n.name).indexOf(q) !== -1 || n.code.indexOf(q) === 0 ||
+          (n.sectionName && norm(n.sectionName).indexOf(q) !== -1);
+      },
+      getValue: function () { return atecoCode; },
+      labelOf: function (code) { return code === '0010' ? 'Tutti i settori privati (industria e servizi)' : code + ' · ' + cap(divs[code].name); },
+      onChoose: function (code) { atecoCode = code; atecoTouched = true; atecoFromComp = null; updateRal(false); }
+    });
+    var regs = RQ.regions.slice().sort(function (a, b) { return a.name.localeCompare(b.name, 'it'); });
+    var o0 = document.createElement('option'); o0.value = ''; o0.textContent = 'Nessuna'; el.regIn.appendChild(o0);
+    regs.forEach(function (r) {
+      var o = document.createElement('option'); o.value = r.code; o.textContent = r.name; el.regIn.appendChild(o);
+    });
+    [el.ralIn, el.oreIn, el.premiIn].forEach(function (inp) {
+      inp.addEventListener('input', function () { updateRal(false); });
+      inp.addEventListener('blur', function () { if (inp.value.trim()) inp.dataset.touched = '1'; updateRal(false); });
+    });
+    el.regIn.addEventListener('change', function () { updateRal(false); });
+    renderRalNotes();
+  }
+
+  // Precompila il settore dal comparto contrattuale, finché l'utente non lo sceglie a mano.
+  function syncAteco() {
+    if (!RQ || atecoTouched) return;
+    var code = (W && pref && compCode && COMP_TO_ATECO[compCode]) || null;
+    var next = code && divs[code] ? code : '0010';
+    atecoFromComp = next !== '0010' ? compCode : null;
+    if (next !== atecoCode) atecoCode = next;
+    if (atecoCombo) atecoCombo.refresh();
+  }
+
+  function levelNote(d) {
+    var parts = [];
+    if (d.racli_from !== d.code) parts.push('i valori ISTAT della divisione non sono pubblicati (segreto statistico): si usano quelli della sezione ' + d.racli_from);
+    if (d.index_code !== d.code) parts.push('gli aumenti contrattuali sono quelli della sezione ' + d.index_code + ', perché l’indice non ha la divisione');
+    return parts.length ? cap(parts.join('; ')) + '.' : '';
+  }
+
+  function renderRalNotes() {
+    el.ralNotes.innerHTML = '';
+    function p(html) { var e = document.createElement('p'); e.innerHTML = html; el.ralNotes.appendChild(e); }
+    if (!RQ) { p(racliError); return; }
+    var y = RQ.year;
+    var up = RQ.divisions.filter(function (d) { return d.racli_from !== d.code || d.index_code !== d.code; })
+      .map(function (d) {
+        return d.code + ' (' + (d.racli_from !== d.code ? 'valori ISTAT della sezione ' + d.racli_from : 'aumenti contrattuali della sezione ' + d.index_code) + ')';
+      });
+    p('<strong>Fonte:</strong> ISTAT, registro RACLI, retribuzione lorda per ora retribuita dei dipendenti a tempo pieno del settore privato extra-agricolo, anno ' + y +
+      '. Dato ISTAT ' + y + ' aggiornato ' + aMonth(RQ.index_last_month) + ' con gli aumenti contrattuali del settore: stima prudente, che non include la crescita oltre i minimi.');
+    p('<strong>Cosa misura:</strong> il dato comprende microimprese, apprendisti e rapporti di lavoro brevi, quindi è più basso della retribuzione media che ISTAT pubblica con l’indagine sulla struttura delle retribuzioni, limitata alle unità con almeno 10 dipendenti. Le ore retribuite includono ferie e festività; la retribuzione include tredicesima, straordinari e premi.');
+    p('<strong>Calcolo:</strong> retribuzione oraria = (RAL + premi e straordinari) ÷ (ore settimanali × 52,14 settimane).');
+    p('<strong>Livelli superiori usati:</strong> ' + (up.length ? up.join(', ') + '. ' : '') +
+      'Per il totale e le regioni gli aumenti contrattuali sono quelli di industria e servizi di mercato (sezioni B–N), perché l’indice non ha un dato per il solo settore privato.');
+    p('<strong>Pubblica amministrazione:</strong> il confronto non è disponibile, perché il registro RACLI copre solo il settore privato.');
+  }
+
+  function bandText(x, s) {
+    if (x < s.d1) return 'sotto il primo decile: il 90% dei dipendenti a tempo pieno ha una paga oraria più alta';
+    if (x < s.mediana) return 'tra il primo decile e la mediana';
+    if (x < s.d9) return 'tra la mediana e il nono decile';
+    return 'sopra il nono decile: sei nel 10% meglio pagato';
+  }
+
+  // Barra orizzontale: primo decile, mediana, media, nono decile e posizione dell'utente.
+  function drawBar(box, s, x) {
+    var Wd = Math.max(260, Math.round(box.clientWidth || 300));
+    var lo = Math.min(s.d1, x) * 0.9, hi = Math.max(s.d9, x) * 1.06;
+    var pad = 8, X = function (v) { return pad + (v - lo) / (hi - lo) * (Wd - 2 * pad); };
+    var barY = 34, barH = 12;
+    var marks = [
+      { v: s.d1, lbl: '1° decile', color: C.mid },
+      { v: s.mediana, lbl: 'mediana', color: C.dark, bold: true },
+      { v: s.media, lbl: 'media', color: C.mid },
+      { v: s.d9, lbl: '9° decile', color: C.mid }
+    ];
+    // etichette su due righe sotto la barra, senza sovrapposizioni
+    var rowEnd = [-1e9, -1e9];
+    marks.forEach(function (mk) {
+      var w = Math.max(estW(mk.lbl, 11, mk.bold), estW(fmt(mk.v, 2) + ' €', 11, mk.bold));
+      var cx = Math.max(pad + w / 2, Math.min(Wd - pad - w / 2, X(mk.v)));
+      var row = cx - w / 2 > rowEnd[0] + 6 ? 0 : 1;
+      rowEnd[row] = cx + w / 2;
+      mk.cx = cx; mk.row = row;
+    });
+    var rows = marks.some(function (mk) { return mk.row === 1; }) ? 2 : 1;
+    var H = barY + barH + 14 + rows * 30;
+    var svg = sv('svg', { viewBox: '0 0 ' + Wd + ' ' + H, width: Wd, height: H, role: 'img',
+      'aria-label': 'Tu ' + euroH(x) + ' l’ora; primo decile ' + euroH(s.d1) + ', mediana ' + euroH(s.mediana) +
+        ', media ' + euroH(s.media) + ', nono decile ' + euroH(s.d9) });
+    sv('rect', { x: pad, y: barY, width: Wd - 2 * pad, height: barH, rx: 3, fill: '#F2F5FA' }, svg);
+    sv('rect', { x: X(s.d1), y: barY, width: Math.max(1, X(s.d9) - X(s.d1)), height: barH, rx: 3, fill: C.light }, svg);
+    sv('rect', { x: X(s.d1), y: barY, width: Math.max(1, X(s.mediana) - X(s.d1)), height: barH, rx: 3, fill: '#CFE6F7' }, svg);
+    marks.forEach(function (mk) {
+      var tx = X(mk.v), ly = barY + barH + 14 + mk.row * 30;
+      sv('line', { x1: tx, x2: tx, y1: barY - 3, y2: ly - 10, stroke: mk.color, 'stroke-width': mk.bold ? 2 : 1.2,
+                   'stroke-dasharray': mk.lbl === 'media' ? '3 2' : 'none' }, svg);
+      txt(svg, mk.cx, ly, mk.lbl, { anchor: 'middle', fill: C.muted, weight: mk.bold ? 700 : 400 });
+      txt(svg, mk.cx, ly + 13, fmt(mk.v, 2) + ' €', { anchor: 'middle', fill: C.text, weight: mk.bold ? 700 : 400 });
+    });
+    // posizione dell'utente
+    var ux = X(x), ul = 'Tu: ' + fmt(x, 2) + ' €', uw = estW(ul, 12, true);
+    sv('path', { d: 'M' + (ux - 6) + ' ' + (barY - 10) + 'L' + (ux + 6) + ' ' + (barY - 10) + 'L' + ux + ' ' + (barY - 1) + 'Z', fill: C.text }, svg);
+    sv('line', { x1: ux, x2: ux, y1: barY - 1, y2: barY + barH + 2, stroke: C.text, 'stroke-width': 2 }, svg);
+    txt(svg, Math.max(pad + uw / 2, Math.min(Wd - pad - uw / 2, ux)), barY - 15, ul,
+        { anchor: 'middle', size: 12, weight: 700, fill: C.text, halo: true });
+    box.innerHTML = '';
+    box.appendChild(svg);
+  }
+
+  function updateRal(showErrors) {
+    if (!el.ralBody) return;
+    var pa = paActive();
+    el.ralPa.hidden = !pa;
+    el.ralBody.hidden = pa || !RQ;
+    if (pa) {
+      el.ralPa.textContent = 'Il comparto scelto («' + comp[compCode].name + '») è della pubblica amministrazione: il confronto con la media di settore non è disponibile, perché il registro ISTAT RACLI copre solo il settore privato.';
+      return;
+    }
+    if (!RQ) return;
+
+    el.atecoMsg.textContent = atecoFromComp && comp[atecoFromComp]
+      ? 'Precompilato dal comparto «' + comp[atecoFromComp].name + '»: puoi cambiarlo.' : '';
+
+    var pr = el.ralIn.value.trim() ? parseImporto(el.ralIn.value, { lire: false }) : null;
+    var po = parseOre(el.oreIn.value);
+    var pp = el.premiIn.value.trim() ? parseImporto(el.premiIn.value, { lire: false }) : null;
+    setMsg(el.ralIn, el.ralMsg, pr && !pr.ok ? pr.error : '', !!(pr && !pr.ok && (showErrors || el.ralIn.dataset.touched)),
+      pr && pr.ok && pr.value < 6000 ? 'Sembra un importo mensile: inserisci la retribuzione annua lorda.' : '');
+    setMsg(el.oreIn, el.oreMsg, po.ok ? '' : po.error, !po.ok && (showErrors || !!el.oreIn.dataset.touched || el.oreIn.value.trim() !== ''),
+      po.ok && po.value < 30 ? 'Con meno di 30 ore probabilmente sei a tempo parziale: il confronto è con chi lavora a tempo pieno.' : '');
+    setMsg(el.premiIn, el.premiMsg, pp && !pp.ok ? pp.error : '', !!(pp && !pp.ok && (showErrors || el.premiIn.dataset.touched)), 'Lordi, dell’ultimo anno: si sommano alla RAL.');
+
+    var ok = pr && pr.ok && po.ok && !(pp && !pp.ok);
+    el.ralPrompt.hidden = !!ok;
+    el.ralOut.hidden = !ok;
+    if (!ok) return;
+
+    var annual = pr.value + (pp && pp.ok ? pp.value : 0);
+    var hours = po.value * WEEKS;
+    var x = annual / hours;
+    var isTot = atecoCode === '0010';
+    var d = isTot ? null : divs[atecoCode];
+    var s = isTot ? stats(RQ.total, RQ.total.factor) : stats(d, d.factor);
+    var secName = isTot ? 'tutti i settori privati' : cap(d.name);
+    var rel = x / s.mediana - 1;
+
+    el.ralOut.innerHTML = '';
+    function node(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; el.ralOut.appendChild(e); return e; }
+    var big = node('p', 'fg-ral-big');
+    var st = document.createElement('strong'); st.textContent = euroH(x); big.appendChild(st);
+    big.appendChild(document.createTextNode('lordi per ora retribuita' + (pp && pp.ok ? ', premi e straordinari compresi' : '')));
+    var r1 = node('p', 'fg-ral-rel');
+    var rs = document.createElement('strong'); rs.className = rel >= 0 ? 'fg-pos' : 'fg-neg'; rs.textContent = pct(rel, true);
+    r1.appendChild(rs);
+    r1.appendChild(document.createTextNode(' rispetto alla mediana dei dipendenti a tempo pieno di ' +
+      (isTot ? 'tutti i settori privati' : '«' + secName + '»') + ': ' + bandText(x, s) + '.'));
+    drawBar(node('div', 'fg-bar'), s, x);
+    node('p', 'fg-hint', 'Con ' + fmt(po.value, po.value % 1 ? 1 : 0) + ' ore settimanali, la mediana del settore corrisponde a una retribuzione annua lorda di ' +
+      euro(s.mediana * hours) + ' (stima ' + aMonth(RQ.index_last_month) + ').');
+    if (d && levelNote(d)) node('p', 'fg-hint', levelNote(d));
+
+    var rc = el.regIn.value;
+    var reg = rc ? RQ.regions.filter(function (r) { return r.code === rc; })[0] : null;
+    if (reg) {
+      var sec = node('div', 'fg-ral-sec');
+      var h = document.createElement('p'); h.className = 'fg-ral-h'; h.textContent = 'Nella tua regione: ' + reg.name; sec.appendChild(h);
+      var sr = stats(reg, RQ.regions_factor), rr = x / sr.mediana - 1;
+      var t = document.createElement('p'); t.className = 'fg-ral-rel';
+      var ts = document.createElement('strong'); ts.className = rr >= 0 ? 'fg-pos' : 'fg-neg'; ts.textContent = pct(rr, true);
+      t.appendChild(ts);
+      t.appendChild(document.createTextNode(' rispetto alla mediana dei dipendenti a tempo pieno della regione, tutti i settori privati: ' + bandText(x, sr) + '.'));
+      sec.appendChild(t);
+      var b = document.createElement('div'); b.className = 'fg-bar'; sec.appendChild(b);
+      drawBar(b, sr, x);
+    }
+  }
+
   // ---------- export PNG (canvas, nessuna libreria) ----------
   function wrap(ctx, text, maxW) {
     var words = text.split(' '), lines = [], cur = '';
@@ -1093,7 +1460,7 @@
     });
   }
 
-  function init(foi, wages) {
+  function init(foi, wages, racli) {
     if (!foi || !foi.series || !foi.last_month || !foi.series[foi.last_month]) {
       throw new Error('formato dati non valido');
     }
@@ -1109,6 +1476,15 @@
       bindCmp();
     } else if (!wagesError) {
       wagesError = 'Dati sulle retribuzioni contrattuali non disponibili: il calcolo usa solo l’inflazione.';
+    }
+
+    if (racli && racli.divisions && racli.total && racli.regions && racli.year) {
+      RQ = racli;
+      initRacli();
+    } else {
+      if (!racliError) racliError = 'Dati ISTAT RACLI non disponibili: il confronto della retribuzione con il settore non può essere mostrato.';
+      el.ralBody.hidden = true;
+      renderRalNotes();
     }
 
     var checked = D.last_checked ? new Date(D.last_checked) : null;
@@ -1141,6 +1517,12 @@
     }
     if (typeof ResizeObserver !== 'undefined') new ResizeObserver(redraw).observe(el.chart);
     else window.addEventListener('resize', redraw);
+    var lastRW = 0;
+    function redrawRal() {
+      var w = el.ralOut.clientWidth;
+      if (w && w !== lastRW && !el.ralOut.hidden) { lastRW = w; updateRal(false); }
+    }
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(redrawRal).observe(el.ralOut);
 
     el.status.hidden = true;
     el.app.hidden = false;
@@ -1153,8 +1535,12 @@
     wagesError = 'Dati sulle retribuzioni contrattuali non disponibili (' + e.message + '): il calcolo usa solo l’inflazione.';
     return null;
   });
-  Promise.all([getJson(foiUrl), pWages])
-    .then(function (r) { init(r[0], r[1]); })
+  var pRacli = getJson(racliUrl).then(null, function (e) {
+    racliError = 'Dati ISTAT RACLI non disponibili (' + e.message + '): il confronto della retribuzione con il settore non può essere mostrato.';
+    return null;
+  });
+  Promise.all([getJson(foiUrl), pWages, pRacli])
+    .then(function (r) { init(r[0], r[1], r[2]); })
     .catch(function (e) {
       fail('Impossibile caricare i dati ISTAT (' + e.message + '). Il calcolatore non può funzionare senza i dati aggiornati: riprova tra qualche minuto.');
     });
