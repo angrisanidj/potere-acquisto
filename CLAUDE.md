@@ -18,16 +18,16 @@ Commit e push solo quando l'utente li chiede.
 | File | Cosa contiene |
 |---|---|
 | `index.html` | Tutta la pagina: un solo `<div id="fg-potere-acquisto-2026">` con `<style>` e `<script>` (IIFE) dentro |
-| `tests/parser.test.mjs` | Test del parser degli importi in formato italiano (`node --test tests/parser.test.mjs`); estrae il blocco fra `// --- parser-start ---` e `// --- parser-end ---` di `index.html` |
+| `tests/parser.test.mjs` | Test del parser degli importi in formato italiano; estrae il blocco fra `// --- parser-start ---` e `// --- parser-end ---` di `index.html` |
+| `tests/inps.test.mjs` | Test di percentile e quantili INPS sui dati veri; estrae il blocco fra `// --- inps-start ---` e `// --- inps-end ---` |
 | `scripts/update_foi.py` | FOI senza tabacchi → `data/foi.json`; contiene `http_get` (tentativi, limite ISTAT) usato dagli altri script |
 | `scripts/update_retribuzioni.py` | Retribuzioni contrattuali per comparto → `data/retribuzioni.json` |
 | `scripts/update_indice_ateco.py` | Coefficienti dell'indice contrattuale per sezione → `data/indice_ateco.json` |
 | `scripts/check_inps.py` | Controllo mensile dell'albero degli Osservatori INPS (solo `::warning::`) |
 | `scripts/inps_collect.py` | Raccolta a mano della tavola INPS → `data/inps.json` + risposte grezze in `data/inps_raw/<anno>/` |
-| `scripts/update_racli.py`, `scripts/update_ses.py`, `data/racli.json`, `data/ses.json` | **In dismissione**: non più nel workflow; la pagina li usa ancora finché il blocco retribuzione non passa all'INPS |
 | `.github/workflows/update-foi.yml` | Workflow mensile (cron il 20 alle 06:00 UTC + `workflow_dispatch`) |
 | `.github/workflows/collect-inps.yml` | Workflow manuale "Raccolta INPS" |
-| `README.md` | Documentazione pubblica (va aggiornata quando il blocco passa all'INPS) |
+| `README.md` | Documentazione pubblica |
 
 ## Fonti e decisioni
 
@@ -65,8 +65,8 @@ indica licenze → art. 52, comma 2, del CAD (dati pubblicati senza licenza = da
 nota metodologica INPS conferma solo che sono inclusi i dipendenti pubblici a tempo determinato (non
 parla di scuola o supplenti: niente note sull'istruzione).
 
-**RACLI (ISTAT, retribuzioni orarie) ed Eurostat SES (professioni)**: in dismissione, da togliere dalla
-pagina e dal repository con il prossimo passo.
+**RACLI (ISTAT, retribuzioni orarie) ed Eurostat SES (professioni)**: usati fino al 2026-10-01, poi tolti
+dalla pagina e dal repository (sostituiti dall'INPS).
 
 ## Regole fisse
 
@@ -116,35 +116,38 @@ pagina e dal repository con il prossimo passo.
 
 ```bash
 py -m http.server 8765 --bind 127.0.0.1     # poi http://127.0.0.1:8765/
-node --test tests/parser.test.mjs
+node --test tests/parser.test.mjs tests/inps.test.mjs
 ```
 Screenshot: Edge headless con `--remote-debugging-port`, viewport 320/1280 e
 `Page.captureScreenshot` con `captureBeyondViewport` (lo script di supporto stava nella cartella
-temporanea della sessione, non nel repository).
+temporanea della sessione, non nel repository). Esempi di controllo del confronto retributivo:
+operaio nel commercio in Lombardia con 26.000 €, impiegato in finanza con 45.000 €, quadro nella
+manifattura con 70.000 €.
 
 ## Stato attuale (2026-10-01)
 
-Online: calcolatore sul netto in stile "Griglia" (proposta 1b di Claude Design: passi 01 Quando, 02 Quanto,
+Calcolatore sul netto in stile "Griglia" (proposta 1b di Claude Design: passi 01 Quando, 02 Quanto,
 03 Contratto; numero grande; tabella di riepilogo; riquadri; note su tre colonne), opzione contratto per
-comparto, grafico SVG, export PNG; blocco "Come si colloca la tua retribuzione" ancora basato su RACLI
-(paga oraria) con valore di riferimento per professione (Eurostat SES). Dati INPS e indice per sezione già
-nel repository e aggiornati, non ancora usati dalla pagina.
+comparto, grafico SVG, export PNG. Blocco "Come si colloca la tua retribuzione" basato sull'INPS:
+- input: RAL, premi e straordinari (facoltativi), qualifica facoltativa con "Non lo so" (= tutte),
+  settore tra "Tutti i settori" e le 18 sezioni (casella di ricerca, precompilata dal comparto con
+  `COMP_TO_SEC` risalendo l'albero), regione facoltativa; niente ore settimanali;
+- RAL riportata ai valori 2024 con il coefficiente della sezione (Italia, regioni e sezione T: `0015`);
+  percentile per interpolazione nelle classi, arrotondato ai 5 punti con "circa" ("meno del 5%",
+  "più del 95%", "oltre il X%" nella classe aperta, X arrotondato per difetto); scarto dalla mediana in
+  percentuale intera; barra con 1° e 9° decile, quartili, mediana e altri decili; quantili in valori
+  stimati all'ultimo mese dell'indice, arrotondati alle centinaia; limite della classe aperta = 80.000 € ×
+  coefficiente della combinazione, arrotondato alle migliaia: "oltre 85.000 € di agosto 2026";
+- soglie dichiarate nel risultato; combinazioni non disponibili → distribuzione nazionale della qualifica,
+  dichiarata (in regione solo il messaggio se il blocco principale è già nazionale);
+- dirigenti: solo la quota nella classe aperta (Italia 93,2%);
+- comparto della PA: confronto non disponibile.
+Esempi di controllo nei test con coefficiente 1,0 (commercio 40%, −4%; Lombardia 30%, −11%; finanza
+50%, −1%; manifattura 40%, −8%), indipendenti dall'indice mensile.
 
 ## Prossimo passo
 
-Passare il blocco "Come si colloca la tua retribuzione" all'INPS:
-- niente ore settimanali (il confronto è con i lavoratori a tempo pieno per tutto l'anno: nota in pagina);
-- input: RAL (più premi e straordinari facoltativi), sezione ATECO tra le 18, regione facoltativa,
-  qualifica facoltativa con "Non lo so" (= tutte le qualifiche);
-- percentile stimato per interpolazione nelle classi, arrotondato; RAL riportata ai valori dell'anno INPS
-  con il coefficiente della sezione (Italia e regioni: `0015`);
-- barra con decili e quartili; per le combinazioni con soglia, dire che il percentile riguarda solo i
-  lavoratori delle classi pubblicate; quantili nella classe aperta come "oltre 80.000 €";
-- combinazioni non disponibili: distribuzione nazionale della qualifica, dichiarata;
-- dirigenti: niente barra né mediana, solo la quota oltre 80.000 € (Italia 93,2%);
-- togliere RACLI e professione dalla pagina e dal repository (script, JSON, note, README);
-- dati 2024 aggiornati con l'indice di sezione e dichiarati come stima;
-- comparto della PA: confronto non disponibile, come ora.
+Da decidere con l'utente fra i punti in sospeso.
 
 ## In sospeso
 

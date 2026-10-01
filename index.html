@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Potere d'acquisto dello stipendio</title>
-<meta name="description" content="Calcola quanto potere d'acquisto ha perso il tuo stipendio con l'indice ISTAT FOI senza tabacchi e le retribuzioni contrattuali.">
+<meta name="description" content="Calcola quanto potere d'acquisto ha perso il tuo stipendio con l'indice ISTAT FOI senza tabacchi e le retribuzioni contrattuali, e confronta la tua retribuzione con i dati INPS del settore.">
 </head>
 <body style="margin:0;padding:0 12px;background:#ffffff;">
 
@@ -194,10 +194,9 @@
 #fg-potere-acquisto-2026 .fg-bar svg { display: block; width: 100%; height: auto; overflow: visible; }
 #fg-potere-acquisto-2026 .fg-ral .fg-prompt { margin: 4px 0 0; padding-top: 14px; border-top: 2px solid #1A1A2E; font-size: 16px; }
 #fg-potere-acquisto-2026 .fg-ral .fg-soft { background: #ffffff; }
-#fg-potere-acquisto-2026 .fg-prof { margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid #1A1A2E; }
-#fg-potere-acquisto-2026 .fg-prof-val { margin: 2px 0 4px; font-size: 15px; color: #1A1A2E; }
-#fg-potere-acquisto-2026 .fg-prof-val strong { font-size: 30px; font-weight: 700; letter-spacing: -.02em; color: #1A1A2E; }
-#fg-potere-acquisto-2026 .fg-prof-warn {
+#fg-potere-acquisto-2026 .fg-ral-big .fg-pre { display: inline; font-size: .5em; letter-spacing: -.01em; }
+#fg-potere-acquisto-2026 .fg-ral-sec .fg-ral-big strong { font-size: 40px; }
+#fg-potere-acquisto-2026 .fg-ral-warn {
   margin: 8px 0 0; padding: 10px 12px; border-left: 4px solid #003F87; background: #ffffff;
   font-size: 13.5px; line-height: 1.45; color: #1A1A2E;
 }
@@ -235,6 +234,7 @@
   #fg-potere-acquisto-2026 .fg-form { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
   #fg-potere-acquisto-2026 .fg-form.fg-form-2 { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
   #fg-potere-acquisto-2026 .fg-ral-big strong { font-size: 64px; }
+  #fg-potere-acquisto-2026 .fg-ral-sec .fg-ral-big strong { font-size: 48px; }
   #fg-potere-acquisto-2026 .fg-err { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
   #fg-potere-acquisto-2026 .fg-notes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
@@ -244,7 +244,7 @@
 <div class="fg-in">
 
   <header>
-    <p class="fg-kick"><span>Calcolatore</span><span>Dati ISTAT ed Eurostat</span></p>
+    <p class="fg-kick"><span>Calcolatore</span><span>Dati ISTAT e INPS</span></p>
     <h2 class="fg-title">Quanto potere d’acquisto ha perso il tuo stipendio</h2>
     <p class="fg-sub">Indica quanto guadagnavi e da quando: il calcolo confronta lo stipendio netto con l’andamento dei prezzi misurato dall’ISTAT e, se vuoi, con gli aumenti previsti dal tuo contratto.</p>
   </header>
@@ -345,7 +345,7 @@
     <section class="fg-ral" data-fg="ral" aria-labelledby="fg-pa-ral-title">
       <p class="fg-cap">Confronto con il settore</p>
       <h3 class="fg-ral-title" id="fg-pa-ral-title">Come si colloca la tua retribuzione</h3>
-      <p class="fg-sub">La tua retribuzione lorda a confronto con quella dei dipendenti a tempo pieno del settore privato. Il confronto è sulla paga oraria, così l’orario di lavoro non lo falsa.</p>
+      <p class="fg-sub">La tua retribuzione lorda annua a confronto con quella dei dipendenti del settore privato che hanno lavorato tutto l’anno a tempo pieno, secondo i dati INPS.</p>
       <div class="fg-soft" data-fg="ral-pa" hidden></div>
       <div data-fg="ral-body">
         <div class="fg-form">
@@ -358,20 +358,16 @@
             <p class="fg-hint" id="fg-pa-ral-msg" data-fg="ral-msg"></p>
           </div>
           <div class="fg-field">
-            <label class="fg-label" for="fg-pa-ore">Ore settimanali da contratto</label>
-            <div class="fg-money">
-              <input id="fg-pa-ore" data-fg="ore-in" type="text" inputmode="decimal" autocomplete="off" value="40" aria-describedby="fg-pa-ore-msg">
-              <span class="fg-unit">ore</span>
-            </div>
-            <p class="fg-hint" id="fg-pa-ore-msg" data-fg="ore-msg"></p>
-          </div>
-          <div class="fg-field">
             <label class="fg-label" for="fg-pa-premi">Premi e straordinari <small>(facoltativo)</small></label>
             <div class="fg-money">
               <input id="fg-pa-premi" data-fg="premi-in" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 1.200" aria-describedby="fg-pa-premi-msg">
               <span class="fg-unit">€</span>
             </div>
             <p class="fg-hint" id="fg-pa-premi-msg" data-fg="premi-msg">Lordi, dell’ultimo anno: si sommano alla RAL.</p>
+          </div>
+          <div class="fg-field">
+            <label class="fg-label" for="fg-pa-qual">Qualifica <small>(facoltativo)</small></label>
+            <select id="fg-pa-qual" data-fg="qual-in"></select>
           </div>
         </div>
         <div class="fg-form fg-form-2">
@@ -391,17 +387,9 @@
             <select id="fg-pa-reg" data-fg="reg-in"></select>
           </div>
         </div>
-        <div class="fg-form fg-form-2" data-fg="prof-row">
-          <div class="fg-field">
-            <label class="fg-label" for="fg-pa-prof">Professione <small>(facoltativo)</small></label>
-            <select id="fg-pa-prof" data-fg="prof-in" aria-describedby="fg-pa-prof-msg"></select>
-            <p class="fg-hint" id="fg-pa-prof-msg" data-fg="prof-msg">Mostra un valore di riferimento per il tuo grande gruppo professionale.</p>
-          </div>
-        </div>
         <div aria-live="polite">
-          <p class="fg-prompt" data-fg="ral-prompt">Inserisci la RAL per vedere come si colloca la tua paga oraria rispetto ai dipendenti a tempo pieno del settore.</p>
+          <p class="fg-prompt" data-fg="ral-prompt">Inserisci la RAL per vedere quanti dipendenti a tempo pieno del settore guadagnano meno di te.</p>
           <div class="fg-ral-out" data-fg="ral-out" hidden></div>
-          <div class="fg-prof" data-fg="prof-out" hidden></div>
         </div>
       </div>
       <div class="fg-ral-notes" data-fg="ral-notes"></div>
@@ -413,12 +401,12 @@
     <div class="fg-notes">
       <p><strong>Metodo.</strong> La perdita di potere d’acquisto è 1 − I(partenza)/I(arrivo), dove I è l’indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI) senza tabacchi, lo stesso usato per rivalutare affitti e assegni di mantenimento. L’indice misura un paniere medio: l’inflazione vissuta da ciascuna famiglia può essere diversa. Usa lo stipendio netto, perché il lordo risente anche di tasse e contributi. Per i mesi dal 1996 al 2001 l’importo va inserito in lire ed è convertito a 1.936,27 lire per euro.</p>
       <p><strong>Contratto.</strong> L’opzione applica allo stipendio la crescita dell’indice ISTAT delle retribuzioni contrattuali per dipendente del comparto scelto (dati dal 2005): misura gli aumenti previsti dai contratti nazionali (minimi tabellari), non la crescita effettiva della busta paga, che include anzianità, superminimi e promozioni. Riguarda il lordo: a parità di regole fiscali, applicare al netto la crescita del lordo tende a sovrastimarla, per effetto della progressività dell’IRPEF. I mesi con un aumento una tantum che rientra il mese successivo (come dicembre 2023 nella pubblica amministrazione) sono sostituiti dal mese precedente. I confronti si fermano all’ultimo mese disponibile per entrambe le serie.</p>
-      <p><strong>Retribuzione.</strong> Il confronto con il settore usa il registro ISTAT RACLI (retribuzioni orarie dei dipendenti a tempo pieno del settore privato extra-agricolo); il valore di riferimento per professione usa l’indagine sulla struttura delle retribuzioni pubblicata da Eurostat. I dettagli sono nel riquadro «Come si colloca la tua retribuzione».</p>
+      <p><strong>Retribuzione.</strong> Il confronto con il settore usa l’Osservatorio INPS sui lavoratori dipendenti del settore privato non agricolo: distribuzione per classi della retribuzione annua di chi ha lavorato tutto l’anno a tempo pieno, aggiornata con l’indice ISTAT delle retribuzioni contrattuali. I dettagli sono nel riquadro «Come si colloca la tua retribuzione».</p>
     </div>
   </section>
 
   <p class="fg-foot">
-    <span><strong>Fonti:</strong> ISTAT, Eurostat. <span data-fg="foot-data"></span></span>
+    <span><strong>Fonti:</strong> ISTAT, INPS. <span data-fg="foot-data"></span></span>
     <span><strong>Elaborazione:</strong> Daniele Angrisani (<a href="https://x.com/putino" target="_blank" rel="noopener">@putino</a>)</span>
   </p>
 </div>
@@ -429,8 +417,8 @@
 
   var DATA_URL = 'https://angrisanidj.github.io/potere-acquisto/data/foi.json';
   var WAGES_URL = 'https://angrisanidj.github.io/potere-acquisto/data/retribuzioni.json';
-  var RACLI_URL = 'https://angrisanidj.github.io/potere-acquisto/data/racli.json';
-  var SES_URL = 'https://angrisanidj.github.io/potere-acquisto/data/ses.json';
+  var INPS_URL = 'https://angrisanidj.github.io/potere-acquisto/data/inps.json';
+  var INDEX_URL = 'https://angrisanidj.github.io/potere-acquisto/data/indice_ateco.json';
   var LIRE_PER_EURO = 1936.27;
   var EURO_START = '2002-01';
   var MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio',
@@ -446,8 +434,8 @@
   var isLocal = host === 'localhost' || host === '127.0.0.1';
   var foiUrl = isLocal ? 'data/foi.json' : DATA_URL;
   var wagesUrl = isLocal ? 'data/retribuzioni.json' : WAGES_URL;
-  var racliUrl = isLocal ? 'data/racli.json' : RACLI_URL;
-  var sesUrl = isLocal ? 'data/ses.json' : SES_URL;
+  var inpsUrl = isLocal ? 'data/inps.json' : INPS_URL;
+  var indexUrl = isLocal ? 'data/indice_ateco.json' : INDEX_URL;
 
   // --- parser-start ---
   // Interpreta un importo scritto all'italiana: punto per le migliaia, virgola
@@ -498,6 +486,81 @@
   }
   // --- parser-end ---
 
+  // --- inps-start ---
+  // Distribuzioni INPS per classi di retribuzione annua. Una voce di inps.json ha
+  // counts (solo le classi pubblicate) e soglia: "nessuna", "da 15.000" (solo le
+  // classi da quell'importo in su) o "esclusa 5000-9999" (manca quella classe).
+  // Tutti gli importi sono in valori dell'anno INPS: i coefficienti si applicano fuori.
+  function inpsDist(classes, entry) {
+    if (!entry || entry.non_disponibile || !entry.counts) return null;
+    var s = entry.soglia || 'nessuna', from = 0, skip = null, m;
+    if ((m = /^da (\d{1,3}(?:\.\d{3})*)$/.exec(s))) from = Number(m[1].replace(/\./g, ''));
+    else if ((m = /^esclusa (.+)$/.exec(s))) skip = m[1];
+    else if (s !== 'nessuna') return null;   // soglia sconosciuta: meglio nessun dato che un dato sbagliato
+    var rows = [], total = 0, skipped = null;
+    classes.forEach(function (c) {
+      if (c.label === skip) { skipped = c; return; }
+      if (c.lo < from) return;
+      var n = entry.counts[c.label] || 0;
+      rows.push({ lo: c.lo, hi: c.hi, n: n });
+      total += n;
+    });
+    if (!(total > 0) || (skip && !skipped)) return null;
+    return { rows: rows, total: total, soglia: s, from: from, skipped: skipped };
+  }
+
+  // Quota di lavoratori con retribuzione inferiore a x, interpolando in modo
+  // lineare dentro la classe. Restituisce {p}, oppure {open: true, p} se x cade
+  // nella classe aperta (p è la quota sotto quella classe), oppure {out: true} se
+  // x cade sotto le classi pubblicate o in una classe esclusa.
+  function inpsPercentile(d, x) {
+    var below = 0;
+    for (var i = 0; i < d.rows.length; i++) {
+      var r = d.rows[i];
+      if (x < r.lo) return { out: true };
+      if (r.hi === null) return r.n > 0 ? { open: true, p: below / d.total } : { p: 1 };
+      if (x < r.hi) return { p: (below + r.n * (x - r.lo) / (r.hi - r.lo)) / d.total };
+      below += r.n;
+    }
+    return { p: 1 };
+  }
+
+  // Quantile q (0-1) per interpolazione lineare: {v} oppure {open: true} se cade
+  // nella classe aperta, dove non si può stimare.
+  function inpsQuantile(d, q) {
+    var target = q * d.total, cum = 0;
+    for (var i = 0; i < d.rows.length; i++) {
+      var r = d.rows[i];
+      if (r.n > 0 && cum + r.n >= target) {
+        return r.hi === null ? { open: true } : { v: r.lo + (target - cum) / r.n * (r.hi - r.lo) };
+      }
+      cum += r.n;
+    }
+    return { open: true };
+  }
+
+  // Testo del percentile P (da inpsPercentile), arrotondato ai 5 punti con "circa";
+  // nella classe aperta solo il limite inferiore. {pre, num} oppure null.
+  function inpsPctText(P) {
+    function art(n) { return n === 80 ? 'l’' : 'il '; }
+    var n;
+    if (P.open) {
+      n = Math.floor(P.p * 20) * 5;
+      return n > 0 ? { pre: 'oltre ' + art(n), num: n + '%' } : null;
+    }
+    n = Math.round(P.p * 20) * 5;
+    if (n <= 0) return { pre: 'meno del ', num: '5%' };
+    if (n >= 100) return { pre: 'più del ', num: '95%' };
+    return { pre: 'circa ' + art(n), num: n + '%' };
+  }
+
+  // Scarto di x dalla mediana, in percentuale intera con segno ("−4%", "+12%").
+  function inpsGap(x, med) {
+    var r = x / med - 1, n = Math.round(Math.abs(r) * 100);
+    return (n === 0 ? '' : r > 0 ? '+' : '−') + n + '%';
+  }
+  // --- inps-end ---
+
   if (typeof document === 'undefined') return;
   var root = document.getElementById('fg-potere-acquisto-2026');
   if (!root) return;
@@ -515,10 +578,9 @@
     chartBox: $('chart-box'), chartTitle: $('chart-title'), chartSub: $('chart-sub'), chart: $('chart'),
     png: $('png'), pngMsg: $('png-msg'), footData: $('foot-data'),
     ralPa: $('ral-pa'), ralBody: $('ral-body'), ralIn: $('ral-in'), ralMsg: $('ral-msg'),
-    oreIn: $('ore-in'), oreMsg: $('ore-msg'), premiIn: $('premi-in'), premiMsg: $('premi-msg'),
+    premiIn: $('premi-in'), premiMsg: $('premi-msg'), qualIn: $('qual-in'),
     atecoInput: $('ateco-input'), atecoList: $('ateco-list'), atecoMsg: $('ateco-msg'), regIn: $('reg-in'),
-    ralPrompt: $('ral-prompt'), ralOut: $('ral-out'), ralNotes: $('ral-notes'),
-    profRow: $('prof-row'), profIn: $('prof-in'), profOut: $('prof-out'), profMsg: $('prof-msg')
+    ralPrompt: $('ral-prompt'), ralOut: $('ral-out'), ralNotes: $('ral-notes')
   };
 
   var D = null;          // FOI
@@ -792,7 +854,7 @@
 
   // ---------- calcolo e rendering ----------
   function update(showErrors) {
-    syncAteco();
+    syncSec();
     updateRal(false);
     var start = el.month.value;
     if (!start) return;
@@ -1199,234 +1261,170 @@
     hit.addEventListener('pointerleave', hide);
   }
 
-  // ---------- confronto della RAL con il settore (ISTAT RACLI) ----------
-  var RQ = null;                 // data/racli.json
-  var racliError = '';
-  var atecoCode = '0010';        // 0010 = tutti i settori privati
-  var atecoFromComp = null;      // comparto da cui è stato precompilato
-  var atecoTouched = false;      // l'utente ha scelto il settore a mano
-  var atecoCombo = null;
-  var divs = {};                 // codice divisione -> dati
-  var WEEKS = 365 / 7;           // le ore retribuite ISTAT seguono il calendario
+  // ---------- confronto della RAL con il settore (INPS) ----------
+  var INPS = null;               // data/inps.json
+  var IDX = null;                // data/indice_ateco.json
+  var inpsError = '';
+  var secCode = 'IT';            // IT = tutti i settori, altrimenti la lettera della sezione ATECO
+  var secFromComp = null;        // comparto da cui è stato precompilato
+  var secTouched = false;        // l'utente ha scelto il settore a mano
+  var secCombo = null;
   var PA_ROOT = 'Z2540';         // attività della pubblica amministrazione
+  var QUANT = [0.1, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.75, 0.8, 0.9];
 
-  // Corrispondenza fra comparto contrattuale e divisione ATECO, solo dove il
-  // comparto ricade chiaramente in una sola divisione; negli altri casi il
-  // settore resta da scegliere.
-  var COMP_TO_ATECO = {
-    Z0320: '15', Z0340: '15', Z0360: '15', Z0380: '15', Z0420: '16', Z0440: '17', Z0460: '17',
-    Z0480: '17', Z0500: '18', Z0540: '20', Z0580: '22', Z0600: '23', Z0620: '23', Z0640: '23',
-    Z0660: '23', Z0680: '23', Z0700: '23', Z0740: '24', Z0760: '24', Z0900: '30', Z0910: '29',
-    Z0940: '35', Z1120: '38', Z1261: '47', Z1270: '47', Z1340: '49', Z1360: '49', Z1380: '49',
-    Z1400: '49', Z1420: '49', Z1440: '49', Z1460: '49', Z1480: '49', Z1500: '50', Z1520: '51',
-    Z1640: '53', Z1660: '53', Z1680: '53', Z1700: '52', Z1720: '52', Z1760: '52', Z1780: '52',
-    Z1820: '52', Z1841: '55', Z1842: '56', Z1940: '58', Z1980: '60', Z2080: '61', Z2120: '64',
-    Z2220: '65', Z2320: '80', Z2340: '81', Z2360: '85', Z2380: '85', Z2400: '85', Z2420: '86',
-    Z2500: '96'
+  // Sezioni ATECO 2007 dell'Osservatorio: nome nell'elenco, nome breve nelle frasi,
+  // parole in più per la ricerca.
+  var SEC = {
+    B: ['Estrazione di minerali da cave e miniere', 'Estrazione di minerali', 'miniere cave petrolio'],
+    C: ['Attività manifatturiere', 'Attività manifatturiere', 'industria fabbrica manifattura metalmeccanica alimentare tessile chimica farmaceutica automobili'],
+    D: ['Fornitura di energia elettrica, gas, vapore e aria condizionata', 'Energia elettrica e gas', 'energia elettricità luce'],
+    E: ['Acqua, reti fognarie, gestione dei rifiuti e risanamento', 'Acqua e rifiuti', 'ambiente fognature nettezza'],
+    F: ['Costruzioni', 'Costruzioni', 'edilizia cantiere impianti'],
+    G: ['Commercio all’ingrosso e al dettaglio, riparazione di autoveicoli e motocicli', 'Commercio', 'negozio supermercato vendita grande distribuzione officina'],
+    H: ['Trasporto e magazzinaggio', 'Trasporto e magazzinaggio', 'trasporti logistica corriere poste autista ferrovie'],
+    I: ['Servizi di alloggio e di ristorazione', 'Alloggio e ristorazione', 'albergo hotel ristorante bar turismo'],
+    J: ['Servizi di informazione e comunicazione', 'Informazione e comunicazione', 'software informatica telecomunicazioni editoria giornali televisione radio'],
+    K: ['Attività finanziarie e assicurative', 'Attività finanziarie e assicurative', 'banca banche assicurazioni finanza credito'],
+    L: ['Attività immobiliari', 'Attività immobiliari', 'agenzia immobiliare'],
+    M: ['Attività professionali, scientifiche e tecniche', 'Attività professionali, scientifiche e tecniche', 'studio professionale avvocato commercialista ingegneria architetto consulenza ricerca pubblicità'],
+    N: ['Noleggio, agenzie di viaggio, servizi di supporto alle imprese', 'Noleggio e servizi alle imprese', 'pulizie vigilanza agenzia viaggi call center somministrazione'],
+    P: ['Istruzione', 'Istruzione', 'scuola privata formazione'],
+    Q: ['Sanità e assistenza sociale', 'Sanità e assistenza sociale', 'ospedale clinica casa di cura rsa'],
+    R: ['Attività artistiche, sportive, di intrattenimento e divertimento', 'Arte, sport e intrattenimento', 'cultura spettacolo musei giochi'],
+    S: ['Altre attività di servizi', 'Altri servizi', 'associazioni parrucchiere estetista riparazioni lavanderia'],
+    T: ['Attività di famiglie e convivenze come datori di lavoro', 'Famiglie come datori di lavoro', 'personale domestico']
+  };
+  var QUALS = [
+    { k: '', name: 'Non lo so (tutte le qualifiche)', pl: 'dipendenti', of: 'dei dipendenti', all: 'i dipendenti' },
+    { k: 'Operaio', name: 'Operaio', pl: 'operai', of: 'degli operai', all: 'gli operai' },
+    { k: 'Impiegato', name: 'Impiegato', pl: 'impiegati', of: 'degli impiegati', all: 'gli impiegati' },
+    { k: 'Quadro', name: 'Quadro', pl: 'quadri', of: 'dei quadri', all: 'i quadri' },
+    { k: 'Dirigente', name: 'Dirigente', pl: 'dirigenti', of: 'dei dirigenti', all: 'i dirigenti' },
+    { k: 'Apprendista', name: 'Apprendista', pl: 'apprendisti', of: 'degli apprendisti', all: 'gli apprendisti' }
+  ];
+  // Regioni come le scrive l'INPS: nome in pagina e preposizione dove non è "in".
+  var REG_NAME = { 'Valle d\'Aosta/Vallee d\'Aoste': 'Valle d’Aosta', 'Trentino-Alto-Adige': 'Trentino-Alto Adige' };
+  var REG_IN = { Lazio: 'nel Lazio', Marche: 'nelle Marche' };
+
+  // Corrispondenza fra comparto contrattuale e sezione ATECO: si risale l'albero
+  // dei comparti fino al primo nodo che ricade chiaramente in una sola sezione;
+  // altrimenti il settore resta da scegliere.
+  var COMP_TO_SEC = {
+    Z0110: 'B', Z0160: 'C', Z0940: 'D', Z1120: 'E', Z1180: 'F', Z1260: 'G', Z1261: 'G', Z1270: 'G',
+    Z1280: 'H', Z1840: 'I', Z1900: 'J', Z2080: 'J', Z2100: 'K', Z2300: 'M', Z2320: 'N', Z2340: 'N',
+    Z2360: 'P', Z2420: 'Q', Z2480: 'Q', Z2500: 'S'
   };
 
   function cap(t) { return t ? t.charAt(0).toUpperCase() + t.slice(1) : t; }
-  function euroH(n) { return fmt(n, 2) + ' €'; }
   function isPA(code) {
     for (var c = code; c && comp[c]; c = comp[c].parent) if (c === PA_ROOT) return true;
     return false;
   }
   function paActive() { return !!(W && pref && compCode && isPA(compCode)); }
+  function regLabel(r) { return REG_NAME[r] || r; }
+  function qualOf(k) { return QUALS.filter(function (q) { return q.k === k; })[0] || QUALS[0]; }
+  // I valori stimati si arrotondano alle centinaia: la precisione dei dati non va oltre.
+  function euro100(v) { return euro(Math.round(v / 100) * 100); }
+  function openLo() { return INPS.classes[INPS.classes.length - 1].lo; }
+  // Limite della classe aperta riportato all'ultimo mese con il coefficiente f, alle migliaia.
+  function openTxt(f) { return 'oltre ' + euro(Math.round(openLo() * f / 1000) * 1000) + ' di ' + monthName(IDX.index_last_month); }
 
-  function parseOre(raw) {
-    var s = String(raw || '').trim();
-    if (s === '') return { ok: false, error: 'Inserisci le ore settimanali da contratto.' };
-    if (!/^\d{1,2}([.,]\d{1,2})?$/.test(s)) return { ok: false, error: 'Ore non valide: scrivi un numero, ad esempio 40 o 37,5.' };
-    var v = Number(s.replace(',', '.'));
-    if (!(v >= 1 && v <= 60)) return { ok: false, error: 'Le ore settimanali devono essere tra 1 e 60.' };
-    return { ok: true, value: v };
-  }
-
-  function stats(entry, f) {
-    var v = entry.values;
-    return { d1: v.d1 * f, mediana: v.mediana * f, media: v.media * f, d9: v.d9 * f };
-  }
-
-  function initRacli() {
-    RQ.divisions.forEach(function (d) { divs[d.code] = d; });
-    var nodes = [{ code: '0010', name: 'Tutti i settori privati (industria e servizi)', parent: null, depth: 0 }];
-    var lastSec = null;
-    RQ.divisions.forEach(function (d) {
-      if (d.section !== lastSec) {
-        lastSec = d.section;
-        nodes.push({ code: 'S:' + d.section, name: d.section + ' · ' + cap(d.section_name || ''), parent: null, depth: 0, group: true });
-      }
-      nodes.push({ code: d.code, name: d.code + ' · ' + cap(d.name), parent: 'S:' + d.section, depth: 1,
-                   sectionName: d.section_name || '' });
-    });
-    atecoCombo = makeCombo({
-      input: el.atecoInput, list: el.atecoList, idPrefix: 'fg-pa-ateco-', empty: 'Nessun settore trovato',
-      nodes: nodes,
-      match: function (n, q) {
-        if (n.group) return norm(n.name).indexOf(q) !== -1;
-        return norm(n.name).indexOf(q) !== -1 || n.code.indexOf(q) === 0 ||
-          (n.sectionName && norm(n.sectionName).indexOf(q) !== -1);
-      },
-      getValue: function () { return atecoCode; },
-      labelOf: function (code) { return code === '0010' ? 'Tutti i settori privati (industria e servizi)' : code + ' · ' + cap(divs[code].name); },
-      onChoose: function (code) { atecoCode = code; atecoTouched = true; atecoFromComp = null; updateRal(false); }
-    });
-    var regs = RQ.regions.slice().sort(function (a, b) { return a.name.localeCompare(b.name, 'it'); });
-    var o0 = document.createElement('option'); o0.value = ''; o0.textContent = 'Nessuna'; el.regIn.appendChild(o0);
-    regs.forEach(function (r) {
-      var o = document.createElement('option'); o.value = r.code; o.textContent = r.name; el.regIn.appendChild(o);
-    });
-    [el.ralIn, el.oreIn, el.premiIn].forEach(function (inp) {
-      inp.addEventListener('input', function () { updateRal(false); });
-      inp.addEventListener('blur', function () { if (inp.value.trim()) inp.dataset.touched = '1'; updateRal(false); });
-    });
-    el.regIn.addEventListener('change', function () { updateRal(false); });
-    renderRalNotes();
-  }
-
-  // Precompila il settore dal comparto contrattuale, finché l'utente non lo sceglie a mano.
-  function syncAteco() {
-    if (!RQ || atecoTouched) return;
-    var code = (W && pref && compCode && COMP_TO_ATECO[compCode]) || null;
-    var next = code && divs[code] ? code : '0010';
-    atecoFromComp = next !== '0010' ? compCode : null;
-    if (next !== atecoCode) atecoCode = next;
-    if (atecoCombo) atecoCombo.refresh();
-  }
-
-  function levelNote(d) {
-    var parts = [];
-    if (d.racli_from !== d.code) parts.push('i valori ISTAT della divisione non sono pubblicati (segreto statistico): si usano quelli della sezione ' + d.racli_from);
-    if (d.index_code !== d.code) parts.push('gli aumenti contrattuali sono quelli della sezione ' + d.index_code + ', perché l’indice non ha la divisione');
-    return parts.length ? cap(parts.join('; ')) + '.' : '';
-  }
-
-  function renderRalNotes() {
-    el.ralNotes.innerHTML = '';
-    function p(html) { var e = document.createElement('p'); e.innerHTML = html; el.ralNotes.appendChild(e); }
-    if (!RQ) { p(racliError); return; }
-    var y = RQ.year;
-    var up = RQ.divisions.filter(function (d) { return d.racli_from !== d.code || d.index_code !== d.code; })
-      .map(function (d) {
-        return d.code + ' (' + (d.racli_from !== d.code ? 'valori ISTAT della sezione ' + d.racli_from : 'aumenti contrattuali della sezione ' + d.index_code) + ')';
-      });
-    p('<strong>Fonte:</strong> ISTAT, registro RACLI, retribuzione lorda per ora retribuita dei dipendenti a tempo pieno del settore privato extra-agricolo, anno ' + y +
-      '. Dato ISTAT ' + y + ' aggiornato ' + aMonth(RQ.index_last_month) + ' con gli aumenti contrattuali del settore: stima prudente, che non include la crescita oltre i minimi.');
-    p('<strong>Cosa misura:</strong> il dato comprende microimprese, apprendisti e rapporti di lavoro brevi, quindi è più basso della retribuzione media che ISTAT pubblica con l’indagine sulla struttura delle retribuzioni, limitata alle unità con almeno 10 dipendenti. Le ore retribuite includono ferie e festività; la retribuzione include tredicesima, straordinari e premi.');
-    p('<strong>Calcolo:</strong> retribuzione oraria = (RAL + premi e straordinari) ÷ (ore settimanali × 52,14 settimane).');
-    p('<strong>Livelli superiori usati:</strong> ' + (up.length ? up.join(', ') + '. ' : '') +
-      'Per il totale e le regioni gli aumenti contrattuali sono quelli di industria e servizi di mercato (sezioni B–N), perché l’indice non ha un dato per il solo settore privato.');
-    if (SQ) {
-      p('<strong>Professione:</strong> Eurostat, indagine sulla struttura delle retribuzioni ' + SQ.year +
-        ' (dati ISTAT), retribuzione lorda media annua per grande gruppo professionale (ISCO-08, a una cifra; denominazioni CP2011) e sezione di attività, unità con almeno 10 dipendenti, ricondotta ad anno intero e tempo pieno. Aggiornata ' +
-        aMonth(SQ.index_last_month) + ' con gli aumenti contrattuali della sezione. È un valore di riferimento: non viene confrontato con la tua retribuzione.');
-    } else if (sesError) {
-      p('<strong>Professione:</strong> ' + sesError);
+  // Distribuzione per un ambito (Italia, sezione o regione) e una qualifica ('' =
+  // tutte), con il coefficiente dell'indice. Se la combinazione non è disponibile
+  // si usa la distribuzione nazionale della qualifica, segnalandolo.
+  function scopeDist(kind, key, qual) {
+    var entry, fcode = IDX.total_code, where;
+    if (kind === 'sec') {
+      var sz = INPS.sezioni[key];
+      entry = qual ? sz.quals[qual] : sz.tutte;
+      if (IDX.factors[key]) fcode = key;
+      where = 'del settore «' + SEC[key][1] + '»';
+    } else if (kind === 'reg') {
+      var rg = INPS.regioni[key];
+      entry = qual ? rg.quals[qual] : rg.tutte;
+      where = REG_IN[key] || 'in ' + regLabel(key);
+    } else {
+      entry = INPS.italia[qual || 'Totale'];
+      where = 'in Italia (tutti i settori)';
     }
-    p('<strong>Pubblica amministrazione:</strong> il confronto non è disponibile, perché il registro RACLI copre solo il settore privato.');
+    var S = { kind: kind, key: key, qual: qual, d: inpsDist(INPS.classes, entry), fcode: fcode,
+              f: IDX.factors[fcode], where: where, fallback: null };
+    if (!S.d && kind !== 'it') {
+      var nat = scopeDist('it', null, qual);
+      nat.fallback = { where: where, refused: !!(entry && (entry.tentativi || []).some(function (t) { return t.esito === 'rifiutata'; })) };
+      return nat;
+    }
+    return S;
   }
 
-  // ---------- valore di riferimento per professione (Eurostat SES) ----------
-  var SQ = null;                 // data/ses.json
-  var sesError = '';
-  // Grandi gruppi CP2011 (ISTAT) con il corrispondente grande gruppo ISCO-08 usato da
-  // Eurostat; il gruppo 6 CP2011 comprende anche gli agricoltori (ISCO 6), assenti
-  // dall'indagine, quindi qui vale per artigiani e operai specializzati (ISCO 7).
-  var PROF = [
-    { isco: 'OC1', name: 'Legislatori, imprenditori e alta dirigenza', ex: 'direttore d’azienda o di filiale' },
-    { isco: 'OC2', name: 'Professioni intellettuali, scientifiche e di elevata specializzazione', ex: 'ingegnere, sviluppatore software, avvocato' },
-    { isco: 'OC3', name: 'Professioni tecniche', ex: 'tecnico informatico, geometra, agente commerciale' },
-    { isco: 'OC4', name: 'Professioni esecutive nel lavoro d’ufficio', ex: 'impiegato amministrativo, segretario' },
-    { isco: 'OC5', name: 'Professioni qualificate nelle attività commerciali e nei servizi', ex: 'commesso, cuoco, addetto all’assistenza' },
-    { isco: 'OC7', name: 'Artigiani e operai specializzati', ex: 'elettricista, meccanico, muratore' },
-    { isco: 'OC8', name: 'Conduttori di impianti, operai di macchinari e conducenti di veicoli', ex: 'operaio di linea, autista' },
-    { isco: 'OC9', name: 'Professioni non qualificate', ex: 'addetto alle pulizie, facchino' }
-  ];
-
-  function initSes() {
-    var o0 = document.createElement('option'); o0.value = ''; o0.textContent = 'Nessuna'; el.profIn.appendChild(o0);
-    PROF.forEach(function (g) {
-      var o = document.createElement('option');
-      o.value = g.isco; o.textContent = g.name + ' (es. ' + g.ex + ')';
-      el.profIn.appendChild(o);
-    });
-    el.profIn.addEventListener('change', function () { updateRal(false); });
+  function scopeTitle(kind, key, q) {
+    if (kind === 'reg') return 'Nella tua regione: ' + regLabel(key) + (q.k ? ', ' + q.pl : '');
+    if (kind === 'sec') return cap(q.pl) + ' del settore «' + SEC[key][1] + '»';
+    return cap(q.pl) + ' in Italia, tutti i settori privati';
+  }
+  function fallbackText(q, fb) {
+    return 'La distribuzione ' + q.of + ' ' + fb.where + ' non è disponibile' +
+      (fb.refused ? ' (l’INPS non la pubblica per tutelare l’anonimato)' : '');
   }
 
-  // Nessuno scarto con la RAL dell'utente: è un valore di riferimento, non un confronto.
-  function renderProf() {
-    var code = el.profIn.value;
-    var sel = PROF.filter(function (x) { return x.isco === code; })[0];
-    el.profMsg.textContent = sel ? 'Esempi: ' + sel.ex + '.' : 'Mostra un valore di riferimento per il tuo grande gruppo professionale.';
-    el.profOut.hidden = !SQ || !code;
-    if (!SQ || !code) return;
-    var g = PROF.filter(function (x) { return x.isco === code; })[0];
-    var sec = atecoCode === '0010' ? null : divs[atecoCode].section;
-    var row = SQ.values[code];
-    var useSec = sec && row[sec] != null;
-    var key = useSec ? sec : SQ.total_code;
-    var secName = sec ? cap(divs[atecoCode].section_name) : '';
-    var base = row[key], est = base * SQ.factors[key];
-    el.profOut.innerHTML = '';
-    function add(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; el.profOut.appendChild(e); return e; }
-    add('p', 'fg-ral-h', 'Valore di riferimento: ' + g.name);
-    add('p', 'fg-hint', useSec ? 'Sezione: ' + secName + '.' :
-      (sec ? 'Per la sezione «' + secName + '» il dato del gruppo non è pubblicato: si usa la media del gruppo in tutti i settori escluse le amministrazioni pubbliche.'
-           : 'Tutti i settori escluse le amministrazioni pubbliche.'));
-    var v = add('p', 'fg-prof-val');
-    var st = document.createElement('strong'); st.textContent = euro(est); v.appendChild(st);
-    v.appendChild(document.createTextNode(' lordi annui, media stimata ' + aMonth(SQ.index_last_month) +
-      ' (media ' + SQ.year + ': ' + euro(base) + ', aggiornata con gli aumenti contrattuali ' +
-      (useSec ? 'della sezione' : 'di industria e servizi di mercato') + ').'));
-    add('p', 'fg-prof-warn', 'È una media: la maggior parte dei lavoratori del gruppo guadagna meno. Dati ' + SQ.year +
-      ', imprese con almeno 10 dipendenti; nelle sezioni istruzione e sanità sono comprese le unità pubbliche.');
-  }
-
-  function bandText(x, s) {
-    if (x < s.d1) return 'sotto il primo decile: il 90% dei dipendenti a tempo pieno ha una paga oraria più alta';
-    if (x < s.mediana) return 'tra il primo decile e la mediana';
-    if (x < s.d9) return 'tra la mediana e il nono decile';
-    return 'sopra il nono decile: sei nel 10% meglio pagato';
-  }
-
-  // Barra orizzontale: primo decile, mediana, media, nono decile e posizione dell'utente.
-  function drawBar(box, s, x) {
+  // Barra della distribuzione: fascia dal 1° al 9° decile, fascia scura fra i
+  // quartili, mediana, altri decili come linee bianche e posizione dell'utente.
+  // I quantili nella classe aperta vanno in una zona a destra, oltre l'interruzione.
+  function drawDistBar(box, d, f, x) {
     var Wd = Math.max(260, Math.round(box.clientWidth || 300));
-    var lo = Math.min(s.d1, x) * 0.9, hi = Math.max(s.d9, x) * 1.06;
-    var pad = 8, X = function (v) { return pad + (v - lo) / (hi - lo) * (Wd - 2 * pad); };
-    var barY = 34, barH = 12;
+    var B = openLo() * f, q = {};
+    QUANT.forEach(function (k) { var r = inpsQuantile(d, k); q[k] = r.open ? null : r.v * f; });
+    var userOpen = x >= B, anyOpen = userOpen || q[0.9] === null;
+    var pad = 8, inner = Wd - 2 * pad, openW = anyOpen ? Math.max(64, inner * 0.2) : 0, linW = inner - openW;
+    var vals = QUANT.map(function (k) { return q[k]; }).filter(function (v) { return v !== null; });
+    if (!userOpen) vals.push(x);
+    var lo = (vals.length ? Math.min.apply(null, vals) : B * 0.8) * 0.92;
+    var hi = anyOpen ? B : Math.max.apply(null, vals) * 1.05;
+    function X(v) { return v === null || v >= B ? pad + linW + openW / 2 : pad + Math.min(linW, (v - lo) / (hi - lo) * linW); }
+    function XB(v) { return v === null ? pad + inner : X(v); }   // estremo destro delle fasce
+    var barY = 34, barH = 14;
+
     var marks = [
-      { v: s.d1, lbl: '1° decile', color: C.mid },
-      { v: s.mediana, lbl: 'mediana', color: C.dark, bold: true },
-      { v: s.media, lbl: 'media', color: C.mid },
-      { v: s.d9, lbl: '9° decile', color: C.mid }
+      { k: 0.1, lbl: '1° decile' }, { k: 0.25, lbl: '1° quartile' }, { k: 0.5, lbl: 'mediana', bold: true },
+      { k: 0.75, lbl: '3° quartile' }, { k: 0.9, lbl: '9° decile' }
     ];
-    // etichette su due righe sotto la barra, senza sovrapposizioni
-    var rowEnd = [-1e9, -1e9];
-    marks.forEach(function (mk) {
-      var w = Math.max(estW(mk.lbl, 11, mk.bold), estW(fmt(mk.v, 2) + ' €', 11, mk.bold));
-      var cx = Math.max(pad + w / 2, Math.min(Wd - pad - w / 2, X(mk.v)));
-      var row = cx - w / 2 > rowEnd[0] + 6 ? 0 : 1;
-      rowEnd[row] = cx + w / 2;
-      mk.cx = cx; mk.row = row;
+    var shown = marks.filter(function (m) { return q[m.k] !== null; })
+      .map(function (m) { return { x: X(q[m.k]), lbl: m.lbl, val: euro100(q[m.k]), bold: m.bold }; });
+    var opens = marks.filter(function (m) { return q[m.k] === null; });
+    if (opens.length) {
+      shown.push({ x: X(null), lbl: opens.map(function (m) { return m.lbl; }).join(' e '),
+                   val: openTxt(f), bold: opens.some(function (m) { return m.bold; }) });
+    }
+    // etichette sotto la barra, ognuna sulla prima riga libera
+    var rowEnd = [];
+    shown.forEach(function (mk) {
+      var w = Math.max(estW(mk.lbl, 11, mk.bold), estW(mk.val, 11, mk.bold));
+      mk.cx = Math.max(pad + w / 2, Math.min(Wd - pad - w / 2, mk.x));
+      for (mk.row = 0; rowEnd[mk.row] !== undefined && mk.cx - w / 2 < rowEnd[mk.row] + 8; mk.row++) {}
+      rowEnd[mk.row] = mk.cx + w / 2;
     });
-    var rows = marks.some(function (mk) { return mk.row === 1; }) ? 2 : 1;
-    var H = barY + barH + 14 + rows * 30;
+    var H = barY + barH + 14 + rowEnd.length * 30;
     var svg = sv('svg', { viewBox: '0 0 ' + Wd + ' ' + H, width: Wd, height: H, role: 'img',
-      'aria-label': 'Tu ' + euroH(x) + ' l’ora; primo decile ' + euroH(s.d1) + ', mediana ' + euroH(s.mediana) +
-        ', media ' + euroH(s.media) + ', nono decile ' + euroH(s.d9) });
-    sv('rect', { x: pad, y: barY, width: Wd - 2 * pad, height: barH, rx: 3, fill: '#F2F5FA' }, svg);
-    sv('rect', { x: X(s.d1), y: barY, width: Math.max(1, X(s.d9) - X(s.d1)), height: barH, rx: 3, fill: C.light }, svg);
-    sv('rect', { x: X(s.d1), y: barY, width: Math.max(1, X(s.mediana) - X(s.d1)), height: barH, rx: 3, fill: '#CFE6F7' }, svg);
-    marks.forEach(function (mk) {
-      var tx = X(mk.v), ly = barY + barH + 14 + mk.row * 30;
-      sv('line', { x1: tx, x2: tx, y1: barY - 3, y2: ly - 10, stroke: mk.color, 'stroke-width': mk.bold ? 2 : 1.2,
-                   'stroke-dasharray': mk.lbl === 'media' ? '3 2' : 'none' }, svg);
-      txt(svg, mk.cx, ly, mk.lbl, { anchor: 'middle', fill: C.muted, weight: mk.bold ? 700 : 400 });
-      txt(svg, mk.cx, ly + 13, fmt(mk.v, 2) + ' €', { anchor: 'middle', fill: C.text, weight: mk.bold ? 700 : 400 });
+      'aria-label': 'Tu: ' + euro(x) + '. ' + shown.map(function (mk) { return mk.lbl + ' ' + mk.val; }).join(', ') +
+        '. Valori stimati ' + aMonth(IDX.index_last_month) + '.' });
+    sv('rect', { x: pad, y: barY, width: inner, height: barH, fill: '#ffffff' }, svg);
+    var x1 = X(q[0.1]), x9 = XB(q[0.9]), xq1 = X(q[0.25]), xq3 = XB(q[0.75]);
+    sv('rect', { x: x1, y: barY, width: Math.max(1, x9 - x1), height: barH, fill: '#CFE6F7' }, svg);
+    sv('rect', { x: xq1, y: barY, width: Math.max(1, xq3 - xq1), height: barH, fill: '#8EC3E8' }, svg);
+    [0.2, 0.3, 0.4, 0.6, 0.7, 0.8].forEach(function (k) {
+      if (q[k] === null) return;
+      var tx = X(q[k]);
+      sv('line', { x1: tx, x2: tx, y1: barY, y2: barY + barH, stroke: '#ffffff', 'stroke-width': 1.5 }, svg);
     });
-    // posizione dell'utente
-    var ux = X(x), ul = 'Tu: ' + fmt(x, 2) + ' €', uw = estW(ul, 12, true);
+    // interruzione dell'asse prima della classe aperta
+    if (anyOpen) sv('rect', { x: pad + linW - 1, y: barY - 3, width: 4, height: barH + 6, fill: C.light }, svg);
+    shown.forEach(function (mk) {
+      var ly = barY + barH + 14 + mk.row * 30;
+      sv('line', { x1: mk.x, x2: mk.x, y1: barY - 3, y2: ly - 10, stroke: mk.bold ? C.dark : C.mid, 'stroke-width': mk.bold ? 2.5 : 1.2 }, svg);
+      txt(svg, mk.cx, ly, mk.lbl, { anchor: 'middle', fill: C.muted, weight: mk.bold ? 700 : 400 });
+      txt(svg, mk.cx, ly + 13, mk.val, { anchor: 'middle', fill: C.text, weight: mk.bold ? 700 : 400 });
+    });
+    var ux = X(userOpen ? null : x), ul = 'Tu: ' + euro(x), uw = estW(ul, 12, true);
     sv('path', { d: 'M' + (ux - 6) + ' ' + (barY - 10) + 'L' + (ux + 6) + ' ' + (barY - 10) + 'L' + ux + ' ' + (barY - 1) + 'Z', fill: C.text }, svg);
     sv('line', { x1: ux, x2: ux, y1: barY - 1, y2: barY + barH + 2, stroke: C.text, 'stroke-width': 2 }, svg);
     txt(svg, Math.max(pad + uw / 2, Math.min(Wd - pad - uw / 2, ux)), barY - 15, ul,
@@ -1435,72 +1433,194 @@
     box.appendChild(svg);
   }
 
+  // Un blocco di risultato (settore o regione) dentro parent; prev è il blocco
+  // principale, per non ripetere nel blocco della regione la stessa nota.
+  function renderBlock(parent, S, x, prev) {
+    var q = qualOf(S.qual), d = S.d, last = IDX.index_last_month, y = INPS.year;
+    function add(tag, cls, text) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      parent.appendChild(e);
+      return e;
+    }
+    add('p', 'fg-ral-h', scopeTitle(S.fallback ? (prev ? 'reg' : 'sec') : S.kind, S.fallback ? S.fallback.key : S.key, q));
+    if (S.fallback) add('p', 'fg-ral-warn', fallbackText(q, S.fallback) + ': il confronto è con ' + q.all + ' di tutta Italia.');
+    if (!d) { add('p', 'fg-hint', 'Dati INPS non disponibili per questa scelta.'); return; }
+    var who = ' ' + q.of + ' a tempo pieno ' + S.where;
+    var x24 = x / S.f;
+
+    if (S.qual === 'Dirigente') {
+      // Quasi tutti i dirigenti stanno nella classe aperta: niente percentile né mediana.
+      var share = d.rows[d.rows.length - 1].n / d.total;
+      var bd = add('p', 'fg-ral-big'), bs = document.createElement('strong');
+      bs.textContent = pct(share);
+      bd.appendChild(bs);
+      bd.appendChild(document.createTextNode(who + ' ha una retribuzione annua nella classe più alta dell’INPS: da ' +
+        euro(openLo()) + ' in su nel ' + y + ', cioè ' + openTxt(S.f) + '.'));
+      add('p', 'fg-ral-rel', 'La tua retribuzione, riportata ai valori del ' + y + ', è di circa ' + euro100(x24) + ': ' +
+        (x24 >= openLo() ? 'rientra in questa classe.' : 'è sotto questa soglia.'));
+      add('p', 'fg-hint', 'Per i dirigenti non si stimano percentile e mediana: quasi tutti sono nella classe più alta, che l’INPS non suddivide.');
+      return;
+    }
+
+    var P = inpsPercentile(d, x24);
+    if (P.out) {
+      add('p', 'fg-ral-warn', 'La tua retribuzione, riportata ai valori del ' + y + ' (circa ' + euro100(x24) +
+        '), cade in una classe che l’INPS non pubblica per questo gruppo: il percentile non si può stimare.');
+    } else {
+      var T = inpsPctText(P), big = add('p', 'fg-ral-big');
+      if (T) {
+        var st = document.createElement('strong'), ps = document.createElement('span');
+        ps.className = 'fg-pre'; ps.textContent = T.pre; st.appendChild(ps);
+        st.appendChild(document.createTextNode(T.num));
+        big.appendChild(st);
+      }
+      big.appendChild(document.createTextNode((T ? who : cap(who.slice(1))) + ' ha una retribuzione annua più bassa della tua' +
+        (P.open ? ': sei nella classe più alta dell’INPS, ' + openTxt(S.f) : '') + '.'));
+    }
+    var med = inpsQuantile(d, 0.5);
+    var rel = add('p', 'fg-ral-rel');
+    if (med.open) {
+      rel.textContent = 'La mediana è ' + openTxt(S.f) + ' (stima).';
+    } else {
+      var rs = document.createElement('strong');
+      rs.textContent = inpsGap(x, med.v * S.f);
+      rel.appendChild(rs);
+      rel.appendChild(document.createTextNode(' rispetto alla mediana, stimata in ' + euro100(med.v * S.f) + ' ' + aMonth(last) +
+        (prev ? '.' : ': metà ' + q.of + ' guadagna meno, metà di più.')));
+    }
+    drawDistBar(add('div', 'fg-bar'), d, S.f, x);
+    if (!prev) {
+      add('p', 'fg-hint', 'Valori stimati ' + aMonth(last) + ', arrotondati alle centinaia. Fascia scura: la metà centrale ' + q.of +
+        ' (dal 1° al 3° quartile); fascia chiara: dal 1° al 9° decile; linee bianche: gli altri decili.');
+    }
+
+    var notes = [];
+    if (d.from > 0) {
+      notes.push('L’INPS pubblica solo le classi da ' + euro(d.from) + ' in su (valori ' + y + '): il percentile riguarda solo ' +
+        q.all + ' di queste classi (' + fmt(d.total) + ').');
+    } else if (d.skipped) {
+      notes.push('L’INPS non pubblica la classe da ' + euro(d.skipped.lo) + ' a ' + euro(d.skipped.hi - 1) + ' (valori ' + y +
+        '): il percentile riguarda solo ' + q.all + ' delle altre classi (' + fmt(d.total) + ').');
+    }
+    if (!prev || prev.fcode !== S.fcode) {
+      notes.push('Il confronto è sui valori del ' + y + ': ' + euro(x) + ' di ' + monthName(last) + ' equivalgono a circa ' + euro100(x24) +
+        ' del ' + y + ', togliendo gli aumenti contrattuali ' +
+        (S.fcode === IDX.total_code ? 'di industria e servizi di mercato' : 'della sezione') + ' (' + pct(S.f - 1, true) + ').' +
+        (S.kind === 'sec' && S.fcode !== S.key ? ' La sezione ' + S.key + ' non ha un indice proprio: si usa quello di industria e servizi di mercato.' : ''));
+    }
+    notes.forEach(function (t) { add('p', 'fg-hint', t); });
+  }
+
+  function renderRalNotes() {
+    el.ralNotes.innerHTML = '';
+    function p(html) { var e = document.createElement('p'); e.innerHTML = html; el.ralNotes.appendChild(e); }
+    if (!INPS || !IDX) { p(inpsError); return; }
+    var y = INPS.year, pub = INPS.published || '';
+    var pubTxt = /^\d{8}$/.test(pub) ? ' (pubblicata il ' + (+pub.slice(6, 8) === 1 ? '1°' : +pub.slice(6, 8)) + ' ' +
+      MESI[+pub.slice(4, 6) - 1] + ' ' + pub.slice(0, 4) + ')' : '';
+    p('<strong>Fonte:</strong> INPS, Osservatorio sui lavoratori dipendenti del settore privato non agricolo, tavola «Lavoratori dipendenti per classi di importo della retribuzione annua», anno ' +
+      y + pubTxt + '. Sono compresi solo i lavoratori retribuiti per tutto l’anno e mai a tempo parziale: se lavori part time o hai lavorato solo una parte dell’anno, il confronto non è omogeneo.');
+    p('<strong>Cosa misura:</strong> la retribuzione annua è l’imponibile previdenziale, cioè la retribuzione lorda su cui si pagano i contributi: comprende tredicesima, straordinari e premi, non il TFR. La qualifica è quella dichiarata dal datore di lavoro.');
+    p('<strong>Calcolo:</strong> l’INPS pubblica il numero di lavoratori per classi di 5.000 € (di 10.000 e 20.000 € fra 50.000 e 80.000 €). Percentile e quantili sono stimati supponendo i lavoratori distribuiti in modo uniforme dentro ogni classe; il percentile è arrotondato ai 5 punti e lo scarto dalla mediana all’unità. Nella classe più alta, ' +
+      euro(openLo()) + ' e oltre nel ' + y + ', non si può stimare più della quota complessiva.');
+    p('<strong>Aggiornamento:</strong> i valori ' + y + ' sono riportati ' + aMonth(IDX.index_last_month) +
+      ' con l’indice ISTAT delle retribuzioni contrattuali per dipendente della sezione; per l’Italia, le regioni e la sezione T con quello di industria e servizi di mercato (sezioni B–N), perché l’indice non ha il solo settore privato. È una stima: l’indice non comprende la crescita oltre i minimi contrattuali.');
+    p('<strong>Dati mancanti:</strong> quando l’INPS non pubblica la tavola completa per tutelare l’anonimato si usano le sole classi pubblicate, e il percentile riguarda solo quei lavoratori; se non c’è nemmeno così, si usa la distribuzione nazionale della qualifica. In entrambi i casi il risultato lo indica. Per i dirigenti si mostra solo la quota nella classe più alta.');
+    p('<strong>Pubblica amministrazione:</strong> il confronto non è disponibile, perché l’Osservatorio riguarda solo i dipendenti del settore privato.');
+  }
+
+  function initInps() {
+    var nodes = [{ code: 'IT', name: 'Tutti i settori', parent: null, depth: 0 }];
+    Object.keys(SEC).forEach(function (k) {
+      if (INPS.sezioni[k]) nodes.push({ code: k, name: k + ' · ' + SEC[k][0], parent: null, depth: 0, kw: SEC[k][2] });
+    });
+    secCombo = makeCombo({
+      input: el.atecoInput, list: el.atecoList, idPrefix: 'fg-pa-ateco-', empty: 'Nessun settore trovato',
+      nodes: nodes,
+      match: function (n, q) { return norm(n.name).indexOf(q) !== -1 || (!!n.kw && norm(n.kw).indexOf(q) !== -1); },
+      getValue: function () { return secCode; },
+      labelOf: function (code) { return code === 'IT' ? 'Tutti i settori' : code + ' · ' + SEC[code][0]; },
+      onChoose: function (code) { secCode = code; secTouched = true; secFromComp = null; updateRal(false); }
+    });
+    QUALS.forEach(function (q) {
+      var o = document.createElement('option'); o.value = q.k; o.textContent = q.name; el.qualIn.appendChild(o);
+    });
+    var regs = Object.keys(INPS.regioni).sort(function (a, b) { return regLabel(a).localeCompare(regLabel(b), 'it'); });
+    var o0 = document.createElement('option'); o0.value = ''; o0.textContent = 'Nessuna'; el.regIn.appendChild(o0);
+    regs.forEach(function (r) {
+      var o = document.createElement('option'); o.value = r; o.textContent = regLabel(r); el.regIn.appendChild(o);
+    });
+    [el.ralIn, el.premiIn].forEach(function (inp) {
+      inp.addEventListener('input', function () { updateRal(false); });
+      inp.addEventListener('blur', function () { if (inp.value.trim()) inp.dataset.touched = '1'; updateRal(false); });
+    });
+    el.qualIn.addEventListener('change', function () { updateRal(false); });
+    el.regIn.addEventListener('change', function () { updateRal(false); });
+    renderRalNotes();
+  }
+
+  // Precompila il settore dal comparto contrattuale, finché l'utente non lo sceglie a mano.
+  function syncSec() {
+    if (!INPS || secTouched) return;
+    var code = null;
+    if (W && pref && compCode) {
+      for (var c = compCode; c && comp[c] && !code; c = comp[c].parent) code = COMP_TO_SEC[c] || null;
+    }
+    secCode = code && INPS.sezioni[code] ? code : 'IT';
+    secFromComp = secCode !== 'IT' ? compCode : null;
+    if (secCombo) secCombo.refresh();
+  }
+
   function updateRal(showErrors) {
     if (!el.ralBody) return;
     var pa = paActive();
     el.ralPa.hidden = !pa;
-    el.ralBody.hidden = pa || !RQ;
+    el.ralBody.hidden = pa || !INPS;
     if (pa) {
-      el.ralPa.textContent = 'Il comparto scelto («' + comp[compCode].name + '») è della pubblica amministrazione: il confronto con la media di settore non è disponibile, perché il registro ISTAT RACLI copre solo il settore privato.';
+      el.ralPa.textContent = 'Il comparto scelto («' + comp[compCode].name + '») è della pubblica amministrazione: il confronto con il settore non è disponibile, perché l’Osservatorio INPS usato qui riguarda solo i dipendenti del settore privato.';
       return;
     }
-    if (!RQ) return;
-    renderProf();
+    if (!INPS) return;
 
-    el.atecoMsg.textContent = atecoFromComp && comp[atecoFromComp]
-      ? 'Precompilato dal comparto «' + comp[atecoFromComp].name + '»: puoi cambiarlo.' : '';
+    el.atecoMsg.textContent = secFromComp && comp[secFromComp]
+      ? 'Precompilato dal comparto «' + comp[secFromComp].name + '»: puoi cambiarlo.' : '';
 
     var pr = el.ralIn.value.trim() ? parseImporto(el.ralIn.value, { lire: false }) : null;
-    var po = parseOre(el.oreIn.value);
     var pp = el.premiIn.value.trim() ? parseImporto(el.premiIn.value, { lire: false }) : null;
     setMsg(el.ralIn, el.ralMsg, pr && !pr.ok ? pr.error : '', !!(pr && !pr.ok && (showErrors || el.ralIn.dataset.touched)),
       pr && pr.ok && pr.value < 6000 ? 'Sembra un importo mensile: inserisci la retribuzione annua lorda.' : '');
-    setMsg(el.oreIn, el.oreMsg, po.ok ? '' : po.error, !po.ok && (showErrors || !!el.oreIn.dataset.touched || el.oreIn.value.trim() !== ''),
-      po.ok && po.value < 30 ? 'Con meno di 30 ore probabilmente sei a tempo parziale: il confronto è con chi lavora a tempo pieno.' : '');
     setMsg(el.premiIn, el.premiMsg, pp && !pp.ok ? pp.error : '', !!(pp && !pp.ok && (showErrors || el.premiIn.dataset.touched)), 'Lordi, dell’ultimo anno: si sommano alla RAL.');
 
-    var ok = pr && pr.ok && po.ok && !(pp && !pp.ok);
+    var ok = pr && pr.ok && !(pp && !pp.ok);
     el.ralPrompt.hidden = !!ok;
     el.ralOut.hidden = !ok;
     if (!ok) return;
 
-    var annual = pr.value + (pp && pp.ok ? pp.value : 0);
-    var hours = po.value * WEEKS;
-    var x = annual / hours;
-    var isTot = atecoCode === '0010';
-    var d = isTot ? null : divs[atecoCode];
-    var s = isTot ? stats(RQ.total, RQ.total.factor) : stats(d, d.factor);
-    var secName = isTot ? 'tutti i settori privati' : cap(d.name);
-    var rel = x / s.mediana - 1;
-
+    var x = pr.value + (pp && pp.ok ? pp.value : 0), qual = el.qualIn.value, q = qualOf(qual);
     el.ralOut.innerHTML = '';
-    function node(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; el.ralOut.appendChild(e); return e; }
-    var big = node('p', 'fg-ral-big');
-    var st = document.createElement('strong'); st.textContent = euroH(x); big.appendChild(st);
-    big.appendChild(document.createTextNode('lordi per ora retribuita' + (pp && pp.ok ? ', premi e straordinari compresi' : '')));
-    var r1 = node('p', 'fg-ral-rel');
-    var rs = document.createElement('strong'); rs.className = rel >= 0 ? 'fg-pos' : 'fg-neg'; rs.textContent = pct(rel, true);
-    r1.appendChild(rs);
-    r1.appendChild(document.createTextNode(' rispetto alla mediana dei dipendenti a tempo pieno di ' +
-      (isTot ? 'tutti i settori privati' : '«' + secName + '»') + ': ' + bandText(x, s) + '.'));
-    drawBar(node('div', 'fg-bar'), s, x);
-    node('p', 'fg-hint', 'Con ' + fmt(po.value, po.value % 1 ? 1 : 0) + ' ore settimanali, la mediana del settore corrisponde a una retribuzione annua lorda di ' +
-      euro(s.mediana * hours) + ' (stima ' + aMonth(RQ.index_last_month) + ').');
-    if (d && levelNote(d)) node('p', 'fg-hint', levelNote(d));
+    var main = secCode === 'IT' ? scopeDist('it', null, qual) : scopeDist('sec', secCode, qual);
+    if (main.fallback) main.fallback.key = secCode;
+    renderBlock(el.ralOut, main, x, null);
 
     var rc = el.regIn.value;
-    var reg = rc ? RQ.regions.filter(function (r) { return r.code === rc; })[0] : null;
-    if (reg) {
-      var sec = node('div', 'fg-ral-sec');
-      var h = document.createElement('p'); h.className = 'fg-ral-h'; h.textContent = 'Nella tua regione: ' + reg.name; sec.appendChild(h);
-      var sr = stats(reg, RQ.regions_factor), rr = x / sr.mediana - 1;
-      var t = document.createElement('p'); t.className = 'fg-ral-rel';
-      var ts = document.createElement('strong'); ts.className = rr >= 0 ? 'fg-pos' : 'fg-neg'; ts.textContent = pct(rr, true);
-      t.appendChild(ts);
-      t.appendChild(document.createTextNode(' rispetto alla mediana dei dipendenti a tempo pieno della regione, tutti i settori privati: ' + bandText(x, sr) + '.'));
-      sec.appendChild(t);
-      var b = document.createElement('div'); b.className = 'fg-bar'; sec.appendChild(b);
-      drawBar(b, sr, x);
+    if (rc && INPS.regioni[rc]) {
+      var box = document.createElement('div');
+      box.className = 'fg-ral-sec';
+      el.ralOut.appendChild(box);
+      var S2 = scopeDist('reg', rc, qual);
+      if (S2.fallback) S2.fallback.key = rc;
+      if (S2.fallback && main.kind === 'it') {
+        // sarebbe di nuovo la distribuzione nazionale già mostrata sopra
+        var h = document.createElement('p'); h.className = 'fg-ral-h'; h.textContent = scopeTitle('reg', rc, q);
+        var w = document.createElement('p'); w.className = 'fg-ral-warn';
+        w.textContent = fallbackText(q, S2.fallback) + ': vale il confronto nazionale qui sopra.';
+        box.appendChild(h);
+        box.appendChild(w);
+      } else {
+        renderBlock(box, S2, x, main);
+      }
     }
   }
 
@@ -1649,7 +1769,7 @@
     });
   }
 
-  function init(foi, wages, racli, ses) {
+  function init(foi, wages, inps, idx) {
     if (!foi || !foi.series || !foi.last_month || !foi.series[foi.last_month]) {
       throw new Error('formato dati non valido');
     }
@@ -1667,18 +1787,13 @@
       wagesError = 'Dati sulle retribuzioni contrattuali non disponibili: il calcolo usa solo l’inflazione.';
     }
 
-    if (ses && ses.values && ses.factors && ses.total_code && ses.index_last_month) {
-      SQ = ses;
-      initSes();
+    if (inps && inps.classes && inps.italia && inps.sezioni && inps.regioni && inps.year &&
+        idx && idx.factors && idx.total_code && idx.factors[idx.total_code] && idx.index_last_month) {
+      INPS = inps;
+      IDX = idx;
+      initInps();
     } else {
-      if (!sesError) sesError = 'Dati Eurostat sulle professioni non disponibili.';
-      el.profRow.hidden = true;
-    }
-    if (racli && racli.divisions && racli.total && racli.regions && racli.year) {
-      RQ = racli;
-      initRacli();
-    } else {
-      if (!racliError) racliError = 'Dati ISTAT RACLI non disponibili: il confronto della retribuzione con il settore non può essere mostrato.';
+      if (!inpsError) inpsError = 'Dati INPS non disponibili: il confronto della retribuzione con il settore non può essere mostrato.';
       el.ralBody.hidden = true;
       renderRalNotes();
     }
@@ -1725,7 +1840,7 @@
     update(false);
   }
 
-  // Il FOI è indispensabile; retribuzioni, RACLI e professioni no: se mancano, le
+  // Il FOI è indispensabile; retribuzioni e dati INPS no: se mancano, le
   // rispettive parti si disattivano con un messaggio e il resto funziona.
   var started = false;
   function load() {
@@ -1733,15 +1848,15 @@
       wagesError = 'Dati sulle retribuzioni contrattuali non disponibili (' + e.message + '): il calcolo usa solo l’inflazione.';
       return null;
     });
-    var pRacli = getJson(racliUrl).then(null, function (e) {
-      racliError = 'Dati ISTAT RACLI non disponibili (' + e.message + '): il confronto della retribuzione con il settore non può essere mostrato.';
+    var pInps = getJson(inpsUrl).then(null, function (e) {
+      inpsError = 'Dati INPS non disponibili (' + e.message + '): il confronto della retribuzione con il settore non può essere mostrato.';
       return null;
     });
-    var pSes = getJson(sesUrl).then(null, function (e) {
-      sesError = 'Dati Eurostat sulle professioni non disponibili (' + e.message + ').';
+    var pIdx = getJson(indexUrl).then(null, function (e) {
+      inpsError = 'Indice ISTAT per sezione non disponibile (' + e.message + '): il confronto della retribuzione con il settore non può essere mostrato.';
       return null;
     });
-    Promise.all([getJson(foiUrl), pWages, pRacli, pSes])
+    Promise.all([getJson(foiUrl), pWages, pInps, pIdx])
       .then(function (r) {
         if (started) return;
         started = true;
@@ -1752,7 +1867,7 @@
   el.retry.addEventListener('click', function () {
     el.err.hidden = true;
     el.status.hidden = false;
-    wagesError = racliError = sesError = '';
+    wagesError = inpsError = '';
     load();
   });
   load();

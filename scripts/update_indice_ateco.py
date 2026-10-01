@@ -9,9 +9,9 @@ dirigenti). Una richiesta, con il limite di 40 s di update_foi.http_get.
 
 Coefficiente = indice dell'ultimo mese / media dell'indice nell'anno N, per
 ogni sezione ATECO B-T presente nell'indice; per Italia e regioni si usa 0015
-(industria e servizi di mercato, B-N), come per i dati RACLI. I mesi di picco
-temporaneo (oltre +3% che rientra di oltre il 3% il mese dopo) sono sostituiti
-dal mese precedente.
+(industria e servizi di mercato, B-N), perche' l'indice non ha il solo settore
+privato. I mesi di picco temporaneo (oltre +3% che rientra di oltre il 3% il
+mese dopo) sono sostituiti dal mese precedente.
 """
 import csv
 import io

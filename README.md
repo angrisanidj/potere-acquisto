@@ -4,7 +4,9 @@ Calcolatore web della perdita di potere d'acquisto di uno stipendio tra un mese
 di partenza scelto dall'utente e l'ultimo mese disponibile, basato sull'indice
 ISTAT **FOI senza tabacchi** (prezzi al consumo per le famiglie di operai e
 impiegati, indice generale al netto dei tabacchi) e, a scelta, sugli indici ISTAT
-delle **retribuzioni contrattuali** per dipendente.
+delle **retribuzioni contrattuali** per dipendente. Un secondo blocco confronta
+la retribuzione annua lorda con la distribuzione INPS dei dipendenti del settore
+privato a tempo pieno.
 
 Pagina pubblica: https://angrisanidj.github.io/potere-acquisto/
 
@@ -32,6 +34,13 @@ Elaborazione: Daniele Angrisani ([@putino](https://x.com/putino)).
 - Export PNG a doppia risoluzione, disegnato su canvas senza librerie.
 - Per i mesi dal 1996 al 2001 l'importo si inserisce in lire ed è convertito a
   1.936,27 lire per euro.
+- Blocco **"Come si colloca la tua retribuzione"**: RAL (più premi e
+  straordinari facoltativi), sezione ATECO, regione e qualifica facoltative.
+  Mostra il percentile stimato, lo scarto dalla mediana e una barra con decili
+  e quartili, per la sezione (o l'Italia) e, se scelta, per la regione. Il
+  settore si precompila dal comparto contrattuale quando questo ricade in una
+  sola sezione. Per i comparti della pubblica amministrazione il confronto non
+  è disponibile.
 - Gli importi si scrivono all'italiana: punto per le migliaia, virgola per i
   decimali (`1.500`, `1.500,50`, `2.500.000`). Le forme ambigue come `1.50` o
   `1,500` vengono rifiutate con un messaggio.
@@ -80,12 +89,53 @@ non arriva al singolo CCNL. Li genera `scripts/update_retribuzioni.py` (dataflow
   il 3% il mese dopo (oggi dicembre 2023, anticipo una tantum nella PA): la pagina
   usa al loro posto il mese precedente e lo segnala.
 
+### Confronto retributivo: `data/inps.json`
+
+INPS, Osservatorio sui lavoratori dipendenti del settore privato non agricolo,
+tavola 526 "Lavoratori dipendenti per classi di importo della retribuzione annua
+e cittadinanza" (anno 2024). Si contano i lavoratori con periodo retribuito
+"Anno intero" e senza tempo parziale nell'anno, per 13 classi di imponibile
+previdenziale annuo (fino a "80000 ed oltre", classe aperta): Italia, 18 sezioni
+ATECO (B–T) e 20 regioni, per qualifica e per tutte le qualifiche.
+
+- Quando l'INPS rifiuta una tavola per anonimizzazione si fa un solo nuovo
+  tentativo con una soglia (campo `soglia`: `da 15.000`, `da 20.000` o
+  `esclusa 5000-9999`); i conteggi riguardano solo le classi pubblicate. Se
+  anche il secondo tentativo è rifiutato la combinazione è `non_disponibile` e
+  la pagina usa la distribuzione nazionale della qualifica, dichiarandolo.
+- Nessun valore è ricavato per differenza fra tavole diverse.
+- Percentile e quantili si stimano per interpolazione lineare dentro le classi;
+  nella classe aperta non si stima (quantili "oltre 80.000 €"). Per i dirigenti
+  la pagina mostra solo la quota nella classe aperta.
+- Lo genera a mano `scripts/inps_collect.py` (workflow manuale *Raccolta INPS*,
+  `.github/workflows/collect-inps.yml`), che salva ogni risposta grezza in
+  `data/inps_raw/<anno>/` e non la richiede di nuovo; con `--offline` ricostruisce
+  il JSON dalle sole risposte salvate. Va lanciato quando il controllo mensile
+  (`scripts/check_inps.py`) segnala la tavola di un anno nuovo.
+- Il portale non indica licenze: si applica l'art. 52, comma 2, del Codice
+  dell'amministrazione digitale (dati pubblicati senza licenza = dati di tipo
+  aperto).
+
+### Aggiornamento del confronto: `data/indice_ateco.json`
+
+Coefficienti per portare i valori INPS all'ultimo mese disponibile: indice ISTAT
+delle retribuzioni contrattuali per dipendente per sezione ATECO
+(`IT1:155_358_DF_DCSC_RETRATECO1_7`) dell'ultimo mese diviso per la media
+dell'anno dei dati INPS. Per l'Italia, le regioni e la sezione T (che l'indice
+non ha) si usa `0015`, industria e servizi di mercato (B–N), perché l'indice
+non ha il solo settore privato. È una stima: non comprende la crescita oltre i
+minimi contrattuali. Lo genera `scripts/update_indice_ateco.py`.
+
 ## Aggiornamento automatico
 
 Il workflow `.github/workflows/update-foi.yml` gira il 20 di ogni mese (e a mano
-da *Actions → Aggiorna indice FOI → Run workflow*). I due script sono passi
-indipendenti: se uno fallisce lascia intatto il proprio file, l'aggiornamento
-dell'altro viene comunque committato e il job fallisce nell'ultimo passo. Il
+da *Actions → Aggiorna indice FOI → Run workflow*). FOI, retribuzioni
+contrattuali e indice per sezione sono passi indipendenti: se uno fallisce lascia
+intatto il proprio file, gli aggiornamenti degli altri vengono comunque
+committati e il job fallisce nell'ultimo passo. Un ultimo controllo
+(`scripts/check_inps.py`) segnala con un avviso una nuova tavola INPS. Le
+richieste all'ISTAT sono distanziate di almeno 40 secondi (limite di 5 al minuto
+per IP). Il
 campo `last_checked` cambia a ogni esecuzione riuscita, così c'è sempre un commit
 mensile e GitHub non disattiva il workflow per inattività.
 
@@ -101,15 +151,18 @@ JavaScript in una IIFE. I dati vengono letti dall'URL assoluto di GitHub Pages,
 che risponde con `Access-Control-Allow-Origin: *`, quindi il calcolatore
 funziona anche su altri domini. Se i prezzi non si caricano compare un messaggio
 d'errore; se mancano solo le retribuzioni, l'opzione contratto si disattiva con
-un avviso. Non ci sono copie di riserva dei dati nel codice.
+un avviso; se mancano i dati INPS o l'indice per sezione, il blocco del confronto
+retributivo mostra un messaggio al posto dei campi. Non ci sono copie di riserva dei dati nel codice.
 
 ## Sviluppo locale
 
 ```bash
 python scripts/update_foi.py              # aggiorna data/foi.json
 python scripts/update_retribuzioni.py     # aggiorna data/retribuzioni.json
+python scripts/update_indice_ateco.py     # aggiorna data/indice_ateco.json
+python scripts/inps_collect.py --offline  # ricostruisce data/inps.json dalle risposte salvate
 python -m http.server 8000                # poi apri http://localhost:8000/
-node --test tests/parser.test.mjs         # test del parser degli importi
+node --test tests/parser.test.mjs tests/inps.test.mjs   # parser degli importi e calcoli INPS
 ```
 
 In locale (`localhost` o `127.0.0.1`) la pagina legge i file in `data/` con un
@@ -126,3 +179,8 @@ contratti (minimi tabellari e voci contrattuali), non la crescita effettiva dell
 busta paga, che include anche anzianità, superminimi e promozioni. Riguarda le
 retribuzioni lorde: a parità di regole fiscali, applicare al netto la crescita
 del lordo tende a sovrastimarla, per effetto della progressività dell'IRPEF.
+
+Il confronto retributivo riguarda solo chi ha lavorato tutto l'anno a tempo
+pieno: per chi lavora part time o solo una parte dell'anno non è omogeneo. La
+retribuzione INPS è l'imponibile previdenziale (comprende tredicesima,
+straordinari e premi, non il TFR).
