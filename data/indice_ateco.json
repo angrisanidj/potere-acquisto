@@ -1,9 +1,9 @@
 {
  "source": "ISTAT, indice delle retribuzioni contrattuali per dipendente per ATECO, IT1:155_358_DF_DCSC_RETRATECO1_7",
- "base_note": "Coefficiente = indice di 2026-08 / media dell'indice nel 2024 (anno dei dati INPS). Italia e regioni: 0015 (industria e servizi di mercato B-N).",
+ "base_note": "Coefficiente = indice di 2026-08 / media dell'indice nel 2024 (anno dei dati INPS). Italia e regioni: 0015 (industria e servizi di mercato B-N). use: indice da usare per le sezioni il cui indice comprende contratti pubblici (P: istruzione privata Z2360 da retribuzioni.json; Q: 0015).",
  "year": "2024",
  "index_last_month": "2026-08",
- "last_checked": "2026-10-01T16:29:40Z",
+ "last_checked": "2026-10-02T07:45:29Z",
  "total_code": "0015",
  "factors": {
   "B": 1.10245,
@@ -23,6 +23,11 @@
   "Q": 1.04205,
   "R": 1.05772,
   "S": 1.06487,
-  "0015": 1.06039
+  "0015": 1.06039,
+  "Z2360": 1.06078
+ },
+ "use": {
+  "P": "Z2360",
+  "Q": "0015"
  }
 }

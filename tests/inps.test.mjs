@@ -109,3 +109,13 @@ test('i tre esempi di controllo, coefficiente 1,0', () => {
   assert.deepEqual(ex(INPS.sezioni.K.quals.Impiegato, 45000), ['circa il 50%', '−1%']);
   assert.deepEqual(ex(INPS.sezioni.C.quals.Quadro, 70000), ['circa il 40%', '−8%']);
 });
+
+// Istruzione e sanità: l'indice di sezione comprende i contratti pubblici, quindi
+// indice_ateco.json indica l'indice da usare al suo posto ("use").
+test('coefficienti: sezioni P e Q con un indice del solo privato', () => {
+  const IDX = JSON.parse(readFileSync(new URL('../data/indice_ateco.json', import.meta.url), 'utf8'));
+  assert.deepEqual(IDX.use, { P: 'Z2360', Q: IDX.total_code });
+  for (const code of Object.values(IDX.use)) {
+    assert.ok(IDX.factors[code] > 0.9 && IDX.factors[code] < 1.6, `coefficiente di ${code}: ${IDX.factors[code]}`);
+  }
+});

@@ -310,6 +310,7 @@
           <input type="checkbox" data-fg="ctr-on" checked>
           <span>Considera gli aumenti del contratto</span>
         </label>
+        <p class="fg-hint" data-fg="ctr-scope" hidden>Vale se hai un contratto collettivo nazionale: se non ce l’hai, togli la spunta. Se il tuo contratto non è nell’elenco, scegli il comparto più vicino.</p>
         <div class="fg-field" data-fg="cmp-wrap">
           <label class="fg-label" for="fg-pa-cmp">Comparto</label>
           <div class="fg-cmp-box">
@@ -415,7 +416,7 @@
     <p class="fg-cap" style="margin-bottom:10px">Note metodologiche</p>
     <div class="fg-notes">
       <p><strong>Metodo.</strong> La perdita di potere d’acquisto è 1 − I(partenza)/I(arrivo), dove I è l’indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI) senza tabacchi, lo stesso usato per rivalutare affitti e assegni di mantenimento. L’indice misura un paniere medio: l’inflazione vissuta da ciascuna famiglia può essere diversa. Usa lo stipendio netto, perché il lordo risente anche di tasse e contributi. Per i mesi dal 1996 al 2001 l’importo va inserito in lire ed è convertito a 1.936,27 lire per euro.</p>
-      <p><strong>Contratto.</strong> L’opzione applica allo stipendio la crescita dell’indice ISTAT delle retribuzioni contrattuali per dipendente del comparto scelto (dati dal 2005): misura gli aumenti previsti dai contratti nazionali (minimi tabellari), non la crescita effettiva della busta paga, che include anzianità, superminimi e promozioni. Riguarda il lordo: a parità di regole fiscali, applicare al netto la crescita del lordo tende a sovrastimarla, per effetto della progressività dell’IRPEF. I mesi con un aumento una tantum che rientra il mese successivo (come dicembre 2023 nella pubblica amministrazione) sono sostituiti dal mese precedente. I confronti si fermano all’ultimo mese disponibile per entrambe le serie.</p>
+      <p><strong>Contratto.</strong> L’opzione applica allo stipendio la crescita dell’indice ISTAT delle retribuzioni contrattuali per dipendente del comparto scelto (dati dal 2005). L’indice segue 75 contratti nazionali «guida», che rappresentano circa 13,1 milioni di dipendenti: a ogni comparto attribuisce la dinamica del contratto principale ed esclude dirigenti, apprendisti e alcune attività senza un contratto rappresentativo, come le agenzie interinali. Comprende le voci fisse previste dal contratto nazionale (minimi, indennità generali, scatti per un’anzianità fissa di 8 anni, indennità di vacanza contrattuale, tredicesima e quattordicesima); esclude contrattazione aziendale, superminimi, premi, straordinari, una tantum e arretrati. Quando un contratto è scaduto l’indice resta fermo (salvo l’indennità di vacanza contrattuale); di norma gli aumenti del rinnovo compaiono da quando l’ISTAT lo registra, senza arretrati, e i mesi già pubblicati non vengono rivisti. «Totale economia» comprende anche la pubblica amministrazione (23% del peso) e l’agricoltura. Riguarda il lordo: a parità di regole fiscali, applicare al netto la crescita del lordo tende a sovrastimarla, per effetto della progressività dell’IRPEF. I mesi con un aumento temporaneo che rientra il mese successivo (come dicembre 2023, quando alle amministrazioni statali è stata anticipata l’indennità di vacanza contrattuale per tutto il 2024) sono sostituiti dal mese precedente. I confronti si fermano all’ultimo mese disponibile per entrambe le serie.</p>
       <p><strong>Retribuzione.</strong> Il confronto con il settore usa l’Osservatorio INPS sui lavoratori dipendenti del settore privato non agricolo: distribuzione per classi della retribuzione annua di chi ha lavorato tutto l’anno a tempo pieno, aggiornata con l’indice ISTAT delle retribuzioni contrattuali. I dettagli sono nel riquadro «Come si colloca la tua retribuzione».</p>
     </div>
   </section>
@@ -585,7 +586,7 @@
     status: $('status'), app: $('app'), month: $('month'), year: $('year'),
     sal0: $('sal0'), sal0Label: $('sal0-label'), sal0Unit: $('sal0-unit'), sal0Msg: $('sal0-msg'),
     sal1: $('sal1'), sal1Label: $('sal1-label'), sal1Msg: $('sal1-msg'),
-    contract: $('contract'), ctrLabel: $('ctr-label'), ctrOn: $('ctr-on'), ctrMsg: $('ctr-msg'),
+    contract: $('contract'), ctrLabel: $('ctr-label'), ctrOn: $('ctr-on'), ctrMsg: $('ctr-msg'), ctrScope: $('ctr-scope'),
     cmpWrap: $('cmp-wrap'), cmpInput: $('cmp-input'), cmpList: $('cmp-list'),
     loss: $('loss'), lossTxt: $('loss-txt'), word: $('word'), basis: $('basis'),
     sentence: $('sentence'), rows: $('rows'), prompt: $('prompt'), boxes: $('boxes'),
@@ -653,7 +654,11 @@
     return i >= 0 && i < s.values.length ? s.values[i] : null;
   }
   function isPeak(code, m) { return ((W && W.temporary_peaks && W.temporary_peaks[code]) || []).indexOf(m) !== -1; }
-  // Un picco una tantum (aumento che rientra il mese dopo) viene sostituito dal mese precedente.
+  // Un picco temporaneo (aumento che rientra il mese dopo) viene sostituito dal mese precedente.
+  // Descrizione dei picchi noti; per quelli nuovi resta la frase generica.
+  var PEAK_TEXT = {
+    '2023-12': 'contiene l’anticipo, pagato a dicembre 2023, dell’indennità di vacanza contrattuale per tutto il 2024'
+  };
   function effMonth(code, m) { return isPeak(code, m) ? addMonths(m, -1) : m; }
   function wageEff(code, m) { return wageAt(code, effMonth(code, m)); }
 
@@ -906,12 +911,13 @@
     el.ctrOn.disabled = !cs.available;
     el.ctrLabel.classList.toggle('fg-off', !cs.available);
     el.cmpWrap.hidden = !W || cs.scope === 'global' || (cs.available && !pref);
+    el.ctrScope.hidden = !active;
     var peakNotes = [];
     if (active) {
       [start, end].forEach(function (m) {
         if (isPeak(compCode, m)) {
-          peakNotes.push(monthName(m).replace(/^./, function (x) { return x.toUpperCase(); }) +
-            ' contiene un aumento una tantum che rientra il mese dopo: per il contratto si usa ' +
+          peakNotes.push(monthName(m).replace(/^./, function (x) { return x.toUpperCase(); }) + ' ' +
+            (PEAK_TEXT[m] || 'contiene un aumento temporaneo che rientra il mese dopo') + ': per il contratto si usa ' +
             monthName(addMonths(m, -1)) + '.');
         }
       });
@@ -1037,7 +1043,7 @@
     }
     el.prompt.hidden = true; el.chartBox.hidden = false;
 
-    var ctrNote = 'Crescita prevista dal contratto (minimi tabellari), non crescita effettiva della busta paga, ' +
+    var ctrNote = 'Crescita prevista dal contratto (voci fisse del contratto nazionale), non crescita effettiva della busta paga, ' +
       'che include anche anzianità, superminimi e promozioni.' + (peakNotes.length ? ' ' + peakNotes.join(' ') : '');
     var boxes = [];
     if (cur !== null) {
@@ -1349,6 +1355,14 @@
     Z2360: 'P', Z2420: 'Q', Z2480: 'Q', Z2500: 'S'
   };
 
+  // Sezioni il cui indice comprende contratti pubblici: si usa un altro indice (campo "use"
+  // di indice_ateco.json) e lo si dichiara.
+  var FCODE_NAME = { Z2360: 'dell’istruzione privata' };
+  var USE_TEXT = {
+    P: 'Per l’istruzione l’indice di sezione comprende i contratti della scuola pubblica: si usa quello dell’istruzione privata.',
+    Q: 'Per la sanità l’indice di sezione comprende i contratti della sanità pubblica: si usa quello di industria e servizi di mercato.'
+  };
+
   function cap(t) { return t ? t.charAt(0).toUpperCase() + t.slice(1) : t; }
   function isPA(code) {
     for (var c = code; c && comp[c]; c = comp[c].parent) if (c === PA_ROOT) return true;
@@ -1371,7 +1385,8 @@
     if (kind === 'sec') {
       var sz = INPS.sezioni[key];
       entry = qual ? sz.quals[qual] : sz.tutte;
-      if (IDX.factors[key]) fcode = key;
+      fcode = (IDX.use && IDX.use[key]) || key;
+      if (!IDX.factors[fcode]) fcode = IDX.total_code;
       where = 'del settore «' + SEC[key][1] + '»';
     } else if (kind === 'reg') {
       var rg = INPS.regioni[key];
@@ -1541,8 +1556,9 @@
     if (!prev || prev.fcode !== S.fcode) {
       notes.push('Il confronto è sui valori del ' + y + ': ' + euro(x) + ' di ' + monthName(last) + ' equivalgono a circa ' + euro100(x24) +
         ' del ' + y + ', togliendo gli aumenti contrattuali ' +
-        (S.fcode === IDX.total_code ? 'di industria e servizi di mercato' : 'della sezione') + ' (' + pct(S.f - 1, true) + ').' +
-        (S.kind === 'sec' && S.fcode !== S.key ? ' La sezione ' + S.key + ' non ha un indice proprio: si usa quello di industria e servizi di mercato.' : ''));
+        (S.fcode === IDX.total_code ? 'di industria e servizi di mercato' : S.fcode === S.key ? 'della sezione' : FCODE_NAME[S.fcode] || 'del comparto') +
+        ' (' + pct(S.f - 1, true) + ').' +
+        (S.kind === 'sec' && S.fcode !== S.key ? ' ' + (USE_TEXT[S.key] || 'La sezione ' + S.key + ' non ha un indice proprio: si usa quello di industria e servizi di mercato.') : ''));
     }
     notes.forEach(function (t) { add('p', 'fg-hint', t); });
   }
@@ -1560,7 +1576,7 @@
     p('<strong>Calcolo:</strong> l’INPS pubblica il numero di lavoratori per classi di 5.000 € (di 10.000 e 20.000 € fra 50.000 e 80.000 €). Percentile e quantili sono stimati supponendo i lavoratori distribuiti in modo uniforme dentro ogni classe; il percentile è arrotondato ai 5 punti e lo scarto dalla mediana all’unità. Nella classe più alta, ' +
       euro(openLo()) + ' e oltre nel ' + y + ', non si può stimare più della quota complessiva.');
     p('<strong>Aggiornamento:</strong> i valori ' + y + ' sono riportati ' + aMonth(IDX.index_last_month) +
-      ' con l’indice ISTAT delle retribuzioni contrattuali per dipendente della sezione; per l’Italia, le regioni e la sezione T con quello di industria e servizi di mercato (sezioni B–N), perché l’indice non ha il solo settore privato. È una stima: l’indice non comprende la crescita oltre i minimi contrattuali.');
+      ' con l’indice ISTAT delle retribuzioni contrattuali per dipendente della sezione. Per l’Italia, le regioni e la sezione T si usa quello di industria e servizi di mercato (sezioni B–N), perché l’indice non ha il solo settore privato; per istruzione e sanità l’indice di sezione comprende i contratti pubblici, quindi si usano quello dell’istruzione privata e quello di industria e servizi di mercato. L’indice di sezione riflette solo i gruppi di attività coperti dai contratti seguiti dall’ISTAT (restano fuori, fra gli altri, agenzie interinali, organizzazioni associative, servizi alla persona e sport) ed esclude dirigenti e apprendisti: per queste attività e qualifiche l’aggiornamento è un’approssimazione. È una stima: l’indice non comprende la crescita oltre le voci fisse del contratto nazionale.');
     p('<strong>Dati mancanti:</strong> quando l’INPS non pubblica la tavola completa per tutelare l’anonimato si usano le sole classi pubblicate, e il percentile riguarda solo quei lavoratori; se non c’è nemmeno così, si usa la distribuzione nazionale della qualifica. In entrambi i casi il risultato lo indica. Per i dirigenti si mostra solo la quota nella classe più alta.');
     p('<strong>Pubblica amministrazione:</strong> il confronto non è disponibile, perché l’Osservatorio riguarda solo i dipendenti del settore privato.');
   }

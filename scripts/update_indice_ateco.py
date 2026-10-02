@@ -12,6 +12,13 @@ ogni sezione ATECO B-T presente nell'indice; per Italia e regioni si usa 0015
 (industria e servizi di mercato, B-N), perche' l'indice non ha il solo settore
 privato. I mesi di picco temporaneo (oltre +3% che rientra di oltre il 3% il
 mese dopo) sono sostituiti dal mese precedente.
+
+Sostituzioni (campo "use"): per istruzione (P) e sanita' (Q) l'indice di sezione
+comprende i contratti pubblici (scuola, Servizio sanitario nazionale), mentre i
+dati INPS riguardano solo il privato. Per P si usa il comparto contrattuale
+"istruzione privata" (Z2360), letto da data/retribuzioni.json senza altre
+richieste all'ISTAT; per Q si usa 0015. Se retribuzioni.json non arriva
+all'ultimo mese dell'indice, lo script si ferma senza scrivere.
 """
 import csv
 import io
@@ -27,11 +34,14 @@ INDEX = "155_358_DF_DCSC_RETRATECO1_7"
 KEY = "M.IT.WAGE_E_2021.N.10."
 TOTAL_INDEX = "0015"
 SECTIONS = list("BCDEFGHIJKLMNPQRST")
+# sezione -> indice da usare al posto di quello di sezione (comparto di retribuzioni.json o 0015)
+USE = {"P": "Z2360", "Q": TOTAL_INDEX}
 FACTOR_RANGE = (0.9, 1.6)
 PEAK_UP, PEAK_DOWN = 0.03, -0.03
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INPS = os.path.join(ROOT, "data", "inps.json")
+WAGES = os.path.join(ROOT, "data", "retribuzioni.json")
 OUT = os.path.join(ROOT, "data", "indice_ateco.json")
 
 
@@ -84,15 +94,36 @@ def main():
             raise UpdateError(f"coefficiente anomalo per {code}: {f:.4f}")
         factors[code] = round(f, 5)
 
+    # comparti contrattuali usati al posto dell'indice di sezione
+    with open(WAGES, encoding="utf-8") as f:
+        wages = json.load(f)
+    for sec, code in USE.items():
+        if code in factors:
+            continue
+        w = wages.get("series", {}).get(code)
+        if not w:
+            raise UpdateError(f"comparto {code} assente in retribuzioni.json")
+        y0, m0 = int(w["start"][:4]), int(w["start"][5:7])
+        s = {f"{y0 + (m0 - 1 + i) // 12:04d}-{(m0 - 1 + i) % 12 + 1:02d}": v for i, v in enumerate(w["values"])}
+        if last not in s or not all(f"{year}-{i:02d}" in s for i in range(1, 13)):
+            raise UpdateError(f"comparto {code}: retribuzioni.json non copre {year} e {last}")
+        f = factor(s, year, last)
+        if not FACTOR_RANGE[0] <= f <= FACTOR_RANGE[1]:
+            raise UpdateError(f"coefficiente anomalo per {code}: {f:.4f}")
+        factors[code] = round(f, 5)
+
     out = {
         "source": f"ISTAT, indice delle retribuzioni contrattuali per dipendente per ATECO, IT1:{INDEX}",
         "base_note": f"Coefficiente = indice di {last} / media dell'indice nel {year} (anno dei dati INPS). "
-                     f"Italia e regioni: {TOTAL_INDEX} (industria e servizi di mercato B-N).",
+                     f"Italia e regioni: {TOTAL_INDEX} (industria e servizi di mercato B-N). "
+                     f"use: indice da usare per le sezioni il cui indice comprende contratti pubblici "
+                     f"(P: istruzione privata Z2360 da retribuzioni.json; Q: {TOTAL_INDEX}).",
         "year": year,
         "index_last_month": last,
         "last_checked": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "total_code": TOTAL_INDEX,
         "factors": factors,
+        "use": USE,
     }
     fd, tmp = tempfile.mkstemp(dir=os.path.dirname(OUT), suffix=".tmp")
     with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as f:

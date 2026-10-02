@@ -57,6 +57,21 @@ retributivo.
 coefficiente = indice dell'ultimo mese / media dell'anno dei dati INPS, per sezione ATECO; per Italia
 e regioni `0015` (industria e servizi di mercato B–N), perché l'indice non ha il solo settore privato
 (`0037` esiste nella codelist ma è vuoto). La sezione T non ha serie: si usa `0015` e lo si dichiara.
+Istruzione (P) e sanità (Q): l'indice di sezione comprende scuola pubblica e SSN (nota ISTAT base 2021,
+Prospetto 4; a 2026-08 P = 1,089 ≈ istruzione pubblica, contro 1,061 dell'istruzione privata): campo
+`use` in `indice_ateco.json`, P → comparto `Z2360` (istruzione privata, da `retribuzioni.json`, nessuna
+richiesta in più all'ISTAT; errore se non arriva all'ultimo mese dell'indice), Q → `0015`; dichiarato.
+
+**Cosa misura l'indice contrattuale (verificato il 2026-10-02 sulla nota ISTAT base 2021 e sul comunicato
+aprile-giugno 2026).** 75 CCNL guida (2 agricoltura, 24 industria, 34 servizi privati, 15 PA), circa 13,1
+milioni di dipendenti; dinamica del contratto guida attribuita agli altri contratti del comparto; esclusi
+dirigenti, apprendisti, interinali e altri gruppi ATECO (8,9% dei privati non agricoli, 3,2% dei pubblici).
+Incluse le voci fisse (minimi, indennità generali, scatti a 8 anni fissi, IVC, mensilità aggiuntive);
+esclusi una tantum, arretrati, premi, straordinari, contrattazione aziendale. Contratto scaduto: indice
+fermo salvo IVC; dati mai rivisti. In pagina: riga sotto la casella del contratto ("Vale se hai un
+contratto collettivo nazionale…"), nota "Contratto" completa, "voci fisse del contratto nazionale" al posto
+di "minimi tabellari". Picco di dicembre 2023 = anticipo dell'IVC 2024 alle amministrazioni statali
+(`PEAK_TEXT` in pagina).
 
 **Confronto retributivo — INPS, tavola 526 (2024).** Osservatorio sui lavoratori dipendenti del settore
 privato non agricolo, "Lavoratori dipendenti per classi di importo della retribuzione annua e

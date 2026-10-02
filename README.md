@@ -127,8 +127,13 @@ delle retribuzioni contrattuali per dipendente per sezione ATECO
 (`IT1:155_358_DF_DCSC_RETRATECO1_7`) dell'ultimo mese diviso per la media
 dell'anno dei dati INPS. Per l'Italia, le regioni e la sezione T (che l'indice
 non ha) si usa `0015`, industria e servizi di mercato (B–N), perché l'indice
-non ha il solo settore privato. È una stima: non comprende la crescita oltre i
-minimi contrattuali. Lo genera `scripts/update_indice_ateco.py`.
+non ha il solo settore privato. Per istruzione (P) e sanità (Q) l'indice di
+sezione comprende i contratti pubblici (scuola, Servizio sanitario nazionale):
+il campo `use` indica di usare per P il comparto "istruzione privata" (`Z2360`,
+letto da `data/retribuzioni.json`) e per Q `0015`. L'indice di sezione riflette
+solo i gruppi coperti dai contratti seguiti dall'ISTAT ed esclude dirigenti e
+apprendisti. È una stima: non comprende la crescita oltre le voci fisse del
+contratto nazionale. Lo genera `scripts/update_indice_ateco.py`.
 
 ## Favicon e immagine per i social
 
@@ -222,7 +227,7 @@ famiglia può essere diversa. Conviene usare lo stipendio netto, perché il lord
 risente anche delle variazioni di tasse e contributi.
 
 L'indice delle retribuzioni contrattuali misura gli aumenti previsti dai
-contratti (minimi tabellari e voci contrattuali), non la crescita effettiva della
+contratti (voci fisse del contratto nazionale), non la crescita effettiva della
 busta paga, che include anche anzianità, superminimi e promozioni. Riguarda le
 retribuzioni lorde: a parità di regole fiscali, applicare al netto la crescita
 del lordo tende a sovrastimarla, per effetto della progressività dell'IRPEF.
