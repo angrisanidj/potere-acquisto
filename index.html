@@ -148,13 +148,14 @@
   display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px;
   font-style: normal; font-size: 11px; color: #ffffff; background: #1A1A2E;
 }
-#fg-potere-acquisto-2026 .fg-word.fg-loss i { background: #003F87; }
-#fg-potere-acquisto-2026 .fg-word.fg-gain i { background: #0070C0; }
+/* solo il risultato principale: perdita in rosso (#B42318, 6,6:1 su bianco), guadagno in blu */
+#fg-potere-acquisto-2026 .fg-word.fg-loss i { background: #B42318; }
+#fg-potere-acquisto-2026 .fg-word.fg-gain i { background: #003F87; }
 #fg-potere-acquisto-2026 .fg-big-num {
   display: block; font-size: 76px; font-weight: 700; line-height: .92; letter-spacing: -.045em; white-space: nowrap;
 }
-#fg-potere-acquisto-2026 .fg-loss { color: #003F87; }
-#fg-potere-acquisto-2026 .fg-gain { color: #0070C0; }
+#fg-potere-acquisto-2026 .fg-loss { color: #B42318; }
+#fg-potere-acquisto-2026 .fg-gain { color: #003F87; }
 #fg-potere-acquisto-2026 .fg-even { color: #1A1A2E; }
 #fg-potere-acquisto-2026 .fg-res-label { margin: 2px 0 0; font-size: 17px; font-weight: 600; }
 #fg-potere-acquisto-2026 .fg-res-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
@@ -477,7 +478,7 @@
   var FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
   var CREDIT = 'Elaborazione: Daniele Angrisani (@putino)';
   var SOURCE = 'Fonte: ISTAT, indice FOI senza tabacchi e indici delle retribuzioni contrattuali per dipendente.';
-  var C = { dark: '#003F87', mid: '#0070C0', accent: '#00A6D6', light: '#E8F4FD', text: '#1A1A2E',
+  var C = { loss: '#B42318', dark: '#003F87', mid: '#0070C0', accent: '#00A6D6', light: '#E8F4FD', text: '#1A1A2E',
             muted: '#666680', border: '#D0D8E8' };
 
   var host = (typeof location !== 'undefined' && location.hostname) || '';
@@ -1849,7 +1850,7 @@
       ctx.fillStyle = C.text; ctx.fillRect(0, 0, PW, 8);
     }
     ctx.textBaseline = 'alphabetic';
-    var dirColor = R.dir === 'loss' ? C.dark : R.dir === 'gain' ? C.mid : C.text;
+    var dirColor = R.dir === 'loss' ? C.loss : R.dir === 'gain' ? C.dark : C.text;
     // filetto spesso nero solo sopra il risultato (oltre alla barra in cima), altrove 1 px grigio chiaro
     function rule(h, color) { if (draw) { ctx.fillStyle = color || C.text; ctx.fillRect(PAD, y, CW, h); } y += h; }
 

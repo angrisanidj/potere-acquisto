@@ -112,7 +112,9 @@ dalla pagina e dal repository (sostituiti dall'INPS).
   ma con il punto delle migliaia forzato (il CLDR italiano non raggruppa i numeri di 4 cifre: vedi `fmt`).
 - **Incorporamento**: tutto il CSS sotto `#fg-potere-acquisto-2026` (nessun selettore globale), JS in una
   IIFE, font di sistema, nessuna libreria o risorsa esterna, palette #003F87 / #0070C0 / #00A6D6 /
-  #E8F4FD / testo #1A1A2E / secondario #666680 / bordi #D0D8E8, radice con `margin:28px auto !important`,
+  #E8F4FD / testo #1A1A2E / secondario #666680 / bordi #D0D8E8; rosso #B42318 (6,6:1 su bianco) solo per
+  il risultato principale in perdita (numero grande, PERDITA e riquadro ▼, anche nel PNG), guadagno in
+  #003F87 con ▲ GUADAGNO, tutto il resto senza rosso; radice con `margin:28px auto !important`,
   breakpoint a 600px. Dati letti dagli URL assoluti di GitHub Pages (relativi su localhost/127.0.0.1);
   se il FOI non si carica, errore con pulsante "Riprova" e nessun dato di riserva.
 - **Dopo ogni modifica a `index.html`**: rigenerare `embed.html` con `scripts/build_embed.py` e committarli
