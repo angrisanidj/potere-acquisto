@@ -181,6 +181,11 @@ link; cerchi con bordo #666680, pieni #1A1A2E al passaggio): condivide `location
 pagina pubblica in locale), testo generico senza i dati dell'utente. Icone Font Awesome Free 6.7.2
 (CC BY 4.0) copiate nel codice, aereo di Telegram disegnato a mano. Favicon, `og:*` e `twitter:card` nella
 testata di `index.html` (fuori dall'embed).
+Righe (2026-10-02): filetto nero spesso solo in cima (barra) e sopra il risultato (`.fg-res.fg-rule`, 2 px),
+anche nel PNG; separatori fra passi e sezioni 1 px #D0D8E8, senza righe di chiusura; campi con
+sottolineatura 1 px #666680 (contrasto ≥ 3:1), al focus 2 px #003F87 (bordo + ombra interna, nessuno
+spostamento); menu nativi con `appearance: none` e la stessa freccia SVG (data URI nel CSS) del selettore
+del comparto; a 320 px 16 px fra i passi.
 Esempi di controllo nei test con coefficiente 1,0 (commercio 40%, −4%; Lombardia 30%, −11%; finanza
 50%, −1%; manifattura 40%, −8%), indipendenti dall'indice mensile.
 

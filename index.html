@@ -61,7 +61,8 @@
 #fg-potere-acquisto-2026 .fg-cap {
   margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #666680;
 }
-#fg-potere-acquisto-2026 .fg-rule { border-top: 2px solid #1A1A2E; padding-top: 12px; }
+#fg-potere-acquisto-2026 .fg-rule { border-top: 1px solid #D0D8E8; padding-top: 12px; }
+#fg-potere-acquisto-2026 .fg-res.fg-rule { border-top: 2px solid #1A1A2E; }
 #fg-potere-acquisto-2026 .fg-label { display: block; margin: 0 0 2px; padding: 0; color: #666680; font-size: 13px; font-weight: 400; }
 #fg-potere-acquisto-2026 .fg-label small { font-size: 13px; color: #666680; }
 #fg-potere-acquisto-2026 .fg-hint { margin: 6px 0 0; color: #666680; font-size: 13px; }
@@ -70,11 +71,17 @@
 #fg-potere-acquisto-2026 input[type="text"] {
   display: block; width: 100%; min-width: 0; height: 44px; margin: 0; padding: 0 4px;
   font: inherit; font-size: 18px; font-weight: 500; color: #1A1A2E; background: transparent;
-  border: 0; border-bottom: 2px solid #1A1A2E; border-radius: 0; box-shadow: none; outline: none;
+  border: 0; border-bottom: 1px solid #666680; border-radius: 0; box-shadow: none; outline: none;
 }
 #fg-potere-acquisto-2026 select:focus,
-#fg-potere-acquisto-2026 input[type="text"]:focus { border-bottom-color: #003F87; box-shadow: 0 2px 0 #003F87; }
-#fg-potere-acquisto-2026 input[aria-invalid="true"] { border-bottom-color: #B3261E; }
+#fg-potere-acquisto-2026 input[type="text"]:focus { border-bottom-color: #003F87; box-shadow: inset 0 -1px 0 #003F87; }
+#fg-potere-acquisto-2026 input[aria-invalid="true"] { border-bottom-color: #B3261E; box-shadow: inset 0 -1px 0 #B3261E; }
+/* menu nativi con la stessa freccia del selettore del comparto */
+#fg-potere-acquisto-2026 select {
+  -webkit-appearance: none; -moz-appearance: none; appearance: none; padding-right: 24px; cursor: pointer;
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%231A1A2E'/%3E%3C/svg%3E") no-repeat right 4px center / 10px 6px;
+}
+#fg-potere-acquisto-2026 select::-ms-expand { display: none; }
 #fg-potere-acquisto-2026 .fg-row { display: flex; gap: 12px; }
 #fg-potere-acquisto-2026 .fg-row select:first-child { flex: 1.4; }
 #fg-potere-acquisto-2026 .fg-row select:last-child { flex: 1; }
@@ -89,8 +96,8 @@
 #fg-potere-acquisto-2026 .fg-soft { margin: 8px 0 0; padding: 12px; background: #E8F4FD; font-size: 14px; }
 #fg-potere-acquisto-2026 .fg-soft strong { display: block; margin: 0 0 2px; }
 
-/* Passi 01 02 03 */
-#fg-potere-acquisto-2026 .fg-steps { display: grid; grid-template-columns: 1fr; gap: 26px; align-items: start; }
+/* Passi 1 2 3 */
+#fg-potere-acquisto-2026 .fg-steps { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; }
 #fg-potere-acquisto-2026 .fg-step { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 #fg-potere-acquisto-2026 .fg-step-h { display: flex; gap: 10px; align-items: baseline; font-size: 13px; }
 #fg-potere-acquisto-2026 .fg-step-h b { font-weight: 800; }
@@ -105,7 +112,8 @@
 #fg-potere-acquisto-2026 .fg-cmp-box input { padding-right: 30px; font-size: 16px; }
 #fg-potere-acquisto-2026 .fg-cmp-box input::placeholder { color: #666680; opacity: 1; }
 #fg-potere-acquisto-2026 .fg-cmp-caret {
-  position: absolute; right: 4px; top: 0; height: 44px; line-height: 44px; color: #1A1A2E; font-size: 12px; pointer-events: none;
+  position: absolute; right: 4px; top: 0; width: 10px; height: 44px; overflow: hidden; color: transparent; font-size: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%231A1A2E'/%3E%3C/svg%3E") no-repeat center / 10px 6px; pointer-events: none;
 }
 #fg-potere-acquisto-2026 .fg-cmp-box.fg-open .fg-cmp-caret { transform: rotate(180deg); }
 #fg-potere-acquisto-2026 .fg-cmp-list {
@@ -152,16 +160,17 @@
 #fg-potere-acquisto-2026 .fg-res-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 #fg-potere-acquisto-2026 .fg-sentence p { margin: 0 0 8px; font-size: 16px; line-height: 1.5; }
 #fg-potere-acquisto-2026 .fg-sentence p + p { color: #666680; font-size: 14px; }
-#fg-potere-acquisto-2026 .fg-rows { margin: 0; padding: 0; border-top: 1px solid #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-rows { margin: 0; padding: 0; border-top: 1px solid #D0D8E8; }
 #fg-potere-acquisto-2026 .fg-rows div {
   display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0; border-bottom: 1px solid #D0D8E8;
 }
+#fg-potere-acquisto-2026 .fg-rows div:last-child { border-bottom: 0; }
 #fg-potere-acquisto-2026 .fg-rows dt { margin: 0; color: #666680; }
 #fg-potere-acquisto-2026 .fg-rows dd { margin: 0; font-weight: 700; white-space: nowrap; }
 #fg-potere-acquisto-2026 .fg-boxes { display: grid; grid-template-columns: 1fr; gap: 16px; }
 #fg-potere-acquisto-2026 .fg-box {
   display: grid; grid-template-columns: 1fr; gap: 4px 16px; align-items: baseline;
-  padding: 14px 0; border-top: 1px solid #1A1A2E; border-bottom: 1px solid #1A1A2E; min-width: 0;
+  padding: 14px 0; border-top: 1px solid #D0D8E8; min-width: 0;
 }
 #fg-potere-acquisto-2026 .fg-box-h { grid-column: 1 / -1; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
 #fg-potere-acquisto-2026 .fg-box-h span { color: #666680; }
@@ -198,18 +207,18 @@
 }
 #fg-potere-acquisto-2026 .fg-ral .fg-sub { margin: 0 0 18px; font-size: 14px; }
 #fg-potere-acquisto-2026 .fg-form { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 0 0 16px; }
-#fg-potere-acquisto-2026 .fg-ral-out { margin: 4px 0 0; padding-top: 14px; border-top: 2px solid #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-ral-out { margin: 4px 0 0; padding-top: 14px; border-top: 1px solid #D0D8E8; }
 #fg-potere-acquisto-2026 .fg-ral-big { margin: 4px 0 4px; font-size: 15px; color: #1A1A2E; }
 #fg-potere-acquisto-2026 .fg-ral-big strong {
   display: block; color: #1A1A2E; font-size: 48px; line-height: 1; font-weight: 700; letter-spacing: -.03em;
 }
 #fg-potere-acquisto-2026 .fg-ral-rel { margin: 8px 0 2px; font-size: 15px; }
 #fg-potere-acquisto-2026 .fg-ral-rel strong { font-weight: 800; color: #003F87; }
-#fg-potere-acquisto-2026 .fg-ral-sec { margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-ral-sec { margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid #D0D8E8; }
 #fg-potere-acquisto-2026 .fg-ral-h { margin: 0 0 4px; font-size: 15px; font-weight: 800; color: #1A1A2E; }
 #fg-potere-acquisto-2026 .fg-bar { width: 100%; margin: 6px 0 4px; }
 #fg-potere-acquisto-2026 .fg-bar svg { display: block; width: 100%; height: auto; overflow: visible; }
-#fg-potere-acquisto-2026 .fg-ral .fg-prompt { margin: 4px 0 0; padding-top: 14px; border-top: 2px solid #1A1A2E; font-size: 16px; }
+#fg-potere-acquisto-2026 .fg-ral .fg-prompt { margin: 4px 0 0; padding-top: 14px; border-top: 1px solid #D0D8E8; font-size: 16px; }
 #fg-potere-acquisto-2026 .fg-ral .fg-soft { background: #ffffff; }
 #fg-potere-acquisto-2026 .fg-ral-big .fg-pre { display: inline; font-size: .5em; letter-spacing: -.01em; }
 #fg-potere-acquisto-2026 .fg-ral-sec .fg-ral-big strong { font-size: 40px; }
@@ -217,7 +226,7 @@
   margin: 8px 0 0; padding: 10px 12px; border-left: 4px solid #003F87; background: #ffffff;
   font-size: 13.5px; line-height: 1.45; color: #1A1A2E;
 }
-#fg-potere-acquisto-2026 .fg-ral-notes { margin: 18px 0 0; padding: 12px 0 0; border-top: 1px solid #1A1A2E; color: #666680; font-size: 12.5px; }
+#fg-potere-acquisto-2026 .fg-ral-notes { margin: 18px 0 0; padding: 12px 0 0; border-top: 1px solid #D0D8E8; color: #666680; font-size: 12.5px; }
 #fg-potere-acquisto-2026 .fg-ral-notes p { margin: 0 0 6px; padding: 0; font-size: inherit; color: inherit; line-height: 1.45; }
 #fg-potere-acquisto-2026 .fg-ral-notes strong { color: #1A1A2E; }
 
@@ -236,8 +245,8 @@
 #fg-potere-acquisto-2026 .fg-share .fg-hint { margin: 0; min-height: 1.45em; }
 
 /* Stato, errore, piede */
-#fg-potere-acquisto-2026 .fg-status { margin: 0; padding-top: 14px; border-top: 2px solid #1A1A2E; font-size: 16px; color: #666680; }
-#fg-potere-acquisto-2026 .fg-err { display: grid; grid-template-columns: 1fr; gap: 14px; padding-top: 16px; border-top: 2px solid #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-status { margin: 0; padding-top: 14px; border-top: 1px solid #D0D8E8; font-size: 16px; color: #666680; }
+#fg-potere-acquisto-2026 .fg-err { display: grid; grid-template-columns: 1fr; gap: 14px; padding-top: 16px; border-top: 1px solid #D0D8E8; }
 #fg-potere-acquisto-2026 .fg-err .fg-cap { color: #B3261E; }
 #fg-potere-acquisto-2026 .fg-err strong { display: block; margin: 4px 0 0; font-size: 22px; line-height: 1.15; font-weight: 800; }
 #fg-potere-acquisto-2026 .fg-err p { margin: 0 0 12px; color: #1A1A2E; font-size: 15px; }
@@ -1841,7 +1850,8 @@
     }
     ctx.textBaseline = 'alphabetic';
     var dirColor = R.dir === 'loss' ? C.dark : R.dir === 'gain' ? C.mid : C.text;
-    function rule(h) { if (draw) { ctx.fillStyle = C.text; ctx.fillRect(PAD, y, CW, h); } y += h; }
+    // filetto spesso nero solo sopra il risultato (oltre alla barra in cima), altrove 1 px grigio chiaro
+    function rule(h, color) { if (draw) { ctx.fillStyle = color || C.text; ctx.fillRect(PAD, y, CW, h); } y += h; }
 
     y += 10;
     text('CALCOLATORE · DATI ISTAT', 13, 700, C.text, 22);
@@ -1870,7 +1880,7 @@
 
     // schede dei risultati
     R.cards.forEach(function (c) {
-      rule(1);
+      rule(1, C.border);
       y += 10;
       text(c.k.toUpperCase(), 13, 700, C.muted, 20);
       font(30, 700);
