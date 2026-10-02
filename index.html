@@ -22,6 +22,7 @@
 <meta name="twitter:creator" content="@putino">
 </head>
 <body style="margin:0;padding:0 12px;background:#ffffff;">
+<div id="pa-pagina">
 
 <div id="fg-potere-acquisto-2026">
 <style>
@@ -231,19 +232,21 @@
 #fg-potere-acquisto-2026 .fg-ral-notes p { margin: 0 0 6px; padding: 0; font-size: inherit; color: inherit; line-height: 1.45; }
 #fg-potere-acquisto-2026 .fg-ral-notes strong { color: #1A1A2E; }
 
-/* Condivisione */
-#fg-potere-acquisto-2026 .fg-share { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; }
-#fg-potere-acquisto-2026 .fg-share-row { display: flex; justify-content: space-between; gap: 4px; margin: 0; padding: 0; }
-#fg-potere-acquisto-2026 .fg-share-b {
-  display: inline-flex; align-items: center; justify-content: center; flex: 0 1 42px; min-width: 0; aspect-ratio: 1 / 1;
-  margin: 0; padding: 0; border: 1.5px solid #666680; border-radius: 50%; background: #ffffff; color: #1A1A2E;
-  font: inherit; line-height: 1; text-decoration: none; box-shadow: none; cursor: pointer;
+/* Note a comparsa (<details>): una sotto l'altra, chiuse di default */
+#fg-potere-acquisto-2026 .fg-det { display: block; margin: 0; padding: 0; border: 0; }
+#fg-potere-acquisto-2026 .fg-det + .fg-det { border-top: 1px solid #D0D8E8; }
+#fg-potere-acquisto-2026 .fg-det summary {
+  display: flex; align-items: center; gap: 10px; margin: 0; padding: 10px 0; list-style: none; cursor: pointer;
+  font-size: 14px; font-weight: 700; line-height: 1.3; color: #1A1A2E; background: none;
 }
-#fg-potere-acquisto-2026 .fg-share-b svg { display: block; width: 42%; height: 42%; fill: currentColor; }
-#fg-potere-acquisto-2026 .fg-share-b:hover,
-#fg-potere-acquisto-2026 .fg-share-b:focus-visible { background: #1A1A2E; border-color: #1A1A2E; color: #ffffff; outline: none; }
-#fg-potere-acquisto-2026 .fg-share-b:focus-visible { box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #003F87; }
-#fg-potere-acquisto-2026 .fg-share .fg-hint { margin: 0; min-height: 1.45em; }
+#fg-potere-acquisto-2026 .fg-det summary::-webkit-details-marker { display: none; }
+#fg-potere-acquisto-2026 .fg-det summary::before {
+  content: ''; flex: none; width: 10px; height: 6px; transform: rotate(-90deg);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%231A1A2E'/%3E%3C/svg%3E") no-repeat center / 10px 6px;
+}
+#fg-potere-acquisto-2026 .fg-det[open] summary::before { transform: none; }
+#fg-potere-acquisto-2026 .fg-det summary:focus-visible { outline: 2px solid #003F87; outline-offset: 2px; }
+#fg-potere-acquisto-2026 .fg-det p { margin: 0 0 12px; padding: 0 0 0 20px; color: #666680; font-size: 13px; line-height: 1.5; }
 
 /* Stato, errore, piede */
 #fg-potere-acquisto-2026 .fg-status { margin: 0; padding-top: 14px; border-top: 1px solid #D0D8E8; font-size: 16px; color: #666680; }
@@ -251,9 +254,7 @@
 #fg-potere-acquisto-2026 .fg-err .fg-cap { color: #B3261E; }
 #fg-potere-acquisto-2026 .fg-err strong { display: block; margin: 4px 0 0; font-size: 22px; line-height: 1.15; font-weight: 800; }
 #fg-potere-acquisto-2026 .fg-err p { margin: 0 0 12px; color: #1A1A2E; font-size: 15px; }
-#fg-potere-acquisto-2026 .fg-notes { display: grid; grid-template-columns: 1fr; gap: 12px 32px; }
-#fg-potere-acquisto-2026 .fg-notes p { margin: 0; padding: 0; color: #666680; font-size: 13px; line-height: 1.5; }
-#fg-potere-acquisto-2026 .fg-notes strong { color: #1A1A2E; }
+#fg-potere-acquisto-2026 .fg-notes { margin: 0; padding: 0; }
 #fg-potere-acquisto-2026 .fg-foot {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; margin: 0;
   padding-top: 12px; border-top: 1px solid #D0D8E8; font-size: 13px; color: #666680;
@@ -277,10 +278,6 @@
   #fg-potere-acquisto-2026 .fg-ral-big strong { font-size: 64px; }
   #fg-potere-acquisto-2026 .fg-ral-sec .fg-ral-big strong { font-size: 48px; }
   #fg-potere-acquisto-2026 .fg-err { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
-  #fg-potere-acquisto-2026 .fg-notes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  #fg-potere-acquisto-2026 .fg-share { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 10px 20px; }
-  #fg-potere-acquisto-2026 .fg-share-row { justify-content: flex-start; gap: 12px; }
-  #fg-potere-acquisto-2026 .fg-share-b { flex-basis: 44px; }
 }
 </style>
 
@@ -381,11 +378,12 @@
       <p class="fg-chart-title" data-fg="chart-title"></p>
       <p class="fg-chart-sub" data-fg="chart-sub"></p>
       <div class="fg-chart" data-fg="chart"></div>
-      <div class="fg-actions">
-        <button type="button" class="fg-btn" data-fg="png">Scarica l’immagine (PNG)</button>
-        <span class="fg-hint" data-fg="png-msg"></span>
-      </div>
     </section>
+
+    <div class="fg-actions" data-fg="png-box">
+      <button type="button" class="fg-btn" data-fg="png" disabled>Scarica l’immagine (PNG)</button>
+      <span class="fg-hint" data-fg="png-msg">Inserisci lo stipendio netto di allora per creare l’immagine.</span>
+    </div>
 
     <section class="fg-ral" data-fg="ral" aria-labelledby="fg-pa-ral-title">
       <p class="fg-cap">Confronto con il settore</p>
@@ -441,18 +439,12 @@
     </section>
   </div>
 
-  <section class="fg-share fg-rule" aria-labelledby="fg-pa-share-h">
-    <p class="fg-cap" id="fg-pa-share-h">Condividi il calcolatore</p>
-    <div class="fg-share-row" data-fg="share"></div>
-    <p class="fg-hint" data-fg="share-msg" role="status" aria-live="polite"></p>
-  </section>
-
   <section class="fg-rule">
     <p class="fg-cap" style="margin-bottom:10px">Note metodologiche</p>
     <div class="fg-notes">
-      <p><strong>Metodo.</strong> La perdita di potere d’acquisto è 1 − I(partenza)/I(arrivo), dove I è l’indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI) senza tabacchi, lo stesso usato per rivalutare affitti e assegni di mantenimento. L’indice misura un paniere medio: l’inflazione vissuta da ciascuna famiglia può essere diversa. Usa lo stipendio netto, perché il lordo risente anche di tasse e contributi. Per i mesi dal 1996 al 2001 l’importo va inserito in lire ed è convertito a 1.936,27 lire per euro.</p>
-      <p><strong>Contratto.</strong> L’opzione applica allo stipendio la crescita dell’indice ISTAT delle retribuzioni contrattuali per dipendente del comparto scelto (dati dal 2005). L’indice segue 75 contratti nazionali «guida», che rappresentano circa 13,1 milioni di dipendenti: a ogni comparto attribuisce la dinamica del contratto principale ed esclude dirigenti, apprendisti e alcune attività senza un contratto rappresentativo, come le agenzie interinali. Comprende le voci fisse previste dal contratto nazionale (minimi, indennità generali, scatti per un’anzianità fissa di 8 anni, indennità di vacanza contrattuale, tredicesima e quattordicesima); esclude contrattazione aziendale, superminimi, premi, straordinari, una tantum e arretrati. Quando un contratto è scaduto l’indice resta fermo (salvo l’indennità di vacanza contrattuale); di norma gli aumenti del rinnovo compaiono da quando l’ISTAT lo registra, senza arretrati, e i mesi già pubblicati non vengono rivisti. «Totale economia» comprende anche la pubblica amministrazione (23% del peso) e l’agricoltura. Riguarda il lordo: a parità di regole fiscali, applicare al netto la crescita del lordo tende a sovrastimarla, per effetto della progressività dell’IRPEF. I mesi con un aumento temporaneo che rientra il mese successivo (come dicembre 2023, quando alle amministrazioni statali è stata anticipata l’indennità di vacanza contrattuale per tutto il 2024) sono sostituiti dal mese precedente. I confronti si fermano all’ultimo mese disponibile per entrambe le serie.</p>
-      <p><strong>Retribuzione.</strong> Il confronto con il settore usa l’Osservatorio INPS sui lavoratori dipendenti del settore privato non agricolo: distribuzione per classi della retribuzione annua di chi ha lavorato tutto l’anno a tempo pieno, aggiornata con l’indice ISTAT delle retribuzioni contrattuali. I dettagli sono nel riquadro «Come si colloca la tua retribuzione».</p>
+      <details class="fg-det"><summary>Metodo</summary><p>La perdita di potere d’acquisto è 1 − I(partenza)/I(arrivo), dove I è l’indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI) senza tabacchi, lo stesso usato per rivalutare affitti e assegni di mantenimento. L’indice misura un paniere medio: l’inflazione vissuta da ciascuna famiglia può essere diversa. Usa lo stipendio netto, perché il lordo risente anche di tasse e contributi. Per i mesi dal 1996 al 2001 l’importo va inserito in lire ed è convertito a 1.936,27 lire per euro.</p></details>
+      <details class="fg-det"><summary>Contratto</summary><p>L’opzione applica allo stipendio la crescita dell’indice ISTAT delle retribuzioni contrattuali per dipendente del comparto scelto (dati dal 2005). L’indice segue 75 contratti nazionali «guida», che rappresentano circa 13,1 milioni di dipendenti: a ogni comparto attribuisce la dinamica del contratto principale ed esclude dirigenti, apprendisti e alcune attività senza un contratto rappresentativo, come le agenzie interinali. Comprende le voci fisse previste dal contratto nazionale (minimi, indennità generali, scatti per un’anzianità fissa di 8 anni, indennità di vacanza contrattuale, tredicesima e quattordicesima); esclude contrattazione aziendale, superminimi, premi, straordinari, una tantum e arretrati. Quando un contratto è scaduto l’indice resta fermo (salvo l’indennità di vacanza contrattuale); di norma gli aumenti del rinnovo compaiono da quando l’ISTAT lo registra, senza arretrati, e i mesi già pubblicati non vengono rivisti. «Totale economia» comprende anche la pubblica amministrazione (23% del peso) e l’agricoltura. Riguarda il lordo: a parità di regole fiscali, applicare al netto la crescita del lordo tende a sovrastimarla, per effetto della progressività dell’IRPEF. I mesi con un aumento temporaneo che rientra il mese successivo (come dicembre 2023, quando alle amministrazioni statali è stata anticipata l’indennità di vacanza contrattuale per tutto il 2024) sono sostituiti dal mese precedente. I confronti si fermano all’ultimo mese disponibile per entrambe le serie.</p></details>
+      <details class="fg-det"><summary>Retribuzione</summary><p>Il confronto con il settore usa l’Osservatorio INPS sui lavoratori dipendenti del settore privato non agricolo: distribuzione per classi della retribuzione annua di chi ha lavorato tutto l’anno a tempo pieno, aggiornata con l’indice ISTAT delle retribuzioni contrattuali. I dettagli sono nel riquadro «Come si colloca la tua retribuzione».</p></details>
     </div>
   </section>
 
@@ -535,6 +527,16 @@
     if (lire && value > 2000000000) return no('Importo troppo alto per uno stipendio mensile in lire.');
     return { ok: true, value: value };
   }
+
+  // Scrive un importo all'italiana con il punto delle migliaia sempre, anche sotto
+  // 10.000 (1.500, 60.000, 2.500.000); i decimali, se ci sono, sempre a due cifre
+  // (1.500,50). Le lire senza decimali. Il risultato è accettato da parseImporto.
+  function formatImporto(value, lire) {
+    var cents = lire ? Math.round(value) * 100 : Math.round(value * 100);
+    var int = Math.floor(cents / 100), dec = cents % 100;
+    var s = String(int).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return dec ? s + ',' + (dec < 10 ? '0' : '') + dec : s;
+  }
   // --- parser-end ---
 
   // --- inps-start ---
@@ -616,6 +618,15 @@
   var root = document.getElementById('fg-potere-acquisto-2026');
   if (!root) return;
   function $(name) { return root.querySelector('[data-fg="' + name + '"]'); }
+
+  // All'uscita da un campo d'importo lo riscrive formattato, se è valido; mai mentre si scrive.
+  function formatField(inp, lire) {
+    var r = parseImporto(inp.value, { lire: lire });
+    if (r.ok) {
+      var f = formatImporto(r.value, lire);
+      if (f !== inp.value) inp.value = f;
+    }
+  }
 
   var el = {
     status: $('status'), app: $('app'), month: $('month'), year: $('year'),
@@ -972,6 +983,7 @@
     el.sal0Label.textContent = 'Netto mensile ' + aMonth(start);
     el.sal0Unit.textContent = lire ? 'lire' : '€';
     el.sal0.placeholder = lire ? 'es. 2.500.000' : 'es. 1.500';
+    el.sal0.setAttribute('inputmode', lire ? 'numeric' : 'decimal');   // le lire non hanno decimali
     el.sal1Label.innerHTML = '';
     el.sal1Label.appendChild(document.createTextNode('Netto mensile ' + aEnd + ' '));
     var sm = document.createElement('small'); sm.textContent = '(facoltativo)'; el.sal1Label.appendChild(sm);
@@ -1073,6 +1085,9 @@
     el.boxes.innerHTML = '';
     if (sal0 === null) {
       el.prompt.hidden = false; el.boxes.hidden = true; el.chartBox.hidden = true;
+      // il pulsante resta visibile: disattivato, con la spiegazione
+      el.png.disabled = true;
+      el.pngMsg.textContent = 'Inserisci lo stipendio netto di allora per creare l’immagine.';
       calc = null;
       return;
     }
@@ -1125,6 +1140,7 @@
 
     el.chartTitle.textContent = R.chartTitle;
     el.chartSub.textContent = R.chartSub;
+    el.png.disabled = false;
     el.pngMsg.textContent = '';
     drawChart();
   }
@@ -1601,19 +1617,28 @@
   function renderRalNotes() {
     el.ralNotes.innerHTML = '';
     function p(html) { var e = document.createElement('p'); e.innerHTML = html; el.ralNotes.appendChild(e); }
+    // una nota a comparsa per voce, chiusa di default
+    function det(title, html) {
+      var d = document.createElement('details'), sm = document.createElement('summary'), e = document.createElement('p');
+      d.className = 'fg-det';
+      sm.textContent = title;
+      e.innerHTML = html.charAt(0).toUpperCase() + html.slice(1);
+      d.appendChild(sm); d.appendChild(e);
+      el.ralNotes.appendChild(d);
+    }
     if (!INPS || !IDX) { p(inpsError); return; }
     var y = INPS.year, pub = INPS.published || '';
     var pubTxt = /^\d{8}$/.test(pub) ? ' (pubblicata il ' + (+pub.slice(6, 8) === 1 ? '1°' : +pub.slice(6, 8)) + ' ' +
       MESI[+pub.slice(4, 6) - 1] + ' ' + pub.slice(0, 4) + ')' : '';
-    p('<strong>Fonte:</strong> INPS, Osservatorio sui lavoratori dipendenti del settore privato non agricolo, tavola «Lavoratori dipendenti per classi di importo della retribuzione annua», anno ' +
+    det('Fonte', 'INPS, Osservatorio sui lavoratori dipendenti del settore privato non agricolo, tavola «Lavoratori dipendenti per classi di importo della retribuzione annua», anno ' +
       y + pubTxt + '. Sono compresi solo i lavoratori retribuiti per tutto l’anno e mai a tempo parziale: se lavori part time o hai lavorato solo una parte dell’anno, il confronto non è omogeneo.');
-    p('<strong>Cosa misura:</strong> la retribuzione annua è l’imponibile previdenziale, cioè la retribuzione lorda su cui si pagano i contributi: comprende tredicesima, straordinari e premi, non il TFR. La qualifica è quella dichiarata dal datore di lavoro.');
-    p('<strong>Calcolo:</strong> l’INPS pubblica il numero di lavoratori per classi di 5.000 € (di 10.000 e 20.000 € fra 50.000 e 80.000 €). Percentile e quantili sono stimati supponendo i lavoratori distribuiti in modo uniforme dentro ogni classe; il percentile è arrotondato ai 5 punti e lo scarto dalla mediana all’unità. Nella classe più alta, ' +
+    det('Cosa misura', 'la retribuzione annua è l’imponibile previdenziale, cioè la retribuzione lorda su cui si pagano i contributi: comprende tredicesima, straordinari e premi, non il TFR. La qualifica è quella dichiarata dal datore di lavoro.');
+    det('Calcolo', 'l’INPS pubblica il numero di lavoratori per classi di 5.000 € (di 10.000 e 20.000 € fra 50.000 e 80.000 €). Percentile e quantili sono stimati supponendo i lavoratori distribuiti in modo uniforme dentro ogni classe; il percentile è arrotondato ai 5 punti e lo scarto dalla mediana all’unità. Nella classe più alta, ' +
       euro(openLo()) + ' e oltre nel ' + y + ', non si può stimare più della quota complessiva.');
-    p('<strong>Aggiornamento:</strong> i valori ' + y + ' sono riportati ' + aMonth(IDX.index_last_month) +
+    det('Aggiornamento', 'i valori ' + y + ' sono riportati ' + aMonth(IDX.index_last_month) +
       ' con l’indice ISTAT delle retribuzioni contrattuali per dipendente della sezione. Per l’Italia, le regioni e la sezione T si usa quello di industria e servizi di mercato (sezioni B–N), perché l’indice non ha il solo settore privato; per istruzione e sanità l’indice di sezione comprende i contratti pubblici, quindi si usano quello dell’istruzione privata e quello di industria e servizi di mercato. L’indice di sezione riflette solo i gruppi di attività coperti dai contratti seguiti dall’ISTAT (restano fuori, fra gli altri, agenzie interinali, organizzazioni associative, servizi alla persona e sport) ed esclude dirigenti e apprendisti: per queste attività e qualifiche l’aggiornamento è un’approssimazione. È una stima: l’indice non comprende la crescita oltre le voci fisse del contratto nazionale.');
-    p('<strong>Dati mancanti:</strong> quando l’INPS non pubblica la tavola completa per tutelare l’anonimato si usano le sole classi pubblicate, e il percentile riguarda solo quei lavoratori; se non c’è nemmeno così, si usa la distribuzione nazionale della qualifica. In entrambi i casi il risultato lo indica. Per i dirigenti si mostra solo la quota nella classe più alta.');
-    p('<strong>Pubblica amministrazione:</strong> il confronto non è disponibile, perché l’Osservatorio riguarda solo i dipendenti del settore privato.');
+    det('Dati mancanti', 'quando l’INPS non pubblica la tavola completa per tutelare l’anonimato si usano le sole classi pubblicate, e il percentile riguarda solo quei lavoratori; se non c’è nemmeno così, si usa la distribuzione nazionale della qualifica. In entrambi i casi il risultato lo indica. Per i dirigenti si mostra solo la quota nella classe più alta.');
+    det('Pubblica amministrazione', 'il confronto non è disponibile, perché l’Osservatorio riguarda solo i dipendenti del settore privato.');
   }
 
   function initInps() {
@@ -1639,7 +1664,11 @@
     });
     [el.ralIn, el.premiIn].forEach(function (inp) {
       inp.addEventListener('input', function () { updateRal(false); });
-      inp.addEventListener('blur', function () { if (inp.value.trim()) inp.dataset.touched = '1'; updateRal(false); });
+      inp.addEventListener('blur', function () {
+        formatField(inp, false);
+        if (inp.value.trim()) inp.dataset.touched = '1';
+        updateRal(false);
+      });
     });
     el.qualIn.addEventListener('change', function () { updateRal(false); });
     el.regIn.addEventListener('change', function () { updateRal(false); });
@@ -1707,80 +1736,6 @@
         renderBlock(box, S2, x, main);
       }
     }
-  }
-
-  // ---------- condivisione ----------
-  var PAGE_URL = 'https://angrisanidj.github.io/potere-acquisto/';
-  var SHARE_TEXT = 'Quanto potere d’acquisto ha perso il tuo stipendio? Il calcolatore con i dati ISTAT e INPS';
-  // Icone: Font Awesome Free 6.7.2 (fontawesome.com, licenza CC BY 4.0); aereo di
-  // Telegram disegnato per questa pagina. [viewBox, tracciato]
-  var SHARE_ICONS = {
-    x: ['0 0 512 512', 'M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z'],
-    threads: ['0 0 448 512', 'M331.5 235.7c2.2 .9 4.2 1.9 6.3 2.8c29.2 14.1 50.6 35.2 61.8 61.4c15.7 36.5 17.2 95.8-30.3 143.2c-36.2 36.2-80.3 52.5-142.6 53h-.3c-70.2-.5-124.1-24.1-160.4-70.2c-32.3-41-48.9-98.1-49.5-169.6V256v-.2C17 184.3 33.6 127.2 65.9 86.2C102.2 40.1 156.2 16.5 226.4 16h.3c70.3 .5 124.9 24 162.3 69.9c18.4 22.7 32 50 40.6 81.7l-40.4 10.8c-7.1-25.8-17.8-47.8-32.2-65.4c-29.2-35.8-73-54.2-130.5-54.6c-57 .5-100.1 18.8-128.2 54.4C72.1 146.1 58.5 194.3 58 256c.5 61.7 14.1 109.9 40.3 143.3c28 35.6 71.2 53.9 128.2 54.4c51.4-.4 85.4-12.6 113.7-40.9c32.3-32.2 31.7-71.8 21.4-95.9c-6.1-14.2-17.1-26-31.9-34.9c-3.7 26.9-11.8 48.3-24.7 64.8c-17.1 21.8-41.4 33.6-72.7 35.3c-23.6 1.3-46.3-4.4-63.9-16c-20.8-13.8-33-34.8-34.3-59.3c-2.5-48.3 35.7-83 95.2-86.4c21.1-1.2 40.9-.3 59.2 2.8c-2.4-14.8-7.3-26.6-14.6-35.2c-10-11.7-25.6-17.7-46.2-17.8H227c-16.6 0-39 4.6-53.3 26.3l-34.4-23.6c19.2-29.1 50.3-45.1 87.8-45.1h.8c62.6 .4 99.9 39.5 103.7 107.7l-.2 .2zm-156 68.8c1.3 25.1 28.4 36.8 54.6 35.3c25.6-1.4 54.6-11.4 59.5-73.2c-13.2-2.9-27.8-4.4-43.4-4.4c-4.8 0-9.6 .1-14.4 .4c-42.9 2.4-57.2 23.2-56.2 41.8l-.1 .1z'],
-    facebook: ['0 0 320 512', 'M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z'],
-    linkedin: ['0 0 448 512', 'M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z'],
-    telegram: ['0 0 24 24', 'M21.4 3.6 2.9 10.7c-1.1.4-1 1.5 0 1.8l4.6 1.4 1.8 5.5c.2.7 1 .9 1.5.4l2.6-2.4 4.7 3.5c.6.4 1.4.1 1.6-.6l3.2-15.3c.2-.9-.7-1.7-1.5-1.4zM9.6 14.3l-.5 3.6-1.1-3.8 9.6-6.1z'],
-    whatsapp: ['0 0 448 512', 'M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z'],
-    copy: ['0 0 640 512', 'M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z']
-  };
-
-  // Si condivide la pagina in cui si trova il calcolatore (l'articolo, se è
-  // incorporato), senza parametri né ancora; in locale, la pagina pubblica.
-  function shareUrl() {
-    if (isLocal || !/^https?:$/.test(location.protocol)) return PAGE_URL;
-    return location.origin + location.pathname;
-  }
-
-  function initShare() {
-    var box = $('share'), msg = $('share-msg'), timer = null;
-    if (!box) return;
-    var url = shareUrl(), u = encodeURIComponent(url), t = encodeURIComponent(SHARE_TEXT);
-    var tu = encodeURIComponent(SHARE_TEXT + ' ' + url);
-    var links = [
-      ['x', 'Condividi su X', 'https://x.com/intent/post?text=' + t + '&url=' + u],
-      ['threads', 'Condividi su Threads', 'https://www.threads.com/intent/post?text=' + tu],
-      ['facebook', 'Condividi su Facebook', 'https://www.facebook.com/sharer/sharer.php?u=' + u],
-      ['linkedin', 'Condividi su LinkedIn', 'https://www.linkedin.com/sharing/share-offsite/?url=' + u],
-      ['telegram', 'Condividi su Telegram', 'https://t.me/share/url?url=' + u + '&text=' + t],
-      ['whatsapp', 'Condividi su WhatsApp', 'https://wa.me/?text=' + tu],
-      ['copy', 'Copia il link', null]
-    ];
-    function say(text) {
-      msg.textContent = text;
-      clearTimeout(timer);
-      timer = setTimeout(function () { msg.textContent = ''; }, 5000);
-    }
-    function copied() { say('Link copiato: ' + url); }
-    function fallback() {
-      var ta = document.createElement('textarea'), ok = false;
-      ta.value = url;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'absolute'; ta.style.left = '-9999px';
-      root.appendChild(ta);
-      ta.select();
-      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-      root.removeChild(ta);
-      if (ok) copied(); else say('Copia questo link: ' + url);
-    }
-    box.innerHTML = '';
-    links.forEach(function (l) {
-      var b = document.createElement(l[2] ? 'a' : 'button');
-      b.className = 'fg-share-b';
-      b.setAttribute('aria-label', l[1]);
-      b.title = l[1];
-      if (l[2]) {
-        b.href = l[2]; b.target = '_blank'; b.rel = 'noopener noreferrer';
-      } else {
-        b.type = 'button';
-        b.addEventListener('click', function () {
-          if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(copied, fallback);
-          else fallback();
-        });
-      }
-      var svg = sv('svg', { viewBox: SHARE_ICONS[l[0]][0], 'aria-hidden': 'true', focusable: 'false' }, b);
-      sv('path', { d: SHARE_ICONS[l[0]][1] }, svg);
-      box.appendChild(b);
-    });
   }
 
   // ---------- export PNG (canvas, nessuna libreria) ----------
@@ -1977,7 +1932,11 @@
     el.ctrOn.addEventListener('change', function () { pref = el.ctrOn.checked; update(false); });
     [el.sal0, el.sal1].forEach(function (inp) {
       inp.addEventListener('input', function () { update(false); });
-      inp.addEventListener('blur', function () { if (inp.value.trim()) inp.dataset.touched = '1'; update(false); });
+      inp.addEventListener('blur', function () {
+        formatField(inp, inp === el.sal0 && !!el.month.value && isLire(el.month.value));
+        if (inp.value.trim()) inp.dataset.touched = '1';
+        update(false);
+      });
     });
     el.png.addEventListener('click', exportPng);
 
@@ -2024,7 +1983,6 @@
       })
       .catch(function (e) { fail('dettaglio: ' + e.message); });
   }
-  initShare();
   el.retry.addEventListener('click', function () {
     el.err.hidden = true;
     el.status.hidden = false;
@@ -2034,6 +1992,140 @@
   load();
 })();
 </script>
+</div>
+
+<aside id="pa-condividi" aria-labelledby="pa-condividi-h">
+<style>
+/* Barra di condivisione: solo nella pagina autonoma, fuori dal blocco incorporabile.
+   Da 900 px in su colonna verticale a sinistra del calcolatore, ferma durante lo
+   scorrimento; sotto, riga orizzontale dopo il calcolatore. */
+#pa-pagina { margin: 0; padding: 0; }
+#pa-condividi {
+  box-sizing: border-box; position: relative; max-width: 1100px; margin: 0 auto 28px; padding: 12px 16px 0;
+  border-top: 1px solid #D0D8E8; color: #1A1A2E; background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.45;
+}
+#pa-condividi *, #pa-condividi *::before, #pa-condividi *::after { box-sizing: border-box; }
+#pa-condividi .pa-cap {
+  margin: 0 0 10px; padding: 0; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #666680;
+}
+#pa-condividi .pa-row { display: flex; justify-content: space-between; gap: 4px; margin: 0; padding: 0; }
+#pa-condividi .pa-b {
+  display: inline-flex; align-items: center; justify-content: center; flex: 0 1 42px; min-width: 0; aspect-ratio: 1 / 1;
+  margin: 0; padding: 0; border: 1.5px solid #666680; border-radius: 50%; background: #ffffff; color: #1A1A2E;
+  font: inherit; line-height: 1; text-decoration: none; box-shadow: none; cursor: pointer;
+}
+#pa-condividi .pa-b svg { display: block; width: 42%; height: 42%; fill: currentColor; }
+#pa-condividi .pa-b:hover,
+#pa-condividi .pa-b:focus-visible { background: #1A1A2E; border-color: #1A1A2E; color: #ffffff; outline: none; }
+#pa-condividi .pa-b:focus-visible { box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #003F87; }
+#pa-condividi .pa-msg { margin: 8px 0 0; padding: 0; min-height: 1.45em; color: #666680; font-size: 13px; }
+@media (min-width: 600px) {
+  #pa-condividi { padding: 12px 36px 0; }
+  #pa-condividi .pa-row { justify-content: flex-start; gap: 12px; }
+  #pa-condividi .pa-b { flex-basis: 44px; }
+}
+@media (min-width: 900px) {
+  #pa-pagina { display: grid; grid-template-columns: 44px minmax(0, 1100px); justify-content: center; column-gap: 28px; align-items: start; }
+  #pa-pagina > #fg-potere-acquisto-2026 { grid-column: 2; grid-row: 1; width: 100%; }
+  #pa-condividi {
+    grid-column: 1; grid-row: 1; position: sticky; top: 24px; width: 44px; margin: 64px 0 0; padding: 0; border: 0;
+  }
+  /* titolo solo per i lettori di schermo: la colonna è troppo stretta */
+  #pa-condividi .pa-cap {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  #pa-condividi .pa-row { flex-direction: column; gap: 10px; }
+  #pa-condividi .pa-b { flex: none; width: 44px; height: 44px; }
+  #pa-condividi .pa-msg {
+    position: absolute; left: 56px; bottom: 0; width: max-content; max-width: 280px; min-height: 0; margin: 0;
+    padding: 6px 8px; background: #1A1A2E; color: #ffffff; font-size: 12px;
+  }
+  #pa-condividi .pa-msg:empty { display: none; }
+}
+</style>
+  <p class="pa-cap" id="pa-condividi-h">Condividi il calcolatore</p>
+  <div class="pa-row" data-pa="share"></div>
+  <p class="pa-msg" data-pa="msg" role="status" aria-live="polite"></p>
+<script>
+(function () {
+  'use strict';
+  var box = document.getElementById('pa-condividi');
+  if (!box) return;
+  var row = box.querySelector('[data-pa="share"]'), msg = box.querySelector('[data-pa="msg"]'), timer = null;
+  var PAGE_URL = 'https://angrisanidj.github.io/potere-acquisto/';
+  var SHARE_TEXT = 'Quanto potere d’acquisto ha perso il tuo stipendio? Il calcolatore con i dati ISTAT e INPS';
+  // Icone: Font Awesome Free 6.7.2 (fontawesome.com, licenza CC BY 4.0); aereo di
+  // Telegram disegnato per questa pagina. [viewBox, tracciato]
+  var SHARE_ICONS = {
+    x: ['0 0 512 512', 'M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z'],
+    threads: ['0 0 448 512', 'M331.5 235.7c2.2 .9 4.2 1.9 6.3 2.8c29.2 14.1 50.6 35.2 61.8 61.4c15.7 36.5 17.2 95.8-30.3 143.2c-36.2 36.2-80.3 52.5-142.6 53h-.3c-70.2-.5-124.1-24.1-160.4-70.2c-32.3-41-48.9-98.1-49.5-169.6V256v-.2C17 184.3 33.6 127.2 65.9 86.2C102.2 40.1 156.2 16.5 226.4 16h.3c70.3 .5 124.9 24 162.3 69.9c18.4 22.7 32 50 40.6 81.7l-40.4 10.8c-7.1-25.8-17.8-47.8-32.2-65.4c-29.2-35.8-73-54.2-130.5-54.6c-57 .5-100.1 18.8-128.2 54.4C72.1 146.1 58.5 194.3 58 256c.5 61.7 14.1 109.9 40.3 143.3c28 35.6 71.2 53.9 128.2 54.4c51.4-.4 85.4-12.6 113.7-40.9c32.3-32.2 31.7-71.8 21.4-95.9c-6.1-14.2-17.1-26-31.9-34.9c-3.7 26.9-11.8 48.3-24.7 64.8c-17.1 21.8-41.4 33.6-72.7 35.3c-23.6 1.3-46.3-4.4-63.9-16c-20.8-13.8-33-34.8-34.3-59.3c-2.5-48.3 35.7-83 95.2-86.4c21.1-1.2 40.9-.3 59.2 2.8c-2.4-14.8-7.3-26.6-14.6-35.2c-10-11.7-25.6-17.7-46.2-17.8H227c-16.6 0-39 4.6-53.3 26.3l-34.4-23.6c19.2-29.1 50.3-45.1 87.8-45.1h.8c62.6 .4 99.9 39.5 103.7 107.7l-.2 .2zm-156 68.8c1.3 25.1 28.4 36.8 54.6 35.3c25.6-1.4 54.6-11.4 59.5-73.2c-13.2-2.9-27.8-4.4-43.4-4.4c-4.8 0-9.6 .1-14.4 .4c-42.9 2.4-57.2 23.2-56.2 41.8l-.1 .1z'],
+    facebook: ['0 0 320 512', 'M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z'],
+    linkedin: ['0 0 448 512', 'M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z'],
+    telegram: ['0 0 24 24', 'M21.4 3.6 2.9 10.7c-1.1.4-1 1.5 0 1.8l4.6 1.4 1.8 5.5c.2.7 1 .9 1.5.4l2.6-2.4 4.7 3.5c.6.4 1.4.1 1.6-.6l3.2-15.3c.2-.9-.7-1.7-1.5-1.4zM9.6 14.3l-.5 3.6-1.1-3.8 9.6-6.1z'],
+    whatsapp: ['0 0 448 512', 'M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z'],
+    copy: ['0 0 640 512', 'M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z']
+  };
+
+  // In locale si condivide la pagina pubblica; altrimenti questa pagina, senza parametri né ancora.
+  var host = location.hostname;
+  var url = (host === 'localhost' || host === '127.0.0.1' || !/^https?:$/.test(location.protocol))
+    ? PAGE_URL : location.origin + location.pathname;
+  var u = encodeURIComponent(url), t = encodeURIComponent(SHARE_TEXT), tu = encodeURIComponent(SHARE_TEXT + ' ' + url);
+  var links = [
+    ['x', 'Condividi su X', 'https://x.com/intent/post?text=' + t + '&url=' + u],
+    ['threads', 'Condividi su Threads', 'https://www.threads.com/intent/post?text=' + tu],
+    ['facebook', 'Condividi su Facebook', 'https://www.facebook.com/sharer/sharer.php?u=' + u],
+    ['linkedin', 'Condividi su LinkedIn', 'https://www.linkedin.com/sharing/share-offsite/?url=' + u],
+    ['telegram', 'Condividi su Telegram', 'https://t.me/share/url?url=' + u + '&text=' + t],
+    ['whatsapp', 'Condividi su WhatsApp', 'https://wa.me/?text=' + tu],
+    ['copy', 'Copia il link', null]
+  ];
+  function say(text) {
+    msg.textContent = text;
+    clearTimeout(timer);
+    timer = setTimeout(function () { msg.textContent = ''; }, 5000);
+  }
+  function copied() { say('Link copiato: ' + url); }
+  function fallback() {
+    var ta = document.createElement('textarea'), ok = false;
+    ta.value = url;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'absolute'; ta.style.left = '-9999px';
+    box.appendChild(ta);
+    ta.select();
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    box.removeChild(ta);
+    if (ok) copied(); else say('Copia questo link: ' + url);
+  }
+  var NS = 'http://www.w3.org/2000/svg';
+  links.forEach(function (l) {
+    var b = document.createElement(l[2] ? 'a' : 'button');
+    b.className = 'pa-b';
+    b.setAttribute('aria-label', l[1]);
+    b.title = l[1];
+    if (l[2]) {
+      b.href = l[2]; b.target = '_blank'; b.rel = 'noopener noreferrer';
+    } else {
+      b.type = 'button';
+      b.addEventListener('click', function () {
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(copied, fallback);
+        else fallback();
+      });
+    }
+    var svg = document.createElementNS(NS, 'svg'), path = document.createElementNS(NS, 'path');
+    svg.setAttribute('viewBox', SHARE_ICONS[l[0]][0]);
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    path.setAttribute('d', SHARE_ICONS[l[0]][1]);
+    svg.appendChild(path);
+    b.appendChild(svg);
+    row.appendChild(b);
+  });
+})();
+</script>
+</aside>
+
 </div>
 
 </body>

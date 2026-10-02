@@ -9,7 +9,7 @@ import { readFileSync } from 'node:fs';
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 const block = html.match(/\/\/ --- parser-start ---([\s\S]*?)\/\/ --- parser-end ---/);
 assert.ok(block, 'blocco del parser non trovato in index.html');
-const parseImporto = new Function(block[1] + '\nreturn parseImporto;')();
+const { parseImporto, formatImporto } = new Function(block[1] + '\nreturn { parseImporto, formatImporto };')();
 
 const ok = (input, expected, opts) => {
   const r = parseImporto(input, opts);
@@ -95,4 +95,55 @@ test('controlli di plausibilità', () => {
   ko('2.500,50', { lire: true }, /decimali/i);
   ko('1.500', { lire: true }, /in lire/i);
   ko('3.000.000.000', { lire: true }, /troppo alto/i);
+});
+
+test('formattazione all\'uscita dal campo: punto delle migliaia anche sotto 10.000', () => {
+  assert.equal(formatImporto(60000), '60.000');
+  assert.equal(formatImporto(1500), '1.500');
+  assert.equal(formatImporto(1500.5), '1.500,50');
+  assert.equal(formatImporto(1500.05), '1.500,05');
+  assert.equal(formatImporto(999), '999');
+  assert.equal(formatImporto(0.5), '0,50');
+  assert.equal(formatImporto(1234567.89), '1.234.567,89');
+  assert.equal(formatImporto(2500000, true), '2.500.000');
+  assert.equal(formatImporto(1500000, true), '1.500.000');
+});
+
+test('formattazione: l\'importo scritto dall\'utente diventa quello formattato', () => {
+  const blur = (raw, lire) => { const r = parseImporto(raw, { lire }); return r.ok ? formatImporto(r.value, lire) : raw; };
+  assert.equal(blur('60000'), '60.000');
+  assert.equal(blur('1500'), '1.500');
+  assert.equal(blur('1500,5'), '1.500,50');
+  assert.equal(blur('1.500'), '1.500');
+  assert.equal(blur('€ 1500'), '1.500');
+  assert.equal(blur('2500000', true), '2.500.000');
+  // importi non validi restano come sono, con il loro messaggio d'errore
+  assert.equal(blur('1.50'), '1.50');
+  assert.equal(blur('abc'), 'abc');
+});
+
+test('formattazione: il risultato è sempre riletto uguale', () => {
+  for (const v of [1, 9.99, 10, 999, 1000, 1500.5, 9999.99, 10000, 26000, 45000.1, 999999.99]) {
+    const r = parseImporto(formatImporto(v));
+    assert.equal(r.ok, true, `${v} → ${formatImporto(v)}: ${r.error}`);
+    assert.equal(r.value, v);
+  }
+  for (const v of [50000, 1500000, 2500000, 999999999]) {
+    const r = parseImporto(formatImporto(v, true), { lire: true });
+    assert.equal(r.ok, true, `${v} lire: ${r.error}`);
+    assert.equal(r.value, v);
+  }
+});
+
+test('formattazione solo sui campi d\'importo', () => {
+  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  // i soli campi formattati sono i quattro importi; gli anni e i mesi sono menu
+  // una definizione e due chiamate: importi del calcolo e importi del blocco retribuzione
+  assert.equal((html.match(/formatField\(/g) || []).length, 3);
+  assert.match(html, /\[el\.ralIn, el\.premiIn\]\.forEach\(function \(inp\) \{[\s\S]{0,400}formatField\(inp, false\)/);
+  assert.match(html, /\[el\.sal0, el\.sal1\]\.forEach\(function \(inp\) \{[\s\S]{0,400}formatField\(inp, inp === el\.sal0/);
+  for (const id of ['sal0', 'sal1', 'ral-in', 'premi-in']) {
+    assert.match(html, new RegExp(`data-fg="${id}" type="text" inputmode="decimal"`), `${id}: inputmode`);
+  }
+  assert.match(html, /el\.sal0\.setAttribute\('inputmode', lire \? 'numeric' : 'decimal'\)/);
 });

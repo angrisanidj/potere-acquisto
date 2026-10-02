@@ -19,8 +19,8 @@ Commit e push solo quando l'utente li chiede.
 |---|---|
 | `index.html` | Tutta la pagina: un solo `<div id="fg-potere-acquisto-2026">` con `<style>` e `<script>` (IIFE) dentro |
 | `embed.html` | Il solo div radice da incollare in una scheda HTML di Ghost; generato, mai modificato a mano |
-| `scripts/build_embed.py` | Estrae il div radice da `index.html` (fino all'ultimo `</div>` prima di `</body>`) → `embed.html` |
-| `tests/embed.test.mjs` | Verifica che `embed.html` coincida con il blocco di `index.html`, sia autonomo e che ogni selettore CSS inizi con l'ID radice |
+| `scripts/build_embed.py` | Estrae il div radice da `index.html` (fino al `</div>` che lo chiude, contando i div e saltando commenti, stile e script) → `embed.html` |
+| `tests/embed.test.mjs` | `embed.html` = blocco di `index.html`, autonomo, selettori sotto l'ID radice, senza barra di condivisione; pulsante PNG presente e non dentro elementi nascosti; note a comparsa chiuse |
 | `assets/` | `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, `og-image.html` (modello) e `og-image.png` (1200 × 630) |
 | `scripts/build_images.mjs` | Genera i PNG di `assets/` con Edge/Chrome headless via DevTools Protocol (`BROWSER` per il percorso) |
 | `tests/assets.test.mjs` | File citati nella testata (favicon, `og:image`) presenti e con le dimensioni dichiarate |
@@ -178,11 +178,20 @@ tocco o al clic il campo si svuota con la voce come segnaposto e l'albero si fil
 accenti); Invio sceglie la voce evidenziata (la prima trovata, finché non si usano le frecce), Esc chiude e
 ripristina la voce lasciando il fuoco nel campo, frecce per muoversi e per riaprire; il clic su una voce
 chiude anche la tastiera.
-Riga "Condividi il calcolatore" prima delle note (X, Threads, Facebook, LinkedIn, Telegram, WhatsApp, copia
-link; cerchi con bordo #666680, pieni #1A1A2E al passaggio): condivide `location.origin + pathname` (la
-pagina pubblica in locale), testo generico senza i dati dell'utente. Icone Font Awesome Free 6.7.2
-(CC BY 4.0) copiate nel codice, aereo di Telegram disegnato a mano. Favicon, `og:*` e `twitter:card` nella
-testata di `index.html` (fuori dall'embed).
+Barra di condivisione solo nella pagina autonoma: `<aside id="pa-condividi">` dopo il div radice, dentro
+il contenitore `#pa-pagina`, con `<style>` e `<script>` propri (selettori sotto `#pa-condividi` e
+`#pa-pagina`); da 900 px colonna a sinistra del calcolatore con `position: sticky`, sotto riga dopo il
+calcolatore; non è in `embed.html` (test). X, Threads, Facebook, LinkedIn, Telegram, WhatsApp, copia link;
+condivide `location.origin + pathname` (la pagina pubblica in locale), testo generico senza i dati
+dell'utente. Icone Font Awesome Free 6.7.2 (CC BY 4.0), aereo di Telegram disegnato a mano. Favicon, `og:*`
+e `twitter:card` nella testata di `index.html`.
+Pulsante PNG sempre visibile (`data-fg="png-box"`, fuori dalla sezione del grafico): disattivato con la
+spiegazione finché manca lo stipendio di partenza. Prima stava nella sezione del grafico, nascosta senza
+stipendio, e quindi non si vedeva.
+Importi (`sal0`, `sal1`, RAL, premi) riformattati all'uscita dal campo con `formatImporto` (blocco del
+parser, testato): punto delle migliaia sempre, decimali a due cifre se presenti, lire senza decimali;
+`inputmode` `decimal`, `numeric` per le lire.
+Note metodologiche e note del blocco retribuzione come `<details class="fg-det">`, chiuse di default.
 Righe (2026-10-02): filetto nero spesso solo in cima (barra) e sopra il risultato (`.fg-res.fg-rule`, 2 px),
 anche nel PNG; separatori fra passi e sezioni 1 px #D0D8E8, senza righe di chiusura; campi con
 sottolineatura 1 px #666680 (contrasto ≥ 3:1), al focus 2 px #003F87 (bordo + ombra interna, nessuno

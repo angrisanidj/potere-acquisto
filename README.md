@@ -41,10 +41,19 @@ Elaborazione: Daniele Angrisani ([@putino](https://x.com/putino)).
   settore si precompila dal comparto contrattuale quando questo ricade in una
   sola sezione. Per i comparti della pubblica amministrazione il confronto non
   è disponibile.
-- Riga **"Condividi il calcolatore"**: link diretti a X, Threads, Facebook,
-  LinkedIn, Telegram e WhatsApp e pulsante per copiare il link. Si condivide la
-  pagina in cui si trova il calcolatore (l'articolo, se è incorporato), senza
-  parametri; il testo proposto è generico e non contiene i dati inseriti.
+- **Barra di condivisione**, solo nella pagina autonoma (non in `embed.html`):
+  link diretti a X, Threads, Facebook, LinkedIn, Telegram e WhatsApp e pulsante
+  per copiare il link. Da 900 px in su è una colonna verticale a sinistra del
+  calcolatore che resta in vista durante lo scorrimento; sotto, una riga dopo il
+  calcolatore. Si condivide la pagina senza parametri; il testo proposto è
+  generico e non contiene i dati inseriti.
+- Il pulsante **Scarica l'immagine (PNG)** è sempre visibile: senza stipendio di
+  partenza è disattivato e lo spiega.
+- Gli importi si riformattano quando si esce dal campo, con il punto delle
+  migliaia anche sotto 10.000 (`1500` → `1.500`, `1500,5` → `1.500,50`, lire
+  comprese); mai mentre si scrive.
+- Note metodologiche e note del blocco retribuzione sono a comparsa
+  (`<details>`), chiuse di default.
 - Gli importi si scrivono all'italiana: punto per le migliaia, virgola per i
   decimali (`1.500`, `1.500,50`, `2.500.000`). Le forme ambigue come `1.50` o
   `1,500` vengono rifiutate con un messaggio.
@@ -177,7 +186,9 @@ quando compare un picco temporaneo nuovo.
 
 Il blocco da incollare è in [`embed.html`](embed.html): il solo
 `<div id="fg-potere-acquisto-2026"> … </div>` di `index.html`, con stile e
-script, senza `<html>`, `<head>` e `<body>`. Tutto il CSS è sotto quell'ID e il
+script, senza `<html>`, `<head>` e `<body>`. La barra di condivisione sta fuori
+da quel div e non è in `embed.html`: in un articolo si usano i pulsanti di
+condivisione del sito che lo ospita. Tutto il CSS è sotto quell'ID e il
 JavaScript è in una IIFE, quindi non tocca il resto della pagina e il tema del
 sito non lo altera.
 
@@ -187,8 +198,9 @@ oppure il pulsante `+` → *HTML*) e incollarci tutto il contenuto di
 stessi passi valgono per qualsiasi CMS che accetti un blocco HTML con script.
 
 `embed.html` non si modifica a mano: lo genera `scripts/build_embed.py`
-estraendo il blocco da `index.html`, e `tests/embed.test.mjs` fallisce se i due
-file non coincidono. Dopo ogni modifica a `index.html`:
+estraendo il blocco da `index.html` (dal div radice al `</div>` che lo chiude,
+contando i div annidati), e `tests/embed.test.mjs` fallisce se i due file non
+coincidono o se nel blocco compare la barra di condivisione. Dopo ogni modifica a `index.html`:
 
 ```bash
 python scripts/build_embed.py

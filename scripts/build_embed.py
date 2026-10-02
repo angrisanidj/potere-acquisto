@@ -2,20 +2,24 @@
 """Estrae da index.html il blocco da incorporare e lo scrive in embed.html.
 
 Il blocco e' il div radice <div id="fg-potere-acquisto-2026"> con stile e script,
-fino all'ultimo </div> prima di </body>: e' quello da incollare in una scheda
-HTML di Ghost (o in qualsiasi altra pagina). embed.html non si modifica a mano:
-dopo ogni modifica a index.html si rilancia questo script, e
-tests/embed.test.mjs controlla che i due file coincidano.
+fino al </div> che lo chiude (contando i div annidati e saltando il contenuto di
+<style>, <script> e dei commenti): e' quello da incollare in una scheda HTML di
+Ghost (o in qualsiasi altra pagina). Cio' che sta fuori dal div radice in
+index.html, come la barra di condivisione, resta solo nella pagina autonoma.
+embed.html non si modifica a mano: dopo ogni modifica a index.html si rilancia
+questo script, e tests/embed.test.mjs controlla che i due file coincidano.
 
 Uso: python scripts/build_embed.py
 """
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "index.html")
 OUT = os.path.join(ROOT, "embed.html")
 START = '<div id="fg-potere-acquisto-2026">'
+TOKEN = re.compile(r"<!--.*?-->|<(script|style)\b[^>]*>.*?</\1>|<div\b[^>]*>|</div\s*>", re.S | re.I)
 
 
 class EmbedError(Exception):
@@ -23,19 +27,24 @@ class EmbedError(Exception):
 
 
 def extract(html):
-    """Blocco dal div radice all'ultimo </div> prima di </body>, con un a capo finale."""
+    """Blocco dal div radice al </div> che lo chiude, con un a capo finale."""
     i = html.find(START)
     if i == -1:
         raise EmbedError(f"{START} non trovato in index.html")
     if html.find(START, i + 1) != -1:
         raise EmbedError(f"{START} compare piu' di una volta in index.html")
-    body_end = html.rfind("</body>")
-    if body_end < i:
-        raise EmbedError("</body> mancante o prima del div radice")
-    j = html.rfind("</div>", i, body_end)
-    if j == -1:
+    depth, end = 0, None
+    for m in TOKEN.finditer(html, i):
+        t = m.group(0)
+        if t.startswith("<!--") or m.group(1):
+            continue  # commento, <style> o <script>: il contenuto non conta
+        depth += -1 if t.startswith("</") else 1
+        if depth == 0:
+            end = m.end()
+            break
+    if end is None:
         raise EmbedError("</div> di chiusura del div radice non trovato")
-    block = html[i:j + len("</div>")]
+    block = html[i:end]
     # controlli minimi: un solo stile e un solo script, entrambi chiusi, niente
     # parti della pagina intera
     for tag in ("style", "script"):
@@ -44,8 +53,6 @@ def extract(html):
     for tag in ("<html", "<head>", "<body", "</body>"):
         if tag in block:
             raise EmbedError(f"il blocco contiene {tag}")
-    if html[j + len("</div>"):body_end].strip():
-        raise EmbedError("contenuto fra la chiusura del div radice e </body>")
     return block + "\n"
 
 
